@@ -1,0 +1,878 @@
+:root {
+  base_url: 'http://localhost/jobmandi';
+}
+@font-face {
+    font-family: 'robotobold';
+    src: url('fonts/roboto-bold-webfont.woff2') format('woff2'),
+         url('fonts/roboto-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotolight';
+    src: url('fonts/roboto-light-webfont.woff2') format('woff2'),
+         url('fonts/roboto-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotoregular';
+    src: url('fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('fonts/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* YOUR CUSTOM STYLES */
+body {  
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  font-size:12px; 
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-family: 'Roboto-regular', sans-serif;
+  color: #272727;
+}
+img{
+    max-width: 100%;
+}
+
+/*------------------------------css for navbar-----------------------*/
+
+.navbar-jobmandi
+{
+    height: auto;
+    margin:0;
+    padding: 15px 0;
+}
+.navbar-jobmandi .navbar-brand
+{
+    padding: 0 26px;
+    height: auto;
+}
+.navbar-jobmandi .navbar-nav > li
+{
+    margin:15px 15px;
+}
+.navbar-jobmandi .navbar-nav > li > a
+{
+    padding:0px 0px;
+    color:#000;
+    font-size:14px;
+    font-weight: 700;
+    border-bottom:1px solid transparent;
+}
+.navbar-jobmandi .navbar-nav > li > a:hover, .navbar-jobmandi .navbar-nav > li > a:focus
+{
+    border-bottom:1px solid #01b28a;
+}
+.navnbar-jobmandi .navbar {
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    background: #fff;
+    border-bottom: 1px solid gray;
+    padding-top: 1.35cm;
+    -webkit-box-shadow: 0 4px 6px -6px #222;
+  -moz-box-shadow: 0 4px 6px -6px #222;
+  box-shadow: 0 4px 6px -6px #222;
+}
+
+.nav_button{
+    border-radius:12px;
+    background-color: #02B28B;
+    padding:12px 15px;
+    border:none;
+    color:white;
+    display: block;
+text-align: center;
+font-size: 14px;
+margin-top: 3px;
+}
+
+
+@media only screen and (max-width: 500px) {
+       
+    }
+
+/*------------------------------css for navbar-----------------------*/
+
+
+/*------------------------------css for footer-----------------------*/
+.footerFull{
+    background-color: black;
+}
+.myfooter-logo{
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+.myfooter-contain{
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+}
+#myFooter {
+    background-color: black;
+    color: white;
+    padding-top: 0px;
+}
+
+.footer-copyright {
+    background-color: black;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+#myFooter .row {
+    margin-bottom: 35px;
+}
+
+#myFooter .navbar-brand {
+    margin-top: 45px;
+    height: 65px;
+}
+
+.footer-copyright p {
+    margin: 10px;
+    color: #ccc;
+}
+
+#myFooter ul {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 10px;
+}
+#myFooter li{
+     font-size: 12px;
+}
+#myFooter h5 {
+    font-size: 15px;
+    color: #02B28B;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+#myFooter h2 a{
+    font-size: 25px;
+    text-align: center;
+    color: #fff;
+}
+
+#myFooter a {
+    color: gray;
+    text-decoration: none;
+    line-height: 30px;
+}
+
+#myFooter a:hover,
+#myFooter a:focus {
+    text-decoration: none;
+    color: white;
+}
+
+#myFooter .social-networks {
+    padding-top: 30px;
+    padding-bottom: 16px;
+}
+
+#myFooter .social-networks a {
+    font-size: 15px;
+    color: #f9f9f9;
+    padding: 10px;
+    transition: 0.2s;
+}
+
+#myFooter .social-networks a:hover {
+    text-decoration: none;
+}
+
+#myFooter .facebook:hover {
+    color: #0077e2;
+}
+
+#myFooter .google:hover {
+    color: #ef1a1a;
+}
+
+#myFooter .twitter:hover {
+    color: #00aced;
+}
+
+#myFooter .btn {
+    color: white;
+    background-color: #d84b6b;
+    border-radius: 20px;
+    border: none;
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    line-height: 25px;
+}
+
+@media screen and (max-width: 767px) {
+    #myFooter {
+        text-align: center;
+    }
+}
+
+
+/* CSS used for positioning the footers at the bottom of the page. */
+/* You can remove this. */
+
+.content{
+   flex: 1 0 auto;
+   -webkit-flex: 1 0 auto;
+   min-height: 200px;
+}
+
+#myFooter{
+   flex: 0 0 auto;
+   -webkit-flex: 0 0 auto;
+}
+/*------------------------------css for footer-----------------------*/
+
+/*------------------------------css for layout-----------------------*/
+
+.main-content-wrap{
+    margin-top: 60px;
+}
+.uneditable-input:focus {   
+  border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
+.uneditable-input{
+      width: 200px;
+}
+.profileA1 {
+    background: url(../images/desktop/jobseeker_new.png) no-repeat center center;
+    height: 170px;
+    border: 1px solid #2e2e2e;
+    text-align: center;
+}
+.profileA4 {
+    margin: 30px auto 20px;
+}
+.profileB1 {
+    background: url(../images/desktop/new_img1.png) no-repeat center center;
+    height: 170px;
+    border: 1px solid #2e2e2e;
+    text-align: center;
+}
+.profileB4 {
+    margin: 30px auto 20px;
+}
+.profileC1{
+    background: url(../images/desktop/freelancer.png) no-repeat center center;
+    height: 370px;
+    border: 1px solid #2e2e2e;
+    text-align: center;
+}
+.profileD1{
+    background: url(../images/desktop/post_project.png) no-repeat center center;
+    height: 570px;
+    border: 1px solid #2e2e2e;
+    text-align: center;
+}
+.profileC4{
+    margin: 30px auto;
+}
+.profileD4{
+    margin: 30px auto;
+}
+.profileC{
+    margin-top:30px;
+}
+.profileA5{
+    position: absolute;
+    top: 61%;
+    text-align: center;
+    left: 27%;
+    font-size: 18px;
+}
+.profileB5{
+    position: absolute;
+    top: 61%;
+    text-align: center;
+    left: 21%;
+    font-size: 18px;
+}
+.profileC5{
+    position: absolute;
+    top: 27%;
+    text-align: center;
+    left: 14%;
+    font-size: 44px;
+}
+.profileC6{
+    position: absolute;
+    top: 63%;
+    text-align: center;
+    left: 14%;
+    font-size: 17px;
+}
+.profileC7{
+    position: absolute;
+    top: 75%;
+    text-align: center;
+    left: 25%;
+    font-size: 17px;
+}
+.profileC8{
+    position: absolute;
+    top: 78%;
+    text-align: center;
+    left: 36%;
+    font-size: 23px;
+    color: white;
+}
+
+.profileD5{
+    position: absolute;
+    top: 20%;
+    text-align: center;
+    right: 5%;
+    left: 6%;
+    font-size: 44px;
+    line-height: 59px;
+}
+.profileD6{
+    position: absolute;
+    top: 56%;
+    text-align: center;
+    left: 14%;
+    font-size: 17px;
+}
+.profileD7{
+    position: absolute;
+    top: 83%;
+    text-align: center;
+    left: 28%;
+    font-size: 17px;
+}
+.profileD8{
+    position: absolute;
+    top: 85%;
+    text-align: center;
+    left: 34%;
+    font-size: 21px;
+    color: white;
+}
+.letterImg{
+    vertical-align: -33px;
+}
+.profileF2{
+    position: absolute;
+    top: 33%;
+    text-align: center;
+    left: 40%;
+    font-size: 21px;
+    color: white;
+}
+.profileE{
+    margin-top: 0px;
+}
+.profileE2{
+    font-size: 20px;
+}
+#Get_start{
+    height: 40px;
+    width: 274px;
+    border-radius: 20px;
+    margin-top: 50px;
+    border: 1px solid gray;
+}
+.profileF{
+    margin-top: 0%;
+}
+.profileG{
+    height: 490px;
+    margin-top: 0%;
+}
+@media only screen and (max-width: 500px) {
+       .profileA5{
+         left:32%;
+       }
+       .profileB5{
+         left:28%;
+       }
+       .profileB{
+        margin-top: 10px;
+       }
+       .profileD{
+        margin-top: 15px;
+       }
+       .profileC5{
+        font-size: 32px;
+       }
+       .profileC6{
+        top: 55%;
+        left: 1%;
+       }
+       .profileC7{
+        left: 13%;
+       }
+       .profileC8{
+        left: 29%;
+       }
+       .profileD5{
+        font-size: 30px;
+       }
+       .profileD7{
+        left:17%;
+       }
+       .profileD8{
+        left:26%;
+       }
+       #Get_start{
+        width:100%;
+       }
+       .profileF2{
+        top: 0%;
+        left: 36%;
+       }
+            
+    }
+
+/*------------------------------css for layout-----------------------*/
+
+/*------------------------------css for section2-----------------------*/
+/*.squareA1, .squareA2, .squareA3, .squareA4{
+    overflow:hidden;
+}*/
+.section2{
+    margin-top: 50px;
+}
+.squareA1{
+    background: url(../images/desktop/image6.png) no-repeat center center;
+    height: 260px;
+    text-align: center;
+}
+.squareA2{
+    background: url(../images/desktop/image7.png) no-repeat center center;
+    height: 260px;
+    text-align: center;
+}
+.squareA3{
+    background: url(../images/desktop/image8.png) no-repeat center center;
+    height: 260px;
+    text-align: center;
+}
+.squareA4{
+    background: url(../images/desktop/image9.png) no-repeat center center;
+    height: 260px;
+    text-align: center;
+}
+.squarenewA1{
+    height: 260px;
+    padding-right: 3px;
+    text-align: center;
+}
+.squarenewA2{
+    height: 260px;
+    padding-left: 3px;
+    text-align: center;
+}
+.squarenewA3{
+    height: 260px;
+    padding-right: 3px;
+    text-align: center;
+}
+.squarenewA4{
+    height: 260px;
+    padding-left: 3px;
+    text-align: center;
+}
+.section2_inner1{
+    margin-top: 25px;
+}
+.squareForSmall{
+    position: absolute;
+    top: 10%;
+    text-align: center;
+    left: 4%;
+    font-size: 17px;
+
+}
+.square{
+    position: absolute;
+    top: 4%;
+    text-align: center;
+    left: 4%;
+    font-size: 17px;
+
+}
+.heading_here{
+    position: absolute;
+    top: 4%;
+    text-align: center;
+    left: 0%;
+    font-size: 20px;
+}
+.heading_new{
+    position: absolute;
+    top: 4%;
+    text-align: center;
+    left: 0%;
+    font-size: 20px;
+}
+.heading_img{
+    text-align: center;
+    margin-top: 0px;
+}
+
+@media only screen and (max-width: 500px) {
+       .squareA2, .squareA3, .squareA4{
+        margin-top: 15px;
+       }
+    }
+
+
+/*------------------------------css for section2-----------------------*/
+/*------------------------------css for section3-----------------------*/
+.services_offer{
+    background-color:#02B28B;
+    color:white;
+    margin-top: 65px
+}
+
+.media-heading{
+    color:white;
+}
+#services{
+   margin-bottom: 50px;
+}
+.media-body{
+    margin-bottom: 40px;
+}
+
+.skilled_developers{
+    font-size: 22px;
+    color: white;
+}
+.designers_creatives{
+    font-size: 22px;
+    color: white;
+}
+.bloggers_writers{
+    font-size: 22px;
+    color: white;
+}
+.seo_expert{
+    font-size: 22px;
+    color: white;
+}
+.sales_marketing{
+    font-size: 22px;
+    color: white;
+}
+.Mobile_apps{
+    font-size: 22px;
+    color: white;
+}
+
+
+/*------------------------------css for section3-----------------------*/
+
+.circle_green{
+
+    background: #02B28B;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
+.circle_white{
+
+    background: white;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
+.section3{
+    background-color: #eeeeee;
+}
+.section3_inner1{
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+.bottom_letter{
+    font-size: 17px;
+    margin-top: 20px;
+}
+@media only screen and (max-width: 500px) {
+       .bottom_letter{
+        margin-top: 10px;
+        margin-bottom: 30px;
+       }
+    }
+
+
+/*------------------------------css for section3-----------------------*/
+
+/*------------------------------css for testomonial slider-----------------------*/
+#section4{
+  margin-bottom: 60px;  
+}
+.section4_inner1{
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+#section4 .container{
+    overflow:visible;
+}
+
+/* carousel */
+#quote-carousel 
+{
+  padding: 0 10px 30px 10px;
+  margin-top: 30px;
+}
+
+/* Control buttons  */
+#quote-carousel .carousel-control
+{
+  background: none;
+  color: #222;
+  font-size: 2.3em;
+  text-shadow: none;
+  margin-top: 30px;
+}
+/* Previous button  */
+#quote-carousel .carousel-control.left 
+{
+  left: -12px;
+}
+/* Next button  */
+#quote-carousel .carousel-control.right 
+{
+  right: -12px !important;
+}
+/* Changes the position of the indicators */
+#quote-carousel .carousel-indicators 
+{
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
+}
+/* Changes the color of the indicators */
+#quote-carousel .carousel-indicators li 
+{
+  background: #c0c0c0;
+}
+#quote-carousel .carousel-indicators .active 
+{
+  background: #333333;
+}
+#quote-carousel img
+{
+  width: 250px;
+  height: 100px
+}
+/* End carousel */
+
+.item blockquote {
+    border-left: none; 
+    margin: 0;
+}
+
+.item blockquote img {
+    margin-bottom: 10px;
+}
+
+.item blockquote p:before {
+    content: "\f10d";
+    font-family: 'Fontawesome';
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+/**
+  MEDIA QUERIES
+*/
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+    #quote-carousel 
+    {
+      margin-bottom: 0;
+      padding: 0 40px 30px 40px;
+    }
+    
+}
+
+/* Small devices (tablets, up to 768px) */
+@media (max-width: 768px) { 
+    
+    /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
+    
+    #quote-carousel .carousel-indicators {
+        bottom: -20px !important;  
+    }
+    #quote-carousel .carousel-indicators li {
+        display: inline-block;
+        margin: 0px 5px;
+        width: 15px;
+        height: 15px;
+    }
+    #quote-carousel .carousel-indicators li.active {
+        margin: 0px 5px;
+        width: 20px;
+        height: 20px;
+    }
+}
+/*------------------------------css for testomonial slider-----------------------*/
+
+/*------------------------------css for counter-----------------------*/
+
+#animated-number{
+    background-color: black;
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+.number1, .number2, .number3{
+    color:#02b28b;
+}
+.number12,.number13,.number14{
+    color: white;
+    font-size: 21px;
+    padding-top: 16px;
+}
+@media only screen and (max-width: 500px) {
+       .animated_div{
+        margin-bottom: 80px;
+       }
+    }
+
+
+/*------------------------------css for counter-----------------------*/
+
+/* width */
+.scrollyClass::-webkit-scrollbar {
+    width: 3px;
+}
+
+/* Track */
+.scrollyClass::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 3px;
+}
+ 
+/* Handle */
+.scrollyClass::-webkit-scrollbar-thumb {
+    background: #00BFA5; 
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+.scrollyClass::-webkit-scrollbar-thumb:hover {
+    background: black; 
+}
+
+.scroll_mob::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: black;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+.scroll_mob::-webkit-scrollbar-thumb {
+    background: black;
+}
+/* Track */
+.scroll_mob::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0 black; 
+    border-radius: 0;
+}
+
+.row-fluid{
+    white-space: nowrap;
+}
+.row-fluid .horizontal{
+    display: inline-block;
+}
+.row-fluid .col-lg-3{
+    display: inline-block;
+}
+
+.bluishGreen_bg{
+  background-color:#00B59D;
+    color: #ffffff;
+}
+.bluishGreen_txt{
+  color:#00B59D;
+}
+.button{
+  background-color:#00B59D;
+}
+#basic-addon{
+  background-color:#00B59D;                
+}
+.circle_sym{
+  padding:8px;                
+}
+
+/*----------------remove blue focus on input------------- */
+.uneditable-input:focus {   
+  border-color: rgba(126, 239, 104, 0.8);
+  box-shadow: 0 1px 1px #00BFA5 inset, 0 0 8px rgba(126, 239, 104, 0.6);
+  outline: 0 none;
+}
+
+.title{
+ 
+}
+.subtitle{
+    
+}
+.description{
+    
+}
+.datainfo{
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   line-height: 16px;     /* fallback */
+   max-height: 32px;      /* fallback */
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+}
+.lineinfo{
+    float:left;
+    white-space:nowrap;
+}
+ .box{
+    width:350px;
+    height:350px;
+    border:1px solid black;
+    display:inline-block;
+    display:inline;/* For IE7*/
+    zoom:1; /* For IE7*/
+    white-space:normal;
+}
+
+#container{
+    width:100%;
+    height:400px;
+    float:left;
+    overflow-x:scroll;
+    white-space:nowrap;
+}
+.smallview{
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 3; /* number of lines to show */
+   -webkit-box-orient: vertical;
+   
+}

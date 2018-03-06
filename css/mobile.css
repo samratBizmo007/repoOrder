@@ -1,0 +1,41 @@
+:root {
+  base_url: 'http://localhost/jobmandi';
+}
+.loginDiv{
+    background-color: black;
+    
+}
+.circle{
+
+    background: #02B28B;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.circle1{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.circle2{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.circle3{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+img11{
+    width: 15px; 
+    height: 15px; 
+}
+.services{
+    background: url(../images/desktop/services.png) no-repeat center center;
+
+}
+.marks{
+        background: url(../images/desktop/dotted_new.png) no-repeat center center;
+
+}

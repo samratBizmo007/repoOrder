@@ -1,0 +1,101 @@
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('fonts/roboto-bold-webfont.woff2') format('woff2'),
+         url('fonts/roboto-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotolight';
+    src: url('fonts/roboto-light-webfont.woff2') format('woff2'),
+         url('fonts/roboto-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'robotoregular';
+    src: url('fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('fonts/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+    font-family: 'robotoregular';
+  font-weight: normal;
+   font-size:13px;
+  
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  font-family: 'Roboto-regular', sans-serif;
+  color: #272727;
+}
+
+
+/*------------------css for profile picture-----------------*/
+.prof_pic{
+  height:130px;
+  width: auto;
+  
+}
+.circle_div{
+  height:100px;
+  width:60px;
+  border: 2px solid;
+}
+.bluish-green{
+  color: #00B59D;
+}
+.bluishGreen_bg{
+  background-color:#00B59D;
+}
+.marginTop_large{
+  margin-top: 60px;
+}
+.marginTop_large2{
+  margin-top: 80px;
+}
+.progress {height: 7px !important;}
+ .skill_column {
+  -webkit-columns: 2 110px;
+  -moz-columns: 2 110px;
+  columns: 2 110px;
+}
+
+li {
+  margin-bottom: 1px;
+  text-align: left;
+}
+.mid_divProfile{
+  height:190px;
+  overflow-y: hidden;
+}
+.profile_portfolio{
+  height: 180px
+}
+.port_button{
+  color: #00B59D;
+  border: 2px solid;
+}
+.feedback_pic{
+  height:60px;
+  width:70px;
+  }
+  .bg_imageConfig{
+    background-size: auto 130px;
+  background-position: center;
+  background-repeat: no-repeat;
+  }
+
+
+/*----------------------css ends here---------------------*/
