@@ -26,21 +26,16 @@ $(document).ready(function (e){
 
 
 // ----function to preview selected image for profile------//
-function readURL(input) {
+function readURL(input,id) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
 
         reader.onload = function (e) {
-            $('#profile_imagePreview').attr('src', e.target.result);
+            $('#prod_imagePreview_'+id).attr('src', e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
     }
 }
-$(function () {
-    $("#profile_image").change(function(){
-        readURL(this);
-    });
-});
 // ------------function preview image end------------------//
 
 

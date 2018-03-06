@@ -49,33 +49,40 @@ error_reporting(E_ERROR | E_PARSE);
               <span class="w3-small"></span>
             </header>
             <div class="col-lg-12 w3-margin-top">
-              <div class="col-lg-6">
+              <div class="col-lg-3 w3-margin-top">
+                <label class="w3-label">Product Name:</label>
+                <input type="text" class="w3-input" name="prod_Name[]" placeholder="Enter Product Description" required>
+              </div>
+              <div class="col-lg-4 w3-margin-top">
                 <label class="w3-label">Product Description:</label>
-                <input list="Materialinfo_1" type="text" class="w3-input" name="prod_Description[]" placeholder="Enter Product Description" required>
+                <input type="text" class="w3-input" name="prod_Description[]" placeholder="Enter Product Description" required>
               </div>
-              <div class="col-lg-2">
-                <label class="w3-label">Product Quantity:</label>
-                <input type="number" min="1" class="w3-input w3-center" name="prod_quantity[]" placeholder="count" required >
+              <div class="col-lg-1 w3-margin-top">
+                <label class="w3-label">Quantity:</label>
+                <input type="number" min="1" class="w3-input" name="prod_quantity[]" placeholder="count" required >
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4 w3-margin-top">
                <div class="w3-col l7">
                 <label class="w3-label">Product Image:</label>
                 <div class="w3-col l12 w3-padding-bottom">
-                  <img src="" width="180px" id="profile_imagePreview" height="180px" alt="Product Profile Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
+                  <img src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
                 </div>
-                <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-padding-small">
+                <input type="file" name="prod_image[]" id="prod_image_1" class="w3-input w3-padding-small" onchange="readURL(this,1);">
               </div>
 
               <div class="w3-col l4">
-                <span><a  id="add_moreProduct" title="Add new Item" class="btn add_moreProduct w3-small w3-text-red w3-right w3-margin-top">Add item <i class="fa fa-plus"></i></a></span>
+               <!--  <span><a  id="add_moreProduct" title="Add new Item" class="btn add_moreProduct w3-small w3-text-red w3-right w3-margin-top">Add item <i class="fa fa-plus"></i></a></span> -->
               </div>
             </div>
           </div>
         </div>
         <div id="added_newProduct" class="w3-col l12"></div>
+        <div class="w3-col l12 w3-right">
+          <span><a  id="add_moreProduct" title="Add new Item" class="btn add_moreProduct w3-small w3-text-red w3-right w3-margin-top">Add item <i class="fa fa-plus"></i></a></span>
+        </div>
         <!-- material div end -->
-        <div class="w3-col l12 ">
-          <button type="submit" title="Raise Order" class="w3-margin w3-button w3-right w3-red">Raise Order</button>
+        <div class="w3-col l12 w3-center">
+          <button type="submit" title="Raise Order" class="w3-margin w3-button  w3-red">Raise New Order</button>
         </div>
       </form>
     </div>
@@ -103,21 +110,25 @@ error_reporting(E_ERROR | E_PARSE);
         $(wrapper).append('<div class="">\n\
           <div class="w3-col l12 w3-margin-bottom"><hr>\n\
           <div class="col-lg-12 w3-margin-top">\n\
-          <div class="col-lg-6">\n\
-          <label class="w3-label">Product Description:</label>\n\
-          <input list="Materialinfo_1" type="text" class="w3-input" name="prod_Description[]" placeholder="Enter Product Description" required>\n\
-          </div>\n\
-          <div class="col-lg-2">\n\
-          <label class="w3-label">Product Quantity:</label>\n\
-          <input type="number" min="1" class="w3-input w3-center" name="prod_quantity[]" placeholder="count" required >\n\
-          </div>\n\
-          <div class="col-lg-4">\n\
-               <div class="w3-col l7">\n\
+          <div class="col-lg-3 w3-margin-top">\n\
+                <label class="w3-label">Product Name:</label>\n\
+                <input type="text" class="w3-input" name="prod_Name[]" placeholder="Enter Product Description" required>\n\
+              </div>\n\
+              <div class="col-lg-4 w3-margin-top">\n\
+                <label class="w3-label">Product Description:</label>\n\
+                <input type="text" class="w3-input" name="prod_Description[]" placeholder="Enter Product Description" required>\n\
+              </div>\n\
+              <div class="col-lg-1 w3-margin-top">\n\
+                <label class="w3-label">Quantity:</label>\n\
+                <input type="number" min="1" class="w3-input" name="prod_quantity[]" placeholder="count" required >\n\
+              </div>\n\
+          <div class="col-lg-4 w3-margin-top">\n\
+                <div class="w3-col l7">\n\
                 <label class="w3-label">Product Image:</label>\n\
                 <div class="w3-col l12 w3-padding-bottom">\n\
-                  <img src="" width="180px" id="profile_imagePreview" height="180px" alt="Product Profile Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">\n\
+                  <img src="" width="180px" id="prod_imagePreview_'+x+'" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">\n\
                 </div>\n\
-                <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-padding-small">\n\
+                <input type="file" name="prod_image[]" id="prod_image_'+x+'" class="w3-input w3-padding-small" onchange="readURL(this,'+x+');">\n\
               </div>\n\
           </div>\n\
           </div>\n\

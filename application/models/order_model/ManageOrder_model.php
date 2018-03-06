@@ -8,11 +8,11 @@ class ManageOrder_model extends CI_Model{
     //$this->load->model('search_model');
 	}
 
-    // -----------------------GET ALL ORDERS MODEL----------------------//
+    // -----------------------GET ALL MY ORDERS MODEL----------------------//
 	//-------------------------------------------------------------//
-	public function getAllOrders(){
+	public function getMyOrders($user_id){
 
-		$query = "SELECT * FROM order_tab ORDER BY order_id DESC";
+		$query = "SELECT * FROM order_tab WHERE user_id='$user_id' ORDER BY order_id DESC";
 
 		$result = $this->db->query($query);
 
@@ -27,7 +27,7 @@ class ManageOrder_model extends CI_Model{
 		}
 		return $response;
 	}
-	// -----------------------GET ALL ORDERS MODEL----------------------//
+	// -----------------------GET ALL MY ORDERS MODEL----------------------//
 
 }
 ?>

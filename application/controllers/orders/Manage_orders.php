@@ -19,18 +19,19 @@ class Manage_orders extends CI_controller{
   }
 
   public function index(){
-   $data['all_orders'] = Manage_orders::getAllOrders();     //-------show all Raw materials
+   $data['my_orders'] = Manage_orders::getMyOrders();     //-------show all Raw prods
    //$this->load->model('inventory_model/ManageProfile_model');	
    $this->load->view('pages/orders/manage_orders',$data);
    //$this->load->view('inventory/profile/manage_profile',$data);
 
  }
 
- //----------this function to get all order details-----------------------------
- public function getAllOrders() {
+ //----------this function to get all my orders details-----------------------------
+ public function getMyOrders() {
+  $user_id=1;
 
   $path = base_url();
-  $url = $path . 'api/ManageOrder_api/getAllOrders';
+  $url = $path . 'api/ManageOrder_api/getMyOrders?user_id='.$user_id;
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_HTTPGET, true);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -39,77 +40,48 @@ class Manage_orders extends CI_controller{
   $response = json_decode($response_json, true);
   return $response;
 }
-//----------------this fun get all order details end---------------//
+//----------------this fun get all my orders details end---------------//
 
 
- //----------this function to save product profile-----------------------------//
-public function addProfile() { 
+ //----------this function to add order profile-----------------------------//
+public function addOrder() { 
   extract($_POST);
   $data = $_POST;
-
-  $material_Arr=array();  //material_image array
+  $user_id=1;
+//print_r($get_image);die();
+  $prod_Arr=array();  //prod_image array
   $allowed_types=['gif','jpg','png','jpeg','JPG','GIF','JPEG','PNG'];
-  $extension_profile='';
-  for($i = 0; $i < count($_FILES['material_image']['name']); $i++){
+  for($i = 0; $i < count($_FILES['prod_image']['name']); $i++){
 
-    $extension_material = pathinfo($_FILES['material_image']['name'][$i], PATHINFO_EXTENSION); //get material image file extension 
-    $extension_profile = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION); //get profile image file extension 
+    $extension_prod = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION); //get prod image file extension 
 
     //image validating---------------------------//
     //check whether image size is less than 1 mb or not
-    if($_FILES['material_image']['size'][$i] > 1048576){  //for material images
-      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> Image size for material '.$material_name[$i].' exceeds size limit of 1MB. Upload image having size less than 1MB</label>';
+    if($_FILES['prod_image']['size'][$i] > 1048576){  //for prod images
+      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> Image size for item '.$prod_Name[$i].' exceeds size limit of 1MB. Upload image having size less than 1MB</label>';
       die();
     }
-    if($_FILES['profile_image']['size'] > 1048576){ //for profile image
-      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> Profile Image size exceeds size limit of 1MB. Upload image having size less than 1MB</label>';
-      die();
-    }
-
+   
     //check file is an image or not by checking extensions
-    if(!in_array($extension_material, $allowed_types)){  //for material images
-      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> File uploading for material '.$material_name[$i].' is not an image file. Upload image having type gif, jpg, jpeg OR png</label>';
+    if(!in_array($extension_prod, $allowed_types)){  //for prod images
+      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> File uploading for prod '.$prod_Name[$i].' is not an image file. Upload image having type gif, jpg, jpeg OR png</label>';
       die();
-    }
-    if(!in_array($extension_profile, $allowed_types)){  //for profile image
-      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> File uploading for profile '.$profile_name.' is not an image file. Upload image having type gif, jpg, jpeg OR png</label>';
-      die();
-    }
+    }   
   }
   //validating image ends---------------------------//
 
-  //uploading profile image-------------------------------//
-  $profileImg_path='';
-
-  if(!empty($_FILES['profile_image']['name'])){
-      $_FILES['profile_image']['name']=$profile_name.'.'.$extension_profile;
-
-      $config['upload_path']  = 'images/desktop/';
-      $config['allowed_types']= 'gif|jpg|png|jpeg';
-      $config['overwrite']   = TRUE;
-
-    $this->load->library('upload', $config);
-    $this->upload->initialize($config);
-    if($this->upload->do_upload('profile_image'))
-    {
-      $profileImg_path='images/desktop/'.$profile_name.'.'.$extension_profile;
-    }
-
-  }
-  //uploading profile image ends-------------------------//
-
   $imagePath ='';
-  for($i = 0; $i < count($material_name); $i++){
-    if(!empty($_FILES['material_image']['name'])){
-      $extension = pathinfo($_FILES['material_image']['name'][$i], PATHINFO_EXTENSION);
+  for($i = 0; $i < count($prod_Name); $i++){
+    if(!empty($_FILES['prod_image']['name'])){
+      $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
 
-      $_FILES['userFile']['name'] = $profile_name.'_'.$material_name[$i].'_'.$ID_quantity[$i].'-'.$OD_quantity[$i].'.'.$extension;
-      $_FILES['userFile']['type'] = $_FILES['material_image']['type'][$i];
-      $_FILES['userFile']['tmp_name'] = $_FILES['material_image']['tmp_name'][$i];
-      $_FILES['userFile']['error'] = $_FILES['material_image']['error'][$i];
-      $_FILES['userFile']['size'] = $_FILES['material_image']['size'][$i];
+      $_FILES['userFile']['name'] = $prod_Name[$i].'_'.$user_id.'-'.$prod_quantity[$i].'.'.$extension;
+      $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
+      $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
+      $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];
+      $_FILES['userFile']['size'] = $_FILES['prod_image']['size'][$i];
 
-      $uploadPath ='images/desktop/';  //upload images in images/desktop/ folder
+      $uploadPath ='images/order_images/';  //upload images in images/desktop/ folder
       $config['upload_path'] = $uploadPath;
       $config['allowed_types'] = 'gif|jpg|png|jpeg'; //allowed types of images           
       $config['overwrite'] = TRUE;            
@@ -119,26 +91,24 @@ public function addProfile() {
 
       if($this->upload->do_upload('userFile')){
         $fileData = $this->upload->data();
-        $imagePath='images/desktop/'.$fileData['file_name'];
+        $imagePath='images/order_images/'.$fileData['file_name'];
       }
     }
 
-    $material_Arr[]=array(
-      'material_id' =>  $material_id[$i],
-      'material_name' =>  $material_name[$i],
-      'ID_quantity' =>  $ID_quantity[$i],
-      'OD_quantity' =>  $OD_quantity[$i],
-      'length_quantity' =>  $length_quantity[$i],
-      'material_quantity' =>  $material_quantity[$i],
-      'material_image' =>  $imagePath
+    $prod_Arr[]=array(
+      'prod_Name' =>  $prod_Name[$i],
+      'prod_Description' =>  $prod_Description[$i],
+      'prod_quantity' =>  $prod_quantity[$i],
+      'prod_image' =>  $imagePath
     );
   }
 
-  $data['material_associated']=json_encode($material_Arr);
-  $data['profile_image']=($profileImg_path);
+  $data['user_id']=$user_id;
+  $data['prod_associated']=json_encode($prod_Arr);
+  print_r($data);die();
   
   $path = base_url();                                                   // this code is for web service AND api for save profile 
-  $url = $path . 'api/ManageProfile_api/save_Profile';
+  $url = $path.'api/ManageOrder_api/addNewOrder';
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_POST, true);
   curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -173,7 +143,7 @@ public function addProfile() {
       </script>';
   }
 }
-//----------------this fun is to save profile details end---------------//
+//----------------this fun is to add order details end---------------//
 
  public function DeleteProfile(){
   extract($_GET);
@@ -188,22 +158,23 @@ public function addProfile() {
   redirect('inventory/AllProfiles');
  }
     //-------------this fun is used to update profile information-------------------------//
+
  public function UpdateProfile(){
   extract($_POST); 
   $data = $_POST;
   
-  $material_Arr=array();  //material_image array
+  $prod_Arr=array();  //prod_image array
   $allowed_types=['gif','jpg','png','jpeg','JPG','GIF','JPEG','PNG'];
   $extension_profile='';
-  for($i = 0; $i < count($_FILES['material_image']['name']); $i++){
+  for($i = 0; $i < count($_FILES['prod_image']['name']); $i++){
 
-    $extension_material = pathinfo($_FILES['material_image']['name'][$i], PATHINFO_EXTENSION); //get material image file extension 
+    $extension_prod = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION); //get prod image file extension 
     $extension_profile = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION); //get profile image file extension 
 
     //image validating---------------------------//
     //check whether image size is less than 1 mb or not
-    if($_FILES['material_image']['size'][$i] > 1048576){  //for material images
-      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> Image size for material '.$material_name[$i].' exceeds size limit of 1MB. Upload image having size less than 1MB</label>';
+    if($_FILES['prod_image']['size'][$i] > 1048576){  //for prod images
+      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> Image size for prod '.$prod_Name[$i].' exceeds size limit of 1MB. Upload image having size less than 1MB</label>';
       die();
     }
     if($_FILES['profile_image']['size'] > 1048576){ //for profile image
@@ -212,8 +183,8 @@ public function addProfile() {
     }
 
     //check file is an image or not by checking extensions
-    if(!in_array($extension_material, $allowed_types)){  //for material images
-      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> File uploading for material '.$material_name[$i].' is not an image file. Upload image having type gif, jpg, jpeg OR png</label>';
+    if(!in_array($extension_prod, $allowed_types)){  //for prod images
+      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> File uploading for prod '.$prod_Name[$i].' is not an image file. Upload image having type gif, jpg, jpeg OR png</label>';
       die();
     }
     if(!in_array($extension_profile, $allowed_types)){  //for profile image
@@ -223,36 +194,16 @@ public function addProfile() {
   }
   //validating image ends---------------------------//
 
-  //uploading profile image-------------------------------//
-  $profileImg_path='';
-
-  if(!empty($_FILES['profile_image']['name'])){
-      $_FILES['profile_image']['name']=$profile_name.'.'.$extension_profile;
-
-      $config['upload_path']  = 'images/desktop/';
-      $config['allowed_types']= 'gif|jpg|png|jpeg';
-      $config['overwrite']   = TRUE;
-
-    $this->load->library('upload', $config);
-    $this->upload->initialize($config);
-    if($this->upload->do_upload('profile_image'))
-    {
-      $profileImg_path='images/desktop/'.$profile_name.'.'.$extension_profile;
-    }
-
-  }
-  //uploading profile image ends-------------------------//
-
   $imagePath ='';
-  for($i = 0; $i < count($material_name); $i++){
-    if(!empty($_FILES['material_image']['name'])){
-      $extension = pathinfo($_FILES['material_image']['name'][$i], PATHINFO_EXTENSION);
+  for($i = 0; $i < count($prod_Name); $i++){
+    if(!empty($_FILES['prod_image']['name'])){
+      $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
 
-      $_FILES['userFile']['name'] = $profile_name.'_'.$material_name[$i].'_'.$ID_quantity[$i].'-'.$OD_quantity[$i].'.'.$extension;
-      $_FILES['userFile']['type'] = $_FILES['material_image']['type'][$i];
-      $_FILES['userFile']['tmp_name'] = $_FILES['material_image']['tmp_name'][$i];
-      $_FILES['userFile']['error'] = $_FILES['material_image']['error'][$i];
-      $_FILES['userFile']['size'] = $_FILES['material_image']['size'][$i];
+      $_FILES['userFile']['name'] = $profile_name.'_'.$prod_Name[$i].'_'.$prod_Description[$i].'-'.$OD_quantity[$i].'.'.$extension;
+      $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
+      $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
+      $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];
+      $_FILES['userFile']['size'] = $_FILES['prod_image']['size'][$i];
 
       $uploadPath ='images/desktop/';  //upload images in images/desktop/ folder
       $config['upload_path'] = $uploadPath;
@@ -268,18 +219,15 @@ public function addProfile() {
       }
     }
 
-    $material_Arr[]=array(
-      'material_id' =>  $material_id[$i],
-      'material_name' =>  $material_name[$i],
-      'ID_quantity' =>  $ID_quantity[$i],
-      'OD_quantity' =>  $OD_quantity[$i],
-      'length_quantity' =>  $length_quantity[$i],
-      'material_quantity' =>  $material_quantity[$i],
-      'material_image' =>  $imagePath
+    $prod_Arr[]=array(
+      'prod_Name' =>  $prod_Name[$i],
+      'prod_Description' =>  $prod_Description[$i],
+      'prod_quantity' =>  $prod_quantity[$i],
+      'prod_image' =>  $imagePath
     );
   }
 
-  $data['material_associated']=json_encode($material_Arr);
+  $data['prod_associated']=json_encode($prod_Arr);
   $data['profile_image']=($profileImg_path);
   
     //print_r($data);die();

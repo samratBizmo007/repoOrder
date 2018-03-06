@@ -11,22 +11,23 @@ class ManageOrder_api extends REST_Controller
 	}
 	
 
-	// -----------------------ALL ORDERS API----------------------//
+	// -----------------------ALL MY ORDERS API----------------------//
 	//-------------------------------------------------------------//
-	public function getAllOrders_get(){
-		$result = $this->manageOrder_model->getAllOrders();
-		return $this->response($result);			
-	}
-	//---------------------ALL ORDERS END------------------------------//
-
-	// -----------------------ADD USER SKILLS API----------------------//
-	//-------------------------------------------------------------//
-	public function add_userSkills_get(){
+	public function getMyOrders_get(){
 		extract($_GET);
-		$result = $this->dashboard_model->add_userSkills($user_id,$skill_id,$profile_type);
+		$result = $this->manageOrder_model->getMyOrders($user_id);
 		return $this->response($result);			
 	}
-	//---------------------ADD USER SKILLS END------------------------------//
+	//---------------------ALL MY ORDERS END------------------------------//
+
+	// -----------------------ADD USER ORDER API----------------------//
+	//-------------------------------------------------------------//
+	public function addNewOrder_post(){
+		extract($_GET);
+		$result = $this->dashboard_model->addNewOrder($user_id,$skill_id,$profile_type);
+		return $this->response($result);			
+	}
+	//---------------------ADD USER ORDER END------------------------------//
 
 	
 }
