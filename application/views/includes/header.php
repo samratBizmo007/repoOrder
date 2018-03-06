@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
-//error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 $user_name=$this->session->userdata('user_name');
 
 // $profile_type=$this->session->userdata('profile_type');

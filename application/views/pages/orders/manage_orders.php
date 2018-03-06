@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-//error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <td class="text-center">#OID-0' . $orders['status_message'][$i]['order_id'] . '</td>
                     <td class="text-center">' . $orders['status_message'][$i]['order_date'] . ' ' . $orders['status_message'][$i]['order_time'] . '</td>
                     <td class="text-center">
-                    <a class="btn w3-padding-small" title="UpdateCustomer" data-toggle="modal" data-target="#myModalnew_'. $orders['status_message'][$i]['order_id'].'" style="padding:0"><i class="fa fa-eye"></i></a>
+                    <a class="btn w3-padding-small" title="view order (In progress)" style="padding:0"><i class="fa fa-eye"></i></a>
                     <a class="btn w3-padding-tiny" id="delOrder_btn" name="delOrder_btn" onClick="delOrder('.$orders['status_message'][$i]['order_id'].')" title="delete order"><i class="fa fa-remove"></i></a>
                     </td>
 

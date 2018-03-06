@@ -8,13 +8,13 @@ class Manage_orders extends CI_controller{
     
 
     //start session   
-    // $user_id=$this->session->userdata('user_id');
-    // $user_name=$this->session->userdata('user_name');
+    $user_id=$this->session->userdata('user_id');
+    $user_name=$this->session->userdata('user_name');
     
-    // //check session variable set or not, otherwise logout
-    // if(($user_id=='') || ($user_name=='')){
-    //   redirect('login');
-    // }   
+    //check session variable set or not, otherwise logout
+    if(($user_id=='') || ($user_name=='')){
+      redirect('login');
+    }   
   }
 
   public function index(){
