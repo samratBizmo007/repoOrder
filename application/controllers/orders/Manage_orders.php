@@ -8,17 +8,17 @@ class Manage_orders extends CI_controller{
     
 
     //start session   
-    $user_id=$this->session->userdata('user_id');
-    $user_name=$this->session->userdata('user_name');
+    // $user_id=$this->session->userdata('user_id');
+    // $user_name=$this->session->userdata('user_name');
     
-    //check session variable set or not, otherwise logout
-    if(($user_id=='') || ($user_name=='')){
-      redirect('login');
-    }   
+    // //check session variable set or not, otherwise logout
+    // if(($user_id=='') || ($user_name=='')){
+    //   redirect('login');
+    // }   
   }
 
   public function index(){
-   $data['my_orders'] = Manage_orders::getMyOrders();     //-------show all Raw prods
+   $data['orders'] = Manage_orders::getMyOrders();     //-------show all Raw prods
    //$this->load->model('inventory_model/ManageProfile_model');	
    $this->load->view('pages/orders/manage_orders',$data);
    //$this->load->view('inventory/profile/manage_profile',$data);
@@ -27,7 +27,8 @@ class Manage_orders extends CI_controller{
 
  //----------this function to get all my orders details-----------------------------
  public function getMyOrders() {
-  $user_id=$this->session->userdata('user_id');
+  //$user_id=$this->session->userdata('user_id');
+  $user_id=1;
 
   $path = base_url();
   $url = $path . 'api/ManageOrder_api/getMyOrders?user_id='.$user_id;

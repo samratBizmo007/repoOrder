@@ -183,3 +183,6 @@ error_reporting(E_ERROR | E_PARSE);
 </div><!-- container for tab -->
 <!--_______________________ div for main container____________________________ -->
 
+</body>
+</html>
+
