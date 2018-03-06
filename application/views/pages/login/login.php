@@ -1,76 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 error_reporting(E_ERROR | E_PARSE);
-$disable_free='';
-$hide_option_free='';
-$disable_freeEmployer='';
-$hide_option_freeEmployer='';
-$disable_jseeker='';
-$hide_option_jseeker='';
-$disable_jemployer='';
-$hide_option_jemployer='';
-
-extract($_GET);
-switch ($profile) {
-	case '1':
-	$disable_free='';
-	$hide_option_free='';
-	$disable_freeEmployer='disabled';
-	$hide_option_freeEmployer='w3-hide';
-	$disable_jseeker='disabled';
-	$hide_option_jseeker='w3-hide';
-	$disable_jemployer='disabled';
-	$hide_option_jemployer='w3-hide';
-	break;
-
-	case '2':
-	$disable_free='disabled';
-	$hide_option_free='w3-hide';
-	$disable_freeEmployer='';
-	$hide_option_freeEmployer='';
-	$disable_jseeker='disabled';
-	$hide_option_jseeker='w3-hide';
-	$disable_jemployer='disabled';
-	$hide_option_jemployer='w3-hide';
-	break;
-
-	case '3':
-	$disable_free='disabled';
-	$hide_option_free='w3-hide';
-	$disable_freeEmployer='disabled';
-	$hide_option_freeEmployer='w3-hide';
-	$disable_jseeker='';
-	$hide_option_jseeker='';
-	$disable_jemployer='disabled';
-	$hide_option_jemployer='w3-hide';
-	break;
-
-	case '4':
-	$disable_free='disabled';
-	$hide_option_free='w3-hide';
-	$disable_freeEmployer='disabled';
-	$hide_option_freeEmployer='w3-hide';
-	$disable_jseeker='disabled';
-	$hide_option_jseeker='w3-hide';
-	$disable_jemployer='';
-	$hide_option_jemployer='';
-	break;
-	
-	default:
-	$disable_free='';
-	$hide_option_free='';
-	$disable_freeEmployer='';
-	$hide_option_freeEmployer='';
-	$disable_jseeker='';
-	$hide_option_jseeker='';
-	$disable_jemployer='';
-	$hide_option_jemployer='';
-	break;
-}
-
-if((isset($_GET['payload'])=='ApplyJob') && ($_GET['payload'] !='') && ($_GET['value'] !='')){
-	$disable='disabled';
-	$hide_option='w3-hide';
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -240,27 +169,11 @@ if((isset($_GET['payload'])=='ApplyJob') && ($_GET['payload'] !='') && ($_GET['v
 							<div class="col-lg-12" id="Login_RegisterDiv">
 								<form id="login_form" role="form" method='post' enctype='multipart/form-data' style="display: block;">
 									<div class="w3-col l12 " id="login_err"></div>
-									<div class="form-group"><?php echo $cookie_profile;?>
-										<select name="login_profile_type" id="login_profile_type" tabindex="1" class="form-control">
-											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select profile type</option>
-											<option class="<?php echo $hide_option_free; ?>" value="1" <?php if($_COOKIE['cookie_profile']=='1'){echo "selected"; }  if($this->input->get('profile', TRUE)==1) echo 'selected'; echo $disable_free;?>>Freelancer</option>
-											<option class="<?php echo $hide_option_freeEmployer; ?>" value="2" <?php if($_COOKIE['cookie_profile']==2){echo "selected"; } if($this->input->get('profile', TRUE)==2) echo 'selected'; echo $disable_freeEmployer; ?>>Freelance Employer</option>
-											<option class="<?php echo $hide_option_jseeker; ?>" value="3" <?php if($_COOKIE['cookie_profile']==3){echo "selected"; } if($this->input->get('profile', TRUE)==3) echo 'selected'; echo $disable_jseeker; ?>>Job Seeker</option>
-											<option class="<?php echo $hide_option_jemployer; ?>" value="4" <?php if($_COOKIE['cookie_profile']==4){echo "selected"; } if($this->input->get('profile', TRUE)==4) echo 'selected'; echo $disable_jemployer; ?>>Job Employer</option>
-										</select>
+									<div class="form-group">
+									<input type="text" name="login_username" id="login_username" tabindex="2" class="form-control" placeholder="Username" required>
 									</div>
 									<div class="form-group">
-									
-										<input type="text" name="login_username" id="login_username" tabindex="2" class="form-control" placeholder="Username" value="<?php
-echo $_COOKIE['cookie_uname']; ?>" required>
-									</div>
-									<div class="form-group">
-										<input type="password" name="login_password" id="login_password" tabindex="3" class="form-control" placeholder="Password" value="<?php
- ?>" required>
-									</div>
-									<div class="form-group text-center">
-										<input type="checkbox" tabindex="4" class="" name="login_remember"  id="login_remember">
-										<label for="remember" style="margin-bottom: -5px"> Remember Me</label>
+										<input type="password" name="login_password" id="login_password" tabindex="3" class="form-control" placeholder="Password" required>
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -269,44 +182,9 @@ echo $_COOKIE['cookie_uname']; ?>" required>
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
-										<div class="row">
-											<div class="col-lg-12">
-												<div class="text-center">
-													<a href="#" tabindex="5" id="forget_link" class="forgot-password">Forgot Password?</a>
-												</div>
-											</div>
-										</div>
-									</div>
 								</form>
-								<form id="forget_password" action="" method="post" role="form" style="display: none;">
-									<div class="form-group">
-										<select name="forget_profile_type" id="forget_profile_type" tabindex="1" class="form-control">
-											<option class="w3-light-grey" selected value="0">Select profile type</option>
-											<option class="" value="1">Freelancer</option>
-											<option class="" value="2">Freelance Employer</option>
-											<option class="" value="3">Job Seeker</option>
-											<option class="" value="4">Job Employer</option>
-										</select>
-									</div>
-									<div class="form-group">
-										<input type="email" name="forget_email" id="femail" tabindex="1" class="form-control" placeholder="Enter your Email Address" value="" required>
-									</div>
-									<div class="col-sm-6 col-sm-offset-3">
-										<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn bluishGreen_bg" value="Submit">
-									</div>
-								</form>
-								<form id="register_form" role="form" method='post' enctype='multipart/form-data' style="display: none;">
+							<form id="register_form" role="form" method='post' enctype='multipart/form-data' style="display: none;">
 									<div class="w3-col l12 " id="registration_err"></div>
-									<div class="form-group">
-										<select name="register_profile_type" id="register_profile_type" tabindex="1" class="form-control">
-											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select profile type</option>
-											<option value="1" <?php if($this->input->get('profile', TRUE)==1) echo 'selected'; ?>>Freelancer</option>
-											<option value="2" <?php if($this->input->get('profile', TRUE)==2) echo 'selected'; ?>>Freelance Employer</option>
-											<option value="3" <?php if($this->input->get('profile', TRUE)==3) echo 'selected'; ?>>Job Seeker</option>
-											<option value="4" <?php if($this->input->get('profile', TRUE)==4) echo 'selected'; ?>>Job Employer</option>
-										</select>
-									</div>
 									<div class="form-group">
 										<input type="text" name="register_username" id="register_username" tabindex="2" class="form-control" placeholder="Username" value="" required>
 									</div>
@@ -319,7 +197,15 @@ echo $_COOKIE['cookie_uname']; ?>" required>
 									<div class="form-group">
 										<input type="password" name="register_confirm_password" id="register_confirm_password" tabindex="5" onkeyup="checkPassword();" class="form-control" minlength="8" placeholder="Confirm Password" required>
 									</div>
-									<div id="message"></div>
+									<div class="form-group">
+										<input type="number" name="register_number" id="register_number" tabindex="5"  class="form-control" placeholder="Enter Your Number" required>
+									</div>
+									<div class="form-group">
+									<textarea rows="5" name="address" class="form-control form-control rounded-0" placeholder="Enter Your Address"></textarea>
+									</div>
+									<div class="form-group">
+										<input type="text" name="business_field" id="business_field" tabindex="5"  class="form-control" placeholder="Enter Your Business Field" required>
+									</div>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
