@@ -159,25 +159,8 @@ error_reporting(E_ERROR | E_PARSE);
             </div>         
             <!-- ___________________________tab 2 div ends here__________________________________ -->
             <!-- ____________________________the tab 2 ends here____________________ -->
-            <!--_______________________________ tab 3 starts here_____________________________________________ -->
-            <div class="tab-pane" id="closedOrders"><!-- tab 3 starts here -->
+     
 
-                <div class="container w3-padding"><!-- table container -->
-                    <div class="">
-                        <div>
-                            <div class="w3-margin-right" id="Closed_Orders" name="Closed_Orders" style="max-height: 700px; overflow: scroll;">
-                                <table class="table table-bordered table-responsive" >            <!-- table starts here -->
-                                    
-                                    <tbody><!-- table body starts here -->
-                                        
-                                    </tbody><!-- table body close here -->
-                                </table><!-- table closed here -->
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- table container ends here -->
-            </div>
-            <!-- ___________________________tab 3 div ends here__________________________________ -->
         </div><!-- tab containt ends here -->
     </div><!-- tab containt div ends here -->
 </div><!-- container for tab -->
