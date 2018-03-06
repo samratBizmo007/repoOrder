@@ -21,19 +21,16 @@ error_reporting(E_ERROR | E_PARSE);
 </head>
 <body class="w3-light-grey">
     <!-- !PAGE CONTENT! -->
-    <div class="w3-main" style="margin-left:120px;">
+    <div class="w3-main" style="">
 
-        <!-- Header -->
-        <header class="w3-container" >
-            <h5><b><i class="fa fa-cubes"></i> Manage Orders</b></h5>
-        </header>
+       
 
         <div id="exTab1" class="container w3-small" > <!-- container for tab -->
             <br>
             <ul  class="nav nav-tabs">
-                <li class="active "><a class="w3-medium w3-button w3-red"  href="#allOrders" data-toggle="tab">Raw Material Stock</a></li>
-                <li><a class="w3-medium w3-orange w3-button w3-text-white"  href="#openedOrders" data-toggle="tab">Purchased Products Stock</a></li>
-                <li><a class="w3-medium w3-brown w3-button"  href="#closedOrders" data-toggle="tab">Finished Product Stock</a></li>
+                <li class="active "><a class="w3-medium w3-button w3-red"  href="#allOrders" data-toggle="tab">All Orders</a></li>
+                <li><a class="w3-medium w3-orange w3-button w3-text-white"  href="#openedOrders" data-toggle="tab">Opened Orders</a></li>
+                <li><a class="w3-medium w3-brown w3-button"  href="#closedOrders" data-toggle="tab">Closed Orders</a></li>
             </ul>
 
             <div class="tab-content clearfix "><br><!-- tab containt starts -->
@@ -46,17 +43,15 @@ error_reporting(E_ERROR | E_PARSE);
                                     <thead>
                                         <tr class="w3-black">
                                             <th class="text-center">SR. No</th>
-                                            <th class="text-center">Material&nbsp;Name</th>  
+                                            <th class="text-center">Customer Name</th>  
                                             <th class="text-center">ID</th>              
                                             <th class="text-center">OD</th>              
                                             <th class="text-center">Available&nbsp;Length</th>              
                                             <th class="text-center">Tolerance</th>
-                                            <th class="text-center">Price/Unit</th>
-                                            <th class="text-center">Branch</th>
                                             <th class="text-center">Actions</th>  
                                         </tr>
                                     </thead>
-                                    <tbody ><!-- table body starts here -->
+                                    <tbody><!-- table body starts here -->
                                         <?php
 //                                $count = 1;
 //                                if ($details['status'] == 1) {
@@ -88,9 +83,7 @@ error_reporting(E_ERROR | E_PARSE);
                     </div>
                 </div><!-- table container ends here -->
             <!--____________________________________ tab div 1 ends here_________________________________________ -->
-
             <!--_______________________________ tab 3 starts here_____________________________________________ -->
-
             <div class="tab-pane" id="openedOrders"><!-- tab 3 starts here -->
                 <div class="w3-row-padding w3-margin-bottom ">
 
