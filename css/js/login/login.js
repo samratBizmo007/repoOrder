@@ -16,7 +16,7 @@ $(function () {
                 if(key.status == 200){                    
                     $('#Login_RegisterDiv').load(location.href + " #Login_RegisterDiv>*", ""); 
                  $("#spinnerDiv").html('');
-                 $("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div><div class="col-lg-12 alert alert-info alert-dismissable fade in"><a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a><span><strong><i class="fa fa-warning"></i></strong>Please Verify Email..Sent To Your Registered Email-ID..!</span></div>');
+                 $("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div><div class="col-lg-12 alert alert-info alert-dismissable fade in"><a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a><span><strong><i class="fa fa-warning"></i></strong></span></div>');
                  window.setTimeout(
                     function(){
                         location.reload(true)
@@ -55,6 +55,29 @@ $(function () {
     });
 });
 //  -------------------------END -------------------------------//
+
+//  ------------------------LOGIN FORM -------------------------//
+$(function () {
+    $("#Adminlogin_form").submit(function () {
+        dataString = $("#Adminlogin_form").serialize();
+
+        $("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
+        $.ajax({
+            type: "POST",
+            url: BASE_URL + "admin_login/adminLogin",
+            data: dataString,
+            return: false, //stop the actual form post !important!
+            success: function (data)
+            {
+                $("#spinnerDiv").html('');
+                $("#login_err").html(data);
+            }
+        });
+        return false;  //stop the actual form post !important!
+    });
+});
+//  -------------------------END -------------------------------//
+
 
 //-------------------fucntion to check confirm password---------------
 function checkPassword() {
