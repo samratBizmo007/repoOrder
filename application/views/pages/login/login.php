@@ -201,7 +201,7 @@ error_reporting(E_ERROR | E_PARSE);
 										<input type="number" name="register_number" id="register_number" tabindex="5"  class="form-control" placeholder="Enter Your Number" required>
 									</div>
 									<div class="form-group">
-									<textarea rows="5" name="address" class="form-control form-control rounded-0" placeholder="Enter Your Address"></textarea>
+									<textarea rows="5" name="address" id="address" class="form-control form-control rounded-0" placeholder="Enter Your Address"></textarea>
 									</div>
 									<div class="form-group">
 										<input type="text" name="business_field" id="business_field" tabindex="5"  class="form-control" placeholder="Enter Your Business Field" required>
@@ -226,7 +226,7 @@ error_reporting(E_ERROR | E_PARSE);
 			$('#login_form-link').click(function(e) {
 				$("#login_form").delay(100).fadeIn(100);
 				$("#register_form").fadeOut(100);
-				$("#forget_password").fadeOut(100);
+				//$("#forget_password").fadeOut(100);
 				//$('#mainBody').load(location.href + " #mainBody>*", ""); 
 				$('#login_form-link').html('<i class="fa fa-unlock-alt"></i> Login');
 				//window.location.reload();
@@ -237,13 +237,13 @@ error_reporting(E_ERROR | E_PARSE);
 			$('#register_form-link').click(function(e) {
 				$("#register_form").delay(100).fadeIn(100);
 				$("#login_form").fadeOut(100);
-				$("#forget_password").fadeOut(100);
+				//$("#forget_password").fadeOut(100);
 				$('#login_form-link').removeClass('active');
 				$(this).addClass('active');
 				e.preventDefault();
 			});
 			$('#forget_link').click(function(e) {
-				$("#forget_password").delay(100).fadeIn(100);
+				//$("#forget_password").delay(100).fadeIn(100);
 				$("#login_form").fadeOut(100);
 				$('#login_form-link').html('<i class="fa fa-unlock"></i> Forget Password');
 				$('#register_form-link').html('');
@@ -254,45 +254,45 @@ error_reporting(E_ERROR | E_PARSE);
 		});
 
 	</script>
-	<script>
-		$(function () {
-			$("#forget_password").submit(function (e) {
-				e.preventDefault();
-				dataString = $("#forget_password").serialize();
-
-				$("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
-				$.ajax({
-					type: "POST",
-					url: BASE_URL+"auth/login/get_forget_password",
-					dataType : 'text',
-					data: dataString,
-	            return: false, //stop the actual form post !important!
-	            success: function (data)
-	            {
-	            	//alert(data);
-	            	var key=JSON.parse(data);
-	            	if(key.status == 200){                    
-	            		$('#Login_RegisterDiv').load(location.href + " #Login_RegisterDiv>*", ""); 
-	            		$('#login_form-link').html('<i class="fa fa-unlock-alt"></i> Login');
-	            		$("#spinnerDiv").html('');
-	            		$("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div><div class="col-lg-12 alert alert-info alert-dismissable fade in"><a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a><span><strong><i class="fa fa-warning"></i></strong>Please Check your Email... We have sent your password on your Registered Email-ID..!</span></div>');
-	            		window.setTimeout(
-	            			function(){
-	            				location.reload(true)
-	            			},
-	            			3000
-	            			);
-
-	            	}else{ 
-	            		$("#spinnerDiv").html('');               
-	            		$("#messageDiv").html('<div class="alert alert-danger" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div>');
-	            	}
-	            }
-	        });
-	        return false;  //stop the actual form post !important!
-	    });
-		});
-	</script>
+<!--	<script>-->
+<!--		$(function () {-->
+<!--			$("#forget_password").submit(function (e) {-->
+<!--				e.preventDefault();-->
+<!--				dataString = $("#forget_password").serialize();-->
+<!---->
+<!--				$("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');-->
+<!--				$.ajax({-->
+<!--					type: "POST",-->
+<!--					url: BASE_URL+"auth/login/get_forget_password",-->
+<!--					dataType : 'text',-->
+<!--					data: dataString,-->
+<!--	            return: false, //stop the actual form post !important!-->
+<!--	            success: function (data)-->
+<!--	            {-->
+<!--	            	//alert(data);-->
+<!--	            	var key=JSON.parse(data);-->
+<!--	            	if(key.status == 200){                    -->
+<!--	            		$('#Login_RegisterDiv').load(location.href + " #Login_RegisterDiv>*", ""); -->
+<!--	            		$('#login_form-link').html('<i class="fa fa-unlock-alt"></i> Login');-->
+<!--	            		$("#spinnerDiv").html('');-->
+<!--	            		$("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div><div class="col-lg-12 alert alert-info alert-dismissable fade in"><a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a><span><strong><i class="fa fa-warning"></i></strong>Please Check your Email... We have sent your password on your Registered Email-ID..!</span></div>');-->
+<!--	            		window.setTimeout(-->
+<!--	            			function(){-->
+<!--	            				location.reload(true)-->
+<!--	            			},-->
+<!--	            			3000-->
+<!--	            			);-->
+<!---->
+<!--	            	}else{ -->
+<!--	            		$("#spinnerDiv").html('');               -->
+<!--	            		$("#messageDiv").html('<div class="alert alert-danger" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div>');-->
+<!--	            	}-->
+<!--	            }-->
+<!--	        });-->
+<!--	        return false;  //stop the actual form post !important!-->
+<!--	    });-->
+<!--		});-->
+<!--	</script>-->
 </body>
 </html>
 

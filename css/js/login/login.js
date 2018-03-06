@@ -1,8 +1,8 @@
 //  -------------------REGISTER FORM------------------------ //
 $(function () {
     $("#register_form").submit(function () {
+    	
         dataString = $("#register_form").serialize();
-
         $("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
         $.ajax({
             type: "POST",
