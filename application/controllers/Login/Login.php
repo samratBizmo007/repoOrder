@@ -30,18 +30,7 @@ class Login extends CI_Controller {
     // --------------register user fucntion starts----------------------//
     public function registerCustomer() {
         extract($_POST);
-        //print_r($_POST);die();
-        //---------------if any of the profile is not selected, then return this--------//
-//		if($register_profile_type=='0'){
-//			$response=array(
-//				'status' => 500,	//---------email sending failed 
-//				'status_message' =>'<label class="w3-text-red w3-small">
-//				<b><i class="fa fa-warning"> WARNING<br><br>Select Appropriate Profile first !!!</i> </b>
-//				</label>'
-//			);
-//			echo json_encode($response);	
-//			die();
-//		}
+
         //Connection establishment, processing of data and response from REST API		
         $data = array(
             'register_username' => $register_username,
