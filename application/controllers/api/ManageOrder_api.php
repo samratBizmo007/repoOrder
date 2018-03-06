@@ -29,5 +29,14 @@ class ManageOrder_api extends REST_Controller
 	}
 	//---------------------ADD USER ORDER END------------------------------//
 
+	// -----------------------DELETE MY ORDERS API----------------------//
+	//-------------------------------------------------------------//
+	public function delOrder_get(){
+		extract($_GET);
+		$result = $this->manageOrder_model->delOrder($order_id);
+		return $this->response($result);			
+	}
+	//---------------------DELETE MY ORDERS END------------------------------//
+
 	
 }

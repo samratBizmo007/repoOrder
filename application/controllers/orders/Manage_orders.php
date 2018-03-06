@@ -19,7 +19,7 @@ class Manage_orders extends CI_controller{
 
   public function index(){
    $data['orders'] = Manage_orders::getMyOrders();     //-------show all Raw prods
-   //$this->load->model('inventory_model/ManageProfile_model');	
+   $this->load->view('includes/header');	
    $this->load->view('pages/orders/manage_orders',$data);
    //$this->load->view('inventory/profile/manage_profile',$data);
 
@@ -27,8 +27,8 @@ class Manage_orders extends CI_controller{
 
  //----------this function to get all my orders details-----------------------------
  public function getMyOrders() {
-  //$user_id=$this->session->userdata('user_id');
-  $user_id=1;
+  $user_id=$this->session->userdata('user_id');
+  //$user_id=1;
 
   $path = base_url();
   $url = $path . 'api/ManageOrder_api/getMyOrders?user_id='.$user_id;
@@ -266,5 +266,53 @@ public function UpdateProfile(){
   }
 }
      //-------------this fun is used to update profile information-------------------------//
+
+// ---------------function to delete orders------------------------//
+  public function delOrder(){
+    extract($_POST);
+
+    //Connection establishment to get data from REST API
+    $path=base_url();
+    $url = $path.'api/ManageProfile_api/delOrder?order_id='.$order_id;   
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_HTTPGET, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response_json = curl_exec($ch);
+    curl_close($ch);
+    $response=json_decode($response_json, true);
+    //api processing ends
+
+    //API processing end
+    if($response['status']==0){
+      echo '<div class="alert alert-danger">
+      <strong>'.$response['status_message'].'</strong> 
+      </div>
+      <script>
+      window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove(); 
+        });
+      }, 1000);
+      </script>     
+      ';  
+      
+    }
+    else{
+      echo '<div class="alert alert-success">
+      <strong>'.$response['status_message'].'</strong> 
+      </div>
+      <script>
+      window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove(); 
+        });
+      }, 1000);
+      </script>     
+      ';        
+      
+    } 
+    
+  }
+// ---------------------function ends----------------------------------//
 
 }

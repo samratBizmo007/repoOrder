@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-error_reporting(E_ERROR | E_PARSE);
+//error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,29 +17,21 @@ error_reporting(E_ERROR | E_PARSE);
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/js/orders/manage_order.js"></script>
-  <style type="text/css">
-  input[type=number]::-webkit-inner-spin-button, 
-  input[type=number]::-webkit-outer-spin-button {  
-
-   opacity: 1;
-
- }
-</style>
+  
 </head>
 <body>
-
-
   <!-- !PAGE CONTENT! -->
-  <div class="w3-main" style="margin-left:120px;margin-top: 50px">
+  <div class="w3-main w3-padding-small" style="margin-left:120px;">
 
-   <!-- Header -->
-   <header class="w3-container" >
-    <h2>Manage Orders</h2>
-  </header>
-</div>
-  <div id="exTab1" class="container w3-small" > <!-- container for tab -->
-    <br>
-    <ul  class="nav nav-tabs">
+    <!-- Header -->
+    <header class="w3-container" >
+      <h5><b><i class="fa fa-cubes"></i> Manage Orders</b></h5>
+    </header>
+
+    <div class="w3-row-padding w3-margin-bottom">
+     <!-- container for tab -->
+     <br>
+     <ul  class="nav nav-tabs">
       <li class="active "><a class="w3-medium w3-button w3-red"  href="#show_table" data-toggle="tab">My Order</a></li>
       <li><a class="w3-medium w3-orange w3-button w3-text-white"  href="#newOrders" data-toggle="tab">New Order</a></li>
 
@@ -71,11 +63,14 @@ error_reporting(E_ERROR | E_PARSE);
                     <td class="text-center">' . $count . '.</td>
                     <td class="text-center">#OID-0' . $orders['status_message'][$i]['order_id'] . '</td>
                     <td class="text-center">' . $orders['status_message'][$i]['order_date'] . ' ' . $orders['status_message'][$i]['order_time'] . '</td>
-                    <td class="text-center"><a class="btn w3-padding-small" title="UpdateCustomer" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i][''] . '" style="padding:0"><i class="fa fa-eye"></i></a>
+                    <td class="text-center">
+                    <a class="btn w3-padding-small" title="UpdateCustomer" data-toggle="modal" data-target="#myModalnew_'. $orders['status_message'][$i]['order_id'].'" style="padding:0"><i class="fa fa-eye"></i></a>
+                    <a class="btn w3-padding-tiny" id="delOrder_btn" name="delOrder_btn" onClick="delOrder('.$orders['status_message'][$i]['order_id'].')" title="delete order"><i class="fa fa-remove"></i></a>
+                    </td>
 
                     <!-- Modal  starts here-->
 
-                    <div id="myModalnew_' . $Finished['status_message'][$i]['finished_product_id'] . '" class="modal fade" role="dialog">
+                    <div id="myModalnew_'.$orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
                     <div class="modal-dialog">
 
                     <!-- Modal content-->
@@ -84,19 +79,21 @@ error_reporting(E_ERROR | E_PARSE);
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div>Manage Stock Material</div>
                     </div>
-                    <div class="modal-body w3-light-grey">';   
-                    $product_info='';
-                    foreach(json_decode($orders['status_message'][$i][order_products]) as $key)
+                    <div class="modal-body w3-light-grey">
+                    <div class="w3-container">';   
+                    $product_info=json_decode($orders['status_message'][$i]['order_products'],TRUE);
+                    
+                    foreach($product_info as $key)
                     {
                      echo'<div class="col-lg-12 w3-margin-top">
                      <div class="col-lg-3 w3-margin-top">
                      <label class="w3-label">Product Name:</label>
-                     <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_name'].' placeholder="Enter Product Description" required>
+                     <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
                      </div>
                      </div>                 
                      <div class="col-lg-4 w3-margin-top">
                      <label class="w3-label">Product Description:</label>
-                     <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_description'].' placeholder="Enter Product Description" required>
+                     <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
                      </div>
                      <div class="col-lg-1 w3-margin-top">
                      <label class="w3-label">Quantity:</label>
@@ -112,7 +109,8 @@ error_reporting(E_ERROR | E_PARSE);
                      </div>
                      </div>';
                    }
-                   echo'</div>
+                   echo'
+                   </div></div>
                    </div>
                    </div>
                    </div>'; 
@@ -150,10 +148,10 @@ error_reporting(E_ERROR | E_PARSE);
           <!-- Product div start -->
           <div class="w3-col l12 w3-margin-bottom w3-margin-top">
             <header class="w3-col l12" >
-              <h6><b><i class="fa fa-cubes"></i> Place New Order</b></h6>
+              <h6><b><i class="fa fa-first-order"></i> Place New Order</b></h6>
               <span class="w3-small"></span>
             </header>
-            <div class="col-lg-12 w3-margin-top">
+            <div class="w3-col l12 w3-margin-top">
               <div class="col-lg-3 w3-margin-top">
                 <label class="w3-label">Product Name:</label>
                 <input type="text" class="w3-input" name="prod_Name[]" placeholder="Enter Product Description" required>
@@ -201,11 +199,9 @@ error_reporting(E_ERROR | E_PARSE);
 <!-- ____________________________the tab 2 ends here____________________ -->
 
 </div><!-- tab containt ends here -->
-</div><!-- tab containt div ends here -->
-<!-- </div>container for tab
- --><!--_______________________ div for main container____________________________ -->
-
-
+</div>
+<!-- End page content -->
+</div>
 
 <!-- script to add more material div  -->
 <script>
@@ -263,6 +259,37 @@ error_reporting(E_ERROR | E_PARSE);
   });
 </script>
 <!-- script to add more material end -->
+
+<!-- script to delete order -->
+<script>
+  function delOrder(id){
+    $.confirm({
+      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Delete Order Permanantly!!!</h4>',
+      type: 'red',
+      buttons: {
+        confirm: function () {
+          var dataS = 'order_id='+ id;
+          $.ajax({
+            url:"<?php echo base_url(); ?>orders/manage_orders/delOrder", 
+            type: "POST", 
+            data: dataS,
+            cache: false,
+            success:function(html){                    
+              setTimeout(function() {
+                window.location.reload();
+              }, 500);
+            }
+          });
+        },
+        cancel: function () {
+
+        }
+      }
+    });
+
+  }
+</script>
+<!-- script ends -->
 
 </body>
 </html>

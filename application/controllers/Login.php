@@ -93,7 +93,7 @@ class Login extends CI_Controller {
                $(".alert").fadeTo(500, 0).slideUp(500, function(){
                   $(this).remove(); 
               });
-              window.location.href="'.base_url().'orders/manage_orders";
+              window.location.href="'.base_url().'user/dashboard";
           }, 100);
           </script>
           ';
@@ -101,6 +101,30 @@ class Login extends CI_Controller {
   }
 
 //-----------------------function ends-----------------------------//
+
+
+  // ---------------function to logout------------------------//
+    public function logout(){
+
+        $user_id=$this->session->userdata('user_id');
+        //if logout success then destroy session and unset session variables
+        // $path=base_url();
+        // $url = $path.'api/Auth_api/logout?user_id='.$user_id;   
+        // $ch = curl_init($url);
+        // curl_setopt($ch, CURLOPT_HTTPGET, true);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $response_json = curl_exec($ch);
+        // curl_close($ch);
+        // $response=json_decode($response_json, true);
+        
+        //if logout success then destroy session and unset session variables
+        $this->session->unset_userdata(array("user_id"=>"","user_name"=>""));
+        $this->session->sess_destroy();
+        
+        redirect(base_url());
+        
+    }
+// ---------------------function ends----------------------------------//
 }
 
 ?>
