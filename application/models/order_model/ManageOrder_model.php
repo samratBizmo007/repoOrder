@@ -29,6 +29,28 @@ class ManageOrder_model extends CI_Model{
 	}
 	// -----------------------GET ALL MY ORDERS MODEL----------------------//
 
+           // -----------------------GET ALL ORDERS MODEL----------------------//
+	//-------------------------------------------------------------//
+	public function getAllOrders(){
+
+		$query = "SELECT * FROM order_tab ORDER BY order_id DESC";
+
+		$result = $this->db->query($query);
+
+		if ($result->num_rows() <= 0) {
+			$response = array(
+				'status' => 500,
+				'status_message' => 'No orders found.');
+		} else {
+			$response = array(
+				'status' => 200,
+				'status_message' => $result->result_array());
+		}
+		return $response;
+	}
+	// -----------------------GET ALL ORDERS MODEL----------------------//
+
+
 
 	//-------ADD NEW ORDER FUNCTION--------------//
 	public function addNewOrder($data) { 

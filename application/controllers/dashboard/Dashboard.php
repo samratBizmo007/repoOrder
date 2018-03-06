@@ -13,10 +13,20 @@ class Dashboard extends CI_Controller {
 
     public function index() {
 
-       // $this->load->view('includes/header.php');
-        $this->load->view('pages/orders/dashboard');
+        $data['orders'] = Dashboard::getAllOrders();     //-------show all Raw prods
+        $this->load->view('pages/orders/dashboard',$data);
         //$this->load->view('includes/footer.php');
     }
     
-    
+    public function getAllOrders(){
+        $path = base_url();
+        $url = $path . 'api/ManageOrder_api/getAllOrders';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        return $response;
+    }
 }

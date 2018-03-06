@@ -31,4 +31,13 @@ class Login_api extends REST_Controller {
     }
 
     //---------------------USER LOGIN END------------------------------//
+        // -----------------------USER LOGIN API----------------------//
+    //-------------------------------------------------------------//
+    public function adminLogin_post() {
+        extract($_POST);
+        $result = $this->login->adminLogin($login_username, $login_password);
+        return $this->response($result);
+    }
+
+    //---------------------USER LOGIN END------------------------------//
 }

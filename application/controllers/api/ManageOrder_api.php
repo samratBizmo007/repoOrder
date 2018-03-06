@@ -20,6 +20,16 @@ class ManageOrder_api extends REST_Controller
 	}
 	//---------------------ALL MY ORDERS END------------------------------//
 
+        // -----------------------ALL ORDERS API----------------------//
+	//-------------------------------------------------------------//
+	public function getAllOrders_get(){
+		extract($_GET);
+		$result = $this->manageOrder_model->getAllOrders();
+		return $this->response($result);			
+	}
+	//---------------------ALL ORDERS END------------------------------//
+
+        
 	// -----------------------ADD USER ORDER API----------------------//
 	//-------------------------------------------------------------//
 	public function addNewOrder_post(){
