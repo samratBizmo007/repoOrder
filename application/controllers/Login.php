@@ -79,7 +79,7 @@ class Login extends CI_Controller {
             //----create session array--------//
             $session_data = array(
                 'user_id' => $response['user_id'],
-                'user_name' => $response['username']
+                'user_name' => $response['user_name']
             );
 
             //start session of user if login success

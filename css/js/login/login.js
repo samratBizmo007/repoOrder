@@ -6,7 +6,7 @@ $(function () {
         $("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
         $.ajax({
             type: "POST",
-            url: BASE_URL + "login/login/registerCustomer",
+            url: BASE_URL + "login/registerCustomer",
             dataType : 'text',
             data: dataString,
             return: false, //stop the actual form post !important!
@@ -42,7 +42,7 @@ $(function () {
         $("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
         $.ajax({
             type: "POST",
-            url: BASE_URL + "login/login/loginCustomer",
+            url: BASE_URL + "login/loginCustomer",
             data: dataString,
             return: false, //stop the actual form post !important!
             success: function (data)
