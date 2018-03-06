@@ -1,5 +1,5 @@
 <?php
-//Login controller
+error_reporting(E_ERROR | E_PARSE);
 class Login extends CI_Controller {
 
     public function __construct() {
