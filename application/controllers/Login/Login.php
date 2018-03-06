@@ -9,5 +9,63 @@ class Login extends CI_Controller
 		parent::__construct();
 		
 	}
+        
+        public function index(){
+		
+		//start session		
+//		$user_id=$this->session->userdata('user_id');
+//		$profile_type=$this->session->userdata('profile_type');
+//		$user_name=$this->session->userdata('user_name');
+//		//check session variable set or not, otherwise logout
+//		if(($user_id!='') || ($user_name!='') || ($profile_type!='')){
+//			redirect('profile/dashboard');
+//		}
+		
+		$this->load->view('includes/header.php');
+		$this->load->view('pages/login/login');
+		$this->load->view('includes/footer.php');
+		
+	}
+        
+        	// --------------register user fucntion starts----------------------//
+	public function registerCustomer(){
+		extract($_POST);
+                //print_r($_POST);die();
+
+		//---------------if any of the profile is not selected, then return this--------//
+//		if($register_profile_type=='0'){
+//			$response=array(
+//				'status' => 500,	//---------email sending failed 
+//				'status_message' =>'<label class="w3-text-red w3-small">
+//				<b><i class="fa fa-warning"> WARNING<br><br>Select Appropriate Profile first !!!</i> </b>
+//				</label>'
+//			);
+//			echo json_encode($response);	
+//			die();
+//		}
+
+		//Connection establishment, processing of data and response from REST API		
+		$data=array(
+			'register_username' =>$register_username,
+			'register_password' => $register_password,
+			'register_email' => $register_email,
+			'register_mobile_no'	=> $register_number,
+			'register_address'	=> $address,
+			'register_business_field'      => $business_field
+		);
+		//print_r($data);die();
+		$path=base_url();
+		$url = $path.'api/Login_api/registerCustomer';
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response_json = curl_exec($ch);
+		curl_close($ch);
+		$response=json_decode($response_json, true);
+		echo $response_json;		
+	}
+	//	------------------function ends here-----------------------------//
+
 }
 ?>
