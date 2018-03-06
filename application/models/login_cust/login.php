@@ -1,7 +1,6 @@
 <?php
-//error_reporting(E_ERROR | E_PARSE);
 
-class login extends CI_Model {
+class Login extends CI_Model {
 
     public function __construct() {
         parent::__construct();
