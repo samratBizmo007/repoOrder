@@ -13,7 +13,13 @@ error_reporting(E_ERROR | E_PARSE);
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/header/header_overlay.css">
 
+ <!-- Material Design Bootstrap -->
+<!--   <link href="<?php echo base_url() ?>css/home_page/css/mdb.css" rel="stylesheet">
+ -->  <link href="<?php echo base_url() ?>css/home_page/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>css/js/login/login.js"></script>
@@ -139,7 +145,7 @@ error_reporting(E_ERROR | E_PARSE);
 			<div class="w3-col m4 col-md-offset-4 w3-center" id="messageDiv"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-4 col-md-offset-4 w3-card-2">
+			<div class="col-md-4 col-md-offset-4">
 				<div class="panel panel-login">
 					<div class="panel-heading">
 						<div class="w3-col l12 w3-margin w3-left" id="message_div">

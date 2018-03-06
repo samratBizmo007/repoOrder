@@ -28,19 +28,124 @@ error_reporting(E_ERROR | E_PARSE);
 </head>
 <body>
 
+
   <!-- !PAGE CONTENT! -->
   <div class="w3-main" style="margin-left:120px;margin-top: 50px">
 
-    <!-- Header -->
-    <header class="w3-container" >
-      <h2>Manage Orders</h2>
-    </header>
+   <!-- Header -->
+   <header class="w3-container" >
+    <h2>Manage Orders</h2>
+  </header>
+</div>
+  <div id="exTab1" class="container w3-small" > <!-- container for tab -->
+    <br>
+    <ul  class="nav nav-tabs">
+      <li class="active "><a class="w3-medium w3-button w3-red"  href="#show_table" data-toggle="tab">My Order</a></li>
+      <li><a class="w3-medium w3-orange w3-button w3-text-white"  href="#newOrders" data-toggle="tab">New Order</a></li>
 
-    <div class="w3-col l12"><!-- container starts here -->
-     <!-- Manage Profiles div -->
-     <div class="w3-col l12 w3-padding-left w3-padding-right ">
+    </ul>
 
-      <div class="w3-col l12 w3-padding w3-small">
+    <div class="tab-content clearfix "><br><!-- tab containt starts -->
+      <div class="tab-pane active" id="show_table">  <!-- tab for Raw material starts here -->
+        <div class="">                    
+          <div class="w3-col l6 w3-margin-top">
+            <div class="" id="All_Orders" name="All_Orders" style="">
+              <table class="table table-striped table-responsive w3-small"> 
+                <!-- table starts here -->
+                <thead>
+                  <tr class="">
+                    <th class="text-center">Sr. No.</th>
+                    <th class="text-center">Order NO.</th>
+                    <th class="text-center">Posted On</th>
+                    <th class="text-center">Action</th>  
+                  </tr>
+                </thead>
+                <tbody ><!-- table body starts here -->
+                  <?php 
+                                    //print_r($orders);
+                  if ($orders['status'] == 200) {//print_r($Purchased['status_message']);
+                  $count=1;
+
+                  for ($i = 0; $i < count($orders['status_message']); $i++) {                                             
+                    echo '<tr class="text-center">
+                    <td class="text-center">' . $count . '.</td>
+                    <td class="text-center">#OID-0' . $orders['status_message'][$i]['order_id'] . '</td>
+                    <td class="text-center">' . $orders['status_message'][$i]['order_date'] . ' ' . $orders['status_message'][$i]['order_time'] . '</td>
+                    <td class="text-center"><a class="btn w3-padding-small" title="UpdateCustomer" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i][''] . '" style="padding:0"><i class="fa fa-eye"></i></a>
+
+                    <!-- Modal  starts here-->
+
+                    <div id="myModalnew_' . $Finished['status_message'][$i]['finished_product_id'] . '" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div>Manage Stock Material</div>
+                    </div>
+                    <div class="modal-body w3-light-grey">';   
+                    $product_info='';
+                    foreach(json_decode($orders['status_message'][$i][order_products]) as $key)
+                    {
+                     echo'<div class="col-lg-12 w3-margin-top">
+                     <div class="col-lg-3 w3-margin-top">
+                     <label class="w3-label">Product Name:</label>
+                     <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_name'].' placeholder="Enter Product Description" required>
+                     </div>
+                     </div>                 
+                     <div class="col-lg-4 w3-margin-top">
+                     <label class="w3-label">Product Description:</label>
+                     <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_description'].' placeholder="Enter Product Description" required>
+                     </div>
+                     <div class="col-lg-1 w3-margin-top">
+                     <label class="w3-label">Quantity:</label>
+                     <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
+                     </div>
+                     <div class="col-lg-4 w3-margin-top">
+                     <div class="w3-col l12">
+                     <label class="w3-label">Product Image:</label>
+                     <div class="w3-col l12 w3-padding-bottom">
+                     <img src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
+                     </div>
+                     <input type="file" name="prod_image[]" id="prod_image_1" value='.base_url().$key['prod_image'].' class="w3-input w3-padding-small" onchange="readURL(this,1);">
+                     </div>
+                     </div>';
+                   }
+                   echo'</div>
+                   </div>
+                   </div>
+                   </div>'; 
+                   $count++;
+                 }
+               }
+               else {
+
+                echo '
+                <tr class="text-center" >
+                <td colspan="5"><b>No Orders Available</b></td>
+                </tr>
+                ';
+              }
+
+              ?>
+            </tbody><!-- table body close here -->
+          </table>   <!-- table closed here -->
+        </div>
+      </div>
+    </div>
+  </div><!-- table container ends here -->
+  <!--____________________________________ tab div 1 ends here_________________________________________ -->
+
+  <!--_______________________________ tab 3 starts here_____________________________________________ -->
+
+  <div class="tab-pane" id="newOrders">
+    <!-- tab 3 starts here -->
+    <!-- container starts here -->
+    <!-- Manage Profiles div -->
+    <div class="w3-col l12 w3-padding-left w3-padding-right ">
+
+      <div class="w3-col l12 w3-small">
         <form id="addOrder_form" enctype="multipart/form-data">       
           <!-- Product div start -->
           <div class="w3-col l12 w3-margin-bottom w3-margin-top">
@@ -72,26 +177,34 @@ error_reporting(E_ERROR | E_PARSE);
 
               <div class="w3-col l4">
                <!--  <span><a  id="add_moreProduct" title="Add new Item" class="btn add_moreProduct w3-small w3-text-red w3-right w3-margin-top">Add item <i class="fa fa-plus"></i></a></span> -->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="added_newProduct" class="w3-col l12"></div>
-        <div class="w3-col l12 w3-right">
-          <span><a  id="add_moreProduct" title="Add new Item" class="btn add_moreProduct w3-small w3-text-red w3-right w3-margin-top">Add item <i class="fa fa-plus"></i></a></span>
-        </div>
-        <!-- material div end -->
-        <div class="w3-col l12 w3-center">
-          <button type="submit" title="Raise Order" class="w3-margin w3-button  w3-red">Raise New Order</button>
-        </div>
-      </form>
-    </div>
-
+             </div>
+           </div>
+         </div>
+       </div>
+       <div id="added_newProduct" class="w3-col l12"></div>
+       <div class="w3-col l12 w3-right">
+        <span><a  id="add_moreProduct" title="Add new Item" class="btn add_moreProduct w3-small w3-text-red w3-right w3-margin-top">Add item <i class="fa fa-plus"></i></a></span>
+      </div>
+      <!-- material div end -->
+      <div class="w3-col l12 w3-center">
+        <button type="submit" title="Raise Order" class="w3-margin w3-button  w3-red">Raise New Order</button>
+      </div>
+    </form>
   </div>
-  <!-- manage profile div end -->
 
 </div>
-</div>
+<!-- manage profile div end -->
+
+
+</div>         
+<!-- ___________________________tab 2 div ends here__________________________________ -->
+<!-- ____________________________the tab 2 ends here____________________ -->
+
+</div><!-- tab containt ends here -->
+</div><!-- tab containt div ends here -->
+<!-- </div>container for tab
+ --><!--_______________________ div for main container____________________________ -->
+
 
 
 <!-- script to add more material div  -->
@@ -111,25 +224,25 @@ error_reporting(E_ERROR | E_PARSE);
           <div class="w3-col l12 w3-margin-bottom"><hr>\n\
           <div class="col-lg-12 w3-margin-top">\n\
           <div class="col-lg-3 w3-margin-top">\n\
-                <label class="w3-label">Product Name:</label>\n\
-                <input type="text" class="w3-input" name="prod_Name[]" placeholder="Enter Product Description" required>\n\
-              </div>\n\
-              <div class="col-lg-4 w3-margin-top">\n\
-                <label class="w3-label">Product Description:</label>\n\
-                <input type="text" class="w3-input" name="prod_Description[]" placeholder="Enter Product Description" required>\n\
-              </div>\n\
-              <div class="col-lg-1 w3-margin-top">\n\
-                <label class="w3-label">Quantity:</label>\n\
-                <input type="number" min="1" class="w3-input" name="prod_quantity[]" placeholder="count" required >\n\
-              </div>\n\
+          <label class="w3-label">Product Name:</label>\n\
+          <input type="text" class="w3-input" name="prod_Name[]" placeholder="Enter Product Description" required>\n\
+          </div>\n\
           <div class="col-lg-4 w3-margin-top">\n\
-                <div class="w3-col l7">\n\
-                <label class="w3-label">Product Image:</label>\n\
-                <div class="w3-col l12 w3-padding-bottom">\n\
-                  <img src="" width="180px" id="prod_imagePreview_'+x+'" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">\n\
-                </div>\n\
-                <input type="file" name="prod_image[]" id="prod_image_'+x+'" class="w3-input w3-padding-small" onchange="readURL(this,'+x+');">\n\
-              </div>\n\
+          <label class="w3-label">Product Description:</label>\n\
+          <input type="text" class="w3-input" name="prod_Description[]" placeholder="Enter Product Description" required>\n\
+          </div>\n\
+          <div class="col-lg-1 w3-margin-top">\n\
+          <label class="w3-label">Quantity:</label>\n\
+          <input type="number" min="1" class="w3-input" name="prod_quantity[]" placeholder="count" required >\n\
+          </div>\n\
+          <div class="col-lg-4 w3-margin-top">\n\
+          <div class="w3-col l7">\n\
+          <label class="w3-label">Product Image:</label>\n\
+          <div class="w3-col l12 w3-padding-bottom">\n\
+          <img src="" width="180px" id="prod_imagePreview_'+x+'" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">\n\
+          </div>\n\
+          <input type="file" name="prod_image[]" id="prod_image_'+x+'" class="w3-input w3-padding-small" onchange="readURL(this,'+x+');">\n\
+          </div>\n\
           </div>\n\
           </div>\n\
           <a href="#" class="delete btn w3-text-grey w3-right w3-margin-right w3-small" title="remove item">remove item <i class="fa fa-remove"></i></a>\n\
