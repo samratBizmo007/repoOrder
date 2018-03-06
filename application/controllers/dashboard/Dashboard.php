@@ -13,14 +13,14 @@ class Dashboard extends CI_Controller {
 
     public function index() {
 
-        $data['orders'] = Dashboard::getAllOrders();     //-------show all Raw prods
+        $data['orders'] = Dashboard::AllOrders();     //-------show all Raw prods
         $this->load->view('pages/orders/dashboard',$data);
         //$this->load->view('includes/footer.php');
     }
     
-    public function getAllOrders(){
+    public function AllOrders(){
         $path = base_url();
-        $url = $path . 'api/ManageOrder_api/getAllOrders';
+        $url = $path . 'api/ManageOrder_api/AllOrders';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

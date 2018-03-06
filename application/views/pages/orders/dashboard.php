@@ -44,37 +44,84 @@ error_reporting(E_ERROR | E_PARSE);
                                         <tr class="w3-black">
                                             <th class="text-center">SR. No</th>
                                             <th class="text-center">Customer Name</th>  
-                                            <th class="text-center">ID</th>              
-                                            <th class="text-center">OD</th>              
-                                            <th class="text-center">Available&nbsp;Length</th>              
-                                            <th class="text-center">Tolerance</th>
+                                            <th class="text-center">Quantity</th>              
+                                            <th class="text-center">date</th>                                                          
                                             <th class="text-center">Actions</th>  
                                         </tr>
                                     </thead>
                                     <tbody><!-- table body starts here -->
                                         <?php
-//                                $count = 1;
-//                                if ($details['status'] == 1) {
-//                                    for ($i = 0; $i < count($details['status_message']); $i++) {
-//                                        echo '<tr class="text-center">
-//                                        <td class="text-center">' . $count . '.</td>
-//                                        <td class="text-center"><input type="text" name="Updated_MaterialStock_Materialname" id="Updated_MaterialStock_Materialname_'.$details['status_message'][$i]['rawmaterial_id'].'" class="form-control" value="' . $details['status_message'][$i]['material_name'] . '"></td>
-//                                        <td class="text-center">' . $details['status_message'][$i]['raw_ID'] . '</td>
-//                                        <td class="text-center">' . $details['status_message'][$i]['raw_OD'] . '</td>
-//                                        <td class="text-center"><input type="number" name="Updated_MaterialStock_Length" id="Updated_MaterialStock_Length_'.$details['status_message'][$i]['rawmaterial_id'].'" class="form-control" value="' . $details['status_message'][$i]['avail_length'] . '"></td>
-//                                        <td class="text-center">' . $details['status_message'][$i]['tolerance'] . '</td>
-//                                        <td class="text-center">' . $details['status_message'][$i]['material_price'] . ' <i class="fa fa-rupee"></i></td>
-//                                        <td class="text-center">' . $details['status_message'][$i]['branch_name'] . '</td>
-//                                        <td class="text-center"><a class="btn w3-text-blue w3-medium w3-padding-small" id="update_rawMaterial_'.$details['status_message'][$i]['rawmaterial_id'].'" onclick="update_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" title="Update Raw Material" style="padding:0"><i class="fa fa-edit"></i></a>
-//                                        <a class="btn w3-text-red w3-medium w3-padding-small" title="Delete Raw Material" id="delete_rawMaterial_'.$details['status_message'][$i]['rawmaterial_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-close"></i>
-//                                        </a> 
-//                                        </td>
-//                                        </tr>';
-//                                        $count++;
-//                                    }
-//                                } else {
-//                                    echo'<tr><td style="text-align: center;" colspan = "9">No Records Found...!</td></tr>';
-//                                }
+                                        //print_r($orders);
+                                $count = 1;
+                                if ($orders['status'] == 200) {
+                                    for ($i = 0; $i < count($orders['status_message']); $i++) {
+                                        echo '<tr class="text-center">
+                                        <td class="text-center">' . $count . '.</td>
+                                        <td class="text-center">#000' . $orders['status_message'][$i]['order_id'] . '</td>
+                                        <td class="text-center">' . $orders['status_message'][$i]['user_name'] . '</td>
+                                        <td class="text-center">' . $orders['status_message'][$i]['order_date'] . '</td>
+                                        <td class="text-center">
+                                        <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
+                                        <a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-check"></i></a> 
+                                        <a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
+                                        </td>
+
+                                        <!-- Modal  starts here-->
+
+                                        <div id="myModalnew_'.$orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body w3-light-grey">
+                                        <div class="w3-container">';   
+                                        $product_info=json_decode($orders['status_message'][$i]['order_products'],TRUE);
+
+                                        foreach($product_info as $key)
+                                        {
+                                         echo'<div class="col-lg-12 w3-margin-top">
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label">Product&nbsp;Name:</label>
+                                         <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
+                                         </div>
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label">Product&nbsp;Description:</label>
+                                         <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
+                                         </div>
+                                         <div class="col-lg-2 w3-margin-top">
+                                         <label class="w3-label">Quantity:</label>
+                                         <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
+                                         </div>
+                                         </div>
+                                         <div class="w3-col l12">                                                                                 
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
+                                         <img class="w3-padding-left" src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
+                                         <input type="file" name="prod_image[]" id="prod_image_1" value='.base_url().$key['prod_image'].' class="w3-input w3-padding-small" onchange="readURL(this,1);">
+                                         </div>
+                                         </div>';
+                                       }
+                                       echo'
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </tr>'; 
+                                       $count++;
+                                     }
+                                   }
+                                   else {
+
+                                    echo '
+                                    <tr class="text-center" >
+                                    <td colspan="5"><b>No Orders Available</b></td>
+                                    </tr>
+                                    ';
+                                  }
                                         ?>
                                     </tbody><!-- table body close here -->
                                 </table>   <!-- table closed here -->
