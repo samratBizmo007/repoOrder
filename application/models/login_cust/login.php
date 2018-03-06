@@ -94,5 +94,61 @@ class login extends CI_Model {
 
 //-----------------------function to check whether email-ID already exists------------------//
 	
+
+	// -----------------------USER LOGIN API----------------------//
+	//-------------------------------------------------------------//
+	public function loginCustomer($user_name,$password)
+	{
+	//sql query to check login credentials
+		$pass=base64_encode($password);
+		$query="SELECT * FROM customer_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass'";
+		//echo $query;die();
+		$result = $this->db->query($query);
+		$user_id='0';
+		$privilege='';
+	//if credentials are true, their is obviously only one record
+		if($result->num_rows() == 1){
+			
+			foreach ($result->result_array() as $row) {
+				$user_name=$row['username'];
+				$user_id=$row['user_id'];
+			}
+
+			if ($result) {
+				$sql = "UPDATE customer_tab SET active='1' WHERE user_id='$user_id'";
+				//echo $sql;die();
+				$result = $this->db->query($sql);
+
+				//response with values to be stored in sessions if update session_bool true
+				$response=array(
+					'status' => 200,
+					'user_id' =>$user_id,
+					'user_name' => $user_name,				
+					'status_message' =>'Login Successfull'
+				);
+			}
+			else{
+				$response=array(
+					'status' => 500,
+					'user_id' =>$user_id,
+					'user_name' => $user_name,				
+					'status_message' =>'Error to start session for '.$user_name.' !!!',
+				);
+			}
+		}
+		else
+		{
+		//login failed response
+			$response=array(
+				'status' => 500,
+				'status_message' =>'Sorry..Login credentials are incorrect!!!',
+				'user_id' =>$user_id,
+				'user_name' => $user_name,				
+			);
+		}
+		return $response;
+	}
+	//----------------------------LOGIN END------------------------------//
+        
     
 }
