@@ -273,41 +273,25 @@ public function UpdateProfile(){
 
     //Connection establishment to get data from REST API
     $path=base_url();
-    $url = $path.'api/ManageProfile_api/delOrder?order_id='.$order_id;   
+    $url = $path.'api/ManageOrder_api/delOrder?order_id='.$order_id; 
+    //echo $url;  
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HTTPGET, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response_json = curl_exec($ch);
     curl_close($ch);
     $response=json_decode($response_json, true);
+   // print_r($response_json);die();
     //api processing ends
 
     //API processing end
-    if($response['status']==0){
-      echo '<div class="alert alert-danger">
-      <strong>'.$response['status_message'].'</strong> 
-      </div>
-      <script>
-      window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove(); 
-        });
-      }, 1000);
-      </script>     
+    if($response['status']!=200){
+      echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4> 
       ';  
       
     }
     else{
-      echo '<div class="alert alert-success">
-      <strong>'.$response['status_message'].'</strong> 
-      </div>
-      <script>
-      window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove(); 
-        });
-      }, 1000);
-      </script>     
+      echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>   
       ';        
       
     } 

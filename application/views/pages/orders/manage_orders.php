@@ -274,10 +274,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             type: "POST", 
             data: dataS,
             cache: false,
-            success:function(html){                    
-              setTimeout(function() {
-                window.location.reload();
-              }, 500);
+            success:function(html){     
+            $.alert(html);              
+             $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
             }
           });
         },
