@@ -23,8 +23,8 @@ class ManageOrder_api extends REST_Controller
 	// -----------------------ADD USER ORDER API----------------------//
 	//-------------------------------------------------------------//
 	public function addNewOrder_post(){
-		extract($_GET);
-		$result = $this->dashboard_model->addNewOrder($user_id,$skill_id,$profile_type);
+		$data=($_POST);
+		$result = $this->manageOrder_model->addNewOrder($data);
 		return $this->response($result);			
 	}
 	//---------------------ADD USER ORDER END------------------------------//

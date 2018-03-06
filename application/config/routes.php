@@ -49,16 +49,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Landing_home';
+$route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['auth/login/verify_email/(:any)'] = "auth/login/verify_email/$1";
-$route['project/view_project/(:any)'] = 'project/view_project/index/$1';
-$route['project/ViewProject_biddinglist/(:any)'] = 'project/ViewProject_biddinglist/index/$1';
-$route['job/job_listings/(:any)'] = 'job/job_listings/showAppliedCandidate/$1';
-$route['jobseeker/jobseeker_lists/(:any)'] = 'jobseeker/jobseeker_lists/showjobDetails/$1';
-$route['job/Applied_candidate_lists/download(:any)'] = 'job/Applied_candidate_lists/download/$1';
-$route['project/project_listing/download(:any)'] = 'project/project_listing/download/$1';
-$route['profile/Share_profile/share_profile_data(:any)'] = 'profile/Share_profile/share_profile_data/$1';
+//$route['auth/login/verify_email/(:any)'] = "auth/login/verify_email/$1";
+
 //$route['login/(:any)'] = 'login/index/$1';
 //$route['auth/login/(:any)'] = "auth/login/login_auth/$1";

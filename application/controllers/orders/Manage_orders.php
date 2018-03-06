@@ -8,14 +8,13 @@ class Manage_orders extends CI_controller{
     
 
     //start session   
-    // $user_id=$this->session->userdata('user_id');
-    // $user_name=$this->session->userdata('user_name');
-    // $privilege=$this->session->userdata('privilege');
+    $user_id=$this->session->userdata('user_id');
+    $user_name=$this->session->userdata('user_name');
     
-    // //check session variable set or not, otherwise logout
-    // if(($user_id=='') || ($user_name=='') || ($privilege=='')){
-    //   redirect('role_login');
-    // }   
+    //check session variable set or not, otherwise logout
+    if(($user_id=='') || ($user_name=='')){
+      redirect('login');
+    }   
   }
 
   public function index(){
@@ -28,7 +27,7 @@ class Manage_orders extends CI_controller{
 
  //----------this function to get all my orders details-----------------------------
  public function getMyOrders() {
-  $user_id=1;
+  $user_id=$this->session->userdata('user_id');
 
   $path = base_url();
   $url = $path . 'api/ManageOrder_api/getMyOrders?user_id='.$user_id;
@@ -46,8 +45,8 @@ class Manage_orders extends CI_controller{
  //----------this function to add order profile-----------------------------//
 public function addOrder() { 
   extract($_POST);
-  $data = $_POST;
-  $user_id=1;
+  $user_id=$this->session->userdata('user_id');
+  $user_name=$this->session->userdata('user_name');
 //print_r($get_image);die();
   $prod_Arr=array();  //prod_image array
   $allowed_types=['gif','jpg','png','jpeg','JPG','GIF','JPEG','PNG'];
@@ -61,7 +60,7 @@ public function addOrder() {
       echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> Image size for item '.$prod_Name[$i].' exceeds size limit of 1MB. Upload image having size less than 1MB</label>';
       die();
     }
-   
+
     //check file is an image or not by checking extensions
     if(!in_array($extension_prod, $allowed_types)){  //for prod images
       echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> File uploading for prod '.$prod_Name[$i].' is not an image file. Upload image having type gif, jpg, jpeg OR png</label>';
@@ -104,10 +103,10 @@ public function addOrder() {
   }
 
   $data['user_id']=$user_id;
+  $data['user_name']=$user_name;
   $data['prod_associated']=json_encode($prod_Arr);
-  print_r($data);die();
   
-  $path = base_url();                                                   // this code is for web service AND api for save profile 
+  $path = base_url();
   $url = $path.'api/ManageOrder_api/addNewOrder';
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_POST, true);
@@ -116,36 +115,33 @@ public function addOrder() {
   $response_json = curl_exec($ch);
   curl_close($ch);
   $response = json_decode($response_json, true);
+  //print_r($response_json);die();
   
-  if ($response['status'] == 0) {
-    echo '<div class="alert alert-danger">
-      <strong>'.$response['status_message'].'</strong> 
-      </div>
-      <script>
-      window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove(); 
-        });
-        location.reload();
-      }, 1000);
-      </script>';
+  if ($response['status'] != 200) {
+    echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
+    <script>
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+      });
+                //window.location.href="'.base_url().'project/project_listing";
+    }, 1000);
+    </script>';
   } else {
-    echo '<div class="alert alert-success">
-      <strong>'.$response['status_message'].'</strong> 
-      </div>
-      <script>
-      window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove(); 
-        });
-        location.reload();
-      }, 1000);
-      </script>';
+    echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>
+    <script>
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+      });
+      window.location.href="'.base_url().'orders/manage_orders";
+    }, 1000);
+    </script>  ';
   }
 }
 //----------------this fun is to add order details end---------------//
 
- public function DeleteProfile(){
+public function DeleteProfile(){
   extract($_GET);
   $path = base_url();
   $url = $path . 'api/ManageProfile_api/DeleteProfile?profile_id='.$profile_id;
@@ -156,10 +152,10 @@ public function addOrder() {
   curl_close($ch);
   $response = json_decode($response_json, true);
   redirect('inventory/AllProfiles');
- }
+}
     //-------------this fun is used to update profile information-------------------------//
 
- public function UpdateProfile(){
+public function UpdateProfile(){
   extract($_POST); 
   $data = $_POST;
   
@@ -244,30 +240,30 @@ public function addOrder() {
  //print_r($response_json);
   if ($response['status'] == 0) {
     echo '<div class="alert alert-danger">
-      <strong>'.$response['status_message'].'</strong> 
-      </div>
-      <script>
-      window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove(); 
-        });
-        location.reload();
-      }, 1000);
-      </script>';
+    <strong>'.$response['status_message'].'</strong> 
+    </div>
+    <script>
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+      });
+      location.reload();
+    }, 1000);
+    </script>';
   } else {
     echo '<div class="alert alert-success">
-      <strong>'.$response['status_message'].'</strong> 
-      </div>
-      <script>
-      window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove(); 
-        });
-        location.reload();
-      }, 1000);
-      </script>';
+    <strong>'.$response['status_message'].'</strong> 
+    </div>
+    <script>
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+      });
+      location.reload();
+    }, 1000);
+    </script>';
   }
- }
+}
      //-------------this fun is used to update profile information-------------------------//
 
 }

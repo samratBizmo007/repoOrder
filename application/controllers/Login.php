@@ -1,9 +1,4 @@
 <?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-error_reporting(E_ERROR | E_PARSE);
-
 //Login controller
 class Login extends CI_Controller {
 
@@ -22,9 +17,7 @@ class Login extends CI_Controller {
 //			redirect('profile/dashboard');
 //		}
 
-        $this->load->view('includes/header.php');
         $this->load->view('pages/login/login');
-        $this->load->view('includes/footer.php');
     }
 
     // --------------register user fucntion starts----------------------//
@@ -79,9 +72,9 @@ class Login extends CI_Controller {
         //API processing end
         if ($response['status'] == 500) {
             echo '<div class="alert alert-danger ">
-			<strong>'.$response['status_message'].'</strong> 
-			</div>			
-			';
+            <strong>'.$response['status_message'].'</strong> 
+            </div>			
+            ';
         } else {
             //----create session array--------//
             $session_data = array(
@@ -93,19 +86,19 @@ class Login extends CI_Controller {
             $this->session->set_userdata($session_data);
 
             echo '<div class="alert alert-success" style="margin-bottom:5px">
-		 <strong>'.$response['status_message'].'</strong> 
-		 </div>
-				<script>
-				window.setTimeout(function() {
-					$(".alert").fadeTo(500, 0).slideUp(500, function(){
-						$(this).remove(); 
-					});
-					window.location.href="'.base_url().'orders/manage_orders";
-				}, 100);
-				</script>
-				';
-        }
-    }
+            <strong>'.$response['status_message'].'</strong> 
+            </div>
+            <script>
+            window.setTimeout(function() {
+               $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                  $(this).remove(); 
+              });
+              window.location.href="'.base_url().'orders/manage_orders";
+          }, 100);
+          </script>
+          ';
+      }
+  }
 
 //-----------------------function ends-----------------------------//
 }
