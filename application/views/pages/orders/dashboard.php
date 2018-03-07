@@ -21,8 +21,12 @@ error_reporting(E_ERROR | E_PARSE);
 </head>
 <body class="w3-light-grey">
     <!-- !PAGE CONTENT! -->
-    <div class="w3-main w3-margin-top" style="">
+    <div class="w3-main w3-padding-small" style="margin-left:120px;">
 
+    <!-- Header -->
+    <div class="w3-container" style="margin-left: 30px">
+      <h5><b>Manage Orders</b></h5>
+    </div>
        
 
         <div id="exTab1" class="container w3-small" > <!-- container for tab -->
