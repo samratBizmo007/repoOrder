@@ -35,7 +35,7 @@ class Dashboard_model extends CI_Model {
     //-------------------------------------------------------------//
     public function AllOrders() {
 
-        $query = "SELECT * FROM order_tab ORDER BY order_id DESC";
+        $query = "SELECT * FROM order_tab WHERE status=1 ORDER BY order_id DESC";
 
         $result = $this->db->query($query);
 
