@@ -29,7 +29,7 @@ class ManageOrder_model extends CI_Model{
 	}
 	// -----------------------GET ALL MY ORDERS MODEL----------------------//
 
-           // -----------------------GET ALL ORDERS MODEL----------------------//
+           // -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
 	//-------------------------------------------------------------//
 	public function getAllOrders(){
 
@@ -48,9 +48,9 @@ class ManageOrder_model extends CI_Model{
 		}
 		return $response;
 	}
-	// -----------------------GET ALL ORDERS MODEL----------------------//
+	// -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
         
-                   // -----------------------GET ALL ORDERS MODEL----------------------//
+                   // -----------------------GET ALL CLOSED ORDERS on admin dashboard MODEL----------------------//
 	//-------------------------------------------------------------//
 	public function AllClosed_Orders(){
 
@@ -69,9 +69,9 @@ class ManageOrder_model extends CI_Model{
 		}
 		return $response;
 	}
-	// -----------------------GET ALL ORDERS MODEL----------------------//
+	// -----------------------GET ALL CLOSED ORDERS on admin dashboard MODEL----------------------//
 
-           // -----------------------GET ALL ORDERS MODEL----------------------//
+           // -----------------------GET ALL OPEN ORDERS on admin dashboard  MODEL----------------------//
 	//-------------------------------------------------------------//
 	public function AllOrders(){
 
@@ -90,7 +90,7 @@ class ManageOrder_model extends CI_Model{
 		}
 		return $response;
 	}
-	// -----------------------GET ALL ORDERS MODEL----------------------//
+	// -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
 
 
 
@@ -166,7 +166,7 @@ class ManageOrder_model extends CI_Model{
     //---------------delete ORder model-------------//
     function reOpen_Orders($order_id)
     {
-        $query="UPDATE order_tab SET status=1 WHERE order_id=".$order_id." ";  
+        $query="UPDATE order_tab SET status=2 WHERE order_id=".$order_id." ";  
         
         if($this->db->query($query)){
             $response=array(
