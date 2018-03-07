@@ -67,7 +67,7 @@ $admin_name=$this->session->userdata('admin_name');
     </div>
     <div class="w3-col l2">
       <div class="w3-right">        
-        <a href="<?php echo base_url(); ?>login/logout" title="Logout user" class="w3-button w3-padding-small"><i class="fa  fa-sign-out"></i></a> 
+        <a href="<?php echo base_url(); ?>admin_login/logout" title="Logout user" class="w3-button w3-padding-small"><i class="fa  fa-sign-out"></i></a> 
       </div>
     </div>
 

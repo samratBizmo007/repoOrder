@@ -1,5 +1,7 @@
 <?php
+
 error_reporting(E_ERROR | E_PARSE);
+
 class Admin_login extends CI_Controller {
 
     public function __construct() {
@@ -18,7 +20,8 @@ class Admin_login extends CI_Controller {
 //		}
         $this->load->view('pages/admin_login');
     }
-    public function adminLogin(){
+
+    public function adminLogin() {
         extract($_POST);
         //print_r($_POST);
         //die();
@@ -26,7 +29,7 @@ class Admin_login extends CI_Controller {
         $data = array(
             'login_username' => $login_username,
             'login_password' => $login_password
-            //'login_remember' => $remember_me
+                //'login_remember' => $remember_me
         );
         //print_r($data);die();
         $path = base_url();
@@ -42,7 +45,7 @@ class Admin_login extends CI_Controller {
         //API processing end
         if ($response['status'] == 500) {
             echo '<div class="alert alert-danger ">
-            <strong>'.$response['status_message'].'</strong> 
+            <strong>' . $response['status_message'] . '</strong> 
             </div>			
             ';
         } else {
@@ -56,17 +59,29 @@ class Admin_login extends CI_Controller {
             $this->session->set_userdata($session_data);
 
             echo '<div class="alert alert-success" style="margin-bottom:5px">
-            <strong>'.$response['status_message'].'</strong> 
+            <strong>' . $response['status_message'] . '</strong> 
             </div>
             <script>
             window.setTimeout(function() {
                $(".alert").fadeTo(500, 0).slideUp(500, function(){
                   $(this).remove(); 
               });
-              window.location.href="'.base_url().'dashboard/dashboard";
+              window.location.href="' . base_url() . 'dashboard/dashboard";
           }, 100);
           </script>
           ';
-      }
+        }
     }
-}    
+
+    public function logout() {
+        $admin_id=$this->session->userdata('admin_id');
+        $admin_name=$this->session->userdata('admin_name');
+        //if logout success then destroy session and unset session variables
+        //if logout success then destroy session and unset session variables
+        $this->session->unset_userdata(array("admin_id" => "", "admin_name" => ""));
+        $this->session->sess_destroy();
+
+        redirect(admin_login);
+    }
+
+}
