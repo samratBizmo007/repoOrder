@@ -192,6 +192,17 @@ error_reporting(E_ERROR | E_PARSE);
 							<form id="register_form" role="form" method='post' enctype='multipart/form-data' style="display: none;">
 									<div class="w3-col l12 " id="registration_err"></div>
 									<div class="form-group">
+									<select name="business_field" id="business_field" tabindex="2" class="form-control">
+											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select Business Field</option>
+											<option value="1" <?php if($this->input->get('field', TRUE)==1) echo 'selected'; ?>>Mobile Accessories</option>
+											<option value="2" <?php if($this->input->get('field', TRUE)==2) echo 'selected'; ?>>Cosmetics</option>
+											<option value="3" <?php if($this->input->get('field', TRUE)==3) echo 'selected'; ?>>Watch and Glasses</option>
+											<option value="4" <?php if($this->input->get('field', TRUE)==4) echo 'selected'; ?>>Bags</option>
+											<option value="5" <?php if($this->input->get('field', TRUE)==5) echo 'selected'; ?>>Other</option>
+										
+									</select>
+									</div>
+									<div class="form-group">
 										<input type="text" name="register_username" id="register_username" tabindex="2" class="form-control" placeholder="Username" value="" required>
 									</div>
 									<div class="form-group">
@@ -203,15 +214,14 @@ error_reporting(E_ERROR | E_PARSE);
 									<div class="form-group">
 										<input type="password" name="register_confirm_password" id="register_confirm_password" tabindex="5" onkeyup="checkPassword();" class="form-control" minlength="8" placeholder="Confirm Password" required>
 									</div>
+									<div id="message"></div>
 									<div class="form-group">
 										<input type="number" name="register_number" id="register_number" tabindex="5"  class="form-control" placeholder="Enter Your Number" required>
 									</div>
 									<div class="form-group">
 									<textarea rows="5" name="address" id="address" class="form-control form-control rounded-0" placeholder="Enter Your Address"></textarea>
 									</div>
-									<div class="form-group">
-										<input type="text" name="business_field" id="business_field" tabindex="5"  class="form-control" placeholder="Enter Your Business Field" required>
-									</div>
+									
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
