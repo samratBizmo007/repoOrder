@@ -298,29 +298,5 @@ public function UpdateProfile(){
     
   }
 // ---------------------function ends----------------------------------//
-// ---------------function to reopen orders------------------------//
-
-    public function reOpen_Orders() {
-        extract($_POST);
-
-        //Connection establishment to get data from REST API
-        $path = base_url();
-        $url = $path . 'api/ManageOrder_api/reOpen_Orders?order_id=' . $order_id;
-        //echo $url;  
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        // print_r($response_json);die();
- 
-        if ($response['status'] != 200) {
-            echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>';
-        } else {
-            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> ' . $response['status_message'] . '</h4>';
-        }
-    }
-// ---------------function ends here------------------------//
 
 }

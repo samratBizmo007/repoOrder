@@ -163,29 +163,7 @@ class ManageOrder_model extends CI_Model{
     }
     //----------------delete ORder ends--------------------------//
     
-    //---------------delete ORder model-------------//
-    function reOpen_Orders($order_id)
-    {
-        $query="UPDATE order_tab SET status=2 WHERE order_id=".$order_id." ";  
-        
-        if($this->db->query($query)){
-            $response=array(
-                'status' => 200,
-                'status_message' =>'Order Opemed Successfully.'         
-            );
-        }
-        else
-        {
-            //insertion failure
-            $response=array(
-                'status' => 500,
-                'status_message' =>'Sorry..Order Opening Failed!!!'         
-            );
-        }
-
-        return $response;
-    }
-    //----------------delete ORder ends--------------------------//
+ 
     
 }
 ?>

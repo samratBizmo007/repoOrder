@@ -37,15 +37,7 @@ class ManageOrder_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------ALL ORDERS END------------------------------//
-         // -----------------------ALL closed ORDERS API----------------------//
-	//-------------------------------------------------------------//
-	public function AllClosed_Orders_get(){
-		extract($_GET);
-		$result = $this->manageOrder_model->AllClosed_Orders();
-		return $this->response($result);			
-	}
-	//---------------------ALL Closed ORDERS END------------------------------//
-
+   
         
 	// -----------------------ADD USER ORDER API----------------------//
 	//-------------------------------------------------------------//
@@ -64,13 +56,5 @@ class ManageOrder_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------DELETE MY ORDERS END------------------------------//
-	// -----------------------REOPEN ORDERS API----------------------//
-	//-------------------------------------------------------------//
-	public function reOpen_Orders_get(){
-                extract($_GET);
-		$result = $this->manageOrder_model->reOpen_Orders($order_id);
-		return $this->response($result);
-        }
-	//---------------------REOPEN ORDERS END------------------------------//
-        
+
 }

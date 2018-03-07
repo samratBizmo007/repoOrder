@@ -60,7 +60,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 $color = '';
                                 if ($orders['status'] == 200) {
                                     for ($i = 0; $i < count($orders['status_message']); $i++) {
-                                         if($orders['status_message'][$i]['status'] == 1){
+                                         if($orders['status_message'][$i]['status'] == 2){
                                             $status = 'Open';
                                             $color = 'w3-text-green';
                                          }
@@ -154,7 +154,7 @@ error_reporting(E_ERROR | E_PARSE);
         confirm: function () {
           var dataS = 'order_id='+ id;
           $.ajax({
-            url:"<?php echo base_url(); ?>orders/manage_orders/delOrder", 
+            url:"<?php echo base_url(); ?>dashboard/dashboard/delOrder", 
             type: "POST", 
             data: dataS,
             cache: false,
@@ -199,7 +199,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 $color = '';
                                 if ($Open_orders['status'] == 200) {
                                     for ($i = 0; $i < count($Open_orders['status_message']); $i++) {
-                                        if($Open_orders['status_message'][$i]['status'] == 1){
+                                        if($Open_orders['status_message'][$i]['status'] == 2){
                                             $status = 'Open';
                                             $color = 'w3-text-green';
                                          }
@@ -308,7 +308,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 $color = '';
                                 if ($Closed_orders['status'] == 200) {
                                     for ($i = 0; $i < count($Closed_orders['status_message']); $i++) {
-                                           if($Closed_orders['status_message'][$i]['status'] == 1){
+                                           if($Closed_orders['status_message'][$i]['status'] == 2){
                                             $status = 'Open';
                                             $color = 'w3-text-green';
                                          }
@@ -407,7 +407,7 @@ error_reporting(E_ERROR | E_PARSE);
         confirm: function () {
           var dataS = 'order_id='+ id;
           $.ajax({
-            url:"<?php echo base_url(); ?>orders/manage_orders/reOpen_Orders", 
+            url:"<?php echo base_url(); ?>dashboard/dashboard/reOpen_Orders", 
             type: "POST", 
             data: dataS,
             cache: false,
