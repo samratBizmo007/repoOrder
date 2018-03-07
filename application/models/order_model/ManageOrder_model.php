@@ -49,7 +49,27 @@ class ManageOrder_model extends CI_Model{
 		return $response;
 	}
 	// -----------------------GET ALL ORDERS MODEL----------------------//
+        
+                   // -----------------------GET ALL ORDERS MODEL----------------------//
+	//-------------------------------------------------------------//
+	public function AllClosed_Orders(){
 
+		$query = "SELECT * FROM order_tab WHERE status=0 ORDER BY order_id DESC";
+
+		$result = $this->db->query($query);
+
+		if ($result->num_rows() <= 0) {
+			$response = array(
+				'status' => 500,
+				'status_message' => 'No orders found.');
+		} else {
+			$response = array(
+				'status' => 200,
+				'status_message' => $result->result_array());
+		}
+		return $response;
+	}
+	// -----------------------GET ALL ORDERS MODEL----------------------//
 
            // -----------------------GET ALL ORDERS MODEL----------------------//
 	//-------------------------------------------------------------//

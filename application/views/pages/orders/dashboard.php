@@ -43,8 +43,8 @@ error_reporting(E_ERROR | E_PARSE);
                                     <thead>
                                         <tr class="w3-black">
                                             <th class="text-center">SR. No</th>
-                                            <th class="text-center">Customer Name</th>  
-                                            <th class="text-center">Quantity</th>              
+                                            <th class="text-center">Order No</th>  
+                                            <th class="text-center">Customer Name</th>              
                                             <th class="text-center">date</th>                                                          
                                             <th class="text-center">Actions</th>  
                                         </tr>
@@ -60,10 +60,10 @@ error_reporting(E_ERROR | E_PARSE);
                                         <td class="text-center">#000' . $orders['status_message'][$i]['order_id'] . '</td>
                                         <td class="text-center">' . $orders['status_message'][$i]['user_name'] . '</td>
                                         <td class="text-center">' . $orders['status_message'][$i]['order_date'] . '</td>
-                                        <td class="text-center">
-                                        <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
-                                        <a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-check"></i></a> 
-                                        <a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
+                                        <td class="text-center">';
+                                        echo'<a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>';
+                                        //echo'<a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-check"></i></a> ';
+                                        echo'<a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
                                         </td>
 
                                         <!-- Modal  starts here-->
@@ -73,10 +73,10 @@ error_reporting(E_ERROR | E_PARSE);
 
                                         <!-- Modal content-->
                                         <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header ">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-                                        <div class="modal-body w3-light-grey">
+                                        <div class="modal-body w3-light-grey w3-margin-top">
                                         <div class="w3-container">';   
                                         $product_info=json_decode($orders['status_message'][$i]['order_products'],TRUE);
 
@@ -139,22 +139,86 @@ error_reporting(E_ERROR | E_PARSE);
                             <table class="table table-striped table-responsive w3-small"> 
                                 <!-- table starts here -->
                                 <thead>
-                                    <tr class="w3-black">
-                                        <th class="text-center">Material</th>  
-                                        <th class="text-center">ID</th>              
-                                        <th class="text-center">OD</th>              
-                                        <th class="text-center">Length</th>              
-                                        <th class="text-center">Price</th>
-                                        <th class="text-center">Discount In Percentage</th>
-                                        <th class="text-center">Margin In Percentage</th>
-                                        <th class="text-center">Cost Price</th>
-                                        <th class="text-center">Quotation</th>
-                                        <th class="text-center">Vendor</th>
-                                        <th class="text-center">Quantity</th>        
-                                    </tr>
-                                </thead>
+                                        <tr class="w3-black">
+                                            <th class="text-center">SR. No</th>
+                                            <th class="text-center">Order No</th>  
+                                            <th class="text-center">Customer Name</th>              
+                                            <th class="text-center">date</th>                                                          
+                                            <th class="text-center">Actions</th>  
+                                        </tr>
+                                    </thead>
                                 <tbody><!-- table body starts here --> 
                                     <?php
+                                    $count = 1;
+                                if ($Open_orders['status'] == 200) {
+                                    for ($i = 0; $i < count($Open_orders['status_message']); $i++) {
+                                        echo '<tr class="text-center">
+                                        <td class="text-center">' . $count . '.</td>
+                                        <td class="text-center">#000' . $Open_orders['status_message'][$i]['order_id'] . '</td>
+                                        <td class="text-center">' . $Open_orders['status_message'][$i]['user_name'] . '</td>
+                                        <td class="text-center">' . $Open_orders['status_message'][$i]['order_date'] . '</td>
+                                        <td class="text-center">
+                                        <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#openOrder_' . $Open_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
+                                        <a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$Open_orders['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$Open_orders['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
+                                        </td>
+
+                                        <!-- Modal  starts here-->
+
+                                        <div id="openOrder_'.$Open_orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body w3-light-grey">
+                                        <div class="w3-container">';   
+                                        $product_info=json_decode($Open_orders['status_message'][$i]['order_products'],TRUE);
+
+                                        foreach($product_info as $key)
+                                        {
+                                         echo'<div class="col-lg-12 w3-margin-top">
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label">Product&nbsp;Name:</label>
+                                         <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
+                                         </div>
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label">Product&nbsp;Description:</label>
+                                         <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
+                                         </div>
+                                         <div class="col-lg-2 w3-margin-top">
+                                         <label class="w3-label">Quantity:</label>
+                                         <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
+                                         </div>
+                                         </div>
+                                         <div class="w3-col l12">                                                                                 
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
+                                         <img class="w3-padding-left" src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
+                                         <input type="file" name="prod_image[]" id="prod_image_1" value='.base_url().$key['prod_image'].' class="w3-input w3-padding-small" onchange="readURL(this,1);">
+                                         </div>
+                                         </div>';
+                                       }
+                                       echo'
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </tr>'; 
+                                       $count++;
+                                     }
+                                   }
+                                   else {
+
+                                    echo '
+                                    <tr class="text-center" >
+                                    <td colspan="5"><b>No Orders Available</b></td>
+                                    </tr>
+                                    ';
+                                  }
+                                
                                     ?>
                                 </tbody><!-- table body close here -->
                             </table>   <!-- table closed here -->
@@ -171,18 +235,87 @@ error_reporting(E_ERROR | E_PARSE);
                     <div class="">
                         <div>
                             <div class="w3-margin-right" id="Closed_Orders" name="Closed_Orders" style="max-height: 700px; overflow: scroll;">
-                                <table class="table table-bordered table-responsive" >            <!-- table starts here -->
-                                    <tr >
-                                        <th class="text-center">SR. No</th>
-                                        <th class="text-center">Product&nbsp;Name</th>  
-                                        <th class="text-center">ID</th>              
-                                        <th class="text-center">OD</th>              
-                                        <th class="text-center">Length</th>              
-                                        <th class="text-center">Quantity</th>         
-                                        <th class="text-center">Actions</th>                                           
-                                    </tr>
+                            <table class="table table-striped table-responsive w3-small"> 
+                                    <thead>
+                                        <tr class="w3-black">
+                                            <th class="text-center">SR. No</th>
+                                            <th class="text-center">Order No</th>  
+                                            <th class="text-center">Customer Name</th>              
+                                            <th class="text-center">date</th>                                                          
+                                            <th class="text-center">Actions</th>  
+                                        </tr>
+                                    </thead>
                                     <tbody><!-- table body starts here -->
                                         <?php
+                                        $count = 1;
+                                if ($Closed_orders['status'] == 200) {
+                                    for ($i = 0; $i < count($Closed_orders['status_message']); $i++) {
+                                        echo '<tr class="text-center">
+                                        <td class="text-center">' . $count . '.</td>
+                                        <td class="text-center">#000' . $Closed_orders['status_message'][$i]['order_id'] . '</td>
+                                        <td class="text-center">' . $Closed_orders['status_message'][$i]['user_name'] . '</td>
+                                        <td class="text-center">' . $Closed_orders['status_message'][$i]['order_date'] . '</td>
+                                        <td class="text-center">
+                                        <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#closeOrder_' . $Closed_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
+                                        </td>
+
+                                        <!-- Modal  starts here-->
+
+                                        <div id="closeOrder_'.$Closed_orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                        <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body w3-light-grey">
+                                        <div class="w3-container">';   
+                                        $product_info=json_decode($Closed_orders['status_message'][$i]['order_products'],TRUE);
+
+                                        foreach($product_info as $key)
+                                        {
+                                         echo'<div class="col-lg-12 w3-margin-top">
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label">Product&nbsp;Name:</label>
+                                         <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
+                                         </div>
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label">Product&nbsp;Description:</label>
+                                         <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
+                                         </div>
+                                         <div class="col-lg-2 w3-margin-top">
+                                         <label class="w3-label">Quantity:</label>
+                                         <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
+                                         </div>
+                                         </div>
+                                         <div class="w3-col l12">                                                                                 
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
+                                         <img class="w3-padding-left" src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
+                                         <input type="file" name="prod_image[]" id="prod_image_1" value='.base_url().$key['prod_image'].' class="w3-input w3-padding-small" onchange="readURL(this,1);">
+                                         </div>
+                                         </div>';
+                                       }
+                                       echo'
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </tr>'; 
+                                       $count++;
+                                     }
+                                   }
+                                   else {
+
+                                    echo '
+                                    <tr class="text-center" >
+                                    <td colspan="5"><b>No Orders Available</b></td>
+                                    </tr>
+                                    ';
+                                  }
+                                
                                         ?>
                                     </tbody><!-- table body close here -->
                                 </table><!-- table closed here -->

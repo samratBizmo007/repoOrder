@@ -37,6 +37,14 @@ class ManageOrder_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------ALL ORDERS END------------------------------//
+         // -----------------------ALL closed ORDERS API----------------------//
+	//-------------------------------------------------------------//
+	public function AllClosed_Orders_get(){
+		extract($_GET);
+		$result = $this->manageOrder_model->AllClosed_Orders();
+		return $this->response($result);			
+	}
+	//---------------------ALL Closed ORDERS END------------------------------//
 
         
 	// -----------------------ADD USER ORDER API----------------------//
