@@ -64,68 +64,62 @@ error_reporting(E_ERROR | E_PARSE);
                     <td class="text-center">#OID-0' . $orders['status_message'][$i]['order_id'] . '</td>
                     <td class="text-center">' . $orders['status_message'][$i]['order_date'] . ' ' . $orders['status_message'][$i]['order_time'] . '</td>
                     <td class="text-center">
-                    <a class="btn w3-padding-small" title="view order (In progress)" style="padding:0"><i class="fa fa-eye"></i></a>
+                    <a class="btn w3-padding-small" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i]['order_id'] . '" title="view order (In progress)" style="padding:0"><i class="fa fa-eye"></i></a>
                     <a class="btn w3-padding-tiny" id="delOrder_btn" name="delOrder_btn" onClick="delOrder('.$orders['status_message'][$i]['order_id'].')" title="delete order"><i class="fa fa-remove"></i></a>
                     </td>
+                            <div id="myModalnew_'.$orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
 
-                    <!-- Modal  starts here-->
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                        <div class="modal-header ">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div class="modal-body w3-light-grey w3-margin-top">
+                                        <div class="w3-container">';   
+                                        $product_info=json_decode($orders['status_message'][$i]['order_products'],TRUE);
 
-                    <div id="myModalnew_'.$orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+                                        foreach($product_info as $key)
+                                        {
+                                         echo'<div class="col-lg-12 w3-margin-top">
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label">Product&nbsp;Name:</label>
+                                         <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
+                                         </div>
+                                         <div class="col-lg-4 w3-margin-top">
+                                         <label class="w3-label">Product&nbsp;Description:</label>
+                                         <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
+                                         </div>
+                                         <div class="col-lg-2 w3-margin-top">
+                                         <label class="w3-label">Quantity:</label>
+                                         <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
+                                         </div>
+                                         </div>
+                                         <div class="w3-col l12">                                                                                 
+                                         <div class="col-lg-6 w3-margin-top">
+                                         <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
+                                         <img class="w3-padding-left" src="'.base_url().$key['prod_image'].'" width="180px" id="prod_imagePreview_1" height="140px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
+                                         </div>
+                                         </div>';
+                                       }
+                                       echo'
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </div>
+                                       </tr>'; 
+                                       $count++;
+                                     }
+                                   }
+                                   else {
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                    <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <div>Manage Stock Material</div>
-                    </div>
-                    <div class="modal-body w3-light-grey">
-                    <div class="w3-container">';   
-                    $product_info=json_decode($orders['status_message'][$i]['order_products'],TRUE);
-                    
-                    foreach($product_info as $key)
-                    {
-                     echo'<div class="col-lg-12 w3-margin-top">
-                     <div class="col-lg-3 w3-margin-top">
-                     <label class="w3-label">Product Name:</label>
-                     <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
-                     </div>
-                     </div>                 
-                     <div class="col-lg-4 w3-margin-top">
-                     <label class="w3-label">Product Description:</label>
-                     <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
-                     </div>
-                     <div class="col-lg-1 w3-margin-top">
-                     <label class="w3-label">Quantity:</label>
-                     <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
-                     </div>
-                     <div class="col-lg-4 w3-margin-top">
-                     <div class="w3-col l12">
-                     <label class="w3-label">Product Image:</label>
-                     <div class="w3-col l12 w3-padding-bottom">
-                     <img src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
-                     </div>
-                     <input type="file" name="prod_image[]" id="prod_image_1" value='.base_url().$key['prod_image'].' class="w3-input w3-padding-small" onchange="readURL(this,1);">
-                     </div>
-                     </div>';
-                   }
-                   echo'
-                   </div></div>
-                   </div>
-                   </div>
-                   </div>'; 
-                   $count++;
-                 }
-               }
-               else {
-
-                echo '
-                <tr class="text-center" >
-                <td colspan="5"><b>No Orders Available</b></td>
-                </tr>
-                ';
-              }
-
+                                    echo '
+                                    <tr class="text-center" >
+                                    <td colspan="5"><b>No Orders Available</b></td>
+                                    </tr>
+                                    ';
+                                  }
               ?>
             </tbody><!-- table body close here -->
           </table>   <!-- table closed here -->

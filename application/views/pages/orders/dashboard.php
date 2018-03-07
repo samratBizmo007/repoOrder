@@ -96,11 +96,10 @@ error_reporting(E_ERROR | E_PARSE);
                                          <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
                                          </div>
                                          </div>
-                                         <div class="w3-col l12">                                                                                 
-                                         <div class="col-lg-4 w3-margin-top">
+                                          <div class="w3-col l12">                                                                                 
+                                         <div class="col-lg-6 w3-margin-top">
                                          <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
-                                         <img class="w3-padding-left" src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
-                                         <input type="file" name="prod_image[]" id="prod_image_1" value='.base_url().$key['prod_image'].' class="w3-input w3-padding-small" onchange="readURL(this,1);">
+                                         <img class="w3-padding-left" src="'.base_url().$key['prod_image'].'" width="180px" id="prod_imagePreview_1" height="140px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
                                          </div>
                                          </div>';
                                        }
@@ -192,11 +191,10 @@ error_reporting(E_ERROR | E_PARSE);
                                          <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
                                          </div>
                                          </div>
-                                         <div class="w3-col l12">                                                                                 
-                                         <div class="col-lg-4 w3-margin-top">
+                                        <div class="w3-col l12">                                                                                 
+                                         <div class="col-lg-6 w3-margin-top">
                                          <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
-                                         <img class="w3-padding-left" src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
-                                         <input type="file" name="prod_image[]" id="prod_image_1" value='.base_url().$key['prod_image'].' class="w3-input w3-padding-small" onchange="readURL(this,1);">
+                                         <img class="w3-padding-left" src="'.base_url().$key['prod_image'].'" width="180px" id="prod_imagePreview_1" height="140px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
                                          </div>
                                          </div>';
                                        }
@@ -290,10 +288,9 @@ error_reporting(E_ERROR | E_PARSE);
                                          </div>
                                          </div>
                                          <div class="w3-col l12">                                                                                 
-                                         <div class="col-lg-4 w3-margin-top">
+                                         <div class="col-lg-6 w3-margin-top">
                                          <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
-                                         <img class="w3-padding-left" src="" width="180px" id="prod_imagePreview_1" height="180px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
-                                         <input type="file" name="prod_image[]" id="prod_image_1" value='.base_url().$key['prod_image'].' class="w3-input w3-padding-small" onchange="readURL(this,1);">
+                                         <img class="w3-padding-left" src="'.base_url().$key['prod_image'].'" width="180px" id="prod_imagePreview_1" height="140px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
                                          </div>
                                          </div>';
                                        }
