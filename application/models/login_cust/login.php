@@ -174,6 +174,15 @@ class Login extends CI_Model {
         }
         return $response;
     }
-
+	//--------------Logout User-----------------------------//
+	function logout_user($user_id)
+	{
+		$sql = "UPDATE customer_tab SET active='0' WHERE user_id='$user_id'";
+		//echo $sql;die();
+		$this->db->query($sql);
+		return $this->db->affected_rows(); 
+	}
+	//-------End Logout user--------------------------------//
+    
     //----------------------------LOGIN END------------------------------//
 }

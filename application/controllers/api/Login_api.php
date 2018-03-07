@@ -40,4 +40,13 @@ class Login_api extends REST_Controller {
     }
 
     //---------------------USER LOGIN END------------------------------//
+    
+    //-----------user logout ---------------//
+    	public function logout_get()
+    	{
+		extract($_GET);
+		$result = $this->login->logout_user($user_id);
+		return $this->response($result);			
+	  }
+    
 }
