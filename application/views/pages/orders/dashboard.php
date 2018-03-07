@@ -16,7 +16,7 @@ error_reporting(E_ERROR | E_PARSE);
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/js/config.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/inventory/materialstock_management.js"></script>
+<!--    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/inventory/materialstock_management.js"></script>-->
 
 </head>
 <body class="w3-light-grey">
@@ -75,7 +75,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <td class="text-center">';
                                         echo'<a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>';
                                         //echo'<a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['order_id'].')" style="padding:0"><i class="fa fa-refresh"></i></a> ';
-                                        echo'<a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['order_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
+                                        echo'<a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$orders['status_message'][$i]['order_id'].'" onclick="delOrder('.$orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-close"></i></a> 
                                         </td>
 
                                         <!-- Modal  starts here-->
@@ -130,7 +130,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                                     echo '
                                     <tr class="text-center" >
-                                    <td colspan="5"><b>No Orders Available</b></td>
+                                    <td colspan="6"><b>No Orders Available</b></td>
                                     </tr>
                                     ';
                                   }
@@ -141,8 +141,39 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                     </div>
                 </div><!-- table container ends here -->
+                
+                <!-- script to delete order -->
+<script>
+  function delOrder(id){
+    $.confirm({
+      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Delete Order Permanantly!!!</h4>',
+      type: 'red',
+      buttons: {
+        confirm: function () {
+          var dataS = 'order_id='+ id;
+          $.ajax({
+            url:"<?php echo base_url(); ?>orders/manage_orders/delOrder", 
+            type: "POST", 
+            data: dataS,
+            cache: false,
+            success:function(html){     
+            $.alert(html);              
+             $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+             location.reload();
+            }
+          });
+        },
+        cancel: function () {
+
+        }
+      }
+    });
+
+  }
+</script>
             <!--____________________________________ tab div 1 ends here_________________________________________ -->
             <!--_______________________________ tab 3 starts here_____________________________________________ -->
+            
             <div class="tab-pane" id="openedOrders"><!-- tab 3 starts here -->
                  <div class="">                    
                         <div class="w3-col l12 w3-margin-top">
@@ -182,7 +213,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <td class="text-center '.$color.'">' .$status. '</td>                                        
                                         <td class="text-center">
                                         <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#openOrder_' . $Open_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
-                                        <a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$Open_orders['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$Open_orders['status_message'][$i]['order_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
+                                        <a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$Open_orders['status_message'][$i]['order_id'].'" onclick="delOrder('.$Open_orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-close"></i></a> 
                                         </td>
 
                                         <!-- Modal  starts here-->
@@ -237,7 +268,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                                     echo '
                                     <tr class="text-center" >
-                                    <td colspan="5"><b>No Orders Available</b></td>
+                                    <td colspan="6"><b>No Orders Available</b></td>
                                     </tr>
                                     ';
                                   }
@@ -291,7 +322,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <td class="text-center '.$color.'">' .$status. '</td>
                                         <td class="text-center">
                                         <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#closeOrder_' . $Closed_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
-                                        <a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['order_id'].')" style="padding:0"><i class="fa fa-refresh"></i></a> 
+                                        <a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$Closed_orders['status_message'][$i]['order_id'].'" onclick="reOpen_Orders('.$Closed_orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-refresh"></i></a> 
                                         </td>
 
                                         <!-- Modal  starts here-->
@@ -346,7 +377,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                                     echo '
                                     <tr class="text-center" >
-                                    <td colspan="5"><b>No Orders Available</b></td>
+                                    <td colspan="6"><b>No Orders Available</b></td>
                                     </tr>
                                     ';
                                   }
@@ -364,4 +395,33 @@ error_reporting(E_ERROR | E_PARSE);
     </div><!-- tab containt div ends here -->
 </div><!-- container for tab -->
 <!--_______________________ div for main container____________________________ -->
+
+<script>
+  function reOpen_Orders(id){
+    $.confirm({
+      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are You Sure To Reopen Oreder..!</h4>',
+      type: 'red',
+      buttons: {
+        confirm: function () {
+          var dataS = 'order_id='+ id;
+          $.ajax({
+            url:"<?php echo base_url(); ?>orders/manage_orders/reOpen_Orders", 
+            type: "POST", 
+            data: dataS,
+            cache: false,
+            success:function(html){     
+            $.alert(html);              
+             $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
+             location.reload();
+            }
+          });
+        },
+        cancel: function () {
+
+        }
+      }
+    });
+
+  }
+</script>
 

@@ -64,6 +64,13 @@ class ManageOrder_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------DELETE MY ORDERS END------------------------------//
-
-	
+	// -----------------------REOPEN ORDERS API----------------------//
+	//-------------------------------------------------------------//
+	public function reOpen_Orders_get(){
+                extract($_GET);
+		$result = $this->manageOrder_model->reOpen_Orders($order_id);
+		return $this->response($result);
+        }
+	//---------------------REOPEN ORDERS END------------------------------//
+        
 }
