@@ -47,13 +47,13 @@ class Admin_login extends CI_Controller {
             ';
         } else {
             //----create session array--------//
-//            $session_data = array(
-//                'user_id' => $response['user_id'],
-//                'user_name' => $response['user_name']
-//            );
-//
-//            //start session of user if login success
-//            $this->session->set_userdata($session_data);
+            $session_data = array(
+                'admin_id' => $response['user_id'],
+                'admin_name' => $response['user_name']
+            );
+
+            //start session of user if login success
+            $this->session->set_userdata($session_data);
 
             echo '<div class="alert alert-success" style="margin-bottom:5px">
             <strong>'.$response['status_message'].'</strong> 

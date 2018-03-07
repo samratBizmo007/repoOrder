@@ -28,9 +28,9 @@ error_reporting(E_ERROR | E_PARSE);
         <div id="exTab1" class="container w3-small" > <!-- container for tab -->
             <br>
             <ul  class="nav nav-tabs">
-                <li class="active "><a class="w3-medium w3-button w3-red"  href="#allOrders" data-toggle="tab">All Orders</a></li>
-                <li><a class="w3-medium w3-orange w3-button w3-text-white"  href="#openedOrders" data-toggle="tab">Opened Orders</a></li>
-                <li><a class="w3-medium w3-brown w3-button"  href="#closedOrders" data-toggle="tab">Closed Orders</a></li>
+                <li class="active "><a class="w3-medium w3-brown w3-button"  href="#allOrders" data-toggle="tab">All Orders</a></li>
+                <li><a class="w3-medium w3-green w3-button w3-text-white"  href="#openedOrders" data-toggle="tab">Opened Orders</a></li>
+                <li><a class="w3-medium w3-red w3-button"  href="#closedOrders" data-toggle="tab">Closed Orders</a></li>
             </ul>
 
             <div class="tab-content clearfix "><br><!-- tab containt starts -->
@@ -46,6 +46,7 @@ error_reporting(E_ERROR | E_PARSE);
                                             <th class="text-center">Order No</th>  
                                             <th class="text-center">Customer Name</th>              
                                             <th class="text-center">date</th>                                                          
+                                            <th class="text-center">Status</th>                                                          
                                             <th class="text-center">Actions</th>  
                                         </tr>
                                     </thead>
@@ -53,17 +54,28 @@ error_reporting(E_ERROR | E_PARSE);
                                         <?php
                                         //print_r($orders);
                                 $count = 1;
+                                $status = '';
+                                $color = '';
                                 if ($orders['status'] == 200) {
                                     for ($i = 0; $i < count($orders['status_message']); $i++) {
+                                         if($orders['status_message'][$i]['status'] == 1){
+                                            $status = 'Open';
+                                            $color = 'w3-text-green';
+                                         }
+                                         if($orders['status_message'][$i]['status'] == 0){
+                                            $status = 'Closed';
+                                            $color = 'w3-text-red';
+                                         }
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
                                         <td class="text-center">#000' . $orders['status_message'][$i]['order_id'] . '</td>
                                         <td class="text-center">' . $orders['status_message'][$i]['user_name'] . '</td>
                                         <td class="text-center">' . $orders['status_message'][$i]['order_date'] . '</td>
+                                        <td class="text-center '.$color.'">' .$status. '</td>
                                         <td class="text-center">';
                                         echo'<a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>';
-                                        //echo'<a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-check"></i></a> ';
-                                        echo'<a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
+                                        //echo'<a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['order_id'].')" style="padding:0"><i class="fa fa-refresh"></i></a> ';
+                                        echo'<a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['order_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
                                         </td>
 
                                         <!-- Modal  starts here-->
@@ -75,6 +87,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <div class="modal-content">
                                         <div class="modal-header ">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <div><b>Product Description</b></div>
                                         </div>
                                         <div class="modal-body w3-light-grey w3-margin-top">
                                         <div class="w3-container">';   
@@ -131,10 +144,9 @@ error_reporting(E_ERROR | E_PARSE);
             <!--____________________________________ tab div 1 ends here_________________________________________ -->
             <!--_______________________________ tab 3 starts here_____________________________________________ -->
             <div class="tab-pane" id="openedOrders"><!-- tab 3 starts here -->
-                <div class="w3-row-padding w3-margin-bottom ">
-
-                    <div class="w3-col l12 w3-margin-top">
-                        <div class="" id="Opened_Orders" name="Opened_Orders" style="max-height: 700px; overflow: scroll;">
+                 <div class="">                    
+                        <div class="w3-col l12 w3-margin-top">
+                            <div class="" id="Opened_Orders" name="Opened_Orders" style="max-height: 700px; overflow: scroll;">
                             <table class="table table-striped table-responsive w3-small"> 
                                 <!-- table starts here -->
                                 <thead>
@@ -143,22 +155,34 @@ error_reporting(E_ERROR | E_PARSE);
                                             <th class="text-center">Order No</th>  
                                             <th class="text-center">Customer Name</th>              
                                             <th class="text-center">date</th>                                                          
+                                            <th class="text-center">status</th>                                                          
                                             <th class="text-center">Actions</th>  
                                         </tr>
                                     </thead>
                                 <tbody><!-- table body starts here --> 
                                     <?php
                                     $count = 1;
+                                       $status = '';
+                                $color = '';
                                 if ($Open_orders['status'] == 200) {
                                     for ($i = 0; $i < count($Open_orders['status_message']); $i++) {
+                                        if($Open_orders['status_message'][$i]['status'] == 1){
+                                            $status = 'Open';
+                                            $color = 'w3-text-green';
+                                         }
+                                         if($Open_orders['status_message'][$i]['status'] == 0){
+                                            $status = 'Closed';
+                                            $color = 'w3-text-red';
+                                         }
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
                                         <td class="text-center">#000' . $Open_orders['status_message'][$i]['order_id'] . '</td>
                                         <td class="text-center">' . $Open_orders['status_message'][$i]['user_name'] . '</td>
                                         <td class="text-center">' . $Open_orders['status_message'][$i]['order_date'] . '</td>
+                                        <td class="text-center '.$color.'">' .$status. '</td>                                        
                                         <td class="text-center">
                                         <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#openOrder_' . $Open_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
-                                        <a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$Open_orders['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$Open_orders['status_message'][$i]['rawmaterial_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
+                                        <a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$Open_orders['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$Open_orders['status_message'][$i]['order_id'].')" style="padding:0"><i class="fa fa-close"></i></a> 
                                         </td>
 
                                         <!-- Modal  starts here-->
@@ -170,6 +194,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <div class="modal-content">
                                         <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <div><b>Product Description</b></div>
                                         </div>
                                         <div class="modal-body w3-light-grey">
                                         <div class="w3-container">';   
@@ -229,10 +254,9 @@ error_reporting(E_ERROR | E_PARSE);
             <!--_______________________________ tab 3 starts here_____________________________________________ -->
             <div class="tab-pane" id="closedOrders"><!-- tab 3 starts here -->
 
-                <div class="container w3-padding"><!-- table container -->
-                    <div class="">
-                        <div>
-                            <div class="w3-margin-right" id="Closed_Orders" name="Closed_Orders" style="max-height: 700px; overflow: scroll;">
+                 <div class="">                    
+                        <div class="w3-col l12 w3-margin-top">
+                            <div class="" id="Closed_Orders" name="Closed_Orders" style="max-height: 700px; overflow: scroll;">
                             <table class="table table-striped table-responsive w3-small"> 
                                     <thead>
                                         <tr class="w3-black">
@@ -240,21 +264,34 @@ error_reporting(E_ERROR | E_PARSE);
                                             <th class="text-center">Order No</th>  
                                             <th class="text-center">Customer Name</th>              
                                             <th class="text-center">date</th>                                                          
+                                            <th class="text-center">status</th>                                                          
                                             <th class="text-center">Actions</th>  
                                         </tr>
                                     </thead>
                                     <tbody><!-- table body starts here -->
                                         <?php
                                         $count = 1;
+                                           $status = '';
+                                $color = '';
                                 if ($Closed_orders['status'] == 200) {
                                     for ($i = 0; $i < count($Closed_orders['status_message']); $i++) {
+                                           if($Closed_orders['status_message'][$i]['status'] == 1){
+                                            $status = 'Open';
+                                            $color = 'w3-text-green';
+                                         }
+                                         if($Closed_orders['status_message'][$i]['status'] == 0){
+                                            $status = 'Closed';
+                                            $color = 'w3-text-red';
+                                         }
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
                                         <td class="text-center">#000' . $Closed_orders['status_message'][$i]['order_id'] . '</td>
                                         <td class="text-center">' . $Closed_orders['status_message'][$i]['user_name'] . '</td>
                                         <td class="text-center">' . $Closed_orders['status_message'][$i]['order_date'] . '</td>
+                                        <td class="text-center '.$color.'">' .$status. '</td>
                                         <td class="text-center">
                                         <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#closeOrder_' . $Closed_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
+                                        <a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$details['status_message'][$i]['order_id'].'" onclick="delete_rawMaterial('.$details['status_message'][$i]['order_id'].')" style="padding:0"><i class="fa fa-refresh"></i></a> 
                                         </td>
 
                                         <!-- Modal  starts here-->
@@ -266,6 +303,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <div class="modal-content">
                                         <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <div><b>Product Description</b></div>
                                         </div>
                                         <div class="modal-body w3-light-grey">
                                         <div class="w3-container">';   

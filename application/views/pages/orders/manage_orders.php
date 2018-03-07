@@ -74,6 +74,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <div class="modal-content">
                                         <div class="modal-header ">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <div><b>Product Description</b></div>                                        
                                         </div>
                                         <div class="modal-body w3-light-grey w3-margin-top">
                                         <div class="w3-container">';   
