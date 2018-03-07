@@ -16,6 +16,7 @@ class Dashboard extends CI_Controller {
         $data['orders'] = Dashboard::AllOrders();     //-------show all Raw prods
         $data['Open_orders'] = Dashboard::AllOpen_Orders();     //-------show all Raw prods
         $data['Closed_orders'] = Dashboard::AllClosed_Orders();     //-------show all Raw prods
+        $this->load->view('includes/admin_header.php');
         $this->load->view('pages/orders/dashboard',$data);
         //$this->load->view('includes/footer.php');
     }

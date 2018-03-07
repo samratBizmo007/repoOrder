@@ -14,7 +14,7 @@ error_reporting(E_ERROR | E_PARSE);
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/config.js"></script>
+<!--    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/config.js"></script>-->
     <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
 <!--    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/inventory/materialstock_management.js"></script>-->
 
@@ -23,18 +23,16 @@ error_reporting(E_ERROR | E_PARSE);
     <!-- !PAGE CONTENT! -->
     <div class="w3-main w3-padding-small" style="margin-left:120px;">
 
-    <!-- Header -->
-    <div class="w3-container" style="margin-left: 30px">
+        <div id="exTab1" class="container w3-small" > <!-- container for tab -->
+            <!-- Header -->
+    <div class="">
       <h5><b>Manage Orders</b></h5>
     </div>
-       
-
-        <div id="exTab1" class="container w3-small" > <!-- container for tab -->
             <br>
             <ul  class="nav nav-tabs">
-                <li class="active "><a class="w3-medium w3-brown w3-button"  href="#allOrders" data-toggle="tab">All Orders</a></li>
-                <li><a class="w3-medium w3-green w3-button w3-text-white"  href="#openedOrders" data-toggle="tab">Opened Orders</a></li>
-                <li><a class="w3-medium w3-red w3-button"  href="#closedOrders" data-toggle="tab">Closed Orders</a></li>
+                <li class="active "><a class="w3-medium w3-brown w3-button"  href="#allOrders" data-toggle="tab"><span>All</span></a></li>
+                <li><a class="w3-medium w3-green w3-button w3-text-white"  href="#openedOrders" data-toggle="tab"><span>Opened</span></a></li>
+                <li><a class="w3-medium w3-red w3-button"  href="#closedOrders" data-toggle="tab"><span>Closed</span></a></li>
             </ul>
 
             <div class="tab-content clearfix "><br><!-- tab containt starts -->
