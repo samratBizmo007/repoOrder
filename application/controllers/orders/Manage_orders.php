@@ -72,7 +72,7 @@ public function addOrder() {
 }
   //validating image ends---------------------------//
 
-
+$id_count=1;
 for($i = 0; $i < count($prod_Name); $i++){
   $imagePath ='';
   if(!empty(($_FILES['prod_image']['name'][$i]))){
@@ -99,10 +99,13 @@ for($i = 0; $i < count($prod_Name); $i++){
     }
 
     $prod_Arr[]=array(
+      'prod_no' => $id_count,
       'prod_Name' =>  $prod_Name[$i],
       'prod_quantity' =>  $prod_quantity[$i],
-      'prod_image' =>  $imagePath
+      'prod_image' =>  $imagePath,
+      'prod_regret' =>  0
     );
+    $id_count++;
   }
 
   $data['user_id']=$user_id;
