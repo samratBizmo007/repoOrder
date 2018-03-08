@@ -14,7 +14,7 @@ class Dashboard_model extends CI_Model {
     //-------------------------------------------------------------//
     public function AllOpen_Orders() {
 
-        $query = "SELECT * FROM order_tab WHERE status=2 ORDER BY order_id DESC";
+        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE status=2 ORDER BY order_id DESC";
 
         $result = $this->db->query($query);
 
@@ -35,7 +35,7 @@ class Dashboard_model extends CI_Model {
     //-------------------------------------------------------------//
     public function AllOrders() {
 
-        $query = "SELECT * FROM order_tab WHERE status=1 ORDER BY order_id DESC";
+        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE status=1 ORDER BY order_id DESC";
 
         $result = $this->db->query($query);
 
@@ -56,7 +56,7 @@ class Dashboard_model extends CI_Model {
     //-------------------------------------------------------------//
     public function AllClosed_Orders() {
 
-        $query = "SELECT * FROM order_tab WHERE status=0 ORDER BY order_id DESC";
+        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE status=0 ORDER BY order_id DESC";
 
         $result = $this->db->query($query);
 
