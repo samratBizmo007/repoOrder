@@ -48,11 +48,12 @@ public function addOrder() {
   extract($_POST);
   $user_id=$this->session->userdata('user_id');
   $user_name=$this->session->userdata('user_name');
-//print_r($get_image);die();
+//print_r($_FILES['prod_image']['name'][1]);die();
   $prod_Arr=array();  //prod_image array
   $allowed_types=['gif','jpg','png','jpeg','JPG','GIF','JPEG','PNG'];
+  
   for($i = 0; $i < count($_FILES['prod_image']['name']); $i++){
-
+    if(!empty(($_FILES['prod_image']['name'][$i]))){
     $extension_prod = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION); //get prod image file extension 
 
     //image validating---------------------------//
@@ -68,18 +69,20 @@ public function addOrder() {
       die();
     }   
   }
+}
   //validating image ends---------------------------//
 
-  $imagePath ='';
-  for($i = 0; $i < count($prod_Name); $i++){
-    if(!empty($_FILES['prod_image']['name'])){
-      $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
 
-      $_FILES['userFile']['name'] = $prod_Name[$i].'_'.$user_id.'-'.$prod_quantity[$i].'.'.$extension;
-      $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
-      $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
-      $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];
-      $_FILES['userFile']['size'] = $_FILES['prod_image']['size'][$i];
+for($i = 0; $i < count($prod_Name); $i++){
+  $imagePath ='';
+  if(!empty(($_FILES['prod_image']['name'][$i]))){
+    $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
+
+    $_FILES['userFile']['name'] = $prod_Name[$i].'_'.$user_id.'-'.$prod_quantity[$i].'.'.$extension;
+    $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
+    $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
+    $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];
+    $_FILES['userFile']['size'] = $_FILES['prod_image']['size'][$i];
 
       $uploadPath ='images/order_images/';  //upload images in images/desktop/ folder
       $config['upload_path'] = $uploadPath;
@@ -97,7 +100,6 @@ public function addOrder() {
 
     $prod_Arr[]=array(
       'prod_Name' =>  $prod_Name[$i],
-      'prod_Description' =>  $prod_Description[$i],
       'prod_quantity' =>  $prod_quantity[$i],
       'prod_image' =>  $imagePath
     );
@@ -268,35 +270,35 @@ public function UpdateProfile(){
      //-------------this fun is used to update profile information-------------------------//
 
 // ---------------function to delete orders------------------------//
-  public function delOrder(){
-    extract($_POST);
+public function delOrder(){
+  extract($_POST);
 
     //Connection establishment to get data from REST API
-    $path=base_url();
-    $url = $path.'api/ManageOrder_api/delOrder?order_id='.$order_id; 
+  $path=base_url();
+  $url = $path.'api/ManageOrder_api/delOrder?order_id='.$order_id; 
     //echo $url;  
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_HTTPGET, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response_json = curl_exec($ch);
-    curl_close($ch);
-    $response=json_decode($response_json, true);
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_HTTPGET, true);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $response_json = curl_exec($ch);
+  curl_close($ch);
+  $response=json_decode($response_json, true);
    // print_r($response_json);die();
     //api processing ends
 
     //API processing end
-    if($response['status']!=200){
-      echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4> 
-      ';  
-      
-    }
-    else{
-      echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>   
-      ';        
-      
-    } 
+  if($response['status']!=200){
+    echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4> 
+    ';  
     
   }
+  else{
+    echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>   
+    ';        
+    
+  } 
+  
+}
 // ---------------------function ends----------------------------------//
 
 }
