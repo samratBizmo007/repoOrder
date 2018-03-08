@@ -81,7 +81,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <td class="text-center '.$color.'">' .$status. '</td>
                                         <td class="text-center">';
                                         echo'<a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#myModalnew_' . $orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>';
-                                        echo'<a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$orders['status_message'][$i]['order_id'].'" onclick="reOpen_Orders('.$orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-refresh"></i></a> ';
+                                        echo'<a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$orders['status_message'][$i]['order_id'].'" onclick="Open_Orders('.$orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-refresh"></i></a> ';
                                         echo'<a class="btn w3-text-red w3-medium w3-padding-small" title="Close Order" id="CloseOrder_'.$orders['status_message'][$i]['order_id'].'" onclick="delOrder('.$orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-close"></i></a> 
                                         </td>
 
@@ -407,6 +407,32 @@ error_reporting(E_ERROR | E_PARSE);
   function reOpen_Orders(id){
     $.confirm({
       title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are You Sure To Reopen Oreder..!</h4>',
+      type: 'red',
+      buttons: {
+        confirm: function () {
+          var dataS = 'order_id='+ id;
+          $.ajax({
+            url:"<?php echo base_url(); ?>admin/dashboard/reOpen_Orders", 
+            type: "POST", 
+            data: dataS,
+            cache: false,
+            success:function(html){     
+            $.alert(html);              
+             $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
+             location.reload();
+            }
+          });
+        },
+        cancel: function () {
+
+        }
+      }
+    });
+
+  }
+  function Open_Orders(id){
+    $.confirm({
+      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are You Sure To open Order..!</h4>',
       type: 'red',
       buttons: {
         confirm: function () {
