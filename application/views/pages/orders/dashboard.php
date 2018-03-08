@@ -105,37 +105,39 @@ error_reporting(E_ERROR | E_PARSE);
                                         foreach($product_info as $key)
                                         {
                                         	//print_r($key);
-                                        	echo'
-                                        	<div class="checkbox w3-right">
-      										<label><input type="checkbox" value=""><b>Regret Product</b></label>
-    										</div>
-                                        	<div class="col-lg-12 w3-margin-bottom">
-                      						<div class="w3-col l6 s6 w3-padding-small w3-center">
-                      						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
-                      						</div>
-                      						<div class="w3-col l6 s6 w3-padding-small">
-                      						<div class="w3-col l12 ">
-                      						<div class="w3-col l6">
-                      						<label class="">Product Name:</label>
-							                 <p class="">'.$key['prod_Name'].'</p>
-							                 </div>
-							                 <div class="w3-col l6">
-							                 <label class="">Address:</label>
-							                 <p class="">'.$orders['status_message'][$i]['address'].'</p>
-							                 </div>
-							                 </div>
-							                 <div class="w3-col l12 ">
-							                 <div class="w3-col l6">
-							                 <label class="">Quantity:</label>
-							                 <p class="" >'.$key['prod_quantity'].' No(s).</p>
-							                 </div>
-							                 <div class="w3-col l6">
-							                  <label class="">Mobile No:</label>
-							                 <p class="" >'.$orders['status_message'][$i]['mobile_no'].'</p>
-							                 </div>
-							                 </div>
-							                 </div>
-							                  </div>';
+                                        echo'
+                                        <div class="checkbox w3-right" id="regretDiv_'.$key['prod_no'].'">
+                                        <label>
+                                        <input class="w3-left" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">
+                                        </label>
+                                        </div>
+                                        <div class="col-lg-12 w3-margin-bottom">
+                                        <div class="w3-col l6 s6 w3-padding-small w3-center">
+                                        <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+                                        </div>
+                                        <div class="w3-col l6 s6 w3-padding-small">
+                                        <div class="w3-col l12 ">
+                                        <div class="w3-col l6">
+                                        <label class="">Product Name:</label>
+                                         <p class="">'.$key['prod_Name'].'</p>
+                                         </div>
+                                         <div class="w3-col l6">
+                                         <label class="">Address:</label>
+                                         <p class="">'.$orders['status_message'][$i]['address'].'</p>
+                                         </div>
+                                         </div>
+                                         <div class="w3-col l12 ">
+                                         <div class="w3-col l6">
+                                         <label class="">Quantity:</label>
+                                         <p class="" >'.$key['prod_quantity'].' No(s).</p>
+                                         </div>
+                                         <div class="w3-col l6">
+                                          <label class="">Mobile No:</label>
+                                         <p class="" >'.$orders['status_message'][$i]['mobile_no'].'</p>
+                                         </div>
+                                         </div>
+                                         </div>
+                                          </div>';
                                         	
                                 			}
                                        echo'
@@ -191,6 +193,49 @@ error_reporting(E_ERROR | E_PARSE);
       }
     });
 
+  }
+  function regretProduct(prod_no,order_id){
+  $.confirm({
+      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are You Sure..!</h4>',
+      type: 'red',
+      buttons: {
+        confirm: function () {
+          var regretproduct = "";
+//            $.each($("input[name='regretproduct[]']:checked"), function(){            
+//                regretproduct.push($(this).val());
+//            });
+//         var regretproduct = "";       
+//        $('#regretDiv_'+ prod_no + ' input[name="regretproduct[]"]:checked').each(function (){
+//               if($(this).val() ){
+//                regretproduct.push($(this).val());
+//            }
+//        });
+//            var list = $("input[name='regretproduct']:checked").map(function () {
+//    return this.value;
+//}).get();
+          regretproduct = $( "input[name$='regretproduct']" ).val();
+         alert(regretproduct);
+          $.ajax({
+            url:"<?php echo base_url(); ?>admin/dashboard/regretProduct", 
+            type: "POST", 
+            data: {
+            regretproduct: regretproduct,    
+            prod_no: prod_no,
+            order_id: order_id
+            },
+            cache: false,
+            success:function(html){     
+            $.alert(html);              
+             $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+             //location.reload();
+            }
+          });
+        },
+        cancel: function () {
+
+        }
+      }
+    });
   }
 </script>
             <!--____________________________________ tab div 1 ends here_________________________________________ -->
@@ -260,35 +305,35 @@ error_reporting(E_ERROR | E_PARSE);
                                         {
                                          echo'
                                          <div class="checkbox w3-right">
-      										<label><input type="checkbox" value=""><b>Regret Product</b></label>
-    										</div>	
+      					 <label><input type="checkbox" value=""><b>Regret Product</b></label>
+    					 </div>	
                                          <div class="col-lg-12 w3-margin-bottom">
-                      						<div class="w3-col l6 s6 w3-padding-small w3-center">
-                      						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
-                      						</div>
-                      						<div class="w3-col l6 s6 w3-padding-small">
-                      						<div class="w3-col l12 ">
-                      						<div class="w3-col l6">
-                      						<label class="">Product Name:</label>
-							                 <p class="">'.$key['prod_Name'].'</p>
-							                 </div>
-							                 <div class="w3-col l6">
-							                 <label class="">Address:</label>
-							                 <p class="">'.$Open_orders['status_message'][$i]['address'].'</p>
-							                 </div>
-							                 </div>
-							                 <div class="w3-col l12 ">
-							                 <div class="w3-col l6">
-							                 <label class="">Quantity:</label>
-							                 <p class="" >'.$key['prod_quantity'].' No(s).</p>
-							                 </div>
-							                 <div class="w3-col l6">
-							                  <label class="">Mobile No:</label>
-							                 <p class="" >'.$Open_orders['status_message'][$i]['mobile_no'].'</p>
-							                 </div>
-							                 </div>
-							                 </div>
-							                  </div>';
+                                        <div class="w3-col l6 s6 w3-padding-small w3-center">
+                                        <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+                                        </div>
+                                        <div class="w3-col l6 s6 w3-padding-small">
+                                        <div class="w3-col l12 ">
+                                        <div class="w3-col l6">
+                                        <label class="">Product Name:</label>
+                                        <p class="">'.$key['prod_Name'].'</p>
+                                        </div>
+                                        <div class="w3-col l6">
+                                        <label class="">Address:</label>
+                                        <p class="">'.$Open_orders['status_message'][$i]['address'].'</p>
+                                        </div>
+                                        </div>
+                                        <div class="w3-col l12 ">
+                                        <div class="w3-col l6">
+                                        <label class="">Quantity:</label>
+                                        <p class="" >'.$key['prod_quantity'].' No(s).</p>
+                                        </div>
+                                        <div class="w3-col l6">
+                                         <label class="">Mobile No:</label>
+                                        <p class="" >'.$Open_orders['status_message'][$i]['mobile_no'].'</p>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </div>';
                                        }
                                        echo'
                                        </div>
@@ -382,35 +427,35 @@ error_reporting(E_ERROR | E_PARSE);
                                         foreach($product_info as $key)
                                         {
                                          echo' <div class="checkbox w3-right">
-      										<label><input type="checkbox" value=""><b>Regret Product</b></label>
-    										</div>
+      					<label><input type="checkbox" value=""><b>Regret Product</b></label>
+    					</div>
                                          <div class="col-lg-12 w3-margin-bottom">
                                          <div class="w3-col l6 s6 w3-padding-small w3-center">
-                      						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
-                      						</div>
-                      						<div class="w3-col l6 s6 w3-padding-small">
-                      						<div class="w3-col l12 ">
-                      						<div class="w3-col l6">
-                      						<label class="">Product Name:</label>
-							                 <p class="">'.$key['prod_Name'].'</p>
-							                 </div>
-							                 <div class="w3-col l6">
-							                 <label class="">Address:</label>
-							                 <p class="">'.$Closed_orders['status_message'][$i]['address'].'</p>
-							                 </div>
-							                 </div>
-							                 <div class="w3-col l12 ">
-							                 <div class="w3-col l6">
-							                 <label class="">Quantity:</label>
-							                 <p class="" >'.$key['prod_quantity'].' No(s).</p>
-							                 </div>
-							                 <div class="w3-col l6">
-							                  <label class="">Mobile No:</label>
-							                 <p class="" >'.$Closed_orders['status_message'][$i]['mobile_no'].'</p>
-							                 </div>
-							                 </div>
-							                 </div>
-							                  </div>';
+                                        <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+                                        </div>
+                                        <div class="w3-col l6 s6 w3-padding-small">
+                                        <div class="w3-col l12 ">
+                                        <div class="w3-col l6">
+                                        <label class="">Product Name:</label>
+                                        <p class="">'.$key['prod_Name'].'</p>
+                                        </div>
+                                        <div class="w3-col l6">
+                                        <label class="">Address:</label>
+                                        <p class="">'.$Closed_orders['status_message'][$i]['address'].'</p>
+                                        </div>
+                                        </div>
+                                        <div class="w3-col l12 ">
+                                        <div class="w3-col l6">
+                                        <label class="">Quantity:</label>
+                                        <p class="" >'.$key['prod_quantity'].' No(s).</p>
+                                        </div>
+                                        <div class="w3-col l6">
+                                         <label class="">Mobile No:</label>
+                                        <p class="" >'.$Closed_orders['status_message'][$i]['mobile_no'].'</p>
+                                        </div>
+                                        </div>
+                                        </div>
+                                         </div>';
                                        }
                                        echo'
                                        </div>
