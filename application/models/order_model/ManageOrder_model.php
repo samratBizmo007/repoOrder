@@ -12,7 +12,7 @@ class ManageOrder_model extends CI_Model{
 	//-------------------------------------------------------------//
 	public function getMyOrders($user_id){
 
-		$query = "SELECT * FROM order_tab WHERE user_id='$user_id' AND status=1 ORDER BY order_id DESC";
+		$query = "SELECT * FROM order_tab WHERE user_id='$user_id' AND status!=0 ORDER BY order_id DESC";
 
 		$result = $this->db->query($query);
 

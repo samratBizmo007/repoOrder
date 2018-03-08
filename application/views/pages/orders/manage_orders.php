@@ -68,6 +68,19 @@ error_reporting(E_ERROR | E_PARSE);
                     <a class="btn w3-padding-tiny" id="delOrder_btn" name="delOrder_btn" onClick="delOrder('.$orders['status_message'][$i]['order_id'].')" title="delete order"><i class="fa fa-remove"></i></a>
                     </td>';   
                     $product_info=json_decode($orders['status_message'][$i]['order_products'],TRUE);
+                    $badge_color='w3-red';
+                    $badge_text='close';
+                    switch ($orders['status_message'][$i]['status']) {
+                      case '1':
+                        $badge_color='w3-yellow';
+                        $badge_text='active';
+                        break;
+
+                        case '2':
+                        $badge_color='w3-green';
+                        $badge_text='open';
+                        break;
+                    }
 
                     echo'
                     <!-- Modal -->
@@ -79,7 +92,7 @@ error_reporting(E_ERROR | E_PARSE);
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <div class="w3-container w3-margin-bottom">
                     <div class="w3-col l12">
-                    <h3 class="w3-center"><b>Order No. #OID-'.$orders['status_message'][$i]['order_id'].'</b></h3>
+                    <h3 class="w3-center"><b>Order No. #OID-'.$orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
                     
                     <div class="w3-col l12 w3-text-grey"><hr>';
 
