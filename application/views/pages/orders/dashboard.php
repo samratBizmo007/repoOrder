@@ -94,35 +94,46 @@ error_reporting(E_ERROR | E_PARSE);
                                         <div class="modal-content">
                                         <div class="modal-header ">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <div><b>Product Description</b></div>
+                                        <div><h4><b>Order Details</b></h4></div>
                                         </div>
                                         <div class="modal-body w3-light-grey w3-margin-top">
+                                       <h3 class="w3-center"><b>Order No. #OID-'.$orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
+                                        <h5 class="w3-center"><b>Customer Name: '.$orders['status_message'][$i]['username'].'</b><span class="badge '.$badge_color.'">'.$badge_text.'</span></h5>
                                         <div class="w3-container">';   
                                         $product_info=json_decode($orders['status_message'][$i]['order_products'],TRUE);
 
                                         foreach($product_info as $key)
                                         {
-                                         echo'<div class="col-lg-12 w3-margin-top">
-                                         <div class="col-lg-4 w3-margin-top">
-                                         <label class="w3-label">Product&nbsp;Name:</label>
-                                         <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
-                                         </div>
-                                         <div class="col-lg-4 w3-margin-top">
-                                         <label class="w3-label">Product&nbsp;Description:</label>
-                                         <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
-                                         </div>
-                                         <div class="col-lg-2 w3-margin-top">
-                                         <label class="w3-label">Quantity:</label>
-                                         <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
-                                         </div>
-                                         </div>
-                                          <div class="w3-col l12">                                                                                 
-                                         <div class="col-lg-6 w3-margin-top">
-                                         <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
-                                         <img class="w3-padding-left" src="'.base_url().$key['prod_image'].'" width="180px" id="prod_imagePreview_1" height="140px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
-                                         </div>
-                                         </div>';
-                                       }
+                                        	//print_r($key);
+                                        	echo'<div class="col-lg-12 w3-margin-bottom">
+                      						<div class="w3-col l6 s6 w3-padding-small w3-center">
+                      						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+                      						</div>
+                      						<div class="w3-col l6 s6 w3-padding-small">
+                      						<div class="w3-col l12 ">
+                      						<div class="w3-col l6">
+                      						<label class="">Product Name:</label>
+							                 <p class="">'.$key['prod_Name'].'</p>
+							                 </div>
+							                 <div class="w3-col l6">
+							                 <label class="">Address:</label>
+							                 <p class="">'.$orders['status_message'][$i]['address'].'</p>
+							                 </div>
+							                 </div>
+							                 <div class="w3-col l12 ">
+							                 <div class="w3-col l6">
+							                 <label class="">Quantity:</label>
+							                 <p class="" >'.$key['prod_quantity'].' No(s).</p>
+							                 </div>
+							                 <div class="w3-col l6">
+							                  <label class="">Mobile No:</label>
+							                 <p class="" >'.$orders['status_message'][$i]['mobile_no'].'</p>
+							                 </div>
+							                 </div>
+							                 </div>
+							                  </div>';
+                                        	
+                                			}
                                        echo'
                                        </div>
                                        </div>
@@ -232,34 +243,44 @@ error_reporting(E_ERROR | E_PARSE);
                                         <div class="modal-content">
                                         <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <div><b>Product Description</b></div>
+                                        <div><h4><b>Order Details</b></h4></div>
                                         </div>
+                                        <div class="modal-body w3-light-grey w3-margin-top">
+                                       <h3 class="w3-center"><b>Order No. #OID-'.$Open_orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
+                                        <h5 class="w3-center"><b>Customer Name: '.$Open_orders['status_message'][$i]['username'].'</b><span class="badge '.$badge_color.'">'.$badge_text.'</span></h5>
                                         <div class="modal-body w3-light-grey">
                                         <div class="w3-container">';   
                                         $product_info=json_decode($Open_orders['status_message'][$i]['order_products'],TRUE);
 
                                         foreach($product_info as $key)
                                         {
-                                         echo'<div class="col-lg-12 w3-margin-top">
-                                         <div class="col-lg-4 w3-margin-top">
-                                         <label class="w3-label">Product&nbsp;Name:</label>
-                                         <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
-                                         </div>
-                                         <div class="col-lg-4 w3-margin-top">
-                                         <label class="w3-label">Product&nbsp;Description:</label>
-                                         <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
-                                         </div>
-                                         <div class="col-lg-2 w3-margin-top">
-                                         <label class="w3-label">Quantity:</label>
-                                         <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
-                                         </div>
-                                         </div>
-                                        <div class="w3-col l12">                                                                                 
-                                         <div class="col-lg-6 w3-margin-top">
-                                         <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
-                                         <img class="w3-padding-left" src="'.base_url().$key['prod_image'].'" width="180px" id="prod_imagePreview_1" height="140px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
-                                         </div>
-                                         </div>';
+                                         echo'<div class="col-lg-12 w3-margin-bottom">
+                      						<div class="w3-col l6 s6 w3-padding-small w3-center">
+                      						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+                      						</div>
+                      						<div class="w3-col l6 s6 w3-padding-small">
+                      						<div class="w3-col l12 ">
+                      						<div class="w3-col l6">
+                      						<label class="">Product Name:</label>
+							                 <p class="">'.$key['prod_Name'].'</p>
+							                 </div>
+							                 <div class="w3-col l6">
+							                 <label class="">Address:</label>
+							                 <p class="">'.$Open_orders['status_message'][$i]['address'].'</p>
+							                 </div>
+							                 </div>
+							                 <div class="w3-col l12 ">
+							                 <div class="w3-col l6">
+							                 <label class="">Quantity:</label>
+							                 <p class="" >'.$key['prod_quantity'].' No(s).</p>
+							                 </div>
+							                 <div class="w3-col l6">
+							                  <label class="">Mobile No:</label>
+							                 <p class="" >'.$Open_orders['status_message'][$i]['mobile_no'].'</p>
+							                 </div>
+							                 </div>
+							                 </div>
+							                  </div>';
                                        }
                                        echo'
                                        </div>
@@ -341,34 +362,44 @@ error_reporting(E_ERROR | E_PARSE);
                                         <div class="modal-content">
                                         <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <div><b>Product Description</b></div>
+                                        <div><h4><b>Order Details</b></h4></div>
                                         </div>
+                                        <div class="modal-body w3-light-grey w3-margin-top">
+                                       <h3 class="w3-center"><b>Order No. #OID-'.$Closed_orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
+                                        <h5 class="w3-center"><b>Customer Name: '.$Closed_orders['status_message'][$i]['username'].'</b><span class="badge '.$badge_color.'">'.$badge_text.'</span></h5>
                                         <div class="modal-body w3-light-grey">
                                         <div class="w3-container">';   
                                         $product_info=json_decode($Closed_orders['status_message'][$i]['order_products'],TRUE);
 
                                         foreach($product_info as $key)
                                         {
-                                         echo'<div class="col-lg-12 w3-margin-top">
-                                         <div class="col-lg-4 w3-margin-top">
-                                         <label class="w3-label">Product&nbsp;Name:</label>
-                                         <input type="text" class="w3-input" name="prod_Name[]" value='.$key['prod_Name'].' placeholder="Enter Product Description" required>
-                                         </div>
-                                         <div class="col-lg-4 w3-margin-top">
-                                         <label class="w3-label">Product&nbsp;Description:</label>
-                                         <input type="text" class="w3-input" name="prod_Description[]" value='.$key['prod_Description'].' placeholder="Enter Product Description" required>
-                                         </div>
-                                         <div class="col-lg-2 w3-margin-top">
-                                         <label class="w3-label">Quantity:</label>
-                                         <input type="number" min="1" class="w3-input" name="prod_quantity[]" value='.$key['prod_quantity'].' placeholder="count" required >
-                                         </div>
-                                         </div>
-                                         <div class="w3-col l12">                                                                                 
-                                         <div class="col-lg-6 w3-margin-top">
-                                         <label class="w3-label w3-padding-left">Product&nbsp;Image:</label>
-                                         <img class="w3-padding-left" src="'.base_url().$key['prod_image'].'" width="180px" id="prod_imagePreview_1" height="140px" alt="Product Image will be displayed here once chosen. Image size is:(100px * 80px)" class=" w3-centerimg img-thumbnail">
-                                         </div>
-                                         </div>';
+                                         echo'<div class="col-lg-12 w3-margin-bottom">
+                      						<div class="w3-col l6 s6 w3-padding-small w3-center">
+                      						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+                      						</div>
+                      						<div class="w3-col l6 s6 w3-padding-small">
+                      						<div class="w3-col l12 ">
+                      						<div class="w3-col l6">
+                      						<label class="">Product Name:</label>
+							                 <p class="">'.$key['prod_Name'].'</p>
+							                 </div>
+							                 <div class="w3-col l6">
+							                 <label class="">Address:</label>
+							                 <p class="">'.$Closed_orders['status_message'][$i]['address'].'</p>
+							                 </div>
+							                 </div>
+							                 <div class="w3-col l12 ">
+							                 <div class="w3-col l6">
+							                 <label class="">Quantity:</label>
+							                 <p class="" >'.$key['prod_quantity'].' No(s).</p>
+							                 </div>
+							                 <div class="w3-col l6">
+							                  <label class="">Mobile No:</label>
+							                 <p class="" >'.$Closed_orders['status_message'][$i]['mobile_no'].'</p>
+							                 </div>
+							                 </div>
+							                 </div>
+							                  </div>';
                                        }
                                        echo'
                                        </div>
