@@ -105,7 +105,11 @@ error_reporting(E_ERROR | E_PARSE);
                                         foreach($product_info as $key)
                                         {
                                         	//print_r($key);
-                                        	echo'<div class="col-lg-12 w3-margin-bottom">
+                                        	echo'
+                                        	<div class="checkbox w3-right">
+      										<label><input type="checkbox" value=""><b>Regret Product</b></label>
+    										</div>
+                                        	<div class="col-lg-12 w3-margin-bottom">
                       						<div class="w3-col l6 s6 w3-padding-small w3-center">
                       						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                       						</div>
@@ -254,7 +258,11 @@ error_reporting(E_ERROR | E_PARSE);
 
                                         foreach($product_info as $key)
                                         {
-                                         echo'<div class="col-lg-12 w3-margin-bottom">
+                                         echo'
+                                         <div class="checkbox w3-right">
+      										<label><input type="checkbox" value=""><b>Regret Product</b></label>
+    										</div>	
+                                         <div class="col-lg-12 w3-margin-bottom">
                       						<div class="w3-col l6 s6 w3-padding-small w3-center">
                       						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                       						</div>
@@ -373,8 +381,11 @@ error_reporting(E_ERROR | E_PARSE);
 
                                         foreach($product_info as $key)
                                         {
-                                         echo'<div class="col-lg-12 w3-margin-bottom">
-                      						<div class="w3-col l6 s6 w3-padding-small w3-center">
+                                         echo' <div class="checkbox w3-right">
+      										<label><input type="checkbox" value=""><b>Regret Product</b></label>
+    										</div>
+                                         <div class="col-lg-12 w3-margin-bottom">
+                                         <div class="w3-col l6 s6 w3-padding-small w3-center">
                       						<img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                       						</div>
                       						<div class="w3-col l6 s6 w3-padding-small">
