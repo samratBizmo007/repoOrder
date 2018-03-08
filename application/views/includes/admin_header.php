@@ -41,7 +41,7 @@ $admin_name=$this->session->userdata('admin_name');
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu "><i class="fa fa-remove fa-fw"></i>&nbsp; Close
     </a>-->
 
-    <a href="<?php echo base_url(); ?>dashboard/dashboard" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
+    <a href="<?php echo base_url(); ?>admin/dashboard" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
       <div class="w3-col l12"><i class="w3-xlarge fa fa-dashboard fa-fw"></i></div>
       <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Dashboard<br><br></div>      
       <div class="clear"></div>

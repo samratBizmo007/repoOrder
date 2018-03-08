@@ -66,7 +66,7 @@ class Admin_login extends CI_Controller {
                $(".alert").fadeTo(500, 0).slideUp(500, function(){
                   $(this).remove(); 
               });
-              window.location.href="' . base_url() . 'dashboard/dashboard";
+              window.location.href="' . base_url() . 'admin/dashboard";
           }, 100);
           </script>
           ';

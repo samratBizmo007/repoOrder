@@ -33,6 +33,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <li class="active "><a class="w3-medium w3-brown w3-button"  href="#allOrders" data-toggle="tab"><span>All</span></a></li>
                 <li><a class="w3-medium w3-green w3-button w3-text-white"  href="#openedOrders" data-toggle="tab"><span>Opened</span></a></li>
                 <li><a class="w3-medium w3-red w3-button"  href="#closedOrders" data-toggle="tab"><span>Closed</span></a></li>
+                <li><a class="w3-medium w3-blue w3-button"  href="#regretOrders" data-toggle="tab"><span>regret</span></a></li>
             </ul>
 
             <div class="tab-content clearfix "><br><!-- tab containt starts -->
@@ -60,6 +61,10 @@ error_reporting(E_ERROR | E_PARSE);
                                 $color = '';
                                 if ($orders['status'] == 200) {
                                     for ($i = 0; $i < count($orders['status_message']); $i++) {
+                                         if($orders['status_message'][$i]['status'] == 1){
+                                            $status = 'Active';
+                                            $color = 'w3-text-blue';
+                                         }
                                          if($orders['status_message'][$i]['status'] == 2){
                                             $status = 'Open';
                                             $color = 'w3-text-green';
