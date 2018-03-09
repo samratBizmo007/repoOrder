@@ -119,7 +119,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         echo'
                                         <div class="w3-left w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
                                         <label class="">
-                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">&nbsp;<b> Regret Product</b>
+                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" oncheck="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">&nbsp;<b> Regret Product</b>
                                         </label>
                                         </div>';
                                             }
@@ -227,12 +227,15 @@ error_reporting(E_ERROR | E_PARSE);
              // $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
              // $('#modal_'+order_id).load(location.href + " #modal_"+order_id+">*", ""); 
              //location.reload();
+             
              $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
+             $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
             }
           });
         },
         cancel: function () {
         $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
+        $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
 
         }
       }
@@ -320,7 +323,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         echo'
                                         <div class="w3-left w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
                                         <label class="">
-                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">&nbsp;<b> Regret Product</b>
+                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$Open_orders['status_message'][$i]['order_id'].');">&nbsp;<b> Regret Product</b>
                                         </label>
                                         </div>';
                                             }
