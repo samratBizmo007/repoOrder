@@ -123,22 +123,19 @@ class Dashboard extends CI_Controller {
         //api processing ends
         //API processing end
         if ($response['status'] != 200) {
-            echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4> 
-      ';
+            echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>';
         } else {
-            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> ' . $response['status_message'] . '</h4>   
-      ';
+            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> ' . $response['status_message'] . '</h4>';
         }
     }
 
 // ---------------------function ends----------------------------------//
+// ---------------function to regretproducts------------------------//
 
     public function regretProduct() {
         extract($_POST);
-        //print_r($_POST);
         $path = base_url();
         $url = $path . 'api/Dashboard_api/regretProduct?prod_no='.$prod_no.'&order_id='.$order_id;
-        //echo $url;  
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -152,5 +149,6 @@ class Dashboard extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> ' . $response['status_message'] . '</h4>';
         }
     }
+// ---------------------function ends----------------------------------//
 
 }
