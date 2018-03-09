@@ -135,7 +135,7 @@ class Dashboard extends CI_Controller {
 
     public function regretProduct() {
         extract($_POST);
-        print_r($_POST);
+        //print_r($_POST);
         $path = base_url();
         $url = $path . 'api/Dashboard_api/regretProduct?prod_no='.$prod_no.'&order_id='.$order_id;
         //echo $url;  
