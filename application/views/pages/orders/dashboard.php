@@ -33,7 +33,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <li class="active "><a class="w3-medium w3-brown w3-button"  href="#allOrders" data-toggle="tab"><span>All</span></a></li>
                 <li><a class="w3-medium w3-green w3-button w3-text-white"  href="#openedOrders" data-toggle="tab"><span>Opened</span></a></li>
                 <li><a class="w3-medium w3-red w3-button"  href="#closedOrders" data-toggle="tab"><span>Closed</span></a></li>
-                <li><a class="w3-medium w3-blue w3-button"  href="#regretedOrders" data-toggle="tab"><span>regret</span></a></li>
+<!--                <li><a class="w3-medium w3-blue w3-button"  href="#regretedOrders" data-toggle="tab"><span>regret</span></a></li>-->
             </ul>
 
             <div class="tab-content clearfix "><br><!-- tab containt starts -->
@@ -104,14 +104,30 @@ error_reporting(E_ERROR | E_PARSE);
 
                                         foreach($product_info as $key)
                                         {
-                                        	//print_r($key);
-                                        echo'
-                                        <div class="checkbox w3-right" id="regretDiv_'.$key['prod_no'].'">
-                                        <label>
-                                        <input class="w3-left" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">
+                                        if($key['prod_regret'] == 1){
+                                              $regret = 'Regreted Product';
+                                              $class = 'w3-text-red';
+                                          }
+                                          if($key['prod_regret'] == 0){
+                                              $regret = '';
+                                              $class = '';
+                                          }
+                                        if($orders['status_message'][$i]['status'] == 1){ 
+                                        if($key['prod_regret'] == 1){
+                                         echo'<div class="w3-right w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
+                                        <label class="w3-right '.$class.'">&nbsp;<b> '.$regret.'</b>
                                         </label>
-                                        </div>
-                                        <div class="col-lg-12 w3-margin-bottom">
+                                        </div>';       
+                                        }else{
+                                        echo'
+                                        <div class="w3-right w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
+                                        <label class="w3-right">
+                                        <input class="w3-left" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">&nbsp;<b> Regret Product</b>
+                                        </label>
+                                        </div>';
+                                            }
+                                        }                                        
+                                        echo'<div class="col-lg-12 w3-margin-bottom">
                                         <div class="w3-col l6 s6 w3-padding-small w3-center">
                                         <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                                         </div>
@@ -187,8 +203,7 @@ error_reporting(E_ERROR | E_PARSE);
             }
           });
         },
-        cancel: function () {
-
+        cancel: function () {        
         }
       }
     });
@@ -200,21 +215,7 @@ error_reporting(E_ERROR | E_PARSE);
       type: 'red',
       buttons: {
         confirm: function () {
-          //var regretproduct = "";
-//            $.each($("input[name='regretproduct[]']:checked"), function(){            
-//                regretproduct.push($(this).val());
-//            });
-//         var regretproduct = "";       
-//        $('#regretDiv_'+ prod_no + ' input[name="regretproduct[]"]:checked').each(function (){
-//               if($(this).val() ){
-//                regretproduct.push($(this).val());
-//            }
-//        });
-//            var list = $("input[name='regretproduct']:checked").map(function () {
-//    return this.value;
-//}).get();
-         // regretproduct = $( "input[name$='regretproduct[]']" ).val();
-         //alert(regretproduct);
+         
           $.ajax({
             url:"<?php echo base_url(); ?>admin/dashboard/regretProduct", 
             type: "POST", 
@@ -232,6 +233,7 @@ error_reporting(E_ERROR | E_PARSE);
           });
         },
         cancel: function () {
+        $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
 
         }
       }
@@ -303,11 +305,30 @@ error_reporting(E_ERROR | E_PARSE);
 
                                         foreach($product_info as $key)
                                         {
-                                         echo'
-                                         <div class="checkbox w3-right">
-      					 <label><input type="checkbox" value=""><b>Regret Product</b></label>
-    					 </div>	
-                                         <div class="col-lg-12 w3-margin-bottom">
+                                        if($key['prod_regret'] == 1){
+                                              $regret = 'Regreted Product';
+                                              $class = 'w3-text-red';
+                                          }
+                                          if($key['prod_regret'] == 0){
+                                              $regret = '';
+                                              $class = '';
+                                          }
+                                        if($Open_orders['status_message'][$i]['status'] == 2){ 
+                                        if($key['prod_regret'] == 1){
+                                         echo'<div class="w3-right w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
+                                        <label class="w3-right '.$class.'">&nbsp;<b> '.$regret.'</b>
+                                        </label>
+                                        </div>';       
+                                        }else{
+                                        echo'
+                                        <div class="w3-right w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
+                                        <label class="w3-right">
+                                        <input class="w3-left" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$Open_orders['status_message'][$i]['order_id'].');">&nbsp;<b> Regret Product</b>
+                                        </label>
+                                        </div>';
+                                            }
+                                        }    	
+                                        echo'<div class="col-lg-12 w3-margin-bottom">
                                         <div class="w3-col l6 s6 w3-padding-small w3-center">
                                         <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                                         </div>
@@ -426,9 +447,9 @@ error_reporting(E_ERROR | E_PARSE);
 
                                         foreach($product_info as $key)
                                         {
-                                         echo'
-                                         <div class="col-lg-12 w3-margin-bottom">
-                                         <div class="w3-col l6 s6 w3-padding-small w3-center">
+                                        echo'
+                                        <div class="col-lg-12 w3-margin-bottom">
+                                        <div class="w3-col l6 s6 w3-padding-small w3-center">
                                         <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                                         </div>
                                         <div class="w3-col l6 s6 w3-padding-small">
@@ -483,7 +504,7 @@ error_reporting(E_ERROR | E_PARSE);
                 </div><!-- table container ends here -->
                 
                 <!--_______________________________ tab 3 starts here_____________________________________________ -->
-            <div class="tab-pane" id="regretedOrders"><!-- tab 3 starts here -->
+<!--            <div class="tab-pane" id="regretedOrders"> tab 3 starts here 
 
                  <div class="">                    
                         <div class="w3-col l12 w3-margin-top">
@@ -499,118 +520,118 @@ error_reporting(E_ERROR | E_PARSE);
                                             <th class="text-center">Actions</th>  
                                         </tr>
                                     </thead>
-                                    <tbody><!-- table body starts here -->
+                                    <tbody> table body starts here 
                                         <?php
-                                        $count = 1;
-                                           $status = '';
-                                $color = '';
-                                    $regret = '';
-                                if ($Regreted_orders['status'] == 200) {
-                                    for ($i = 0; $i < count($Regreted_orders['status_message']); $i++) {
-                                           if($Regreted_orders['status_message'][$i]['status'] == -1){
-                                            $status = 'Regreted';
-                                            $color = 'w3-text-brown';
-                                         }
-                                         if($Regreted_orders['status_message'][$i]['status'] == 0){
-                                            $status = 'Closed';
-                                            $color = 'w3-text-red';
-                                         }
-                                        echo '<tr class="text-center">
-                                        <td class="text-center">' . $count . '.</td>
-                                        <td class="text-center">#000' . $Regreted_orders['status_message'][$i]['order_id'] . '</td>
-                                        <td class="text-center">' . $Regreted_orders['status_message'][$i]['user_name'] . '</td>
-                                        <td class="text-center">' . $Regreted_orders['status_message'][$i]['order_date'] . '</td>
-                                        <td class="text-center '.$color.'">' .$status. '</td>
-                                        <td class="text-center">
-                                        <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#regretOrder_' . $Regreted_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>
-                                        <a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$Regreted_orders['status_message'][$i]['order_id'].'" onclick="reOpen_Orders('.$Regreted_orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-refresh"></i></a> 
-                                        </td>
-
-                                        <!-- Modal  starts here-->
-
-                                        <div id="regretOrder_'.$Regreted_orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
-                                        <div class="modal-dialog">
-
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                        <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <div><h4><b>Order Details</b></h4></div>
-                                        </div>
-                                        <div class="modal-body w3-light-grey w3-margin-top">
-                                       <h3 class="w3-center"><b>Order No. #OID-'.$Regreted_orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
-                                        <h5 class="w3-center"><b>Customer Name: '.$Regreted_orders['status_message'][$i]['username'].'</b><span class="badge '.$badge_color.'">'.$badge_text.'</span></h5>
-                                        <div class="modal-body w3-light-grey">
-                                        <div class="w3-container">';   
-                                        $product_info=json_decode($Regreted_orders['status_message'][$i]['order_products'],TRUE);
-
-                                        foreach($product_info as $key)
-                                        {
-                                          if($key['prod_regret'] == 1){
-                                              $regret = 'Regreted Product';
-                                              $class = 'w3-text-red';
-                                          }
-                                          if($key['prod_regret'] == 0){
-                                              $regret = '';
-                                              $class = '';
-                                          }
-                                         echo'
-                                         <div class="w3-right"><label class="'.$class.'">'.$regret.'</label></div>
-                                         <div class="col-lg-12 w3-margin-bottom">
-                                         <div class="w3-col l6 s6 w3-padding-small w3-center">
-                                        <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
-                                        </div>
-                                        <div class="w3-col l6 s6 w3-padding-small">
-                                        <div class="w3-col l12 ">
-                                        <div class="w3-col l6">
-                                        <label class="">Product Name:</label>
-                                        <p class="">'.$key['prod_Name'].'</p>
-                                        </div>
-                                        <div class="w3-col l6">
-                                        <label class="">Address:</label>
-                                        <p class="">'.$Regreted_orders['status_message'][$i]['address'].'</p>
-                                        </div>
-                                        </div>
-                                        <div class="w3-col l12 ">
-                                        <div class="w3-col l6">
-                                        <label class="">Quantity:</label>
-                                        <p class="" >'.$key['prod_quantity'].' No(s).</p>
-                                        </div>
-                                        <div class="w3-col l6">
-                                         <label class="">Mobile No:</label>
-                                        <p class="" >'.$Regreted_orders['status_message'][$i]['mobile_no'].'</p>
-                                        </div>
-                                        </div>
-                                        </div>
-                                        </div>';
-                                          
-                                       }
-                                       echo'
-                                       </div>
-                                       </div>
-                                       </div>
-                                       </div>
-                                       </div>
-                                       </tr>'; 
-                                       $count++;
-                                     }
-                                   }
-                                   else {
-
-                                    echo '
-                                    <tr class="text-center" >
-                                    <td colspan="6"><b>No Orders Available</b></td>
-                                    </tr>
-                                    ';
-                                  }
+//                                        $count = 1;
+//                                           $status = '';
+//                                $color = '';
+//                                    $regret = '';
+//                                if ($Regreted_orders['status'] == 200) {
+//                                    for ($i = 0; $i < count($Regreted_orders['status_message']); $i++) {
+//                                           if($Regreted_orders['status_message'][$i]['status'] == -1){
+//                                            $status = 'Regreted';
+//                                            $color = 'w3-text-brown';
+//                                         }
+//                                         if($Regreted_orders['status_message'][$i]['status'] == 0){
+//                                            $status = 'Closed';
+//                                            $color = 'w3-text-red';
+//                                         }
+//                                        echo '<tr class="text-center">
+//                                        <td class="text-center">' . $count . '.</td>
+//                                        <td class="text-center">#000' . $Regreted_orders['status_message'][$i]['order_id'] . '</td>
+//                                        <td class="text-center">' . $Regreted_orders['status_message'][$i]['user_name'] . '</td>
+//                                        <td class="text-center">' . $Regreted_orders['status_message'][$i]['order_date'] . '</td>
+//                                        <td class="text-center '.$color.'">' .$status. '</td>
+//                                        <td class="text-center">
+//                                        <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#regretOrder_' . $Regreted_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>';
+//                                        //echo'<a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$Regreted_orders['status_message'][$i]['order_id'].'" onclick="reOpen_Orders('.$Regreted_orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-refresh"></i></a> 
+//                                        echo'</td>
+//
+//                                         Modal  starts here
+//
+//                                        <div id="regretOrder_'.$Regreted_orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
+//                                        <div class="modal-dialog">
+//
+//                                         Modal content
+//                                        <div class="modal-content">
+//                                        <div class="modal-header">
+//                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+//                                        <div><h4><b>Order Details</b></h4></div>
+//                                        </div>
+//                                        <div class="modal-body w3-light-grey w3-margin-top">
+//                                       <h3 class="w3-center"><b>Order No. #OID-'.$Regreted_orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
+//                                        <h5 class="w3-center"><b>Customer Name: '.$Regreted_orders['status_message'][$i]['username'].'</b><span class="badge '.$badge_color.'">'.$badge_text.'</span></h5>
+//                                        <div class="modal-body w3-light-grey">
+//                                        <div class="w3-container">';   
+//                                        $product_info=json_decode($Regreted_orders['status_message'][$i]['order_products'],TRUE);
+//
+//                                        foreach($product_info as $key)
+//                                        {
+//                                          if($key['prod_regret'] == 1){
+//                                              $regret = 'Regreted Product';
+//                                              $class = 'w3-text-red';
+//                                          }
+//                                          if($key['prod_regret'] == 0){
+//                                              $regret = '';
+//                                              $class = '';
+//                                          }
+//                                         echo'
+//                                         <div class="w3-right"><label class="'.$class.'">'.$regret.'</label></div>
+//                                         <div class="col-lg-12 w3-margin-bottom">
+//                                         <div class="w3-col l6 s6 w3-padding-small w3-center">
+//                                        <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+//                                        </div>
+//                                        <div class="w3-col l6 s6 w3-padding-small">
+//                                        <div class="w3-col l12 ">
+//                                        <div class="w3-col l6">
+//                                        <label class="">Product Name:</label>
+//                                        <p class="">'.$key['prod_Name'].'</p>
+//                                        </div>
+//                                        <div class="w3-col l6">
+//                                        <label class="">Address:</label>
+//                                        <p class="">'.$Regreted_orders['status_message'][$i]['address'].'</p>
+//                                        </div>
+//                                        </div>
+//                                        <div class="w3-col l12 ">
+//                                        <div class="w3-col l6">
+//                                        <label class="">Quantity:</label>
+//                                        <p class="" >'.$key['prod_quantity'].' No(s).</p>
+//                                        </div>
+//                                        <div class="w3-col l6">
+//                                         <label class="">Mobile No:</label>
+//                                        <p class="" >'.$Regreted_orders['status_message'][$i]['mobile_no'].'</p>
+//                                        </div>
+//                                        </div>
+//                                        </div>
+//                                        </div>';
+//                                          
+//                                       }
+//                                       echo'
+//                                       </div>
+//                                       </div>
+//                                       </div>
+//                                       </div>
+//                                       </div>
+//                                       </tr>'; 
+//                                       $count++;
+//                                     }
+//                                   }
+//                                   else {
+//
+//                                    echo '
+//                                    <tr class="text-center" >
+//                                    <td colspan="6"><b>No Orders Available</b></td>
+//                                    </tr>
+//                                    ';
+//                                  }
                                 
                                         ?>
-                                    </tbody><!-- table body close here -->
-                                </table><!-- table closed here -->
+                                    </tbody> table body close here 
+                                </table> table closed here 
                             </div>
                         </div>
                     </div>
-                </div><!-- table container ends here -->
+                </div> table container ends here -->
             </div>
             <!-- ___________________________tab 3 div ends here__________________________________ -->
         </div><!-- tab containt ends here -->
