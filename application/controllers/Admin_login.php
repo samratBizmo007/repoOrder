@@ -10,14 +10,15 @@ class Admin_login extends CI_Controller {
 
     public function index() {
 
+    	 //$this->session->set_userdata($session_data);
         //start session		
-//		$user_id=$this->session->userdata('user_id');
-//		$profile_type=$this->session->userdata('profile_type');
+		$admin_id=$this->session->userdata('admin_id');
+		$admin_name=$this->session->userdata('admin_name');
 //		$user_name=$this->session->userdata('user_name');
 //		//check session variable set or not, otherwise logout
-//		if(($user_id!='') || ($user_name!='') || ($profile_type!='')){
-//			redirect('profile/dashboard');
-//		}
+    	if(($admin_id!='') || ($admin_name!='')){
+			redirect('admin/dashboard');
+			}
         $this->load->view('pages/admin_login');
     }
 
@@ -54,10 +55,11 @@ class Admin_login extends CI_Controller {
                 'admin_id' => $response['user_id'],
                 'admin_name' => $response['user_name']
             );
-
+        	
             //start session of user if login success
             $this->session->set_userdata($session_data);
-
+//        	
+ 			//redirect('admin/dashboard');
             echo '<div class="alert alert-success" style="margin-bottom:5px">
             <strong>' . $response['status_message'] . '</strong> 
             </div>
@@ -70,6 +72,7 @@ class Admin_login extends CI_Controller {
           }, 100);
           </script>
           ';
+          
         }
     }
 

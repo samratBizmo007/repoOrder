@@ -9,13 +9,13 @@ class Login extends CI_Controller {
     public function index() {
 
         //start session		
-//		$user_id=$this->session->userdata('user_id');
+		$user_id=$this->session->userdata('user_id');
 //		$profile_type=$this->session->userdata('profile_type');
-//		$user_name=$this->session->userdata('user_name');
+		$user_name=$this->session->userdata('user_name');
 //		//check session variable set or not, otherwise logout
-//		if(($user_id!='') || ($user_name!='') || ($profile_type!='')){
-//			redirect('profile/dashboard');
-//		}
+		if(($user_id!='') || ($user_name!='') || ($profile_type!='')){
+			redirect('user/dashboard');
+		}
 
         $this->load->view('pages/login/login');
     }
@@ -97,6 +97,7 @@ class Login extends CI_Controller {
           }, 100);
           </script>
           ';
+            
       }
   }
 
