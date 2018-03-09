@@ -25,7 +25,15 @@ error_reporting(E_ERROR | E_PARSE);
       <h5><b><i class="fa fa-dashboard"></i> Dashboard</b></h5>
     </header>
 
-    <div class="w3-row-padding w3-margin-bottom"></div>
+    <div class="w3-row-padding w3-margin-bottom"><body>
+
+<!--	<div class="container w3-center  ">-->
+<!-- 	<img src="<?php echo base_url(); ?>css/logos/new.png" class="img-rounded w3-margin-top w3-padding-top" alt="Cinque Terre" width="304" height="236"> -->
+<!--	</div>-->
+
+</body>
+    
+    </div>
     <!-- End page content -->
   </div>
 

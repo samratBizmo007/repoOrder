@@ -28,7 +28,7 @@ error_reporting(E_ERROR | E_PARSE);
       <h5><b><i class="fa fa-cubes"></i> Manage Orders</b></h5>
     </header>
 
-    <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-padding-left w3-margin-bottom">
      <!-- container for tab -->
      <br>
      <ul  class="nav nav-tabs">
@@ -199,7 +199,7 @@ error_reporting(E_ERROR | E_PARSE);
         </div>
         <!-- material div end -->
         <div class="w3-col l12 w3-center">
-          <button type="submit" title="Raise Order" class="w3-margin w3-button  w3-red">Raise New Order</button>
+          <button type="submit" title="Raise Order" class="w3-margin w3-medium w3-button  w3-red">Raise New Order</button>
         </div>
       </form>
     </div>
