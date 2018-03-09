@@ -164,8 +164,8 @@ error_reporting(E_ERROR | E_PARSE);
           <form id="addOrder_form" enctype="multipart/form-data">       
             <!-- Product div start -->
             <div class="w3-col l12 w3-margin-bottom w3-margin-top">
-              <header class="w3-col l12" >
-                <h6><b><i class="fa fa-first-order"></i> Place New Order</b></h6>
+              <header class="w3-col l12 " >
+                <h6><b><i class="fa fa-first-order w3-padding-left"></i> Place New Order</b></h6>
                 <span class="w3-small"></span>
               </header>
               <div class="w3-col l12 w3-margin-top">
