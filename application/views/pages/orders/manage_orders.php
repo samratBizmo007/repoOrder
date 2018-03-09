@@ -47,7 +47,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <thead>
                   <tr class="">
                     <th class="text-center">Sr. No.</th>
-                    <th class="text-center">Order NO.</th>
+                    <th class="text-center">Order No.</th>
                     <th class="text-center">Posted On</th>
                     <th class="text-center">Action</th>  
                   </tr>
