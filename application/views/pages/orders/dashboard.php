@@ -26,7 +26,7 @@ error_reporting(E_ERROR | E_PARSE);
         <div id="exTab1" class="container w3-small" > <!-- container for tab -->
             <!-- Header -->
     <div class="">
-      <h5><b>Manage Orders</b></h5>
+      <h5><i class="fa fa-cubes"></i><b>Manage Orders</b></h5>
     </div>
             <br>
             <ul  class="nav nav-tabs">
@@ -75,7 +75,7 @@ error_reporting(E_ERROR | E_PARSE);
                                          }
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
-                                        <td class="text-center">#000' . $orders['status_message'][$i]['order_id'] . '</td>
+                                        <td class="text-center">#OID-' . $orders['status_message'][$i]['order_id'] . '</td>
                                         <td class="text-center">' . $orders['status_message'][$i]['user_name'] . '</td>
                                         <td class="text-center">' . $orders['status_message'][$i]['order_date'] . '</td>
                                         <td class="text-center '.$color.'">' .$status. '</td>
@@ -209,8 +209,8 @@ error_reporting(E_ERROR | E_PARSE);
   }
   function regretProduct(prod_no,order_id){
   $.confirm({
-      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are you sure you want to proceed further?!</h4>',
-      type: 'yellow',
+      title: '<h4 class="w3-text-orange"><i class="fa fa-minus-square"></i> Are you sure you want to proceed further?!</h4>',
+      type: 'orange',
       buttons: {
         confirm: function () {
          
@@ -224,9 +224,10 @@ error_reporting(E_ERROR | E_PARSE);
             cache: false,
             success:function(html){     
             $.alert(html);              
-             $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
-             $('#modal_'+order_id).load(location.href + " #modal_"+order_id+">*", ""); 
+             // $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+             // $('#modal_'+order_id).load(location.href + " #modal_"+order_id+">*", ""); 
              //location.reload();
+             $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
             }
           });
         },
@@ -274,7 +275,7 @@ error_reporting(E_ERROR | E_PARSE);
                                          }
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
-                                        <td class="text-center">#000' . $Open_orders['status_message'][$i]['order_id'] . '</td>
+                                        <td class="text-center">#OID-' . $Open_orders['status_message'][$i]['order_id'] . '</td>
                                         <td class="text-center">' . $Open_orders['status_message'][$i]['user_name'] . '</td>
                                         <td class="text-center">' . $Open_orders['status_message'][$i]['order_date'] . '</td>
                                         <td class="text-center '.$color.'">' .$status. '</td>                                        
@@ -416,7 +417,7 @@ error_reporting(E_ERROR | E_PARSE);
                                          }
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
-                                        <td class="text-center">#000' . $Closed_orders['status_message'][$i]['order_id'] . '</td>
+                                        <td class="text-center">#OID-' . $Closed_orders['status_message'][$i]['order_id'] . '</td>
                                         <td class="text-center">' . $Closed_orders['status_message'][$i]['user_name'] . '</td>
                                         <td class="text-center">' . $Closed_orders['status_message'][$i]['order_date'] . '</td>
                                         <td class="text-center '.$color.'">' .$status. '</td>
@@ -639,7 +640,7 @@ error_reporting(E_ERROR | E_PARSE);
 <script>
   function reOpen_Orders(id){
     $.confirm({
-      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are You Sure To Reopen Order..!</h4>',
+      title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are You Sure To Reopen Order..!</h4>',
       type: 'green',
       buttons: {
         confirm: function () {
@@ -665,7 +666,7 @@ error_reporting(E_ERROR | E_PARSE);
   }
   function Open_Orders(id){
     $.confirm({
-      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are You Sure To open Order..!</h4>',
+      title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are You Sure To open Order..!</h4>',
       type: 'green',
       buttons: {
         confirm: function () {

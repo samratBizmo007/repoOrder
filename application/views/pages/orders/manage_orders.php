@@ -25,7 +25,7 @@ error_reporting(E_ERROR | E_PARSE);
 
     <!-- Header -->
     <header class="w3-container" >
-      <h5><b><i class="fa fa-cubes"></i> Manage Orders</b></h5>
+      <h5><b><i class="fa fa-cubes"></i> My Orders</b></h5>
     </header>
 
     <div class="w3-padding-left w3-margin-bottom">
