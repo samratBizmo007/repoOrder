@@ -139,6 +139,7 @@ error_reporting(E_ERROR | E_PARSE);
         </style>
     </head>
     <body class="" >
+        <a href="<?php echo base_url(); ?>" class="btn w3-margin "><i class="fa fa-arrow-left"></i> Goto <u class="w3-text-blue">ordertracker</u> website</a>
         <div class="w3-middle" id="spinnerDiv"></div>
         <div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
             <div class="row">

@@ -219,7 +219,7 @@ error_reporting(E_ERROR | E_PARSE);
 										<input type="number" name="register_number" id="register_number" tabindex="5"  class="form-control" placeholder="Enter Your Number" required>
 									</div>
 									<div class="form-group">
-									<textarea rows="5" name="address" id="address" class="form-control form-control rounded-0" placeholder="Enter Your Address"></textarea>
+									<textarea rows="5" name="address" id="address" class="form-control form-control rounded-0" placeholder="Enter Your Address" required></textarea>
 									</div>
 									
 									<div class="form-group">
