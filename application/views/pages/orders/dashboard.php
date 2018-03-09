@@ -48,7 +48,7 @@ error_reporting(E_ERROR | E_PARSE);
                                             <th class="text-center">SR. No</th>
                                             <th class="text-center">Order No</th>  
                                             <th class="text-center">Customer Name</th>              
-                                            <th class="text-center">date</th>                                                          
+                                            <th class="text-center">Date</th>                                                          
                                             <th class="text-center">Status</th>                                                          
                                             <th class="text-center">Actions</th>  
                                         </tr>
@@ -253,8 +253,8 @@ error_reporting(E_ERROR | E_PARSE);
                                             <th class="text-center">SR. No</th>
                                             <th class="text-center">Order No</th>  
                                             <th class="text-center">Customer Name</th>              
-                                            <th class="text-center">date</th>                                                          
-                                            <th class="text-center">status</th>                                                          
+                                            <th class="text-center">Date</th>                                                          
+                                            <th class="text-center">Status</th>                                                          
                                             <th class="text-center">Actions</th>  
                                         </tr>
                                     </thead>
@@ -395,8 +395,8 @@ error_reporting(E_ERROR | E_PARSE);
                                             <th class="text-center">SR. No</th>
                                             <th class="text-center">Order No</th>  
                                             <th class="text-center">Customer Name</th>              
-                                            <th class="text-center">date</th>                                                          
-                                            <th class="text-center">status</th>                                                          
+                                            <th class="text-center">Date</th>                                                          
+                                            <th class="text-center">Status</th>                                                          
                                             <th class="text-center">Actions</th>  
                                         </tr>
                                     </thead>

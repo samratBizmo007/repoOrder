@@ -69,9 +69,8 @@ $user_name=$this->session->userdata('user_name');
     <div class="w3-col l2 ">
     
     <div class="ui-group-buttons ">
-              <a href="<?php echo base_url(); ?>login/logout" class="btn  waves-effect waves-light  w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px">Logout <i class="fa fa-sign-out" ></i></a>
-             
-              </div>
+      <a href="<?php echo base_url(); ?>login/logout" class="btn  waves-effect waves-light  w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px">Logout <i class="fa fa-sign-out" ></i></a>
+    </div>
     
 <!--    <div class="ui-group-buttons">-->
 <!--        <a href="<?php echo base_url(); ?>login/logout" title="Logout user" class="w3-button w3-padding-small"><strong>Logout</strong> <i class="fa  fa-sign-out"></i></a> -->
