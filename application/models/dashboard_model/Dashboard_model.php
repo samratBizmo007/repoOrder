@@ -14,7 +14,7 @@ class Dashboard_model extends CI_Model {
     //-------------------------------------------------------------//
     public function AllOpen_Orders() {
 
-        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE status=2 ORDER BY order_id DESC";
+        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=2 ORDER BY ot.order_id DESC";
 
         $result = $this->db->query($query);
 
@@ -35,7 +35,7 @@ class Dashboard_model extends CI_Model {
     //-------------------------------------------------------------//
     public function AllOrders() {
 
-        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE status=1 ORDER BY order_id DESC";
+        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=1 ORDER BY ot.order_id DESC";
 
         $result = $this->db->query($query);
 
@@ -56,7 +56,7 @@ class Dashboard_model extends CI_Model {
     //-------------------------------------------------------------//
     public function AllClosed_Orders() {
 
-        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE status=0 ORDER BY order_id DESC";
+        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=0 ORDER BY ot.order_id DESC";
 
         $result = $this->db->query($query);
 
@@ -116,8 +116,65 @@ class Dashboard_model extends CI_Model {
 
         return $response;
     }
-    //----------------delete ORder ends--------------------------//
     
+    public function AllRegreted_orders(){
+        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status= -1 ORDER BY ot.order_id DESC";
+
+        $result = $this->db->query($query);
+
+        if ($result->num_rows() <= 0) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'No orders found.');
+        } else {
+            $response = array(
+                'status' => 200,
+                'status_message' => $result->result_array());
+        }
+        return $response;
+    }
+
+    //----------------delete ORder ends--------------------------//
+    public function regretProduct($prod_no, $order_id) {
+
+        $query = "SELECT * FROM order_tab WHERE order_id='$order_id'";
+
+        $result = $this->db->query($query);
+        $Product_details = '';
+        if ($result->num_rows() <= 0) {
+            $Product_details = array(
+                'status' => 0,
+                'status_message' => 'No Records Found.');
+        } else {
+            foreach ($result->result_array() as $row) {
+                $Product_details = $row['order_products'];
+            }
+        }
+        //$Product_details = QuotationForEnquiry_model::getOrderedProductDetails($order_id); //----fun for get ordered product details 
+        $productArr = json_decode($Product_details, TRUE);
+
+        foreach ($productArr as &$prod) {//-----loop for update json price
+            if ($prod['prod_no'] == $prod_no) {
+                $prod['prod_regret'] = 1;
+            }
+        }
+        $productinfo = json_encode($productArr);
+
+        $sqlupdate = "UPDATE order_tab SET order_products = '$productinfo'  WHERE order_id='$order_id'"; //----update enquiry befor insert to status 0
+        $resultupdate = $this->db->query($sqlupdate);
+
+        if ($resultupdate) {
+            $response = array(
+                'status' => 1,
+                'status_message' => 'Product Regreted..!');
+        } else {
+            $response = array(
+                'status' => 0,
+                'status_message' => 'Product did not get Regreted...!');
+        }
+        return $response;
+    }
+
 }
 
 ?>

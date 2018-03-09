@@ -54,5 +54,15 @@ class Dashboard_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------DELETE MY ORDERS END------------------------------//
-
+        public function regretProduct_get(){
+            extract($_GET);
+		$result = $this->dashboard_model->regretProduct($prod_no,$order_id);
+		return $this->response($result);
+        }
+        
+         public function AllRegreted_orders_get(){
+            extract($_GET);
+		$result = $this->dashboard_model->AllRegreted_orders();
+		return $this->response($result);
+        }
 }

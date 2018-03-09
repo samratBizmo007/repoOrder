@@ -16,6 +16,7 @@ class Dashboard extends CI_Controller {
         $data['orders'] = Dashboard::AllOrders();     //-------show all Raw prods
         $data['Open_orders'] = Dashboard::AllOpen_Orders();     //-------show all Raw prods
         $data['Closed_orders'] = Dashboard::AllClosed_Orders();     //-------show all Raw prods
+        $data['Regreted_orders'] = Dashboard::AllRegreted_orders();     //-------show all Raw prods
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/orders/dashboard', $data);
         //$this->load->view('includes/footer.php');
@@ -25,6 +26,20 @@ class Dashboard extends CI_Controller {
     public function AllOrders() {
         $path = base_url();
         $url = $path . 'api/Dashboard_api/AllOrders';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        return $response;
+    }
+
+    // ---------------function to get all orders------------------------//
+     // ---------------function to get all orders------------------------//
+    public function AllRegreted_orders() {
+        $path = base_url();
+        $url = $path . 'api/Dashboard_api/AllRegreted_orders';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -120,7 +135,7 @@ class Dashboard extends CI_Controller {
 
     public function regretProduct() {
         extract($_POST);
-        print_r($_POST);die();
+        print_r($_POST);
         $path = base_url();
         $url = $path . 'api/Dashboard_api/regretProduct?prod_no='.$prod_no.'&order_id='.$order_id;
         //echo $url;  
