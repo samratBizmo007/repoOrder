@@ -16,7 +16,7 @@ class Login_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function registerCustomer_post() {
         extract($_POST);
-        $result = $this->login->registerCustomer($register_username, $register_email, $register_password, $register_mobile_no, $register_address, $register_business_field);
+        $result = $this->login->registerCustomer($register_username, $register_email, $register_password, $register_mobile_no, $register_address);
         return $this->response($result);
     }
 

@@ -9,7 +9,7 @@ class Login extends CI_Model {
 
     // -----------------------USER REGISTERATION MODEL----------------------//
     //-------------------------------------------------------------//
-    public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address, $register_business_field) {
+    public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address) {
 
         $checkEmail = login::checkEmail_exist($email_id);
         if ($checkEmail) {
@@ -19,8 +19,7 @@ class Login extends CI_Model {
                 'password' => base64_encode($password),
                 'email' => $email_id,
                 'mobile_no' => $register_mobile_no,
-                'address' => $register_address,
-                //'business_field' => $register_business_field
+                'address' => $register_address
             );
 
             $result = $this->db->insert('customer_tab', $data);
