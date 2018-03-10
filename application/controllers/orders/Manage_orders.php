@@ -113,7 +113,7 @@ for($i = 0; $i < count($prod_Name); $i++){
   $data['user_id']=$user_id;
   $data['user_name']=$user_name;
   $data['prod_associated']=json_encode($prod_Arr);
-  
+  //print_r($data);die();
   $path = base_url();
   $url = $path.'api/ManageOrder_api/addNewOrder';
   $ch = curl_init($url);
