@@ -46,6 +46,7 @@ class Manage_orders extends CI_controller{
  //----------this function to add order profile-----------------------------//
 public function addOrder() { 
   extract($_POST);
+  //print_r($_POST);die();
   $user_id=$this->session->userdata('user_id');
   $user_name=$this->session->userdata('user_name');
 //print_r($_FILES['prod_image']['name'][1]);die();
@@ -99,6 +100,7 @@ for($i = 0; $i < count($prod_Name); $i++){
     }
 
     $prod_Arr[]=array(
+      'business_field' => $business_field[$i],  
       'prod_no' => $id_count,
       'prod_Name' =>  $prod_Name[$i],
       'prod_quantity' =>  $prod_quantity[$i],

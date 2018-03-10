@@ -57,7 +57,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     //print_r($orders);
                   if ($orders['status'] == 200) {//print_r($Purchased['status_message']);
                   $count=1;
-
+                  $value = '';
                   for ($i = 0; $i < count($orders['status_message']); $i++) {                                             
                     echo '<tr class="text-center">
                     <td class="text-center">' . $count . '.</td>
@@ -99,21 +99,43 @@ error_reporting(E_ERROR | E_PARSE);
                     foreach($product_info as $key)
                     {
                       //print_r($key);
+                      if($key['business_field'] == 1){
+                          $value = 'Mobile Accessories';  
+                      } 
+                      if($key['business_field'] == 2){
+                          $value = 'Cosmetics';  
+                      }
+                      if($key['business_field'] == 3){
+                          $value = 'Watch and Glasses';  
+                      }
+                      if($key['business_field'] == 4){
+                          $value = 'Bags';  
+                      }
+                      if($key['business_field'] == 5){
+                          $value = 'Others';  
+                      }
                       echo '
                       <!-- for loop starts -->
+                      
                       <div class="col-lg-12 w3-margin-bottom">
                       
-                      <div class="w3-col l6 s6 w3-padding-small w3-center">
+                      <div class="w3-col l4 s6 w3-border w3-padding-small w3-center">
                       <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                       </div>
-                      <div class="w3-col l6 s6 w3-padding-small">
-                      <div class="w3-col l12 ">
+                      <div class="w3-col l8 s6 w3-padding-small">
+                      <div class="w3-col l12">
+                      <div class="col-lg-4">
+                      <label class="">Business Field:</label>
+                      <p class="">'.$value.'</p>
+                      </div>
+                      <div class="w3-col l4 ">
                       <label class="">Item Name:</label>
                       <p class="">'.$key['prod_Name'].'</p>
                       </div>
-                      <div class="w3-col l12 ">
+                      <div class="w3-col l4 ">
                       <label class="">Quantity:</label>
                       <p class="" >'.$key['prod_quantity'].' No(s).</p>
+                      </div>
                       </div>
                       </div>
                       </div>
@@ -169,7 +191,18 @@ error_reporting(E_ERROR | E_PARSE);
                 <span class="w3-small"></span>
               </header>
               <div class="w3-col l12 w3-margin-top">
-                <div class="col-lg-7 w3-margin-top">
+                  <div class="col-lg-3 w3-margin-top">
+                  <label class="w3-label">Business Field:</label>                      
+                  <select name="business_field[]" id="business_field" tabindex="2" class="w3-select" required>
+                          <option class="w3-light-grey" selected <?php if ($this->uri->segment(2) == '') echo 'selected'; ?> value="0">Select Business Field</option>
+                          <option value="1" <?php if ($this->input->get('field', TRUE) == 1) echo 'selected'; ?>>Mobile Accessories</option>
+                          <option value="2" <?php if ($this->input->get('field', TRUE) == 2) echo 'selected'; ?>>Cosmetics</option>
+                          <option value="3" <?php if ($this->input->get('field', TRUE) == 3) echo 'selected'; ?>>Watch and Glasses</option>
+                          <option value="4" <?php if ($this->input->get('field', TRUE) == 4) echo 'selected'; ?>>Bags</option>
+                          <option value="5" <?php if ($this->input->get('field', TRUE) == 5) echo 'selected'; ?>>Other</option>
+                      </select>
+                  </div>
+                <div class="col-lg-4 w3-margin-top">
                   <label class="w3-label">Product Name:</label>
                   <input type="text" class="w3-input" name="prod_Name[]" placeholder="Enter Product Description" required>
                 </div>
@@ -233,7 +266,18 @@ error_reporting(E_ERROR | E_PARSE);
         $(wrapper).append('<div class="">\n\
           <div class="w3-col l12 w3-margin-bottom"><hr>\n\
           <div class="col-lg-12 w3-margin-top">\n\
-          <div class="col-lg-7 w3-margin-top">\n\
+          <div class="col-lg-3 w3-margin-top">\n\
+            <label class="w3-label">Business Field:</label>\n\
+            <select name="business_field[]" id="business_field" tabindex="2" class="w3-select" required>\n\
+            <option class="w3-light-grey" selected <?php if ($this->uri->segment(2) == '') echo 'selected'; ?> value="0">Select Business Field</option>\n\
+            <option value="1" <?php if ($this->input->get('field', TRUE) == 1) echo 'selected'; ?>>Mobile Accessories</option>\n\
+            <option value="2" <?php if ($this->input->get('field', TRUE) == 2) echo 'selected'; ?>>Cosmetics</option>\n\
+            <option value="3" <?php if ($this->input->get('field', TRUE) == 3) echo 'selected'; ?>>Watch and Glasses</option>\n\
+            <option value="4" <?php if ($this->input->get('field', TRUE) == 4) echo 'selected'; ?>>Bags</option>\n\
+            <option value="5" <?php if ($this->input->get('field', TRUE) == 5) echo 'selected'; ?>>Other</option>\n\
+            </select>\n\
+          </div>\n\
+          <div class="col-lg-4 w3-margin-top">\n\
           <label class="w3-label">Product Name:</label>\n\
           <input type="text" class="w3-input" name="prod_Name[]" placeholder="Enter Product Description" required>\n\
           </div>\n\

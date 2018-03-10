@@ -191,17 +191,7 @@ error_reporting(E_ERROR | E_PARSE);
 								</form>
 							<form id="register_form" role="form" method='post' enctype='multipart/form-data' style="display: none;">
 									<div class="w3-col l12 " id="registration_err"></div>
-									<div class="form-group">
-									<select name="business_field" id="business_field" tabindex="2" class="form-control">
-											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select Business Field</option>
-											<option value="1" <?php if($this->input->get('field', TRUE)==1) echo 'selected'; ?>>Mobile Accessories</option>
-											<option value="2" <?php if($this->input->get('field', TRUE)==2) echo 'selected'; ?>>Cosmetics</option>
-											<option value="3" <?php if($this->input->get('field', TRUE)==3) echo 'selected'; ?>>Watch and Glasses</option>
-											<option value="4" <?php if($this->input->get('field', TRUE)==4) echo 'selected'; ?>>Bags</option>
-											<option value="5" <?php if($this->input->get('field', TRUE)==5) echo 'selected'; ?>>Other</option>
-										
-									</select>
-									</div>
+									
 									<div class="form-group">
 										<input type="text" name="register_username" id="register_username" tabindex="2" class="form-control" placeholder="Username" value="" required>
 									</div>
