@@ -20,7 +20,7 @@ class Login extends CI_Model {
                 'email' => $email_id,
                 'mobile_no' => $register_mobile_no,
                 'address' => $register_address,
-                'business_field' => $register_business_field
+                //'business_field' => $register_business_field
             );
 
             $result = $this->db->insert('customer_tab', $data);
