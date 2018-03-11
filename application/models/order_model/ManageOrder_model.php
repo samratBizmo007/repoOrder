@@ -98,7 +98,31 @@ class ManageOrder_model extends CI_Model{
 	public function addNewOrder($data) { 
 
         extract($data);
-//print_r($data);die();
+        //echo(is_numeric($user_id));die();
+        if(!(is_numeric($user_id))){
+            if($user_id == ''){
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Order Placing Failed..!');
+            return $response;
+            die();
+            }
+            else{
+                  $response = array(
+                'status' => 500,
+                'status_message' => 'Order Placing Failed..!');
+            return $response;
+            die();
+            }
+        }
+        if( $user_name == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Order Placing Failed..!');
+            return $response;
+            die();
+        }
+        
         $sql = "INSERT INTO order_tab(user_id,user_name,order_products,order_date,order_time,status) VALUES
          ('$user_id','$user_name','$prod_associated',NOW(),NOW(),'1')";
 //print_r($sql);die();
