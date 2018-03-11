@@ -12,7 +12,23 @@ class ManageOrder_model extends CI_Model{
 	//-------------------------------------------------------------//
 	public function getMyOrders($user_id){
 
-		$query = "SELECT * FROM order_tab WHERE user_id='$user_id' AND status!=0 ORDER BY order_id DESC";
+            if (!(is_numeric($user_id))) {
+            if ($user_id == '') {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'No Orders Found..!');
+                return $response;
+                die();
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'No Orders Found..!');
+                return $response;
+                die();
+            }
+        }
+
+        $query = "SELECT * FROM order_tab WHERE user_id='$user_id' AND status!=0 ORDER BY order_id DESC";
 
 		$result = $this->db->query($query);
 
