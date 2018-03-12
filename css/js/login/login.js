@@ -13,13 +13,22 @@ $(function () {
             success: function (data){
                 console.log(data);  
                 var key=JSON.parse(data);
-                if(key.status == 200){                    
-                    $('#Login_RegisterDiv').load(location.href + " #Login_RegisterDiv>*", ""); 
+                if(key.status == 200){  
+                	$('#OTP_div').css('display','block');
+                	$('#hide_div').css('display','none');
+                	$('#message_div').css('display','none');
+                	$('#heading_div').css('display','none');
+                	$('#Login_RegisterDiv').css('display','none');
+                        $('#OTP_div').css('display','block');
+                        $('#registerDiv').css('display','none');
+                $('#user_id').val(key.user_id);	
+                $('#OTP_id').val(key.otp);	
+                 //$('#Login_RegisterDiv').load(location.href + " #Login_RegisterDiv>*", ""); 
                  $("#spinnerDiv").html('');
                  $("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div>');
                  window.setTimeout(
                     function(){
-                        location.reload(true)
+                       // location.reload(true)
                     },
                     3000
                     );   

@@ -96,6 +96,10 @@ for($i = 0; $i < count($prod_Name); $i++){
       if($this->upload->do_upload('userFile')){
         $fileData = $this->upload->data();
         $imagePath='images/order_images/'.$fileData['file_name'];
+//        $imagePath = array(
+//       // 'type'=> ,
+//        'image'=>'images/order_images/'.$fileData['file_name']
+//        );
       }
     }
 
@@ -103,7 +107,7 @@ for($i = 0; $i < count($prod_Name); $i++){
       'business_field' => $business_field[$i],  
       'prod_no' => $id_count,
       'prod_Name' =>  $prod_Name[$i],
-      'prod_quantity' =>  $prod_quantity[$i],
+      'prod_quantity' =>($prod_quantity[$i]) ,
       'prod_image' =>  $imagePath,
       'prod_regret' =>  0
     );
@@ -227,7 +231,7 @@ public function UpdateProfile(){
       'prod_Name' =>  $prod_Name[$i],
       'prod_Description' =>  $prod_Description[$i],
       'prod_quantity' =>  $prod_quantity[$i],
-      'prod_image' =>  $imagePath
+      'prod_image' => $imagePath
     );
   }
 
