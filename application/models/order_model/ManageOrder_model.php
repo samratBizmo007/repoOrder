@@ -22,7 +22,7 @@ class ManageOrder_model extends CI_Model{
             } else {
                 $response = array(
                     'status' => 500,
-                    'status_message' => 'No Orders Found..!');
+                    'status_message' => 'Order Placing Failed..!');
                 return $response;
                 die();
             }
@@ -131,16 +131,10 @@ class ManageOrder_model extends CI_Model{
             die();
             }
         }
-        if( $user_name == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Order Placing Failed..!');
-            return $response;
-            die();
-        }
+
         
-        $sql = "INSERT INTO order_tab(user_id,user_name,order_products,order_date,order_time,status) VALUES
-         ('$user_id','$user_name','$prod_associated',NOW(),NOW(),'1')";
+        $sql = "INSERT INTO order_tab(user_id,order_products,order_date,order_time,status) VALUES
+         ('$user_id','$prod_associated',NOW(),NOW(),'1')";
 //print_r($sql);die();
         $result = $this->db->query($sql);
 

@@ -119,7 +119,7 @@ error_reporting(E_ERROR | E_PARSE);
                       
                       <div class="col-lg-12 w3-margin-bottom">
                       
-                      <div class="w3-col l4 s6 w3-border w3-padding-small w3-center">
+                      <div class="w3-col l4 s6 w3-padding-small w3-center">
                       <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                       </div>
                       <div class="w3-col l8 s6 w3-padding-small">
