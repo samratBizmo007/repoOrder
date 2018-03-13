@@ -63,7 +63,7 @@ $admin_name=$this->session->userdata('admin_name');
    </div>
    <div class="w3-col l6 s6 w3-right">
     <div class="w3-col l10">
-      <span class="w3-button w3-right w3-medium w3-hover-none">Welcome, <strong><?php echo $admin_name; ?></strong></span>
+      <span class="w3-button w3-right w3-medium w3-hover-none">Welcome <strong><?php echo $admin_name; ?></strong></span>
     </div>
     <div class="w3-col l2">
     <div class="ui-group-buttons ">

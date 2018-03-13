@@ -147,7 +147,7 @@ error_reporting(E_ERROR | E_PARSE);
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="panel panel-login">
-					<div class="panel-heading">
+					<div class="panel-heading" id="heading_div">
 						<div class="w3-col l12 w3-margin w3-left" id="message_div">
 							<?php 
 							if(isset($status)!=''){
@@ -161,7 +161,7 @@ error_reporting(E_ERROR | E_PARSE);
 							?>
 							
 						</div>
-						<div class="row">
+						<div class="row" id="hide_div">
 							<div class="col-xs-6">
 								<a href="#" class="active" id="login_form-link"><i class="fa fa-unlock-alt"></i> Login</a>
 							</div>
@@ -170,12 +170,13 @@ error_reporting(E_ERROR | E_PARSE);
 							</div>
 						</div>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id="">
 						<div class="row">
-							<div class="col-lg-12" id="Login_RegisterDiv">
+							<div class="col-lg-12" id="">
+                                                            <div id='Login_RegisterDiv'>
 								<form id="login_form" role="form" method='post' enctype='multipart/form-data' style="display: block;">
 									<div class="w3-col l12 " id="login_err"></div>
-									<div class="form-group">
+                                                                        <div class="form-group"><?php?>
 									<input type="text" name="login_username" id="login_username" tabindex="2" class="form-control" placeholder="Username" required>
 									</div>
 									<div class="form-group">
@@ -189,19 +190,11 @@ error_reporting(E_ERROR | E_PARSE);
 										</div>
 									</div>
 								</form>
-							<form id="register_form" role="form" method='post' enctype='multipart/form-data' style="display: none;">
+                                                            </div>
+                                                            <form id="register_form" role="form" method='post' enctype='multipart/form-data' style=" display: none;">
 									<div class="w3-col l12 " id="registration_err"></div>
-									<div class="form-group">
-									<select name="business_field" id="business_field" tabindex="2" class="form-control">
-											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select Business Field</option>
-											<option value="1" <?php if($this->input->get('field', TRUE)==1) echo 'selected'; ?>>Mobile Accessories</option>
-											<option value="2" <?php if($this->input->get('field', TRUE)==2) echo 'selected'; ?>>Cosmetics</option>
-											<option value="3" <?php if($this->input->get('field', TRUE)==3) echo 'selected'; ?>>Watch and Glasses</option>
-											<option value="4" <?php if($this->input->get('field', TRUE)==4) echo 'selected'; ?>>Bags</option>
-											<option value="5" <?php if($this->input->get('field', TRUE)==5) echo 'selected'; ?>>Other</option>
-										
-									</select>
-									</div>
+                                                                        <div id = "registerDiv">
+									<input type="hidden" name="OTP_id" id="OTP_id">								
 									<div class="form-group">
 										<input type="text" name="register_username" id="register_username" tabindex="2" class="form-control" placeholder="Username" value="" required>
 									</div>
@@ -216,7 +209,7 @@ error_reporting(E_ERROR | E_PARSE);
 									</div>
 									<div id="message"></div>
 									<div class="form-group">
-										<input type="number" name="register_number" id="register_number" tabindex="5"  class="form-control" placeholder="Enter Your Number" required>
+                                                                            <input type="number" name="register_number" id="register_number" tabindex="5" minlength="1" class="form-control" placeholder="Enter Your Number" required>
 									</div>
 									<div class="form-group">
 									<textarea rows="5" name="address" id="address" class="form-control form-control rounded-0" placeholder="Enter Your Address" required></textarea>
@@ -229,12 +222,40 @@ error_reporting(E_ERROR | E_PARSE);
 											</div>
 										</div>
 									</div>
+                                                                        </div>
+
+                                                                        <div class="col-md-12" id="OTP_div" style="display:none;">
+                                                                            <div class="panel panel-login">
+                                                                                <div class="panel-body">
+                                                                                    <div class="row">
+                                                                                        <div class="col-lg-12" id="">
+                                                                                                <div class="w3-col l12 " id="otp_err"></div>
+                                                                                                <div class="w3-center">Enter OTP</div>
+                                                                                                <input type="hidden" name="user_id" id="user_id">								
+                                                                                                <p style="color:#31ab00;">Check your email for the OTP</p>
+                                                                                                <div class="form-group">
+                                                                                                    <input type="number" name="otp" id="otp" tabindex="2" class="form-control" placeholder="Enter otp" value="" >
+                                                                                                </div>
+                                                                                                <div class="form-group">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-sm-6 col-sm-offset-3">
+                                                                                                            <input type="button" name="otp_submit" id="otp_submit" tabindex="5" class="form-control  btn btn-register bluishGreen_bg" value="Submit">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 								</form>
 							</div>
 						</div>
 					</div>
 				</div>
+				
 			</div>
+			
 		</div>
 	</div>
 	<script>
@@ -269,6 +290,41 @@ error_reporting(E_ERROR | E_PARSE);
 			});
 		});
 
+	</script>
+	<script>
+	$(function () {
+	    $("#otp_submit").click(function () {
+             var dataString = $("#register_form").serialize();
+	        $("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
+	        $.ajax({
+	            type: "POST",
+	            url: BASE_URL + "login/verify_otp",
+	            data: dataString,
+	            return: false, //stop the actual form post !important!
+	            success: function (data)
+	            {
+                        //console.log(data);
+                        //alert(data);
+	                var key=JSON.parse(data);
+                if(key.status == 200){  
+                //alert(key.status_message);
+                 $("#spinnerDiv").html('');
+                 $("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div>');
+                 window.setTimeout(
+                    function(){
+                        location.reload(true)
+                    },
+                    3000
+                    );   
+             }else{ 
+                $("#spinnerDiv").html('');               
+                $("#messageDiv").html('<div class="alert alert-danger" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div>');
+            }
+	            }
+	        });
+	        return false;  //stop the actual form post !important!
+	    });
+	});
 	</script>
 <!--	<script>-->
 <!--		$(function () {-->

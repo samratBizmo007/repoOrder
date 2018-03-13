@@ -16,7 +16,7 @@ class Login_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function registerCustomer_post() {
         extract($_POST);
-        $result = $this->login->registerCustomer($register_username, $register_email, $register_password, $register_mobile_no, $register_address, $register_business_field);
+        $result = $this->login->registerCustomer($register_username, $register_email, $register_password, $register_mobile_no, $register_address);
         return $this->response($result);
     }
 
@@ -48,5 +48,11 @@ class Login_api extends REST_Controller {
 		$result = $this->login->logout_user($user_id);
 		return $this->response($result);			
 	  }
-    
+	  //---------------------veerify otp---------//
+       public function verify_otp_post() {
+        extract($_POST);
+        $result = $this->login->verify_otp($register_username, $register_email, $register_password, $register_mobile_no, $register_address,$OTP_id);
+        return $this->response($result);
+    }
+
 }

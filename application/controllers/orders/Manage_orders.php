@@ -46,6 +46,7 @@ class Manage_orders extends CI_controller{
  //----------this function to add order profile-----------------------------//
 public function addOrder() { 
   extract($_POST);
+  //print_r($_POST);die();
   $user_id=$this->session->userdata('user_id');
   $user_name=$this->session->userdata('user_name');
 //print_r($_FILES['prod_image']['name'][1]);die();
@@ -95,13 +96,18 @@ for($i = 0; $i < count($prod_Name); $i++){
       if($this->upload->do_upload('userFile')){
         $fileData = $this->upload->data();
         $imagePath='images/order_images/'.$fileData['file_name'];
+//        $imagePath = array(
+//       // 'type'=> ,
+//        'image'=>'images/order_images/'.$fileData['file_name']
+//        );
       }
     }
 
     $prod_Arr[]=array(
+      'business_field' => $business_field[$i],  
       'prod_no' => $id_count,
       'prod_Name' =>  $prod_Name[$i],
-      'prod_quantity' =>  $prod_quantity[$i],
+      'prod_quantity' =>($prod_quantity[$i]) ,
       'prod_image' =>  $imagePath,
       'prod_regret' =>  0
     );
@@ -111,7 +117,7 @@ for($i = 0; $i < count($prod_Name); $i++){
   $data['user_id']=$user_id;
   $data['user_name']=$user_name;
   $data['prod_associated']=json_encode($prod_Arr);
-  
+  //print_r($data);die();
   $path = base_url();
   $url = $path.'api/ManageOrder_api/addNewOrder';
   $ch = curl_init($url);
@@ -225,7 +231,7 @@ public function UpdateProfile(){
       'prod_Name' =>  $prod_Name[$i],
       'prod_Description' =>  $prod_Description[$i],
       'prod_quantity' =>  $prod_quantity[$i],
-      'prod_image' =>  $imagePath
+      'prod_image' => $imagePath
     );
   }
 
