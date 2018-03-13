@@ -17,7 +17,27 @@ error_reporting(E_ERROR | E_PARSE);
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/js/orders/manage_order.js"></script>
-  
+  <style>
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: black; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+</style>
 </head>
 <body>
   <!-- !PAGE CONTENT! -->
@@ -41,7 +61,7 @@ error_reporting(E_ERROR | E_PARSE);
       <div class="tab-pane active" id="show_table">  <!-- tab for Raw material starts here -->
         <div class="">                    
           <div class="w3-col l6 w3-margin-top">
-            <div class="" id="All_Orders" name="All_Orders" style="">
+            <div class="" id="All_Orders" name="All_Orders" style="height: 450px;overflow: scroll ">
               <table class="table table-striped table-responsive w3-small"> 
                 <!-- table starts here -->
                 <thead>
