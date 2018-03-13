@@ -252,10 +252,8 @@ error_reporting(E_ERROR | E_PARSE);
 							</div>
 						</div>
 					</div>
-				</div>
-				
-			</div>
-			
+				</div>				
+			</div>			
 		</div>
 	</div>
 	<script>
@@ -302,9 +300,7 @@ error_reporting(E_ERROR | E_PARSE);
 					data: dataString,
 	            return: false, //stop the actual form post !important!
 	            success: function (data)
-	            {
-                        //console.log(data);
-                        //alert(data);
+	            {                       
                         var key=JSON.parse(data);
                         if(key.status == 200){  
                 //alert(key.status_message);
@@ -314,7 +310,7 @@ error_reporting(E_ERROR | E_PARSE);
                 	function(){
                 		location.reload(true)
                 	},
-                	3000
+                	2000
                 	);   
             }else{ 
             	$("#spinnerDiv").html('');               

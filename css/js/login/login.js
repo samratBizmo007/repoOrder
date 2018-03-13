@@ -11,7 +11,7 @@ $(function () {
             data: dataString,
             return: false, //stop the actual form post !important!
             success: function (data){
-                console.log(data);  
+                //console.log(data);  
                 var key=JSON.parse(data);
                 if(key.status == 200){  
                 	$('#OTP_div').css('display','block');
@@ -30,7 +30,7 @@ $(function () {
                     function(){
                        // location.reload(true)
                     },
-                    3000
+                    2000
                     );   
              }else{ 
                 $("#spinnerDiv").html('');               

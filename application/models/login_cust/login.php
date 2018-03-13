@@ -120,7 +120,8 @@ class Login extends CI_Model {
         return $id;
     }
     //-------------------------------------------------------------//
-    //-----------------------function to check whether email-ID already exists------------------//
+        //-----------------------function to check whether username already exists------------------//
+
     function checkEmail_exist($email_id) {
         $query = null;
         $query = $this->db->get_where('customer_tab', array(//making selection
@@ -133,6 +134,8 @@ class Login extends CI_Model {
             return 1;
         }
     }
+        //-----------------------function to check whether email-ID already exists------------------//
+
     public function checkUsername_exist($user_name){
           $query = null;
         $query = $this->db->get_where('customer_tab', array(//making selection
