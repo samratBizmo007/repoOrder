@@ -20,7 +20,17 @@ class Login_api extends REST_Controller {
         return $this->response($result);
     }
 
-    // -----------------------USER LOGOUT API----------------------//
+    // -----------------------USER REGISTER API----------------------//
+    //-------------------------------------------------------------// 
+    // -----------------------USER REGISTER API----------------------//
+    //-------------------------------------------------------------//
+    public function send_otpForMobile_post() {
+        extract($_POST);
+        $result = $this->login->send_otpForMobile($register_username, $register_email);
+        return $this->response($result);
+    }
+
+    // -----------------------USER REGISTER API----------------------//
     //-------------------------------------------------------------// 
     // -----------------------USER LOGIN API----------------------//
     //-------------------------------------------------------------//
@@ -31,7 +41,7 @@ class Login_api extends REST_Controller {
     }
 
     //---------------------USER LOGIN END------------------------------//
-        // -----------------------USER LOGIN API----------------------//
+    // -----------------------ADMIN LOGIN API----------------------//
     //-------------------------------------------------------------//
     public function adminLogin_post() {
         extract($_POST);
@@ -39,20 +49,29 @@ class Login_api extends REST_Controller {
         return $this->response($result);
     }
 
-    //---------------------USER LOGIN END------------------------------//
-    
+    //---------------------ADMIN LOGIN END------------------------------//
     //-----------user logout ---------------//
-    	public function logout_get()
-    	{
-		extract($_GET);
-		$result = $this->login->logout_user($user_id);
-		return $this->response($result);			
-	  }
-	  //---------------------veerify otp---------//
-       public function verify_otp_post() {
-        extract($_POST);
-        $result = $this->login->verify_otp($register_username, $register_email, $register_password, $register_mobile_no, $register_address,$OTP_id);
+    public function logout_get() {
+        extract($_GET);
+        $result = $this->login->logout_user($user_id);
         return $this->response($result);
     }
 
+    //-----------user logout ---------------//
+    //---------------------veerify otp---------//
+    public function verify_otp_post() {
+        extract($_POST);
+        $result = $this->login->verify_otp($register_username, $register_email, $register_password, $register_mobile_no, $register_address, $OTP_id);
+        return $this->response($result);
+    }
+
+    //---------------------veerify otp---------//
+//---------------------veerify otp for Mobile---------//
+    public function verify_otpForRegisterCustomer_post() {
+        extract($_POST);
+        $result = $this->login->verify_otpForRegisterCustomer($register_username, $register_email, $register_password, $register_mobile_no, $register_address, $OTP_id);
+        return $this->response($result);
+    }
+
+//---------------------veerify otp for Mobile---------//
 }

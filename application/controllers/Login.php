@@ -18,7 +18,31 @@ class Login extends CI_Controller {
         }
         $this->load->view('pages/login/login');
     }
+//-------------------api for the otp sending to user during registering customer-------------------//
+public function send_otpForMobile() {
+        extract($_POST);
+        //print_r($_POST);die();
+        //Connection establishment, processing of data and response from REST API		
+        $data = array(
+            'register_username' => $register_username,
+            'register_password' => $register_password,
+            'register_email' => $register_email,
+            'register_mobile_no' => $register_number,
+            'register_address' => $address
+        );
+        $path = base_url();
+        $url = $path . 'api/Login_api/send_otpForMobile';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
 
+        echo $response_json;
+    }
+//-------------------api for the otp sending to user during registering customer-------------------//
     // --------------register user fucntion starts----------------------//
     public function registerCustomer() {
         extract($_POST);
@@ -45,7 +69,32 @@ class Login extends CI_Controller {
     }
 
     //	------------------function ends here-----------------------------//
-
+//-------------------api for the verify otp for mobile to login customer-------------------//
+ public function verify_otpForRegisterCustomer() {
+        extract($_POST);
+        //print_r($_POST);die();
+        $data = array(
+            'register_username' => $register_username,
+            'register_password' => $register_password,
+            'register_email' => $register_email,
+            'register_mobile_no' => $register_number,
+            'register_address' => $address,
+            'OTP_id' => $OTP_id
+        );
+        //if logout success then destroy session and unset session variables
+        $path = base_url();
+        $url = $path . 'api/Login_api/verify_otpForRegisterCustomer';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        echo $response_json;
+    }
+//-------------------api for the verify otp for mobile to login customer-------------------//
+//-------------------fun for verify otp -----------------------------------------//
     public function verify_otp() {
         extract($_POST);
         //print_r($_POST);die();
@@ -69,6 +118,7 @@ class Login extends CI_Controller {
         $response = json_decode($response_json, true);
         echo $response_json;
     }
+//-------------------fun for verify otp -----------------------------------------//
 
     //----------------------function to login---------------------------//
     public function loginCustomer() {
