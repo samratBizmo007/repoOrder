@@ -59,6 +59,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 $count = 1;
                                 $status = '';
                                 $color = '';
+                                $value = '';
                                 if ($orders['status'] == 200) {
                                     for ($i = 0; $i < count($orders['status_message']); $i++) {
                                          if($orders['status_message'][$i]['status'] == 1){
@@ -76,7 +77,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
                                         <td class="text-center">#OID-' . $orders['status_message'][$i]['order_id'] . '</td>
-                                        <td class="text-center">' . $orders['status_message'][$i]['user_name'] . '</td>
+                                        <td class="text-center">' . $orders['status_message'][$i]['username'] . '</td>
                                         <td class="text-center">' . $orders['status_message'][$i]['order_date'] . '</td>
                                         <td class="text-center '.$color.'">' .$status. '</td>
                                         <td class="text-center">';
@@ -119,33 +120,52 @@ error_reporting(E_ERROR | E_PARSE);
                                         echo'
                                         <div class="w3-left w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
                                         <label class="">
-                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" oncheck="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">&nbsp;<b> Cancel Product</b>
+                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">&nbsp;<b> Cancel Product</b>
                                         </label>
                                         </div>';
                                             }
-                                        }                                        
+                                        }  
+                                         if($key['business_field'] == 1){
+                                            $value = 'Mobile Accessories';  
+                                        } 
+                                        if($key['business_field'] == 2){
+                                            $value = 'Cosmetics';  
+                                        }
+                                        if($key['business_field'] == 3){
+                                            $value = 'Watch and Glasses';  
+                                        }
+                                        if($key['business_field'] == 4){
+                                            $value = 'Bags';  
+                                        }
+                                        if($key['business_field'] == 5){
+                                            $value = 'Others';  
+                                        }
                                         echo'<div class="col-lg-12 w3-margin-bottom">
-                                        <div class="w3-col l4 s6 w3-padding-small w3-center">
+                                        <div class="w3-col l4 s4 w3-padding-small w3-center">
                                         <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                                         </div>
-                                        <div class="w3-col l8 s6 w3-padding-small">
+                                        <div class="w3-col l8 s8 w3-padding-small">
                                         <div class="w3-col l12 ">
-                                        <div class="w3-col l6">
+                                        <div class="w3-col l4" style="padding-right: 5px;">
+                                        <label class="">Business Field:</label>
+                                        <p class="">'.$value.'</p>
+                                        </div>
+                                        <div class="w3-col l4" style="padding-right: 5px;">
                                         <label class="">Product Name:</label>
                                          <p class="">'.$key['prod_Name'].'</p>
                                          </div>
-                                         <div class="w3-col l6">
+                                         <div class="w3-col l4">
                                          <label class="">Quantity:</label>
                                          <p class="" >'.$key['prod_quantity'].' No(s).</p>
                                          
                                          </div>
                                          </div>
                                          <div class="w3-col l12 ">
-                                         <div class="w3-col l6">
+                                         <div class="w3-col l4" style="padding-right: 5px;">
                                          <label class="">Address:</label>
                                          <p class="">'.$orders['status_message'][$i]['address'].'</p>
                                          </div>
-                                         <div class="w3-col l6">
+                                         <div class="w3-col l4">
                                           <label class="">Mobile No:</label>
                                          <p class="" >'.$orders['status_message'][$i]['mobile_no'].'</p>
                                          </div>
@@ -204,6 +224,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     $count = 1;
                                        $status = '';
                                 $color = '';
+                                $value = '';
                                 if ($Open_orders['status'] == 200) {
                                     for ($i = 0; $i < count($Open_orders['status_message']); $i++) {
                                         if($Open_orders['status_message'][$i]['status'] == 2){
@@ -217,7 +238,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
                                         <td class="text-center">#OID-' . $Open_orders['status_message'][$i]['order_id'] . '</td>
-                                        <td class="text-center">' . $Open_orders['status_message'][$i]['user_name'] . '</td>
+                                        <td class="text-center">' . $Open_orders['status_message'][$i]['username'] . '</td>
                                         <td class="text-center">' . $Open_orders['status_message'][$i]['order_date'] . '</td>
                                         <td class="text-center '.$color.'">' .$status. '</td>                                        
                                         <td class="text-center">
@@ -265,31 +286,50 @@ error_reporting(E_ERROR | E_PARSE);
                                         </label>
                                         </div>';
                                             }
-                                        }                                        
+                                        } 
+                                        if($key['business_field'] == 1){
+                                            $value = 'Mobile Accessories';  
+                                        } 
+                                        if($key['business_field'] == 2){
+                                            $value = 'Cosmetics';  
+                                        }
+                                        if($key['business_field'] == 3){
+                                            $value = 'Watch and Glasses';  
+                                        }
+                                        if($key['business_field'] == 4){
+                                            $value = 'Bags';  
+                                        }
+                                        if($key['business_field'] == 5){
+                                            $value = 'Others';  
+                                        }
                                         echo'<div class="col-lg-12 w3-margin-bottom">
-                                        <div class="w3-col l4 s6 w3-padding-small w3-center">
+                                        <div class="w3-col l4 s4 w3-padding-small w3-center">
                                         <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
                                         </div>
-                                        <div class="w3-col l8 s6 w3-padding-small">
+                                        <div class="w3-col l8 s8 w3-padding-small">
                                         <div class="w3-col l12 ">
-                                        <div class="w3-col l6">
+                                        <div class="w3-col l4" style="padding-right: 5px;">
+                                        <label class="">Business Field:</label>
+                                        <p class="">'.$value.'</p>
+                                        </div>
+                                        <div class="w3-col l4" style="padding-right: 5px;">
                                         <label class="">Product Name:</label>
                                          <p class="">'.$key['prod_Name'].'</p>
                                          </div>
-                                         <div class="w3-col l6">
+                                         <div class="w3-col l4">
                                          <label class="">Quantity:</label>
                                          <p class="" >'.$key['prod_quantity'].' No(s).</p>
                                          
                                          </div>
                                          </div>
                                          <div class="w3-col l12 ">
-                                         <div class="w3-col l6">
+                                         <div class="w3-col l4" style="padding-right: 5px;">
                                          <label class="">Address:</label>
-                                         <p class="">'.$orders['status_message'][$i]['address'].'</p>
+                                         <p class="">'.$Open_orders['status_message'][$i]['address'].'</p>
                                          </div>
-                                         <div class="w3-col l6">
+                                         <div class="w3-col l4">
                                           <label class="">Mobile No:</label>
-                                         <p class="" >'.$orders['status_message'][$i]['mobile_no'].'</p>
+                                         <p class="" >'.$Open_orders['status_message'][$i]['mobile_no'].'</p>
                                          </div>
                                          </div>
                                          </div>
@@ -346,6 +386,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         $count = 1;
                                            $status = '';
                                 $color = '';
+                                $value = '';
                                 if ($Closed_orders['status'] == 200) {
                                     for ($i = 0; $i < count($Closed_orders['status_message']); $i++) {
                                            if($Closed_orders['status_message'][$i]['status'] == 2){
@@ -359,7 +400,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         echo '<tr class="text-center">
                                         <td class="text-center">' . $count . '.</td>
                                         <td class="text-center">#OID-' . $Closed_orders['status_message'][$i]['order_id'] . '</td>
-                                        <td class="text-center">' . $Closed_orders['status_message'][$i]['user_name'] . '</td>
+                                        <td class="text-center">' . $Closed_orders['status_message'][$i]['username'] . '</td>
                                         <td class="text-center">' . $Closed_orders['status_message'][$i]['order_date'] . '</td>
                                         <td class="text-center '.$color.'">' .$status. '</td>
                                         <td class="text-center">
@@ -385,6 +426,21 @@ error_reporting(E_ERROR | E_PARSE);
 
                                         foreach($product_info as $key)
                                         {
+                                        if($key['business_field'] == 1){
+                                            $value = 'Mobile Accessories';  
+                                        } 
+                                        if($key['business_field'] == 2){
+                                            $value = 'Cosmetics';  
+                                        }
+                                        if($key['business_field'] == 3){
+                                            $value = 'Watch and Glasses';  
+                                        }
+                                        if($key['business_field'] == 4){
+                                            $value = 'Bags';  
+                                        }
+                                        if($key['business_field'] == 5){
+                                            $value = 'Others';  
+                                        }    
                                         echo'
                                         <div class="col-lg-12 w3-margin-bottom">
                                         <div class="w3-col l4 s6 w3-padding-small w3-center">
@@ -392,22 +448,26 @@ error_reporting(E_ERROR | E_PARSE);
                                         </div>
                                         <div class="w3-col l8 s6 w3-padding-small">
                                         <div class="w3-col l12 ">
-                                        <div class="w3-col l6">
+                                        <div class="w3-col l4" style="padding-right: 5px;">
+                                        <label class="">Business Field:</label>
+                                        <p class="">'.$value.'</p>
+                                        </div>
+                                        <div class="w3-col l4" style="padding-right: 5px;">
                                         <label class="">Product Name:</label>
                                         <p class="">'.$key['prod_Name'].'</p>
                                         </div>
-                                        <div class="w3-col l6">
+                                        <div class="w3-col l4">
                                         <label class="">Quantity:</label>
                                         <p class="" >'.$key['prod_quantity'].' No(s).</p>
                                         
                                         </div>
                                         </div>
                                         <div class="w3-col l12 ">
-                                        <div class="w3-col l6">
+                                        <div class="w3-col l4" style="padding-right: 5px;">
                                         <label class="">Address:</label>
                                         <p class="">'.$Closed_orders['status_message'][$i]['address'].'</p>
                                         </div>
-                                        <div class="w3-col l6">
+                                        <div class="w3-col l4" >
                                          <label class="">Mobile No:</label>
                                         <p class="" >'.$Closed_orders['status_message'][$i]['mobile_no'].'</p>
                                         </div>
