@@ -49,8 +49,7 @@ public function addOrder() {
   //print_r($_POST);die();
 
   if(in_array('0', $business_field)){
-     echo '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Select Business Field for all Items.</h4>
-    ';
+     echo '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Select Business Field for all Items.</h4>';
     die();
   }
   $user_id=$this->session->userdata('user_id');
