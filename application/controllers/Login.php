@@ -13,7 +13,7 @@ class Login extends CI_Controller {
 //		$profile_type=$this->session->userdata('profile_type');
 		$user_name=$this->session->userdata('user_name');
 //		//check session variable set or not, otherwise logout
-		if(($user_id!='') || ($user_name!='') || ($profile_type!='')){
+		if(($user_id!='') || ($user_name!='')){
 			redirect('user/dashboard');
 		}
 
