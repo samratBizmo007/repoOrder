@@ -14,7 +14,7 @@ error_reporting(E_ERROR | E_PARSE);
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
-<!--    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/config.js"></script>-->
+ <script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
 <!--    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/inventory/materialstock_management.js"></script>-->
 
@@ -102,7 +102,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         foreach($product_info as $key)
                                         {
                                         if($key['prod_regret'] == 1){
-                                              $regret = 'Regreted Product';
+                                              $regret = 'Cancelled Product';
                                               $class = 'w3-text-red';
                                           }
                                           if($key['prod_regret'] == 0){
@@ -119,7 +119,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         echo'
                                         <div class="w3-left w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
                                         <label class="">
-                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" oncheck="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">&nbsp;<b> Regret Product</b>
+                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" oncheck="regretProduct('.$key['prod_no'].','.$orders['status_message'][$i]['order_id'].');">&nbsp;<b> Cancel Product</b>
                                         </label>
                                         </div>';
                                             }
@@ -168,7 +168,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                                     echo '
                                     <tr class="text-center" >
-                                    <td colspan="6"><b>No Orders Available</b></td>
+                                    <td colspan="6"><b>No Orders Active</b></td>
                                     </tr>
                                     ';
                                   }
@@ -180,68 +180,6 @@ error_reporting(E_ERROR | E_PARSE);
                     </div>
                 </div><!-- table container ends here -->
                 
-                <!-- script to delete order -->
-<script>
-  function delOrder(id){
-    $.confirm({
-      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Close Order !!!</h4>',
-      type: 'red',
-      buttons: {
-        confirm: function () {
-          var dataS = 'order_id='+ id;
-          $.ajax({
-            url:"<?php echo base_url(); ?>admin/dashboard/delOrder", 
-            type: "POST", 
-            data: dataS,
-            cache: false,
-            success:function(html){     
-            $.alert(html);              
-             $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
-             location.reload();
-            }
-          });
-        },
-        cancel: function () {        
-        }
-      }
-    });
-
-  }
-  function regretProduct(prod_no,order_id){
-  $.confirm({
-      title: '<h4 class="w3-text-orange"><i class="fa fa-minus-square"></i> Are you sure you want to proceed further?!</h4>',
-      type: 'orange',
-      buttons: {
-        confirm: function () {
-         
-          $.ajax({
-            url:"<?php echo base_url(); ?>admin/dashboard/regretProduct", 
-            type: "POST", 
-            data: {
-            prod_no: prod_no,
-            order_id: order_id
-            },
-            cache: false,
-            success:function(html){     
-            $.alert(html);              
-             // $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
-             // $('#modal_'+order_id).load(location.href + " #modal_"+order_id+">*", ""); 
-             //location.reload();
-             
-             $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
-             $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
-            }
-          });
-        },
-        cancel: function () {
-        $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
-        $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
-
-        }
-      }
-    });
-  }
-</script>
             <!--____________________________________ tab div 1 ends here_________________________________________ -->
             <!--_______________________________ tab 3 starts here_____________________________________________ -->
             
@@ -306,7 +244,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         foreach($product_info as $key)
                                         {
                                         if($key['prod_regret'] == 1){
-                                              $regret = 'Regreted Product';
+                                              $regret = 'Cancelled Product';
                                               $class = 'w3-text-red';
                                           }
                                           if($key['prod_regret'] == 0){
@@ -323,7 +261,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         echo'
                                         <div class="w3-left w3-col l12 w3-margin-top" id="regretDiv_'.$key['prod_no'].'">
                                         <label class="">
-                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$Open_orders['status_message'][$i]['order_id'].');">&nbsp;<b> Regret Product</b>
+                                        <input class="" name="regretProduct['.$key['prod_no'].']" data-onstyle="danger" data-size="mini" id="regretProduct_'.$key['prod_no'].'" type="checkbox" value="'.$key['prod_no'].'" onchange="regretProduct('.$key['prod_no'].','.$Open_orders['status_message'][$i]['order_id'].');">&nbsp;<b> Cancel Product</b>
                                         </label>
                                         </div>';
                                             }
@@ -372,7 +310,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                                     echo '
                                     <tr class="text-center" >
-                                    <td colspan="6"><b>No Orders Available</b></td>
+                                    <td colspan="6"><b>No Orders Open</b></td>
                                     </tr>
                                     ';
                                   }
@@ -669,7 +607,7 @@ error_reporting(E_ERROR | E_PARSE);
   }
   function Open_Orders(id){
     $.confirm({
-      title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are You Sure To open Order..!</h4>',
+      title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are You Sure To Open Order..!</h4>',
       type: 'green',
       buttons: {
         confirm: function () {
@@ -694,4 +632,68 @@ error_reporting(E_ERROR | E_PARSE);
 
   }
 </script>
+
+<!-- script to delete order -->
+<script>
+  function delOrder(id){
+    $.confirm({
+      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Close Order !!!</h4>',
+      type: 'red',
+      buttons: {
+        confirm: function () {
+          var dataS = 'order_id='+ id;
+          $.ajax({
+            url:"<?php echo base_url(); ?>admin/dashboard/delOrder", 
+            type: "POST", 
+            data: dataS,
+            cache: false,
+            success:function(html){     
+            $.alert(html);              
+             $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+             location.reload();
+            }
+          });
+        },
+        cancel: function () {        
+        }
+      }
+    });
+
+  }
+  function regretProduct(prod_no,order_id){
+  $.confirm({
+      title: '<h4 class="w3-text-orange"><i class="fa fa-minus-square"></i> Are you sure you want to proceed further?!</h4>',
+      type: 'orange',
+      buttons: {
+        confirm: function () {
+         
+          $.ajax({
+            url:"<?php echo base_url(); ?>admin/dashboard/regretProduct", 
+            type: "POST", 
+            data: {
+            prod_no: prod_no,
+            order_id: order_id
+            },
+            cache: false,
+            success:function(html){     
+            $.alert(html);              
+             // $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+             // $('#modal_'+order_id).load(location.href + " #modal_"+order_id+">*", ""); 
+             //location.reload();
+             
+             $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
+             $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
+            }
+          });
+        },
+        cancel: function () {
+        $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
+        $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
+
+        }
+      }
+    });
+  }
+</script>
+
 
