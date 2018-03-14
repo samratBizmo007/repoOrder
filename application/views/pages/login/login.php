@@ -209,8 +209,8 @@ error_reporting(E_ERROR | E_PARSE);
                                             <div id="message"></div>
                                             <div class="w3-col l12 form-group">
                                                 <div class="w3-col l4 s4" style=" padding-right: 5px;">
-                                                    <input type="text" name="mobile_code" id="mobile_code" value="" class="form-control" width="40px" placeholder="Code" required></div>
-                                                <div class="w3-col l8 s8"><input type="text" name="register_number" id="register_number"  minlength="1" class="form-control" placeholder="Enter Your Number" required></div>
+                                                    <input type="text" name="mobile_code" id="mobile_code" value="965" class="form-control" pattern="[0-9]{3}" oninvalid="this.setCustomValidity('No whitespaces, Enter Only 3 Digit Country Code.')" oninput="setCustomValidity('')" placeholder="Code" required></div>
+                                                <div class="w3-col l8 s8"><input type="text" name="register_number" id="register_number" pattern="^[789]\d{9}$" oninvalid="this.setCustomValidity('No whitespaces, Enter Only 10 Digit Mobile Number.')" oninput="setCustomValidity('')" class="form-control" placeholder="Enter Your Number" required></div>
                                             </div>
                                             <div class="form-group">
                                                 <textarea rows="8" name="address" id="address" class="form-control form-control rounded-0" placeholder="Enter Your Address" required></textarea>
@@ -310,7 +310,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 $("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>' + key.status_message + '</strong></div>');
                                 window.setTimeout(
                                         function () {
-                                            location.reload(true)
+                                            location.reload(true);
                                         },
                                         2000
                                         );

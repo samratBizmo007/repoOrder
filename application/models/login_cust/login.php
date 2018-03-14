@@ -58,7 +58,7 @@ class Login extends CI_Model {
                     if ($result) {
                         $response = array(
                             'status' => 200, //---------insert db success code
-                            'otp' => $otp,
+                            //'otp' => $otp,
                             'status_message' => 'OTP Has Been Sent To Your Email ID. Please Verify The OTP.'
                         );
                     }
@@ -69,7 +69,7 @@ class Login extends CI_Model {
                     if ($result) {
                         $response = array(
                             'status' => 200, //---------insert db success code
-                            'otp' => $otp,
+                            //'otp' => $otp,
                             'status_message' => 'OTP Has Been Sent To Your Email ID. Please Verify The OTP.'
                         );
                     } else {
@@ -101,7 +101,7 @@ class Login extends CI_Model {
         $checkusername = login::checkUsername_exist($user_name);
         //print_r($checkEmail);die();
         if ($checkEmail == 0 && $checkusername == 0) {
-            $otp = rand(1000, 9999);
+            $otp = rand(100000, 999999);
 //            $data = array(
 //                'username' => $user_name,
 //                'password' => base64_encode($password),
@@ -131,7 +131,7 @@ class Login extends CI_Model {
                     if ($result) {
                         $response = array(
                             'status' => 200, //---------insert db success code
-                            'otp' => $otp,
+                            //'otp' => $otp,
                             'status_message' => 'OTP Has Been Sent To Your Email ID. Please Verify The OTP.'
                         );
                     }
@@ -141,7 +141,7 @@ class Login extends CI_Model {
                     if ($result) {
                         $response = array(
                             'status' => 200, //---------insert db success code
-                            'otp' => $otp,
+                            //'otp' => $otp,
                             'status_message' => 'OTP Has Been Sent To Your Email ID. Please Verify The OTP.'
                         );
                     } else {

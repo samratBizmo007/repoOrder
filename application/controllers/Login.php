@@ -52,9 +52,10 @@ public function send_otpForMobile() {
             'register_username' => $register_username,
             'register_password' => $register_password,
             'register_email' => $register_email,
-            'register_mobile_no' => $register_number,
+            'register_mobile_no' => $mobile_code.'-'.$register_number,
             'register_address' => $address
         );
+        //print_r($data);die();
         $path = base_url();
         $url = $path . 'api/Login_api/registerCustomer';
         $ch = curl_init($url);
@@ -102,7 +103,7 @@ public function send_otpForMobile() {
             'register_username' => $register_username,
             'register_password' => $register_password,
             'register_email' => $register_email,
-            'register_mobile_no' => $register_number,
+            'register_mobile_no' => $mobile_code.'-'.$register_number,
             'register_address' => $address,
             'OTP_id' => $otp
         );
