@@ -22,6 +22,7 @@ class ManageOrder_model extends CI_Model{
             } else {
                 $response = array(
                     'status' => 500,
+                    'imageBasePath'  => 'http://ordertracker.bizmo-tech-admin.com/images/order_images/',
                     'status_message' => 'Order Placing Failed..!');
                 return $response;
                 die();
