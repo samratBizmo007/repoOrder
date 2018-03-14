@@ -33,7 +33,7 @@ class Login extends CI_Model {
         $checkusername = login::checkUsername_exist($user_name);
         //print_r($checkEmail);die();
         if ($checkEmail == 0 && $checkusername == 0) {
-            $otp = rand(1000, 9999);
+            $otp = rand(100000, 999999);
 
             $otp_function = login::sendEmailotp($user_name, $email_id, $otp);
             
@@ -368,7 +368,7 @@ class Login extends CI_Model {
             } else {
                 $response = array(
                     'status' => 500,
-                    'status_message' => 'Invalid OTP.');
+                    'status_message' => 'Invalid OTP. Please Validate Otp Again By Filling The Registration Form.!');
             }
         } else {
             $response = array(
@@ -405,7 +405,7 @@ class Login extends CI_Model {
             } else {
                 $response = array(
                     'status' => 500,
-                    'status_message' => 'Invalid OTP.');
+                    'status_message' => 'Invalid OTP. Please Validate Otp Again By Filling The Registration Form.!');
             }
         } else {
             $response = array(
