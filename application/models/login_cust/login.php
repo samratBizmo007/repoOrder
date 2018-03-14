@@ -187,7 +187,7 @@ class Login extends CI_Model {
             'email' => $email_id
         ));
 
-        if ($query->num_rows() >= 0) {
+        if ($query->num_rows() <= 0) {
             return 0;
         } else {
             return 1;
@@ -202,7 +202,7 @@ class Login extends CI_Model {
             'username' => $user_name
         ));
 
-        if ($query->num_rows() >= 0) {
+        if ($query->num_rows() <= 0) {
             return 0;
         } else {
             return 1;

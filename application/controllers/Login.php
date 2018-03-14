@@ -79,7 +79,7 @@ public function send_otpForMobile() {
             'register_email' => $register_email,
             'register_mobile_no' => $register_number,
             'register_address' => $address,
-            'OTP_id' => $OTP_id
+            'OTP_id' => $otp
         );
         //if logout success then destroy session and unset session variables
         $path = base_url();
@@ -104,7 +104,7 @@ public function send_otpForMobile() {
             'register_email' => $register_email,
             'register_mobile_no' => $register_number,
             'register_address' => $address,
-            'OTP_id' => $OTP_id
+            'OTP_id' => $otp
         );
         //if logout success then destroy session and unset session variables
         $path = base_url();

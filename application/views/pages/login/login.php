@@ -194,31 +194,32 @@ error_reporting(E_ERROR | E_PARSE);
 								<form id="register_form" role="form" method='post' enctype='multipart/form-data' style=" display: none;">
 									<div class="w3-col l12 " id="registration_err"></div>
 									<div id = "registerDiv">
-										<input type="hidden" name="OTP_id" id="OTP_id">								
 										<div class="form-group">
-											<input type="text" name="register_username" id="register_username" tabindex="2" class="form-control" placeholder="Username" value="" required>
+											<input type="text" name="register_username" id="register_username" class="form-control" placeholder="Username" value="" required>
 										</div>
 										<div class="form-group">
-											<input type="email" name="register_email" id="register_email" tabindex="4" class="form-control" placeholder="Email address" required>
+											<input type="email" name="register_email" id="register_email" class="form-control" placeholder="Email address" required>
 										</div>
 										<div class="form-group">
-											<input type="password" onkeyup="checkPassword();" name="register_password" id="register_password" tabindex="4" class="form-control" placeholder="Password" minlength="8" required>
+											<input type="password" onkeyup="checkPassword();" name="register_password" id="register_password" class="form-control" placeholder="Password" minlength="8" required>
 										</div>
 										<div class="form-group">
-											<input type="password" name="register_confirm_password" id="register_confirm_password" tabindex="5" onkeyup="checkPassword();" class="form-control" minlength="8" placeholder="Confirm Password" required>
+											<input type="password" name="register_confirm_password" id="register_confirm_password" onkeyup="checkPassword();" class="form-control" minlength="8" placeholder="Confirm Password" required>
 										</div>
 										<div id="message"></div>
-										<div class="form-group">
-											<input type="number" name="register_number" id="register_number" tabindex="5" minlength="1" class="form-control" placeholder="Enter Your Number" required>
+										<div class="w3-col l12 form-group">
+                                                                                    <div class="w3-col l4 s4" style=" padding-right: 5px;">
+                                                                                        <input type="text" name="mobile_code" id="mobile_code" value="" class="form-control" width="40px" placeholder="Code" required></div>
+                                                                                        <div class="w3-col l8 s8"><input type="text" name="register_number" id="register_number"  minlength="1" class="form-control" placeholder="Enter Your Number" required></div>
 										</div>
 										<div class="form-group">
-											<textarea rows="5" name="address" id="address" class="form-control form-control rounded-0" placeholder="Enter Your Address" required></textarea>
+											<textarea rows="8" name="address" id="address" class="form-control form-control rounded-0" placeholder="Enter Your Address" required></textarea>
 										</div>
 										
 										<div class="form-group">
 											<div class="row">
 												<div class="col-sm-6 col-sm-offset-3">
-													<input type="submit" name="register_register_submit" id="register_register_submit" tabindex="5" class="form-control  btn btn-register bluishGreen_bg" value="Register Now">
+													<input type="submit" name="register_register_submit" id="register_register_submit" class="form-control  btn btn-register bluishGreen_bg" value="Register Now">
 												</div>
 											</div>
 										</div>
@@ -300,7 +301,8 @@ error_reporting(E_ERROR | E_PARSE);
 					data: dataString,
 	            return: false, //stop the actual form post !important!
 	            success: function (data)
-	            {                       
+	            {   
+                        //console.log(data);
                         var key=JSON.parse(data);
                         if(key.status == 200){  
                 //alert(key.status_message);
