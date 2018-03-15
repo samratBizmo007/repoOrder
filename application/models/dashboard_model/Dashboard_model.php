@@ -175,6 +175,42 @@ class Dashboard_model extends CI_Model {
         return $response;
     }
 
+    // -----------------------GET ALL ORDERS COUNT----------------------//
+    //-------------------------------------------------------------//
+    public function getOrderCount(){
+
+        // -------------get active order count----------------------
+        $activeCount=0;
+        $active_query = $this->db->get_where('order_tab', array(//making selection
+            'status' => '1'
+        ));
+        $activeCount=$active_query->num_rows();
+
+        // -------------get open order count----------------------
+        $openCount=0;
+        $open_query = $this->db->get_where('order_tab', array(//making selection
+            'status' => '2'
+        ));
+        $openCount=$open_query->num_rows();
+
+        // -------------get close order count----------------------
+        $closeCount=0;
+        $close_query = $this->db->get_where('order_tab', array(//making selection
+            'status' => '0'
+        ));
+        $closeCount=$close_query->num_rows();
+
+        $response = array(
+                'status' => 200,
+                'status_message' => 'Count for all available orders',
+                'activeOrders'  =>  $activeCount,
+                'openOrders'  =>  $openCount,
+                'closeOrders'  =>  $closeCount,
+            );
+        return $response;
+    }
+    // -----------------------GET ALL ORDERS COUNT MODEL----------------------//
+
 }
 
 ?>

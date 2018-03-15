@@ -65,4 +65,13 @@ class Dashboard_api extends REST_Controller
 		$result = $this->dashboard_model->AllRegreted_orders();
 		return $this->response($result);
         }
+
+        // -----------------------ALL ORDERS COUNT API----------------------//
+	//-------------------------------------------------------------//
+	public function getOrderCount_get(){
+		//extract($_GET);
+		$result = $this->dashboard_model->getOrderCount();
+		return $this->response($result);			
+	}
+	//---------------------ALL ORDERS COUNT END------------------------------//
 }
