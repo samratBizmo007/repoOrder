@@ -32,7 +32,7 @@ class Manage_orders extends CI_controller{
   //$user_id=1;
 
   $path = base_url();
-  $url = $path . 'api/ManageOrder_api/getMyOrders?user_id='.$user_id;
+  $url = $path.'api/ManageOrder_api/getMyOrders?user_id='.$user_id;
   $ch = curl_init($url);
   curl_setopt($ch, CURLOPT_HTTPGET, true);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
