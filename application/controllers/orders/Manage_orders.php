@@ -48,8 +48,8 @@ public function addOrder() {
   extract($_POST);
   //print_r($_POST);die();
 
-  if(in_array('0', $business_field)){
-     echo '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Select Business Field for all Items.</h4>';
+  if($business_field == 0){
+     echo '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Select Business Field.</h4>';
     die();
   }
   $user_id=$this->session->userdata('user_id');
@@ -109,7 +109,6 @@ for($i = 0; $i < count($prod_Name); $i++){
     }
 
     $prod_Arr[]=array(
-      'business_field' => $business_field[$i],  
       'prod_no' => $id_count,
       'prod_Name' =>  $prod_Name[$i],
       'prod_quantity' =>  $prod_quantity[$i],
@@ -120,7 +119,7 @@ for($i = 0; $i < count($prod_Name); $i++){
   }
 
   $data['user_id']=$user_id;
-  //$data['user_name']=$user_name;
+  $data['business_field']=$business_field;
   $data['prod_associated']=json_encode($prod_Arr);
   //print_r($data);die();
   $path = base_url();
@@ -132,7 +131,7 @@ for($i = 0; $i < count($prod_Name); $i++){
   $response_json = curl_exec($ch);
   curl_close($ch);
   $response = json_decode($response_json, true);
-  //print_r($response_json);die();
+  print_r($response_json);die();
   
   if ($response['status'] != 200) {
     echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
