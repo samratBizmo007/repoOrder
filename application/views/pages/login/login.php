@@ -225,30 +225,30 @@ error_reporting(E_ERROR | E_PARSE);
                                             </div>
                                         </div>
 
-                                        <div class="col-md-12" id="OTP_div" style="display:none;">
-                                            <div class="panel panel-login">
-                                                <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-12" id="">
-                                                            <div class="w3-col l12 " id="otp_err"></div>
-                                                            <div class="w3-center">Enter OTP</div>
-                                                            <input type="hidden" name="user_id" id="user_id">								
-                                                            <p style="color:#31ab00;">Check your email for the OTP</p>
-                                                            <div class="form-group">
-                                                                <input type="number" name="otp" id="otp" tabindex="2" class="form-control" placeholder="Enter otp" value="" >
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="row">
-                                                                    <div class="col-sm-6 col-sm-offset-3">
-                                                                        <input type="button" name="otp_submit" id="otp_submit" tabindex="5" class="form-control  btn btn-register bluishGreen_bg" value="Submit">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<!--                                        <div class="col-md-12" id="OTP_div" style="display:none;">-->
+<!--                                            <div class="panel panel-login">-->
+<!--                                                <div class="panel-body">-->
+<!--                                                    <div class="row">-->
+<!--                                                        <div class="col-lg-12" id="">-->
+<!--                                                            <div class="w3-col l12 " id="otp_err"></div>-->
+<!--                                                            <div class="w3-center">Enter OTP</div>-->
+<!--                                                            <input type="hidden" name="user_id" id="user_id">								-->
+<!--                                                            <p style="color:#31ab00;">Check your email for the OTP</p>-->
+<!--                                                            <div class="form-group">-->
+<!--                                                                <input type="number" name="otp" id="otp" tabindex="2" class="form-control" placeholder="Enter otp" value="" >-->
+<!--                                                            </div>-->
+<!--                                                            <div class="form-group">-->
+<!--                                                                <div class="row">-->
+<!--                                                                    <div class="col-sm-6 col-sm-offset-3">-->
+<!--                                                                        <input type="button" name="otp_submit" id="otp_submit" tabindex="5" class="form-control  btn btn-register bluishGreen_bg" value="Submit">-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                     </form>
                                 </div>
                             </div>
