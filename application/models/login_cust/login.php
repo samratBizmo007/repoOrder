@@ -92,76 +92,111 @@ class Login extends CI_Model {
 
     // -----------------------USER REGISTERATION MODEL by mobile----------------------//
     
-    // -----------------------USER REGISTERATION MODEL----------------------//
-    //-------------------------------------------------------------//
     public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address) {
-        $cust_id = "";
-        $email_idRegistered = '';
+    	
         $checkEmail = login::checkEmail_exist($email_id);
         $checkusername = login::checkUsername_exist($user_name);
-        //print_r($checkEmail);die();
         if ($checkEmail == 0 && $checkusername == 0) {
-            $otp = rand(100000, 999999);
-//            $data = array(
-//                'username' => $user_name,
-//                'password' => base64_encode($password),
-//                'email' => $email_id,
-//                'mobile_no' => $register_mobile_no,
-//                'address' => $register_address
-//                    //'otp'=> $otp
+        	$data = array(
+               'username' => $user_name,
+               'password' => base64_encode($password),
+                'email' => $email_id,
+                'mobile_no' => $register_mobile_no,
+                'address' => $register_address
+        	);
+        	if($this->db->insert('customer_tab', $data))
+        	{
+	        	$response=array(
+					'status' => 200,	//---------insert db success code
+					'status_message' =>'Registration Successfull. Please Login With Your Registered Email-ID.'
+				);
+        	
+        	} else
+			{
+				$response=array(
+				'status' => 500,	//---------db error code 
+				'status_message' =>'Something went wrong... Registration Failed!!!'
+			);
+			}
+    	  }else{
+	 	//if email-Id already regiterd then show error
+			$response=array(
+				'status' => 500,
+				'status_message' =>'Email ID Already Registered for this profile. Login by same or use another Email-ID!!!'					
+			);	
+		}	
+		return $response;
+    }  
+    // -----------------------USER REGISTERATION MODEL----------------------//
+    //-------------------------------------------------------------//
+//    public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address) {
+//        $cust_id = "";
+//        $email_idRegistered = '';
+//        $checkEmail = login::checkEmail_exist($email_id);
+//        $checkusername = login::checkUsername_exist($user_name);
+//        //print_r($checkEmail);die();
+//        if ($checkEmail == 0 && $checkusername == 0) {
+//            $otp = rand(100000, 999999);
+////            $data = array(
+////                'username' => $user_name,
+////                'password' => base64_encode($password),
+////                'email' => $email_id,
+////                'mobile_no' => $register_mobile_no,
+////                'address' => $register_address
+////                    //'otp'=> $otp
+////            );
+//
+//            $otp_function = login::sendEmailotp($user_name, $email_id, $otp);
+//            //$checkEmail = login::checkEmail_existForOtp($email_id);
+//            if ($otp_function) {
+//                //$otp_save_pudate =login::saveOtp($email_id,$otp); 
+//                $sqlselect = "SELECT email_id FROM otp_expiry WHERE email_id = '$email_id'";
+//                $result = $this->db->query($sqlselect);
+//                if ($result->num_rows() >= 1) {
+//                    foreach ($result->result_array() as $row) {
+//                        $email_idRegistered = $row['email_id'];
+//                    }
+//                }
+//
+//                if ($email_id == $email_idRegistered) {
+//
+//                    $query = "UPDATE otp_expiry SET otp = '$otp',user_name = '$user_name' WHERE email_id = '$email_id' AND user_name='$user_name'";
+//                    $result = $this->db->query($query);
+//
+//                    if ($result) {
+//                        $response = array(
+//                            'status' => 200, //---------insert db success code
+//                            //'otp' => $otp,
+//                            'status_message' => 'OTP Has Been Sent To Your Email ID. Please Verify The OTP.'
+//                        );
+//                    }
+//                } else {
+//                    $query = "INSERT INTO otp_expiry(email_id,otp,create_at,user_name) VALUES ('$email_id','$otp',NOW(),'$user_name')";
+//                    $result = $this->db->query($query);
+//                    if ($result) {
+//                        $response = array(
+//                            'status' => 200, //---------insert db success code
+//                            //'otp' => $otp,
+//                            'status_message' => 'OTP Has Been Sent To Your Email ID. Please Verify The OTP.'
+//                        );
+//                    } else {
+//                        $response = array(
+//                            'status' => 500, //---------insert db success code
+//                            'status_message' => 'OTP Sending Failed.'
+//                        );
+//                    }
+//                }
+//            }
+//        } else {
+//            //if email-Id already regiterd then show error
+//            $response = array(
+//                'status' => 500,
+//                'status_message' => 'Email OR Username Already Registered. Login by same or use another Email OR Username.!!!'
 //            );
-
-            $otp_function = login::sendEmailotp($user_name, $email_id, $otp);
-            //$checkEmail = login::checkEmail_existForOtp($email_id);
-            if ($otp_function) {
-                //$otp_save_pudate =login::saveOtp($email_id,$otp); 
-                $sqlselect = "SELECT email_id FROM otp_expiry WHERE email_id = '$email_id'";
-                $result = $this->db->query($sqlselect);
-                if ($result->num_rows() >= 1) {
-                    foreach ($result->result_array() as $row) {
-                        $email_idRegistered = $row['email_id'];
-                    }
-                }
-
-                if ($email_id == $email_idRegistered) {
-
-                    $query = "UPDATE otp_expiry SET otp = '$otp',user_name = '$user_name' WHERE email_id = '$email_id' AND user_name='$user_name'";
-                    $result = $this->db->query($query);
-
-                    if ($result) {
-                        $response = array(
-                            'status' => 200, //---------insert db success code
-                            //'otp' => $otp,
-                            'status_message' => 'OTP Has Been Sent To Your Email ID. Please Verify The OTP.'
-                        );
-                    }
-                } else {
-                    $query = "INSERT INTO otp_expiry(email_id,otp,create_at,user_name) VALUES ('$email_id','$otp',NOW(),'$user_name')";
-                    $result = $this->db->query($query);
-                    if ($result) {
-                        $response = array(
-                            'status' => 200, //---------insert db success code
-                            //'otp' => $otp,
-                            'status_message' => 'OTP Has Been Sent To Your Email ID. Please Verify The OTP.'
-                        );
-                    } else {
-                        $response = array(
-                            'status' => 500, //---------insert db success code
-                            'status_message' => 'OTP Sending Failed.'
-                        );
-                    }
-                }
-            }
-        } else {
-            //if email-Id already regiterd then show error
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Email OR Username Already Registered. Login by same or use another Email OR Username.!!!'
-            );
-        }
-
-        return $response;
-    }
+//        }
+//
+//        return $response;
+//    }
 
     // -----------------------USER REGISTERATION MODEL----------------------//
     public function getNextID($col_name, $table_name) {
