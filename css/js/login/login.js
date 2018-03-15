@@ -14,7 +14,7 @@ $(function () {
                 console.log(data);  
                 var key=JSON.parse(data);
                 if(key.status == 200){                    
-                    $('#Login_RegisterDiv').load(location.href + " #Login_RegisterDiv>*", ""); 
+                  //  $('#Login_RegisterDiv').load(location.href + " #Login_RegisterDiv>*", ""); 
                  $("#spinnerDiv").html('');
                  $("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>'+key.status_message+'</strong></div><div class="col-lg-12 alert alert-info alert-dismissable fade in"><a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a><span><strong><i class="fa fa-warning"></i></strong>Please Verify Email..Sent To Your Registered Email-ID..!</span></div>');
                  location.reload();
