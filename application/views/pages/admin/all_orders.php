@@ -6,7 +6,7 @@ error_reporting(E_ERROR | E_PARSE);
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>All Orders</title>
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
@@ -143,7 +143,7 @@ error_reporting(E_ERROR | E_PARSE);
                             </div>';
                           }
                         }  
-                        
+
                         echo'<div class="col-lg-12 w3-margin-bottom">
                         <div class="w3-col l4 s4 w3-padding-small w3-center">
                         <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.IMAGE_PATH.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
@@ -161,7 +161,7 @@ error_reporting(E_ERROR | E_PARSE);
                         <div class="w3-col l4">
                         <label class="">Quantity:</label>
                         <p class="" >'.$key['prod_quantity'].' No(s).</p>
-                        
+
                         </div>
                         </div>
                         <div class="w3-col l12 ">
@@ -176,7 +176,7 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                         </div>
                         </div>';
-                        
+
                       }
                       echo'
                       </div>
@@ -203,10 +203,10 @@ error_reporting(E_ERROR | E_PARSE);
           </div>
         </div>
       </div><!-- table container ends here -->
-      
+
       <!--____________________________________ tab div 1 ends here_________________________________________ -->
       <!--_______________________________ tab 3 starts here_____________________________________________ -->
-      
+
       <div class="tab-pane" id="openedOrders"><!-- tab 3 starts here -->
        <div class="">                    
         <div class="w3-col l12 w3-margin-top">
@@ -273,7 +273,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                   <!-- Modal content-->
                   <div class="modal-content">
-                  
+
                   <div class="modal-body w3-margin-top">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                   <h3 class="w3-center"><b>Order No. #OID-'.$Open_orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
@@ -307,7 +307,7 @@ error_reporting(E_ERROR | E_PARSE);
                       </div>';
                     }
                   } 
-                  
+
                   echo'<div class="col-lg-12 w3-margin-bottom">
                   <div class="w3-col l4 s4 w3-padding-small w3-center">
                   <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.IMAGE_PATH.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
@@ -325,7 +325,7 @@ error_reporting(E_ERROR | E_PARSE);
                   <div class="w3-col l4">
                   <label class="">Quantity:</label>
                   <p class="" >'.$key['prod_quantity'].' No(s).</p>
-                  
+
                   </div>
                   </div>
                   <div class="w3-col l12 ">
@@ -340,7 +340,7 @@ error_reporting(E_ERROR | E_PARSE);
                   </div>
                   </div>
                   </div>';
-                  
+
                 }
                 echo'
                 </div>
@@ -360,7 +360,7 @@ error_reporting(E_ERROR | E_PARSE);
               </tr>
               ';
             }
-            
+
             ?>
           </tbody><!-- table body close here -->
         </table>   <!-- table closed here -->
@@ -437,7 +437,7 @@ error_reporting(E_ERROR | E_PARSE);
 
               <!-- Modal content-->
               <div class="modal-content">
-              
+
               <div class="modal-body w3-margin-top">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <h3 class="w3-center"><b>Order No. #OID-'.$Closed_orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
@@ -448,7 +448,7 @@ error_reporting(E_ERROR | E_PARSE);
 
               foreach($product_info as $key)
               {
-               
+
                 echo'
                 <div class="col-lg-12 w3-margin-bottom">
                 <div class="w3-col l4 s6 w3-padding-small w3-center">
@@ -467,7 +467,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="w3-col l4">
                 <label class="">Quantity:</label>
                 <p class="" >'.$key['prod_quantity'].' No(s).</p>
-                
+
                 </div>
                 </div>
                 <div class="w3-col l12 ">
@@ -501,7 +501,7 @@ error_reporting(E_ERROR | E_PARSE);
             </tr>
             ';
           }
-          
+
           ?>
         </tbody><!-- table body close here -->
       </table><!-- table closed here -->
@@ -734,7 +734,7 @@ error_reporting(E_ERROR | E_PARSE);
                 type: 'orange',
                 buttons: {
                   confirm: function () {
-                   
+
                     $.ajax({
                       url:"<?php echo base_url(); ?>admin/dashboard/regretProduct", 
                       type: "POST", 
