@@ -505,7 +505,7 @@ class Login extends CI_Model {
     public function adminLogin($user_name, $password) {
         //sql query to check login credentials
         $pass = base64_encode($password);
-        $query = "SELECT * FROM admin_tab WHERE (email='$user_name' || username='$user_name') AND password='$password'";
+        $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
         //echo $query;die();
         $result = $this->db->query($query);
         $admin_id = '0';

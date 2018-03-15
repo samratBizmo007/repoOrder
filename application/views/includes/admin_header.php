@@ -42,16 +42,23 @@ $admin_name=$this->session->userdata('admin_name');
     </a>-->
 
     <a href="<?php echo base_url(); ?>admin/dashboard" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
-      <div class="w3-col l12"><i class="w3-xlarge fa fa-dashboard fa-fw"></i></div>
+      <div class="w3-col l12"><i class="w3-xlarge fa fa-user-secret fa-fw"></i></div>
       <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Dashboard<br><br></div>      
       <div class="clear"></div>
     </a>
 
-    <!--<a href="<?php echo base_url(); ?>orders/manage_orders" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
+    <a href="<?php echo base_url(); ?>admin/orders" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
       <div class="w3-col l12"><i class="w3-xlarge fa fa-cubes fa-fw"></i></div>
-      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">My Orders<br><br></div>      
+      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">All Orders<br><br></div>      
       <div class="clear"></div>
-    </a>-->
+    </a>
+
+    <a href="<?php echo base_url(); ?>admin/admin_settings" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
+      <div class="w3-col l12"><i class="w3-xlarge fa fa-cog fa-fw"></i></div>
+      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Settings<br><br></div>      
+      <div class="clear"></div>
+    </a>
+
   </div>
 </nav>
 

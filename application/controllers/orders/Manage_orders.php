@@ -102,10 +102,6 @@ for($i = 0; $i < count($prod_Name); $i++){
       if($this->upload->do_upload('userFile')){
         $fileData = $this->upload->data();
         $imagePath = $fileData['file_name'];
-//        $imagePath = array(
-//       // 'type'=> ,
-//        'image'=>'images/order_images/'.$fileData['file_name']
-//        );
       }
     }
 
