@@ -74,7 +74,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </thead>
                 <tbody ><!-- table body starts here -->
                   <?php 
-                                    print_r($orders);
                   if ($orders['status'] == 200) {//print_r($Purchased['status_message']);
                   $count=1;
                   $value = '';

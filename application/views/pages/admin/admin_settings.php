@@ -11,9 +11,10 @@ error_reporting(E_ERROR | E_PARSE);
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
-  <!-- <link rel="stylesheet" href="assets/css/alert/jquery-confirm.css"> -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-  <!-- <script type="text/javascript" src="assets/css/alert/jquery-confirm.js"></script> -->
+  <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
+  <script type="text/javascript" src="<?php echo base_url(); ?>css/js/admin/admin_settings.js"></script>
 </head>
 <body class="w3-light-grey">
 
@@ -32,7 +33,7 @@ error_reporting(E_ERROR | E_PARSE);
 
             <form id="updateEmail">
             <div class="w3-col l8 w3-padding-right w3-margin-bottom">
-              <input type="email" name="admin_email" placeholder="Enter Email-ID here..." id="admin_email" class="w3-input" required>
+              <input type="email" name="admin_email" value="<?php echo $adminDetails['status_message'][0]['admin_email']; ?>" placeholder="Enter Email-ID here..." id="admin_email" class="w3-input" required>
             </div>
             <div class="w3-col l4">
               <button type="submit" class="w3-button w3-red">Update Email</button>
@@ -46,5 +47,30 @@ error_reporting(E_ERROR | E_PARSE);
     <!-- End page content -->
   </div>
 
+<!--  script to update email id   -->
+<script>
+  $(function(){
+   $("#updateEmail").submit(function(){
+     dataString = $("#updateEmail").serialize();
+
+     $.ajax({
+       type: "POST",
+       url: "<?php echo base_url(); ?>admin/admin_settings/updateEmail",
+       data: dataString,
+           return: false,  //stop the actual form post !important!
+
+           success: function(data)
+           {
+             $.alert(data);                       
+           }
+
+         });
+
+         return false;  //stop the actual form post !important!
+
+       });
+ });
+</script>
+<!-- script ends here -->
 </body>
 </html>
