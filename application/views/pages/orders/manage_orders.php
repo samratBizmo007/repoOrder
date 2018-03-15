@@ -254,8 +254,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <span><a  id="add_moreProduct" title="Add new Item" class="btn add_moreProduct w3-small w3-text-red w3-right w3-margin-top">Add item <i class="fa fa-plus"></i></a></span>
         </div>
         <!-- material div end -->
-        <div class="w3-col l12 w3-center">
-          <button id="btnsubmit" type="submit" title="Raise Order" class="w3-margin w3-medium w3-button  w3-red">Raise New Order</button>
+        <div class="w3-col l12 w3-center" id="btnsubmit">
+          <button  type="submit" title="Raise Order" class="w3-margin w3-medium w3-button  w3-red">Raise New Order</button>
         </div>
       </form>
     </div>

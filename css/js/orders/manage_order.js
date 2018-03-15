@@ -8,7 +8,7 @@
 $(document).ready(function (e){
     $("#addOrder_form").on('submit',(function(e){       
         e.preventDefault();   
-        $("#btnsubmit").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
+        $("#btnsubmit").html('<center><span class="w3-xxlarge fa fa-spinner fa-spin"></span></center>');
         $.ajax({
             url: BASE_URL + "orders/Manage_orders/addOrder",
             type: "POST",

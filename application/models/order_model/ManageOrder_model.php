@@ -199,11 +199,27 @@ class ManageOrder_model extends CI_Model {
         $this->email->set_newline("\r\n");
         $this->email->from('customercare@jobmandi.in', "Admin Team");
         $this->email->to($AdminEmail);
-        $this->email->subject("OTP Send");
+        $this->email->subject("New Order For Jumla");
         //$this->email->message("Dear ".$username.",\nPlease click on below URL or paste into your browser to verify your Email Address\n\n <a href='".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."'>".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."</a>\n"."\n\nThanks\nAdmin Team");
         $count=1;
-        $this->email->message('<html>
-			<head>
+        $value = '';      
+        if ($business_field == 1) {
+            $value = 'Mobile Accessories';
+        }
+        if ($business_field == 2) {
+            $value = 'Cosmetics';
+        }
+        if ($business_field == 3) {
+            $value = 'Watch and Glasses';
+        }
+        if ($business_field == 4) {
+            $value = 'Bags';
+        }
+        if ($business_field == 5) {
+            $value = 'Others';
+        }
+        $baseUrl = 'http://ordertracker.bizmo-tech-admin.com/images/order_images/';
+        $message = '<html><head>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
 			<script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
@@ -211,37 +227,51 @@ class ManageOrder_model extends CI_Model {
 			</head>
 			<body>
 			<div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-			<h2 style="color:#4CAF50; font-size:30px">Welcome To Joomla Business!!</h2>
+			<h2 style="color:#4CAF50; font-size:30px">Welcome To Jumla Business!!</h2>
 			<h3 style="font-size:15px;">Hello Admin,<br></h3>
 			
-			<div class="col-lg-12">
-			
+	          <div class="col-lg-12">
+                  <center><h2><label>Order Id: #00'.$order_id.' </label></h2></center>
+                  <div class="col-lg-3">
+		  <label><b>Date:</b> '.date('M d,Y') . '-' .date('h:i a').'</label>	
+                   </div>
+                    <div class="col-lg-3">
+		  <label><b>Business Field:</b> '.$value.'</label>	
+                   </div>
+                  <div class="col-lg-3">
+		  <label><b>User Name:</b> '.$user_username.'</label>	
+                   </div> 
+                    <div class="col-lg-3">
+		  <label><b>Email:</b> '.$user_email.'</label>	
+                   </div> 
+                   </div>
                   <div class="" id="All_Orders" name="All_Orders" style="height: 450px;overflow: scroll ">
-                 <table class="table table-bordered table-responsive w3-small"> 
+                 <table class="table table-bordered w3-small"> 
                 <!-- table starts here -->
                 <thead>
-                  <tr class="">
-                    <th class="text-center">Sr. No.</th>
-                    <th class="text-center">Order No.</th>
-                    <th class="text-center">Posted On</th>
-                    <th class="text-center">Business Field</th>  
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                   <tr class="text-center">
-                    <td class="text-center">'.$count.'.</td>
-                    <td class="text-center">#OID-'.$order_id.'</td>
-                    <td class="text-center">' .date('M d,Y') . '-' .date('h:i a') . '</td>
-                    <td class="text-center">'.$business_field.'</td>
-                    </tr>
-                    </tbody>
+                    <tr class="">
+                    <th class="text-center">Product</th>
+                    <th class="text-center">Product Qty</th>
+                    <th class="text-center">Product Image</th>
+                  </tr>                
+                  </thead>
+                    <tbody>';
+                     foreach (json_decode($prod_associated,TRUE) as $key){ 
+                    $message.='<tr>'
+                  . '<td class="text-center">'.$key['prod_Name'].'</td>
+                    <td class="text-center">'.$key['prod_quantity'].'</td>
+                    <td class="text-center">
+                    <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.$baseUrl.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'"></td>
+                    </tr>';
+                     }
+                    $message.='</tbody>
                     </table>
                     </div>
                     </div>
-                    </div>
                     </body>
-                    </html>');
+                    </html>';
+      
+        $this->email->message($message);
         if ($this->email->send()) {
             $response = array(
                 'status' => 200, //---------email sending succesfully 

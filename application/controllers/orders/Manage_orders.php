@@ -128,7 +128,7 @@ for($i = 0; $i < count($prod_Name); $i++){
   $response_json = curl_exec($ch);
   curl_close($ch);
   $response = json_decode($response_json, true);
-  //print_r($response_json);die();
+  print_r($response_json);die();
   
   if ($response['status'] != 200) {
     echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
