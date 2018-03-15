@@ -42,6 +42,8 @@ define('TABLE_USERS', 'jm_user_tab');
 define('TABLE_PM', 'privmsgs');
 define('TABLE_PMTO', 'privmsgs_to');
 
+define('IMAGE_PATH', 'http://localhost/repoOrder/images/order_images/');
+
 /*
 |--------------------------------------------------------------------------
 | Table fields

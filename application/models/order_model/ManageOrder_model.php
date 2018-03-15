@@ -68,7 +68,7 @@ class ManageOrder_model extends CI_Model {
 
     // -----------------------GET ALL OPEN ORDERS on admin dashboard  MODEL----------------------//
 	//-------------------------------------------------------------//
-	public function AllOrders(){
+    public function AllOrders(){
 
         $query = "SELECT * FROM order_tab WHERE status=0 ORDER BY order_id DESC";
 
@@ -119,12 +119,12 @@ class ManageOrder_model extends CI_Model {
         $closeCount=$close_query->num_rows();
 
         $response = array(
-                'status' => 200,
-                'status_message' => 'Fetched orders for given UserId',
-                'activeOrders'  =>  $activeCount,
-                'openOrders'  =>  $openCount,
-                'closeOrders'  =>  $closeCount,
-            );
+            'status' => 200,
+            'status_message' => 'Fetched orders for given UserId',
+            'activeOrders'  =>  $activeCount,
+            'openOrders'  =>  $openCount,
+            'closeOrders'  =>  $closeCount,
+        );
         return $response;
     }
     // -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
@@ -155,7 +155,7 @@ class ManageOrder_model extends CI_Model {
         }
 
         $sql = "INSERT INTO order_tab(user_id,business_field,order_products,order_date,order_time,status) VALUES
-         ('$user_id','$business_field','$prod_associated',NOW(),NOW(),'1')";
+        ('$user_id','$business_field','$prod_associated',NOW(),NOW(),'1')";
 //print_r($sql);die();
         $result = $this->db->query($sql);
         $userDetails = ManageOrder_model::getUserDetails($user_id);
@@ -165,9 +165,9 @@ class ManageOrder_model extends CI_Model {
         if ($result) {
             $order_id = $this->getNextID('order_id', 'order_tab');
 
-        $emailfunction = ManageOrder_model::sendEmail($business_field,$order_id,$userDetails,$user_email,$user_username,$AdminEmail,$prod_associated);
+            $emailfunction = ManageOrder_model::sendEmail($business_field,$order_id,$userDetails,$user_email,$user_username,$AdminEmail,$prod_associated);
         //print_r($emailfunction);        die();
-        $response = array(
+            $response = array(
                 'status' => 200,
                 'order_id' => $order_id,
                 'status_message' => 'Order Placed Successfully..!');        
@@ -220,57 +220,57 @@ class ManageOrder_model extends CI_Model {
         }
         $baseUrl = 'http://ordertracker.bizmo-tech-admin.com/images/order_images/';
         $message = '<html><head>
-			<meta name="viewport" content="width=device-width, initial-scale=1.0">
-			<link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
-			<script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
-			<script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
-			</head>
-			<body>
-			<div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-			<h2 style="color:#4CAF50; font-size:30px">Welcome To Jumla Business!!</h2>
-			<h3 style="font-size:15px;">Hello Admin,<br></h3>
-			
-	          <div class="col-lg-12">
-                  <center><h2><label>Order Id: #00'.$order_id.' </label></h2></center>
-                  <div class="col-lg-3">
-		  <label><b>Date:</b> '.date('M d,Y') . '-' .date('h:i a').'</label>	
-                   </div>
-                    <div class="col-lg-3">
-		  <label><b>Business Field:</b> '.$value.'</label>	
-                   </div>
-                  <div class="col-lg-3">
-		  <label><b>User Name:</b> '.$user_username.'</label>	
-                   </div> 
-                    <div class="col-lg-3">
-		  <label><b>Email:</b> '.$user_email.'</label>	
-                   </div> 
-                   </div>
-                  <div class="" id="All_Orders" name="All_Orders" style="height: 450px;overflow: scroll ">
-                 <table class="table table-bordered w3-small"> 
-                <!-- table starts here -->
-                <thead>
-                    <tr class="">
-                    <th class="text-center">Product</th>
-                    <th class="text-center">Product Qty</th>
-                    <th class="text-center">Product Image</th>
-                  </tr>                
-                  </thead>
-                    <tbody>';
-                     foreach (json_decode($prod_associated,TRUE) as $key){ 
-                    $message.='<tr>'
-                  . '<td class="text-center">'.$key['prod_Name'].'</td>
-                    <td class="text-center">'.$key['prod_quantity'].'</td>
-                    <td class="text-center">
-                    <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.$baseUrl.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'"></td>
-                    </tr>';
-                     }
-                    $message.='</tbody>
-                    </table>
-                    </div>
-                    </div>
-                    </body>
-                    </html>';
-      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
+        <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
+        <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
+        </head>
+        <body>
+        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+        <h2 style="color:#4CAF50; font-size:30px">Welcome To Jumla Business!!</h2>
+        <h3 style="font-size:15px;">Hello Admin,<br></h3>
+
+        <div class="col-lg-12">
+        <center><h2><label>Order Id: #'.$order_id.' </label></h2></center>
+        <div class="col-lg-3">
+        <label><b>Date:</b> '.date('M d,Y') . '-' .date('h:i a').'</label>	
+        </div>
+        <div class="col-lg-3">
+        <label><b>Business Field:</b> '.$value.'</label>	
+        </div>
+        <div class="col-lg-3">
+        <label><b>User Name:</b> '.$user_username.'</label>	
+        </div> 
+        <div class="col-lg-3">
+        <label><b>Email:</b> '.$user_email.'</label>	
+        </div> 
+        </div>
+        <div class="" id="All_Orders" name="All_Orders" style="height: 450px;overflow: scroll ">
+        <table class="table table-bordered w3-small"> 
+        <!-- table starts here -->
+        <thead>
+        <tr class="">
+        <th class="text-center">Product</th>
+        <th class="text-center">Product Qty</th>
+        <th class="text-center">Product Image</th>
+        </tr>                
+        </thead>
+        <tbody>';
+        foreach (json_decode($prod_associated,TRUE) as $key){ 
+            $message.='<tr>'
+            . '<td class="text-center">'.$key['prod_Name'].'</td>
+            <td class="text-center">'.$key['prod_quantity'].'</td>
+            <td class="text-center">
+            <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.$baseUrl.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'"></td>
+            </tr>';
+        }
+        $message.='</tbody>
+        </table>
+        </div>
+        </div>
+        </body>
+        </html>';
+
         $this->email->message($message);
         if ($this->email->send()) {
             $response = array(

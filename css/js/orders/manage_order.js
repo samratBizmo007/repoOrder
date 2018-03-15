@@ -18,7 +18,7 @@ $(document).ready(function (e){
             processData:false,
             success: function(data){
                 $.alert(data);
-                $("#btnsubmit").html('');
+                $("#btnsubmit").html('<button  type="submit" title="Raise Order" class="w3-margin w3-medium w3-button  w3-red">Raise New Order</button>');
             },
             error: function(){}             
         });
