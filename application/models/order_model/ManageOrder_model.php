@@ -68,10 +68,10 @@ class ManageOrder_model extends CI_Model {
         return $response;
     }
 
-    // -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
-    // -----------------------GET ALL CLOSED ORDERS on admin dashboard MODEL----------------------//
-    //-------------------------------------------------------------//
-    public function AllClosed_Orders() {
+
+    // -----------------------GET ALL OPEN ORDERS on admin dashboard  MODEL----------------------//
+	//-------------------------------------------------------------//
+	public function AllOrders(){
 
         $query = "SELECT * FROM order_tab WHERE status=0 ORDER BY order_id DESC";
 
@@ -92,23 +92,45 @@ class ManageOrder_model extends CI_Model {
     // -----------------------GET ALL CLOSED ORDERS on admin dashboard MODEL----------------------//
     // -----------------------GET ALL OPEN ORDERS on admin dashboard  MODEL----------------------//
     //-------------------------------------------------------------//
-    public function AllOrders() {
 
-        $query = "SELECT * FROM order_tab ORDER BY order_id DESC";
+    // -----------------------GET ALL MY ORDERS COUNT----------------------//
+    //-------------------------------------------------------------//
+    public function getOrderCount($user_id){
 
-        $result = $this->db->query($query);
+        // -------------get active order count----------------------
+        $activeCount=0;
+        $active_query = $this->db->get_where('order_tab', array(//making selection
+            'status' => '1',
+            'user_id'   =>  $user_id
+        ));
+        $activeCount=$active_query->num_rows();
 
-        if ($result->num_rows() <= 0) {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'No orders found.');
-        } else {
-            $response = array(
+        // -------------get open order count----------------------
+        $openCount=0;
+        $open_query = $this->db->get_where('order_tab', array(//making selection
+            'status' => '2',
+            'user_id'   =>  $user_id
+        ));
+        $openCount=$open_query->num_rows();
+
+        // -------------get close order count----------------------
+        $closeCount=0;
+        $close_query = $this->db->get_where('order_tab', array(//making selection
+            'status' => '0',
+            'user_id'   =>  $user_id
+        ));
+        $closeCount=$close_query->num_rows();
+
+        $response = array(
                 'status' => 200,
-                'status_message' => $result->result_array());
-        }
+                'status_message' => 'Fetched orders for given UserId',
+                'activeOrders'  =>  $activeCount,
+                'openOrders'  =>  $openCount,
+                'closeOrders'  =>  $closeCount,
+            );
         return $response;
     }
+    // -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
 
     // -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
     //-------ADD NEW ORDER FUNCTION--------------//

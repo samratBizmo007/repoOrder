@@ -29,7 +29,7 @@ class ManageOrder_api extends REST_Controller
 	}
 	//---------------------ALL ORDERS END------------------------------//
 
-             // -----------------------ALL ORDERS API----------------------//
+    // -----------------------ALL ORDERS API----------------------//
 	//-------------------------------------------------------------//
 	public function AllOrders_get(){
 		extract($_GET);
@@ -37,6 +37,15 @@ class ManageOrder_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------ALL ORDERS END------------------------------//
+
+	// -----------------------ALL MY ORDERS COUNT API----------------------//
+	//-------------------------------------------------------------//
+	public function getOrderCount_get(){
+		extract($_GET);
+		$result = $this->manageOrder_model->getOrderCount($user_id);
+		return $this->response($result);			
+	}
+	//---------------------ALL MY ORDERS COUNT END------------------------------//
    
         
 	// -----------------------ADD USER ORDER API----------------------//
