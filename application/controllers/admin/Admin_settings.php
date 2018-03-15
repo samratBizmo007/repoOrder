@@ -1,7 +1,7 @@
 <?php
 
-//Admin Dashboard controller
-class Dashboard extends CI_Controller {
+//Admin Settings controller
+class Admin_settings extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -9,12 +9,12 @@ class Dashboard extends CI_Controller {
 
     public function index() {
 
-        $data['orders'] = Dashboard::AllOrders();     //-------show all Raw prods
-        $data['Open_orders'] = Dashboard::AllOpen_Orders();     //-------show all Raw prods
-        $data['Closed_orders'] = Dashboard::AllClosed_Orders();     //-------show all Raw prods
-        $data['Regreted_orders'] = Dashboard::AllRegreted_orders();     //-------show all Raw prods
+        $data['orders'] = Admin_settings::AllOrders();     //-------show all Raw prods
+        $data['Open_orders'] = Admin_settings::AllOpen_Orders();     //-------show all Raw prods
+        $data['Closed_orders'] = Admin_settings::AllClosed_Orders();     //-------show all Raw prods
+        $data['Regreted_orders'] = Admin_settings::AllRegreted_orders();     //-------show all Raw prods
         $this->load->view('includes/admin_header.php');
-        $this->load->view('pages/admin/dashboard', $data);
+        $this->load->view('pages/admin/admin_settings', $data);
         //$this->load->view('includes/footer.php');
     }
 
