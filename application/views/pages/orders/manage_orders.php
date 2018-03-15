@@ -74,7 +74,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </thead>
                 <tbody ><!-- table body starts here -->
                   <?php 
-                  if ($orders['status'] == 200) {//print_r($Purchased['status_message']);
+
+                  if($orders['status'] == 200) {//print_r($Purchased['status_message']);
                   $count=1;
                   $value = '';
                   for ($i = 0; $i < count($orders['status_message']); $i++) {                                             
