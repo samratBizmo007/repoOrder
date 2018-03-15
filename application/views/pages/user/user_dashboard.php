@@ -24,15 +24,37 @@ error_reporting(E_ERROR | E_PARSE);
     <header class="w3-container" >
       <h5><b><i class="fa fa-dashboard"></i> Dashboard</b></h5>
     </header>
-
-    <div class="w3-row-padding w3-margin-bottom"><body>
-
-<!--	<div class="container w3-center  ">-->
-<!-- 	<img src="<?php echo base_url(); ?>css/logos/new.png" class="img-rounded w3-margin-top w3-padding-top" alt="Cinque Terre" width="304" height="236"> -->
-<!--	</div>-->
-
-</body>
-    
+    <div class="w3-row-padding w3-margin-bottom">
+      <div class="w3-third">
+        <div class="w3-container w3-blue w3-padding-16">
+          <div class="w3-left"><i class="fa fa-check-square w3-jumbo"></i></div>
+          <div class="w3-right">
+            <span class="w3-xxlarge"><?php echo $orderCount['activeOrders']; ?></span>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Active Orders</h4>
+        </div>
+      </div>
+      <div class="w3-third">
+        <div class="w3-container w3-green w3-padding-16">
+          <div class="w3-left"><i class="fa fa-info-circle w3-jumbo"></i></div>
+          <div class="w3-right">
+            <span class="w3-xxlarge"><?php echo $orderCount['openOrders']; ?></span>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Open Orders</h4>
+        </div>
+      </div>
+      <div class="w3-third">
+        <div class="w3-container w3-red w3-padding-16">
+          <div class="w3-left"><i class="fa fa-history w3-jumbo"></i></div>
+          <div class="w3-right">
+            <span class="w3-xxlarge"><?php echo $orderCount['closeOrders']; ?></span>
+          </div>
+          <div class="w3-clear"></div>
+          <h4>Closed Orders</h4>
+        </div>
+      </div>      
     </div>
     <!-- End page content -->
   </div>

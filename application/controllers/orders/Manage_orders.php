@@ -19,6 +19,7 @@ class Manage_orders extends CI_controller{
 
   public function index(){
    $data['orders'] = Manage_orders::getMyOrders();     //-------show all Raw prods
+  
    $this->load->view('includes/header');	
    $this->load->view('pages/orders/manage_orders',$data);
    //$this->load->view('inventory/profile/manage_profile',$data);
@@ -41,7 +42,6 @@ class Manage_orders extends CI_controller{
   return $response;
 }
 //----------------this fun get all my orders details end---------------//
-
 
  //----------this function to add order profile-----------------------------//
 public function addOrder() { 
