@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-error_reporting(E_ERROR | E_PARSE);
+//error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,7 +74,7 @@ error_reporting(E_ERROR | E_PARSE);
                 </thead>
                 <tbody ><!-- table body starts here -->
                   <?php 
-                                    //print_r($orders);
+                                    print_r($orders);
                   if ($orders['status'] == 200) {//print_r($Purchased['status_message']);
                   $count=1;
                   $value = '';
@@ -255,7 +255,7 @@ error_reporting(E_ERROR | E_PARSE);
         </div>
         <!-- material div end -->
         <div class="w3-col l12 w3-center">
-          <button type="submit" title="Raise Order" class="w3-margin w3-medium w3-button  w3-red">Raise New Order</button>
+          <button id="btnsubmit" type="submit" title="Raise Order" class="w3-margin w3-medium w3-button  w3-red">Raise New Order</button>
         </div>
       </form>
     </div>

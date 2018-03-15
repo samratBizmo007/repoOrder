@@ -1,8 +1,5 @@
 <?php
 
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-
 class ManageOrder_model extends CI_Model {
 
     public function __construct() {
@@ -159,16 +156,17 @@ class ManageOrder_model extends CI_Model {
 
         $sql = "INSERT INTO order_tab(user_id,business_field,order_products,order_date,order_time,status) VALUES
          ('$user_id','$business_field','$prod_associated',NOW(),NOW(),'1')";
-print_r($sql);die();
-        //$result = $this->db->query($sql);
+//print_r($sql);die();
+        $result = $this->db->query($sql);
         $userDetails = ManageOrder_model::getUserDetails($user_id);
         $AdminEmail = ManageOrder_model::getAdminEmail();
         $user_email = $userDetails['email'];
         $user_username = $userDetails['username'];
-        if ($this->db->query($sql)) {
+        if ($result) {
             $order_id = $this->getNextID('order_id', 'order_tab');
 
-        //$otp_function = login::sendEmail($business_field,$order_id,$userDetails,$user_email,$user_username,$AdminEmail,$prod_associated);
+        $emailfunction = ManageOrder_model::sendEmail($business_field,$order_id,$userDetails,$user_email,$user_username,$AdminEmail,$prod_associated);
+        //print_r($emailfunction);        die();
         $response = array(
                 'status' => 200,
                 'order_id' => $order_id,
@@ -183,13 +181,86 @@ print_r($sql);die();
 
     //---------ADD NEW ORDER FUNCTION ENDS------------------//
     //-----------fun for send email to admin for order placing--------//
-    public function sendEmail($business_field,$order_id,$userDetails,$user_email,$user_username,$AdminEmail,$prod_associated){
-        
+    public function sendEmail($business_field, $order_id, $userDetails, $user_email, $user_username, $AdminEmail, $prod_associated) {
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'mx1.hostinger.in',
+            'smtp_port' => '587',
+            'smtp_user' => 'customercare@jobmandi.in', // change it to yours
+            'smtp_pass' => 'Descartes@1990', // change it to yours
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'wordwrap' => TRUE
+        );
+        $config['smtp_crypto'] = 'tls';
+        //return ($config);die();
+
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('customercare@jobmandi.in', "Admin Team");
+        $this->email->to($AdminEmail);
+        $this->email->subject("OTP Send");
+        //$this->email->message("Dear ".$username.",\nPlease click on below URL or paste into your browser to verify your Email Address\n\n <a href='".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."'>".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."</a>\n"."\n\nThanks\nAdmin Team");
+        $count=1;
+        $this->email->message('<html>
+			<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
+			<script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
+			<script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
+			</head>
+			<body>
+			<div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+			<h2 style="color:#4CAF50; font-size:30px">Welcome To Joomla Business!!</h2>
+			<h3 style="font-size:15px;">Hello Admin,<br></h3>
+			
+			<div class="col-lg-12">
+			
+                  <div class="" id="All_Orders" name="All_Orders" style="height: 450px;overflow: scroll ">
+                 <table class="table table-bordered table-responsive w3-small"> 
+                <!-- table starts here -->
+                <thead>
+                  <tr class="">
+                    <th class="text-center">Sr. No.</th>
+                    <th class="text-center">Order No.</th>
+                    <th class="text-center">Posted On</th>
+                    <th class="text-center">Business Field</th>  
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                   <tr class="text-center">
+                    <td class="text-center">'.$count.'.</td>
+                    <td class="text-center">#OID-'.$order_id.'</td>
+                    <td class="text-center">' .date('M d,Y') . '-' .date('h:i a') . '</td>
+                    <td class="text-center">'.$business_field.'</td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </div>
+                    </div>
+                    </div>
+                    </body>
+                    </html>');
+        if ($this->email->send()) {
+            $response = array(
+                'status' => 200, //---------email sending succesfully 
+                'status_message' => 'Email Sent Succesfully.'
+            );
+        } else {
+            //print_r($this->email->print_debugger());die();
+            $response = array(
+                'status' => 500, //---------email send failed
+                'status_message' => 'Email Sending Failed.'
+            );
+        }
+        return $response;
     }
+
     //-----------fun for send email to admin for order placing--------//
     public function getAdminEmail() {
         $admin_email = '';
-        $sql = "SELECT * FROM admin_login";
+        $sql = "SELECT * FROM admin_tab";
         $resultnew = $this->db->query($sql);
 
         foreach ($resultnew->result_array() as $row) {
@@ -256,3 +327,49 @@ print_r($sql);die();
 }
 
 ?>
+<!--foreach($product_info as $key)
+                    {
+                      if($key["business_field"] == 1){
+                          $value = "Mobile Accessories";  
+                      } 
+                      if($key["business_field"] == 2){
+                          $value = "Cosmetics";  
+                      }
+                      if($key["business_field"] == 3){
+                          $value = "Watch and Glasses";  
+                      }
+                      if($key["business_field"] == 4){
+                          $value = "Bags";  
+                      }
+                      if($key["business_field"] == 5){
+                          $value = "Others";  
+                      }
+                      
+                      
+                      <div class="col-lg-12 w3-margin-bottom">
+                      
+                      <div class="w3-col l4 s6 w3-padding-small w3-center">
+                      <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="' . base_url() . '' . $key['prod_image'] . '" onerror="this.src=\'' . base_url() . 'images/default_image.png\'">
+                      </div>
+                      
+                      <div class="w3-col l8 s6 w3-padding-small">
+                      <div class="w3-col l12 w3-padding-top">
+                      
+                      <div class="w3-col l4">
+                      <label class="">Business Field:</label>
+                      <p class="">' . $value . '</p>
+                      </div>
+                      
+                      <div class="w3-col l4 ">
+                      <label class="">Item Name:</label>
+                      <p class="">' . $key['prod_Name'] . '</p>
+                      </div>
+                      
+                      <div class="w3-col l4 ">
+                      <label class="">Quantity:</label>
+                      <p class="" >' . $key['prod_quantity'] . ' No(s).</p>
+                      </div>
+                      
+                      </div>
+                      </div>
+                      </div>-->

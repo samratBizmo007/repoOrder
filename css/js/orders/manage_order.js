@@ -7,7 +7,8 @@
 
 $(document).ready(function (e){
     $("#addOrder_form").on('submit',(function(e){       
-        e.preventDefault();        
+        e.preventDefault();   
+        $("#btnsubmit").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
         $.ajax({
             url: BASE_URL + "orders/Manage_orders/addOrder",
             type: "POST",
@@ -17,6 +18,7 @@ $(document).ready(function (e){
             processData:false,
             success: function(data){
                 $.alert(data);
+                $("#btnsubmit").html('');
             },
             error: function(){}             
         });

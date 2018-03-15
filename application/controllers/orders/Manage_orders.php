@@ -18,8 +18,8 @@ class Manage_orders extends CI_controller{
   }
 
   public function index(){
-   $data['orders'] = Manage_orders::getMyOrders();     //-------show all Raw prods
-  
+   $data['orders'] = Manage_orders::getMyOrders();
+   //print_r($data);//-------show all Raw prods
    $this->load->view('includes/header');	
    $this->load->view('pages/orders/manage_orders',$data);
    //$this->load->view('inventory/profile/manage_profile',$data);
@@ -42,6 +42,7 @@ class Manage_orders extends CI_controller{
   return $response;
 }
 //----------------this fun get all my orders details end---------------//
+
 
  //----------this function to add order profile-----------------------------//
 public function addOrder() { 
@@ -100,7 +101,7 @@ for($i = 0; $i < count($prod_Name); $i++){
 
       if($this->upload->do_upload('userFile')){
         $fileData = $this->upload->data();
-        $imagePath='images/order_images/'.$fileData['file_name'];
+        $imagePath = $fileData['file_name'];
 //        $imagePath = array(
 //       // 'type'=> ,
 //        'image'=>'images/order_images/'.$fileData['file_name']
@@ -131,7 +132,7 @@ for($i = 0; $i < count($prod_Name); $i++){
   $response_json = curl_exec($ch);
   curl_close($ch);
   $response = json_decode($response_json, true);
-  print_r($response_json);die();
+  //print_r($response_json);die();
   
   if ($response['status'] != 200) {
     echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
