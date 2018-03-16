@@ -84,7 +84,7 @@ error_reporting(E_ERROR | E_PARSE);
                 font-size: 14px;
                 height: auto;
                 font-weight: normal;
-                padding: 14px 0;
+                padding: 10px 0;
                 text-transform: uppercase;
                 border-color: #59B2E6;
             }
