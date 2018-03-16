@@ -19,22 +19,24 @@ class Manage_orders extends CI_controller{
 
   public function index(){
     $this->load->library('user_agent');
-   $data['orders'] = Manage_orders::getMyOrders();
+    $data['orders'] = Manage_orders::getMyOrders();
    //print_r($data);//-------show all Raw prods
 
-   if ($this->agent->is_mobile())
-   {
-    $this->load->view('pages/orders/mobile/manage_orders',$data);
-  }
-  else{
-   $this->load->view('includes/header');	
-   $this->load->view('pages/orders/manage_orders',$data);
+    if ($this->agent->is_mobile())
+    {
+      $this->load->view('includes/mobile/header');     
+      $this->load->view('pages/orders/mobile/manage_orders',$data);
+      $this->load->view('includes/mobile/footer');
+    }
+    else{
+     $this->load->view('includes/header');	
+     $this->load->view('pages/orders/manage_orders',$data);
+   }
+
  }
 
-}
-
  //----------this function to get all my orders details-----------------------------
-public function getMyOrders() {
+ public function getMyOrders() {
   $user_id=$this->session->userdata('user_id');
   //$user_id=1;
 

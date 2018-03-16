@@ -17,6 +17,10 @@ class User_api extends REST_Controller
 	public function sendOTPEmail_post(){
 		extract($_POST);
 		$result = $this->user_model->sendOTPEmail($user_email);
+		if($result['status']==200){
+			$result=$this->user_model->saveOTP($user_email,$result['otp']);
+		}
+		//echo $result['otp'];die();
 		return $this->response($result);			
 	}
 	//---------------------SEND OTP TO EMAIL END------------------------------//

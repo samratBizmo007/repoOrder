@@ -8,10 +8,20 @@ class User_settings extends CI_Controller {
   }
 
   public function index() {
-
+$this->load->library('user_agent');
+    $this->load->library('user_agent');
     $data['userDetails']=User_settings::getUserDetails();
-    $this->load->view('includes/header.php');
+
+    if ($this->agent->is_mobile())
+    {
+      $this->load->view('includes/mobile/header');
+      $this->load->view('pages/user/mobile/user_settings',$data);
+      $this->load->view('includes/mobile/footer');
+    }
+    else{
+      $this->load->view('includes/header.php');
     $this->load->view('pages/user/user_settings',$data);
+    }
         //$this->load->view('includes/footer.php');
   }
 
@@ -37,20 +47,7 @@ class User_settings extends CI_Controller {
       echo '<h4 class="w3-text-red w3-medium w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>'; 
     } 
     else {
-      echo '<h4 class="w3-text-green w3-medium w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>';
-
-      // -----------------save opt and email to db api-----------------
-      $data['otp']=$response['otp'];
-      $url_next = $path.'api/User_api/saveOTP';
-      $ch_next = curl_init($url_next);
-      curl_setopt($ch_next, CURLOPT_POST, true);
-      curl_setopt($ch_next, CURLOPT_POSTFIELDS, $data);
-      curl_setopt($ch_next, CURLOPT_RETURNTRANSFER, true);
-      $response_json_next = curl_exec($ch_next);
-      curl_close($ch_next);
-      $response_next = json_decode($response_json_next, true);
-//print_r($response_json_next);die();
-      echo '<h4 class="w3-text-green w3-medium w3-margin"><i class="fa fa-check"></i> '.$response_next['status_message'].'</h4>
+      echo '<h4 class="w3-text-green w3-medium w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>
       <script>
       window.setTimeout(function() {
        location.reload();

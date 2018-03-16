@@ -1,5 +1,5 @@
 <?php
-class Mobile_history extends CI_controller{
+class History extends CI_controller{
 
   public function __construct(){
     parent::__construct();
@@ -7,9 +7,11 @@ class Mobile_history extends CI_controller{
   
   
   public function index(){
-  	$data['orders'] = Mobile_history::getMyOrders();
-  	$this->load->view('pages/orders/mobile/mobile_history',$data);
-  
+  	$data['orders'] = History::getMyOrders();
+    $this->load->view('includes/mobile/header');
+      $this->load->view('pages/history/hist_orders',$data);
+      $this->load->view('includes/mobile/footer');
+
   }
   
 	public function getMyOrders() {
