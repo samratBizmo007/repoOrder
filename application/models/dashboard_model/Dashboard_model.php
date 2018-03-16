@@ -80,7 +80,7 @@ class Dashboard_model extends CI_Model {
         if ($this->db->query($query)) {
             $response = array(
                 'status' => 200,
-                'status_message' => 'Order Opemed Successfully.'
+                'status_message' => 'Order Opened Successfully.'
             );
         } else {
             //insertion failure
@@ -102,7 +102,7 @@ class Dashboard_model extends CI_Model {
         if($this->db->query($query)){
             $response=array(
                 'status' => 200,
-                'status_message' =>'Order deleted Successfully.'         
+                'status_message' =>'Order closed Successfully.'         
             );
         }
         else
@@ -110,7 +110,7 @@ class Dashboard_model extends CI_Model {
             //insertion failure
             $response=array(
                 'status' => 500,
-                'status_message' =>'Sorry..Order Deletion Failed!!!'         
+                'status_message' =>'Sorry..Order closing Failed!!!'         
             );
         }
 
@@ -165,12 +165,12 @@ class Dashboard_model extends CI_Model {
 
         if ($resultupdate) {
             $response = array(
-                'status' => 1,
-                'status_message' => 'Product Regreted..!');
+                'status' => 200,
+                'status_message' => 'Product Cancelled..!');
         } else {
             $response = array(
-                'status' => 0,
-                'status_message' => 'Product did not get Regreted...!');
+                'status' => 500,
+                'status_message' => 'Product cancellation failed...!');
         }
         return $response;
     }
@@ -201,12 +201,12 @@ class Dashboard_model extends CI_Model {
         $closeCount=$close_query->num_rows();
 
         $response = array(
-                'status' => 200,
-                'status_message' => 'Count for all available orders',
-                'activeOrders'  =>  $activeCount,
-                'openOrders'  =>  $openCount,
-                'closeOrders'  =>  $closeCount,
-            );
+            'status' => 200,
+            'status_message' => 'Count for all available orders',
+            'activeOrders'  =>  $activeCount,
+            'openOrders'  =>  $openCount,
+            'closeOrders'  =>  $closeCount,
+        );
         return $response;
     }
     // -----------------------GET ALL ORDERS COUNT MODEL----------------------//
