@@ -73,7 +73,7 @@ class Dashboard_model extends CI_Model {
     }
 
     // -----------------------GET ALL CLOSED ORDERS on admin dashboard MODEL----------------------//
-    //---------------delete ORder model-------------//
+    //---------------reopen ORder model-------------//
     function reOpen_Orders($order_id) {
         $query = "UPDATE order_tab SET status=2 WHERE order_id=" . $order_id . " ";
 
@@ -93,9 +93,9 @@ class Dashboard_model extends CI_Model {
         return $response;
     }
 
-    //----------------delete ORder ends--------------------------//
-       //---------------delete ORder model-------------//
-    function delOrder($order_id)
+    //----------------reopen ORder ends--------------------------//
+       //---------------close ORder model-------------//
+    function closeOrder($order_id)
     {
         $query="UPDATE order_tab SET status=0 WHERE order_id=".$order_id." ";  
         

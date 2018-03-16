@@ -48,9 +48,9 @@ class Dashboard_api extends REST_Controller
         
 	// -----------------------DELETE MY ORDERS API----------------------//
 	//-------------------------------------------------------------//
-	public function delOrder_get(){
+	public function closeOrder_get(){
 		extract($_GET);
-		$result = $this->dashboard_model->delOrder($order_id);
+		$result = $this->dashboard_model->closeOrder($order_id);
 		return $this->response($result);			
 	}
 	//---------------------DELETE MY ORDERS END------------------------------//

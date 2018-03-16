@@ -290,7 +290,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         $(wrapper).append('<div class="">\n\
           <div class="w3-col l12 w3-margin-bottom"><hr>\n\
-          <div class="col-lg-12 w3-margin-top">\n\
+          <div class="w3-col l12 w3-margin-top">\n\
           <div class="col-lg-7 w3-margin-top">\n\
           <label class="w3-label">Product Name:</label>\n\
           <input type="text" class="w3-input" name="prod_Name[]" placeholder="Enter Product Description" required>\n\

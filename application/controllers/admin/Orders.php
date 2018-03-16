@@ -101,13 +101,13 @@ class Orders extends CI_Controller {
     }
 
 // ---------------function ends here------------------------//
-// ---------------function to delete orders------------------------//
-    public function delOrder() {
+// ---------------function to close orders------------------------//
+    public function closeOrder() {
         extract($_POST);
 
         //Connection establishment to get data from REST API
         $path = base_url();
-        $url = $path . 'api/Dashboard_api/delOrder?order_id=' . $order_id;
+        $url = $path . 'api/Dashboard_api/closeOrder?order_id=' . $order_id;
         //echo $url;  
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);

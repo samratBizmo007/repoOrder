@@ -655,7 +655,7 @@ error_reporting(E_ERROR | E_PARSE);
                   confirm: function () {
                     var dataS = 'order_id='+ id;
                     $.ajax({
-                      url:"<?php echo base_url(); ?>admin/dashboard/reOpen_Orders", 
+                      url:"<?php echo base_url(); ?>admin/orders/reOpen_Orders", 
                       type: "POST", 
                       data: dataS,
                       cache: false,
@@ -681,7 +681,7 @@ error_reporting(E_ERROR | E_PARSE);
                   confirm: function () {
                     var dataS = 'order_id='+ id;
                     $.ajax({
-                      url:"<?php echo base_url(); ?>admin/dashboard/reOpen_Orders", 
+                      url:"<?php echo base_url(); ?>admin/orders/reOpen_Orders", 
                       type: "POST", 
                       data: dataS,
                       cache: false,
@@ -711,7 +711,7 @@ error_reporting(E_ERROR | E_PARSE);
                   confirm: function () {
                     var dataS = 'order_id='+ id;
                     $.ajax({
-                      url:"<?php echo base_url(); ?>admin/dashboard/delOrder", 
+                      url:"<?php echo base_url(); ?>admin/orders/closeOrder", 
                       type: "POST", 
                       data: dataS,
                       cache: false,
@@ -736,7 +736,7 @@ error_reporting(E_ERROR | E_PARSE);
                   confirm: function () {
 
                     $.ajax({
-                      url:"<?php echo base_url(); ?>admin/dashboard/regretProduct", 
+                      url:"<?php echo base_url(); ?>admin/orders/regretProduct", 
                       type: "POST", 
                       data: {
                         prod_no: prod_no,

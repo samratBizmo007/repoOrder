@@ -335,7 +335,7 @@ class ManageOrder_model extends CI_Model {
 //-------------GET NEXT AUTO INCREMENT VALUE IN ORDER_TAB---------------*/
     //---------------delete ORder model-------------//
     function delOrder($order_id) {
-        $query = "UPDATE order_tab SET status=0 WHERE order_id=" . $order_id . " ";
+        $query = "DELETE FROM order_tab WHERE order_id=".$order_id." ";
 
         if ($this->db->query($query)) {
             $response = array(
