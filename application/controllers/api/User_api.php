@@ -12,14 +12,32 @@ class User_api extends REST_Controller
 	}
 	
 
-	// -----------------------UPDATE EMAIL API----------------------//
+	// -----------------------SEND OTP TO EMAIL API----------------------//
 	//-------------------------------------------------------------//
-	public function updateEmail_post(){
+	public function sendOTPEmail_post(){
 		extract($_POST);
-		$result = $this->settings_model->updateEmail($admin_email);
+		$result = $this->user_model->sendOTPEmail($user_email);
 		return $this->response($result);			
 	}
-	//---------------------UPDATE EMAIL END------------------------------//
+	//---------------------SEND OTP TO EMAIL END------------------------------//
+
+	// -----------------------SAVE OTP TO DB API----------------------//
+	//-------------------------------------------------------------//
+	public function saveOTP_post(){
+		extract($_POST);
+		$result = $this->user_model->saveOTP($user_email,$otp);
+		return $this->response($result);			
+	}
+	//---------------------SAVE OTP TO DB END------------------------------//
+
+	// -----------------------VERIFY OTP TO DB API----------------------//
+	//-------------------------------------------------------------//
+	public function verifyOTP_post(){
+		extract($_POST);
+		$result = $this->user_model->verifyOTP($otp_email,$user_otp);
+		return $this->response($result);			
+	}
+	//---------------------VERIFY OTP TO DB END------------------------------//
 
 	// -----------------------UPDATE EMAIL API----------------------//
 	//-------------------------------------------------------------//

@@ -259,15 +259,6 @@ class Login extends CI_Model {
 //-----------------------function to check whether email-ID or username already exists------------------//
  
 
-    public function Update_Otp($email_id, $otp) {
-
-        if ($result) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
     // -----------------------USER LOGIN API----------------------//
     public function sendEmailotp($username, $email, $otp) {
 

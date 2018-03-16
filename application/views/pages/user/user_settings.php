@@ -1,5 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
-//error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 
 ?>
 <!DOCTYPE html>
@@ -26,19 +26,49 @@
     </header>
     <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-col l12">
-        <div class="col-lg-6 w3-padding-small">
-          <div class="w3-col l12 w3-small">
+        <div class="col-lg-6 w3-padding-small ">
+          <div class="w3-col l12 w3-small w3-margin-bottom">
             <label><i class="fa fa-check-square"></i> Verify Email-ID</label><br>
 
-            <form id="updateEmail">
-            <div class="w3-col l8 w3-padding-right w3-margin-bottom">
-              <input type="email" name="user_email" value="<?php echo $userDetails['email']; ?>" placeholder="Enter Email-ID here..." id="admin_email" class="w3-input" required>
-            </div>
-            <div class="w3-col l4">
-              <button type="submit" class="w3-button w3-red">Verify Email-ID</button>
-            </div>
-          </form>
-            
+            <form id="verifyEmail">
+              <div class="w3-col l8 w3-padding-right w3-margin-bottom">
+                <input type="email" name="user_email" value="<?php echo $userDetails['email']; ?>" placeholder="Enter Email-ID here..." id="user_email" class="w3-input" required readonly>
+              </div>
+              <div class="w3-col l4"  id="verifyEmail_btn">
+                <button type="submit" class="w3-button w3-red">Send OTP</button>
+              </div>
+            </form>            
+          </div>
+        </div>
+
+        <div class="col-lg-6 w3-padding-small ">
+          <div class="w3-col l6 w3-small w3-margin-bottom">
+            <label><i class="fa fa-check-square"></i> Verify OTP</label><br>
+
+            <form id="verifyOTP">
+              <div class="w3-col l8 w3-padding-right w3-margin-bottom">
+                <input type="hidden" name="otp_email" value="<?php echo $userDetails['email']; ?>" id="otp_email" class="w3-input">
+                <input type="text" name="user_otp" pattern="[0-9]{6}" oninvalid="this.setCustomValidity('Invalid OTP Pattern')" oninput="setCustomValidity('')" maxlength="6" placeholder="Enter OTP here..." id="user_otp" class="w3-input" required>
+              </div>
+              <div class="w3-col l4"  id="verifyOTP_btn">
+                <button type="submit" class="w3-button w3-red">Verify OTP</button>
+              </div>
+            </form>            
+          </div>
+          <div class="w3-col l6 w3-small w3-padding-small">
+            <label></label><br>
+            <?php 
+            $msg='';
+            if($userDetails['email_verified']==1){
+              $msg='<span class="w3-text-green w3-padding-small w3-round-large"><i class="fa fa-check-circle"></i> Email-ID has been Verified.</span>';
+            }
+            elseif($userDetails['email_verified']==0){
+              $msg='<span class="w3-text-red w3-padding-small w3-round-large"><i class="fa fa-remove"></i> Email-ID is not Verified.</span>';
+            }
+
+            echo '<label>'.$msg.'</label>';
+            ?>
+                    
           </div>
         </div>
       </div>
@@ -46,30 +76,58 @@
     <!-- End page content -->
   </div>
 
-<!--  script to update email id   -->
-<script>
-  $(function(){
-   $("#updateEmail").submit(function(){
-     dataString = $("#updateEmail").serialize();
+  <!--  script to send OTP to email id   -->
+  <script>
+    $(function(){
+     $("#verifyEmail").submit(function(){
+       dataString = $("#verifyEmail").serialize();
+       $("#verifyEmail_btn").html('<span class="w3-large fa fa-spinner fa-spin"></span> Sending OTP...');
+       $.ajax({
+         type: "POST",
+         url: "<?php echo base_url(); ?>user/user_settings/verifyEmail",
+         data: dataString,
+       return: false,  //stop the actual form post !important!
 
-     $.ajax({
-       type: "POST",
-       url: "<?php echo base_url(); ?>admin/admin_settings/updateEmail",
-       data: dataString,
-           return: false,  //stop the actual form post !important!
+       success: function(data)
+       {
+        $("#verifyEmail_btn").html('<button type="submit" class="w3-button w3-red">Verify Email-ID</button>');
+         $.alert(data);                       
+       }
 
-           success: function(data)
-           {
-             $.alert(data);                       
-           }
-
-         });
+     });
 
          return false;  //stop the actual form post !important!
 
        });
- });
-</script>
-<!-- script ends here -->
+   });
+ </script>
+ <!-- script ends here -->
+
+ <!--  script to verify OTP to email id   -->
+  <script>
+    $(function(){
+     $("#verifyOTP").submit(function(){
+       dataString = $("#verifyOTP").serialize();
+       $("#verifyOTP_btn").html('<span class="w3-large fa fa-spinner fa-spin"></span> Verifying OTP...');
+       $.ajax({
+         type: "POST",
+         url: "<?php echo base_url(); ?>user/user_settings/verifyOTP",
+         data: dataString,
+       return: false,  //stop the actual form post !important!
+
+       success: function(data)
+       {
+        $("#verifyOTP_btn").html('<button type="submit" class="w3-button w3-red">Verify OTP</button>');
+         $.alert(data);                       
+       }
+
+     });
+
+         return false;  //stop the actual form post !important!
+
+       });
+   });
+ </script>
+ <!-- script ends here -->
 </body>
 </html>
