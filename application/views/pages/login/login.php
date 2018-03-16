@@ -139,6 +139,9 @@ error_reporting(E_ERROR | E_PARSE);
         </style>
     </head>
     <body class="" >
+        <div class="row w3-light-grey w3-xxxlarge w3-padding-small">
+            <center>JUMLA BUSINESS</center>
+        </div>
         <div class="w3-middle" id="spinnerDiv"></div>
 
         <div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
@@ -257,6 +260,10 @@ error_reporting(E_ERROR | E_PARSE);
                 </div>			
             </div>
         </div>
+        <div class="w3-center">       
+<!--     <span class="w3-medium">© Copyright and All Rights reserved</span><br>
+ -->    <span class="w3-medium">© Powered by <a class="w3-text-blue" href="https://bizmo-tech.com" target="_blank">Bizmo Technologies</a> </span>
+  </div>
         <script>
             $(function () {
                 $('#login_form-link').click(function (e) {

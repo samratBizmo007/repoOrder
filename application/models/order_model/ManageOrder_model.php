@@ -302,19 +302,29 @@ class ManageOrder_model extends CI_Model {
     public function getUserDetails($user_id) {
         $email = '';
         $username = '';
-        $details = '';
+        //$details = '';
         $sql = "SELECT * FROM customer_tab WHERE user_id = '$user_id'";
         $resultnew = $this->db->query($sql);
 
-        foreach ($resultnew->result_array() as $row) {
-            $email = $row['email'];
-            $username = $row['username'];
-        }
-        $details = array(
-            'email' => $email,
-            'username' => $username
-        );
-        return $details;
+        
+        if ($resultnew->num_rows() <= 0) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'No User found.');
+        } else {
+            foreach ($resultnew->result_array() as $row) {
+                $email = $row['email'];
+                $username = $row['username'];
+            }
+
+            $response = array(
+                'status' => 200,
+                'status_message' => 'User Details found!',
+                'email' => $email,
+                'username' => $username
+            );
+        }       
+        return $response;
     }
 
     //------------GET NEXT AUTO INCREMENT VALUE IN ORDER_TAB-----------------

@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
-error_reporting(E_ERROR | E_PARSE);
+//error_reporting(E_ERROR | E_PARSE);
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Settings</title>
+  <title>Settings</title>
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
@@ -14,7 +14,6 @@ error_reporting(E_ERROR | E_PARSE);
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-  <script type="text/javascript" src="<?php echo base_url(); ?>css/js/admin/admin_settings.js"></script>
 </head>
 <body class="w3-light-grey">
 
@@ -29,14 +28,14 @@ error_reporting(E_ERROR | E_PARSE);
       <div class="w3-col l12">
         <div class="col-lg-6 w3-padding-small">
           <div class="w3-col l12 w3-small">
-            <label><i class="fa fa-envelope"></i> SetUp Email-ID</label><br>
+            <label><i class="fa fa-check-square"></i> Verify Email-ID</label><br>
 
             <form id="updateEmail">
             <div class="w3-col l8 w3-padding-right w3-margin-bottom">
-              <input type="email" name="admin_email" value="<?php echo $adminDetails['status_message'][0]['admin_email']; ?>" placeholder="Enter Email-ID here..." id="admin_email" class="w3-input" required>
+              <input type="email" name="user_email" value="<?php echo $userDetails['email']; ?>" placeholder="Enter Email-ID here..." id="admin_email" class="w3-input" required>
             </div>
             <div class="w3-col l4">
-              <button type="submit" class="w3-button w3-red">Update Email-ID</button>
+              <button type="submit" class="w3-button w3-red">Verify Email-ID</button>
             </div>
           </form>
             

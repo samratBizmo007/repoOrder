@@ -53,6 +53,12 @@ $user_name=$this->session->userdata('user_name');
       <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">My Orders<br><br></div>      
       <div class="clear"></div>
     </a>
+
+    <a href="<?php echo base_url(); ?>user/user_settings" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
+      <div class="w3-col l12"><i class="w3-xlarge fa fa-cog fa-fw"></i></div>
+      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Settings<br><br></div>      
+      <div class="clear"></div>
+    </a>
   </div>
 </nav>
 
