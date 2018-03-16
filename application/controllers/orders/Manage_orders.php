@@ -18,16 +18,23 @@ class Manage_orders extends CI_controller{
   }
 
   public function index(){
+    $this->load->library('user_agent');
    $data['orders'] = Manage_orders::getMyOrders();
    //print_r($data);//-------show all Raw prods
+
+   if ($this->agent->is_mobile())
+   {
+    $this->load->view('pages/orders/mobile/manage_orders',$data);
+  }
+  else{
    $this->load->view('includes/header');	
    $this->load->view('pages/orders/manage_orders',$data);
-   //$this->load->view('inventory/profile/manage_profile',$data);
-
  }
 
+}
+
  //----------this function to get all my orders details-----------------------------
- public function getMyOrders() {
+public function getMyOrders() {
   $user_id=$this->session->userdata('user_id');
   //$user_id=1;
 
@@ -50,11 +57,11 @@ public function addOrder() {
   //print_r($_POST);die();
 
   if($business_field == 0){
-     echo '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Select Business Field.</h4>';
-    die();
-  }
-  $user_id=$this->session->userdata('user_id');
-  $user_name=$this->session->userdata('user_name');
+   echo '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Select Business Field.</h4>';
+   die();
+ }
+ $user_id=$this->session->userdata('user_id');
+ $user_name=$this->session->userdata('user_name');
 //print_r($_FILES['prod_image']['name'][1]);die();
   $prod_Arr=array();  //prod_image array
   $allowed_types=['gif','jpg','png','jpeg','JPG','GIF','JPEG','PNG'];
