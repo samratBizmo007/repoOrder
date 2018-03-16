@@ -199,7 +199,7 @@ class ManageOrder_model extends CI_Model {
         $this->email->set_newline("\r\n");
         $this->email->from('customercare@jobmandi.in', "Admin Team");
         $this->email->to($AdminEmail);
-        $this->email->subject("New Order For Jumla");
+         $this->email->subject("New Order For Jumla");
         //$this->email->message("Dear ".$username.",\nPlease click on below URL or paste into your browser to verify your Email Address\n\n <a href='".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."'>".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."</a>\n"."\n\nThanks\nAdmin Team");
         $count=1;
         $value = '';      
@@ -218,58 +218,113 @@ class ManageOrder_model extends CI_Model {
         if ($business_field == 5) {
             $value = 'Others';
         }
+        //$baseUrl = 'http://localhost/repoOrder/images/order_images/';
         $baseUrl = 'http://ordertracker.bizmo-tech-admin.com/images/order_images/';
-        $message = '<html><head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
-        <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
-        <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
-        </head>
-        <body>
-        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-        <h2 style="color:#4CAF50; font-size:30px">Welcome To Jumla Business!!</h2>
-        <h3 style="font-size:15px;">Hello Admin,<br></h3>
-
-        <div class="col-lg-12">
-        <center><h2><label>Order Id: #'.$order_id.' </label></h2></center>
-        <div class="col-lg-3">
-        <label><b>Date:</b> '.date('M d,Y') . '-' .date('h:i a').'</label>	
-        </div>
-        <div class="col-lg-3">
-        <label><b>Business Field:</b> '.$value.'</label>	
-        </div>
-        <div class="col-lg-3">
-        <label><b>User Name:</b> '.$user_username.'</label>	
-        </div> 
-        <div class="col-lg-3">
-        <label><b>Email:</b> '.$user_email.'</label>	
-        </div> 
-        </div>
-        <div class="" id="All_Orders" name="All_Orders" style="height: 450px;overflow: scroll ">
-        <table class="table table-bordered w3-small"> 
-        <!-- table starts here -->
-        <thead>
-        <tr class="">
-        <th class="text-center">Product</th>
-        <th class="text-center">Product Qty</th>
-        <th class="text-center">Product Image</th>
-        </tr>                
-        </thead>
-        <tbody>';
-        foreach (json_decode($prod_associated,TRUE) as $key){ 
+        $message='<html>
+		<head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<style>
+		table {
+		    font-family: arial, sans-serif;
+		    border-collapse: collapse;
+		    width: 100%;
+		}
+		
+		td, th {
+		    border: 1px solid #dddddd;
+		    text-align: left;
+		    padding: 8px;
+		}
+		
+		tr:nth-child(even) {
+		    background-color: #dddddd;
+		}
+		</style>
+		</head>
+		<body>
+		<div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+		<h2 style="text-align:center; color:#4CAF50; font-size:40px">Jumla business</h2>
+		<h3 style="font-size:15px;"><b>Hello Pal,</b></h3>
+		<h4 style=""><b>Order Id: </b>#'.$order_id.'<br><b>Date: </b>'.date('M d,Y') . '-' .date('h:i a').'<br><b>Business Field: </b>'.$value.'<br><b>Username: </b> '.$user_username.'<br><b>Email:</b>'.$user_email.'</h4>
+		<hr>
+		<h2>Order Details</h2>
+		<table>
+		<tr>
+		<th>Product Image</th>
+		<th>Product </th>
+		<th>product Quantity </th>
+		</tr>';
+		  foreach (json_decode($prod_associated,TRUE) as $key){ 
             $message.='<tr>'
-            . '<td class="text-center">'.$key['prod_Name'].'</td>
-            <td class="text-center">'.$key['prod_quantity'].'</td>
-            <td class="text-center">
-            <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.$baseUrl.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'"></td>
+            . '<td>'.$key['prod_Name'].'</td>
+            <td>'.$key['prod_quantity'].'</td>
+            <td>
+            <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.IMAGE_PATH.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+            </td>
             </tr>';
         }
-        $message.='</tbody>
-        </table>
-        </div>
-        </div>
-        </body>
-        </html>';
+	$message.='</table>
+	</div>
+</body>
+</html>';
+        
+        
+        
+        
+//        $message = '<html><head>
+//        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//        <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
+//        <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
+//        <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
+//        </head>
+//        <body>
+//        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+//        <h2 style="color:#4CAF50; font-size:30px">Welcome To Jumla Business!!</h2>
+//        <h3 style="font-size:15px;">Hello Admin,<br></h3>
+//
+//        <div class="col-lg-12">
+//        <center><h2><label>Order Id: #'.$order_id.' </label></h2></center>
+//        <div class="col-lg-3">
+//        <label><b>Date:</b> '.date('M d,Y') . '-' .date('h:i a').'</label>	
+//        </div>
+//        <div class="col-lg-3">
+//        <label><b>Business Field:</b> '.$value.'</label>	
+//        </div>
+//        <div class="col-lg-3">
+//        <label><b>User Name:</b> '.$user_username.'</label>	
+//        </div> 
+//        <div class="col-lg-3">
+//        <label><b>Email:</b> '.$user_email.'</label>	
+//        </div> 
+//        </div>
+//        <div class="" id="All_Orders" name="All_Orders" style="height: 450px;overflow: scroll ">
+//        <table class="table table-bordered w3-small" style="1px solid black;"> 
+//        <!-- table starts here -->
+//        <thead>
+//        <tr class="">
+//        <th class="text-center">Product</th>
+//        <th class="text-center">Product Qty</th>
+//        <th class="text-center">Product Image</th>
+//        </tr>                
+//        </thead>
+//        <tbody>';
+//        foreach (json_decode($prod_associated,TRUE) as $key){ 
+//            $message.='<tr>'
+//            . '<td class="text-center">'.$key['prod_Name'].'</td>
+//            <td class="text-center">'.$key['prod_quantity'].'</td>
+//            <td class="text-center">
+//            <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.$baseUrl.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'"></td>
+//            </tr>';
+//        }
+//        $message.='</tbody>
+//        </table>
+//        </div>
+//        </div>
+//        </body>
+//        </html>';
 
         $this->email->message($message);
         if ($this->email->send()) {
