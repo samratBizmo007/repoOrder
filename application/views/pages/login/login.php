@@ -105,7 +105,7 @@ error_reporting(E_ERROR | E_PARSE);
             }
 
             .btn-register {
-                background-color: #1CB94E;
+                /*background-color: #1CB94E;*/
                 outline: none;
                 color: #fff;
                 font-size: 14px;
@@ -113,7 +113,7 @@ error_reporting(E_ERROR | E_PARSE);
                 font-weight: normal;
                 padding: 10px 0;
                 text-transform: uppercase;
-                border-color: #1CB94A;
+/*                border-color: #1CB94A;*/
             }
             .btn-register:hover,
             .btn-register:focus {
@@ -222,7 +222,7 @@ error_reporting(E_ERROR | E_PARSE);
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-sm-6 col-sm-offset-3">
-                                                        <input type="submit" name="register_register_submit" id="register_register_submit" class="form-control  btn btn-register bluishGreen_bg" value="Register Now">
+                                                        <input type="submit" name="register_register_submit" id="register_register_submit" class="form-control  btn btn-register" value="Register Now" style="background-color: #00B8D4">
                                                     </div>
                                                 </div>
                                             </div>
