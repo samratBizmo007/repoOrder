@@ -57,9 +57,14 @@ class Manage_orders extends CI_controller{
 public function addOrder() { 
   extract($_POST);
   //print_r($_POST);die();
+  //print_r($_FILES);die();
 
+  if(!isset($prod_Name)){
+   echo '<h4 class="w3-text-red w3-medium"><i class="fa fa-warning"></i> Add at least one product.</h4>';
+   die();
+ }
   if($business_field == 0){
-   echo '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Select Business Field.</h4>';
+   echo '<h4 class="w3-text-red w3-medium"><i class="fa fa-warning"></i> Select Business field first.</h4>';
    die();
  }
  $user_id=$this->session->userdata('user_id');

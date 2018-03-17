@@ -47,7 +47,7 @@ class User_model extends CI_Model {
         $result = $this->db->query($sqlselect);
 
         if ($result->num_rows() >= 1) {
-            $query = "UPDATE otp_expiry SET otp = '$otp' WHERE email_id = '$email_id'";
+            $query = "UPDATE otp_expiry SET otp = '$otp',create_at=NOW() WHERE email_id = '$email_id'";
             $result = $this->db->query($query);
 
             if ($result) {
@@ -58,7 +58,7 @@ class User_model extends CI_Model {
                 $response = array(
                             'status' => 200, //---------insert db success code
                             //'otp' => $otp,
-                            'status_message' => 'OTP has been updated for this email-ID. Please verify the Email by OTP.'
+                            'status_message' => 'OTP has been sent to your registered email-ID. Please verify your Email by OTP.'
                         );
             }
             else {
@@ -79,7 +79,7 @@ class User_model extends CI_Model {
                 $response = array(
                             'status' => 200, //---------insert db success code
                             //'otp' => $otp,
-                            'status_message' => 'OTP has been registered for this email-ID. Please verify the Email by OTP.'
+                            'status_message' => 'OTP has been sent to your registered email-ID. Please verify your Email by OTP.'
                         );
             } else {
                 $response = array(
