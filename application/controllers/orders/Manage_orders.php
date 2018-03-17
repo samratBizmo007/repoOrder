@@ -80,7 +80,7 @@ public function addOrder() {
     //image validating---------------------------//
     //check whether image size is less than 2 mb or not
     if($_FILES['prod_image']['size'][$i] > 2048576){  //for prod images
-      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> Image size for item '.$prod_Name[$i].' exceeds size limit of 1MB. Upload image having size less than 1MB</label>';
+      echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-xxlarge"></i> Image size for item '.$prod_Name[$i].' exceeds size limit of 2MB. Upload image having size less than 2MB</label>';
       die();
     }
 
