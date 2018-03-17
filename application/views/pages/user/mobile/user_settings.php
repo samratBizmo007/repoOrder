@@ -35,7 +35,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <input type="email" name="user_email" value="<?php echo $userDetails['email']; ?>" placeholder="Enter Email-ID here..." id="user_email" class="form-control w3-center" required readonly>
               </div>
               <div class="w3-col l4"  id="verifyEmail_btn">
-                <button type="submit" class="btn btn-block w3-red">Send OTP</button>
+                <button type="submit" class="btn btn-block w3-text-white" style=" background-color: #00B8D4;">Send OTP</button>
               </div>
             </form>            
           </div>
@@ -52,7 +52,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <input type="text" name="user_otp" pattern="[0-9]{6}" oninvalid="this.setCustomValidity('Invalid OTP Pattern')" oninput="setCustomValidity('')" maxlength="6" placeholder="Enter OTP here..." id="user_otp" class="form-control" required>
               </div>
               <div class="w3-col l4"  id="verifyOTP_btn">
-                <button type="submit" class="btn btn-block w3-red">Verify OTP</button>
+                <button type="submit" class="btn btn-block w3-text-white" style=" background-color: #00B8D4;">Verify OTP</button>
               </div>
             </form>            
           </div>
@@ -75,7 +75,7 @@ error_reporting(E_ERROR | E_PARSE);
       </div>
     </div>
     <!-- End page content -->
-    <a href="<?php echo base_url(); ?>login/logout" style="background-color: #00B8D4" class="btn w3-margin btn-sm w3-text-white"><label>Sign Out</label></a>
+    <center><a href="<?php echo base_url(); ?>login/logout" style="background-color: #00B8D4" class="btn w3-margin w3-center btn-sm w3-text-white"><label>Sign Out</label></a></center>
   </div>
 
   <!--  script to send OTP to email id   -->
@@ -92,7 +92,7 @@ error_reporting(E_ERROR | E_PARSE);
 
        success: function(data)
        {
-        $("#verifyEmail_btn").html('<button type="submit" class="btn btn-block w3-red">Send OTP</button>');
+        $("#verifyEmail_btn").html('<button type="submit" class="btn btn-block w3-text-white " style=" background-color: #00B8D4;">Send OTP</button>');
          $.alert(data);                       
        }
 
@@ -119,7 +119,7 @@ error_reporting(E_ERROR | E_PARSE);
 
        success: function(data)
        {
-        $("#verifyOTP_btn").html('<button type="submit" class="btn btn-block w3-red">Verify OTP</button>');
+        $("#verifyOTP_btn").html('<button type="submit" class="btn btn-block w3-text-white" style=" background-color: #00B8D4;">Verify OTP</button>');
          $.alert(data);                       
        }
 
