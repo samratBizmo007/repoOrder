@@ -30,9 +30,6 @@ class Manage_orders extends CI_controller{
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_data = curl_exec($ch);
         curl_close($ch);
-        
-        //$this->load->model('order_model/ManageOrder_model');
-        //$data['jobs'] = Jobseeker_lists::getAllJobs();
         //----------pagination code starts here-------------------------------------
         //------loading the library pagination----------------------//
         $this->load->library('pagination');
@@ -42,8 +39,6 @@ class Manage_orders extends CI_controller{
             'per_page' => 10,
             'total_rows' => json_decode($response_data, true),
         ];
-
-
         $config['full_tag_open'] = "<ul class='pagination' style='color:black'>";
         $config['full_tag_close'] = '</ul>';
         $config['num_tag_open'] = '<li style="color:black">';
@@ -64,12 +59,10 @@ class Manage_orders extends CI_controller{
         $config['next_link'] = 'Next <i class="fa fa-long-arrow-right" ></i>';
         $config['next_tag_open'] = '<li style="color:black">';
         $config['next_tag_close'] = '</li>';
-
         //-----initialise pagination library with passing parameter config-----------//
         $this->pagination->initialize($config);
         //-----initialise pagination library with passing parameter config-----------//
         $data["links"] = $this->pagination->create_links();
-        //$data['jobs'] = $this->Job_listing_model->getAllJobs($config['per_page'], $this->uri->segment(4));
         $path = base_url();
         $url = $path . 'api/ManageOrder_api/getMyOrders?user_id='.$user_id.'&per_page='.$config['per_page'].'&offset='.$this->uri->segment(4);
         $ch = curl_init($url);
