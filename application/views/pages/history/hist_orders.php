@@ -86,7 +86,11 @@ error_reporting(E_ERROR | E_PARSE);
       ';
     }
     ?>
-
+<center>
+    <div class="pagination" style=" margin: 0px; position: static;">
+        <?php echo $links; ?>
+    </div>
+</center>
 <script>
   function showDetail(id){
    // alert(id);

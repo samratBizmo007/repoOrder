@@ -15,7 +15,7 @@ error_reporting(E_ERROR | E_PARSE);
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
 </head>
 <body class="">
-  <div class="w3-small w3-bottom">
+    <div class="w3-small w3-bottom" style=" position: relative;">
     <?php
     $last = $this->uri->total_segments();
     $record_num = $this->uri->segment($last);
