@@ -148,7 +148,7 @@ class User_model extends CI_Model {
                 'otp'   =>  $otp
             );
         } else {
-            //print_r($this->email->print_debugger());die();
+        //print_r($this->email->print_debugger());die();
             $response = array(
                 'status' => 500, //---------email send failed
                 'status_message' => 'OTP Sending Failed.'
