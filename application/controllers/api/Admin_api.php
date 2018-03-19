@@ -20,6 +20,15 @@ class Admin_api extends REST_Controller
 	}
 	//---------------------UPDATE EMAIL END------------------------------//
 
+	// -----------------------UPDATE USER DASHBOARD IMAGE API----------------------//
+	//-------------------------------------------------------------//
+	public function updateDashboardImage_post(){
+		extract($_POST);
+		$result = $this->settings_model->updateDashboardImage($imagePath);
+		return $this->response($result);			
+	}
+	//---------------------UPDATE USER DASHBOARD IMAGE END------------------------------//
+
 	// -----------------------UPDATE EMAIL API----------------------//
 	//-------------------------------------------------------------//
 	public function getAdminDetails_get(){
@@ -28,6 +37,15 @@ class Admin_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------UPDATE EMAIL END------------------------------//
+
+	// -----------------------GET IMAGE PATH FROM SETTINGS API----------------------//
+	//-------------------------------------------------------------//
+	public function getDashImage_get(){
+		extract($_GET);
+		$result = $this->settings_model->getSettingDetails($setting_name);
+		return $this->response($result);			
+	}
+	//---------------------GET IMAGE PATH FROM SETTINGS END------------------------------//
 
  //        // -----------------------ALL ORDERS API----------------------//
 	// //-------------------------------------------------------------//

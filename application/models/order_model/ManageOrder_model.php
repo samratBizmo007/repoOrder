@@ -5,6 +5,7 @@ class ManageOrder_model extends CI_Model {
     public function __construct() {
         parent::__construct();
         //$this->load->model('search_model');
+        $this->load->model('admin_model/settings_model');
     }
 
     
@@ -131,12 +132,14 @@ public function numRows($user_id) {
         ));
         $closeCount=$close_query->num_rows();
 
+        $dashImg = $this->settings_model->getSettingDetails('dash_image');
         $response = array(
             'status' => 200,
             'status_message' => 'Fetched orders for given UserId',
             'activeOrders'  =>  $activeCount,
             'openOrders'  =>  $openCount,
             'closeOrders'  =>  $closeCount,
+            'userImage' =>  DASBOARDIMAGE_PATH.$dashImg['setting_value']
         );
         return $response;
     }
