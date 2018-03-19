@@ -110,7 +110,7 @@ class User_model extends CI_Model {
             'protocol' => 'smtp',
             'smtp_host' => 'mx1.hostinger.in',
             'smtp_port' => '587',
-            'smtp_user' => 'customercare@ordertracker.bizmo-tech-admin.com', // change it to yours
+            'smtp_user' => 'customercare@jumlakuwait.com', // change it to yours
             'smtp_pass' => 'Descartes@1990', // change it to yours
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -121,7 +121,7 @@ class User_model extends CI_Model {
 
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
-        $this->email->from('customercare@jobmandi.in', "Admin Team");
+        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
         $this->email->to($email, $email);
         $this->email->subject("OTP Send");
         $this->email->message('<html>

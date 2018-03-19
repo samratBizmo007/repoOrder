@@ -202,7 +202,7 @@ public function numRows($user_id) {
             'protocol' => 'smtp',
             'smtp_host' => 'mx1.hostinger.in',
             'smtp_port' => '587',
-            'smtp_user' => 'customercare@ordertracker.bizmo-tech-admin.com', // change it to yours
+            'smtp_user' => 'customercare@jumlakuwait.com', // change it to yours
             'smtp_pass' => 'Descartes@1990', // change it to yours
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -213,7 +213,7 @@ public function numRows($user_id) {
 
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
-        $this->email->from('customercare@jobmandi.in', "Admin Team");
+        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
         $this->email->to($AdminEmail);
          $this->email->subject("New Order For Jumla");
         //$this->email->message("Dear ".$username.",\nPlease click on below URL or paste into your browser to verify your Email Address\n\n <a href='".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."'>".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."</a>\n"."\n\nThanks\nAdmin Team");
