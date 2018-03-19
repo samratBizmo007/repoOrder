@@ -52,7 +52,7 @@ public function numRows($user_id) {
         } else {
             $response = array(
                 'status' => 200,
-                'imageBasePath' => 'http://ordertracker.bizmo-tech-admin.com/images/order_images/',
+                'imageBasePath' => IMAGE_PATH,
                 'status_message' => $query->result_array());
         }
         return $response;

@@ -708,7 +708,7 @@ error_reporting(E_ERROR | E_PARSE);
                       success:function(html){     
                         $.alert(html);              
                         $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
-                        location.reload();
+                        //location.reload();
                       }
                     });
                   },
@@ -738,7 +738,7 @@ error_reporting(E_ERROR | E_PARSE);
                       success:function(html){     
                         $.alert(html);              
                         $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
-                        location.reload();
+                        //location.reload();
                       }
                     });
                   },
