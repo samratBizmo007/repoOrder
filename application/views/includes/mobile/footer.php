@@ -15,7 +15,7 @@ error_reporting(E_ERROR | E_PARSE);
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
 </head>
 <body class="">
-    <div class="w3-small w3-bottom" style=" position: relative;">
+    <div class="w3-small w3-bottom" style=" position: absolute;">
     <?php
     $last = $this->uri->total_segments();
     $record_num = $this->uri->segment($last);
@@ -24,7 +24,7 @@ error_reporting(E_ERROR | E_PARSE);
       <a href="<?php echo base_url(); ?>user/dashboard" style="width: 100%;height: 100%;background-color: <?php if($record_num=='dashboard'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>Home</label></a>
     </div>
     <div class="w3-col s3 w3-center" style="padding:0px">
-      <a href="<?php echo base_url(); ?>orders/manage_orders" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='manage_orders'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>Add Order</label></a>
+      <a href="<?php echo base_url(); ?>orders/manage_orders" style="width: 100%;height: 100%;padding-left:5px;background-color: <?php if($record_num=='manage_orders'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>Add Order</label></a>
     </div>
     <div class="w3-col s3 w3-center" style="padding:0px">
       <a href="<?php echo base_url(); ?>mobile/history" style="width: 100%;height: 100%;background-color:<?php if($record_num=='history'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>History</label></a>

@@ -54,6 +54,10 @@ error_reporting(E_ERROR | E_PARSE);
       </div>      
     </div>
     <!-- End page content -->
+
+    <div class="w3-col l12 w3-margin-bottom w3-center">
+                <img src="<?php echo DASBOARDIMAGE_PATH.$dashImage['setting_value']; ?>" onerror="this.src='<?php echo base_url();?>images/default_image.png'" id="adminImagePreview" width="auto"  alt="User Dashboard Image will be displayed here once chosen." class="img img-thumbnail w3-centerimg ">
+              </div>
   </div>
 
 </body>
