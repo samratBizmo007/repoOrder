@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller {
 		if ($this->agent->is_mobile())
 		{
 			$this->load->view('includes/mobile/header');
-			$this->load->view('pages/user/user_dashboard',$data);
+			$this->load->view('pages/user/usermobile_dashboard',$data);
 			$this->load->view('includes/mobile/footer');
 		}
 		else{
