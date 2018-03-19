@@ -21,7 +21,7 @@ error_reporting(E_ERROR | E_PARSE);
   <div class="w3-main w3-padding-small" style="margin-left:120px;">
 
     <!-- Header -->
-    <header class="w3-container" >
+    <header class="w3-col l12" >
       <h5><b><i class="fa fa-dashboard"></i> Dashboard</b></h5>
     </header>
     <div class="w3-col l12 s12 m12 w3-margin-bottom">
