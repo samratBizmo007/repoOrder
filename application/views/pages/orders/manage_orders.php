@@ -191,6 +191,11 @@ error_reporting(E_ERROR | E_PARSE);
             </tbody><!-- table body close here -->
           </table>   <!-- table closed here -->
         </div>
+              <center>
+                  <div class="pagination" style="margin:10px;padding: 10px;">
+                      <?php echo $links; ?>
+                  </div>
+              </center>    
       </div>
     </div>
   </div><!-- table container ends here -->

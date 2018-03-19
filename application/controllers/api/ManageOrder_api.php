@@ -10,12 +10,18 @@ class ManageOrder_api extends REST_Controller
 		//date_default_timezone_set('Asia/Kolkata');	//set Kuwait's timezone
 	}
 	
-
+//--------------get my orders count ------------------------------------------------//
+        public function numRows_get(){
+		extract($_GET);
+		$result = $this->manageOrder_model->numRows($user_id);
+		return $this->response($result);			
+	}
+//-----------------------get my orders count---------------------------------------//
 	// -----------------------ALL MY ORDERS API----------------------//
 	//-------------------------------------------------------------//
 	public function getMyOrders_get(){
 		extract($_GET);
-		$result = $this->manageOrder_model->getMyOrders($user_id);
+		$result = $this->manageOrder_model->getMyOrders($user_id,$per_page,$offset);
 		return $this->response($result);			
 	}
 	//---------------------ALL MY ORDERS END------------------------------//

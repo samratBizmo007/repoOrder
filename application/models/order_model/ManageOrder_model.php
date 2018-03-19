@@ -7,9 +7,19 @@ class ManageOrder_model extends CI_Model {
         //$this->load->model('search_model');
     }
 
+    
+public function numRows($user_id) {
+    $query = $this->db->select('*')
+    ->from('order_tab')
+    ->where('user_id', $user_id)
+    ->order_by('order_id', 'DESC')
+    ->get();
+    return $query->num_rows();
+}
+    
     // -----------------------GET ALL MY ORDERS MODEL----------------------//
     //-------------------------------------------------------------//
-    public function getMyOrders($user_id) {
+    public function getMyOrders($user_id,$limit,$offset) {
 
         if (!(is_numeric($user_id))) {
             if ($user_id == '') {
@@ -27,11 +37,14 @@ class ManageOrder_model extends CI_Model {
             }
         }
 
-        $query = "SELECT * FROM order_tab WHERE user_id='$user_id' AND status!=0 ORDER BY order_id DESC";
+         $query = $this->db->select('*')
+                ->from('order_tab')
+                ->where('user_id', $user_id)
+                ->order_by('order_id', 'DESC')
+                ->limit($limit, $offset)                 
+                ->get();
 
-        $result = $this->db->query($query);
-
-        if ($result->num_rows() <= 0) {
+        if ($query->num_rows() <= 0) {
             $response = array(
                 'status' => 500,
                 'status_message' => 'No orders found.');
@@ -39,7 +52,7 @@ class ManageOrder_model extends CI_Model {
             $response = array(
                 'status' => 200,
                 'imageBasePath' => 'http://ordertracker.bizmo-tech-admin.com/images/order_images/',
-                'status_message' => $result->result_array());
+                'status_message' => $query->result_array());
         }
         return $response;
     }
