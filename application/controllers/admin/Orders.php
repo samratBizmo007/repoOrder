@@ -9,10 +9,167 @@ class Orders extends CI_Controller {
 
     public function index() {
 
-        $data['orders'] = Orders::AllOrders();     //-------show all Raw prods
+//        $data['orders'] = Orders::AllOrders();     //-------show all Raw prods
         $data['Open_orders'] = Orders::AllOpen_Orders();     //-------show all Raw prods
         $data['Closed_orders'] = Orders::AllClosed_Orders();     //-------show all Raw prods
-        $data['Regreted_orders'] = Orders::AllRegreted_orders();     //-------show all Raw prods
+//        
+        $path = base_url();
+        $url = $path . 'api/Dashboard_api/all_ActiveOrdersCount';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_data = curl_exec($ch);
+        curl_close($ch);
+        //----------pagination code starts here-------------------------------------
+        //------loading the library pagination----------------------//
+        $this->load->library('pagination');
+        //--------------creating the config array for pagination basic requirements----------------//
+        $config = [
+            'base_url' => base_url('admin/orders/index'),
+            'per_page' => 10,
+            'total_rows' => json_decode($response_data, true),
+        ];
+        $config['full_tag_open'] = "<ul class='pagination' style='color:black'>";
+        $config['full_tag_close'] = '</ul>';
+        $config['num_tag_open'] = '<li style="color:black">';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="active" style="background-color: #4CAF50;"><a href="#" style="color:white">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['prev_tag_open'] = '<li style="color:black">';
+        $config['prev_tag_close'] = '</li>';
+        $config['first_tag_open'] = '<li style="color:black">';
+        $config['first_tag_close'] = '</li>';
+        $config['last_tag_open'] = '<li style="color:black">';
+        $config['last_tag_close'] = '</li>';
+
+        $config['prev_link'] = '<i class="fa fa-long-arrow-left" ></i> Previous';
+        $config['prev_tag_open'] = '<li style="color:black">';
+        $config['prev_tag_close'] = '</li>';
+
+        $config['next_link'] = 'Next <i class="fa fa-long-arrow-right" ></i>';
+        $config['next_tag_open'] = '<li style="color:black">';
+        $config['next_tag_close'] = '</li>';
+        //-----initialise pagination library with passing parameter config-----------//
+        $this->pagination->initialize($config);
+        //-----initialise pagination library with passing parameter config-----------//
+        //echo $this->uri->segment(3);die();
+        $data["ActiveOrderslinks"] = $this->pagination->create_links();
+        $path = base_url();
+        $url = $path . 'api/Dashboard_api/AllOrders?per_page='.$config['per_page'].'&offset='.$this->uri->segment(4);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $data['orders'] = json_decode($response_json, true);
+        //print_r($response_json);
+        
+        
+//        $path = base_url();
+//        $url = $path . 'api/Dashboard_api/AllOpen_OrdersCount';
+//        $ch = curl_init($url);
+//        curl_setopt($ch, CURLOPT_HTTPGET, true);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        $response_openeddata = curl_exec($ch);
+//        curl_close($ch);
+//        //----------pagination code starts here-------------------------------------
+//        //------loading the library pagination----------------------//
+//        $this->load->library('pagination');
+//        //--------------creating the config array for pagination basic requirements----------------//
+//        $config = [
+//            'base_url' => base_url('admin/orders/index'),
+//            'per_page' => 10,
+//            'total_rows' => json_decode($response_openeddata, true),
+//        ];
+//        $config['full_tag_open'] = "<ul class='pagination' style='color:black'>";
+//        $config['full_tag_close'] = '</ul>';
+//        $config['num_tag_open'] = '<li style="color:black">';
+//        $config['num_tag_close'] = '</li>';
+//        $config['cur_tag_open'] = '<li class="active" style="background-color: #4CAF50;"><a href="#" style="color:white">';
+//        $config['cur_tag_close'] = '</a></li>';
+//        $config['prev_tag_open'] = '<li style="color:black">';
+//        $config['prev_tag_close'] = '</li>';
+//        $config['first_tag_open'] = '<li style="color:black">';
+//        $config['first_tag_close'] = '</li>';
+//        $config['last_tag_open'] = '<li style="color:black">';
+//        $config['last_tag_close'] = '</li>';
+//
+//        $config['prev_link'] = '<i class="fa fa-long-arrow-left" ></i> Previous';
+//        $config['prev_tag_open'] = '<li style="color:black">';
+//        $config['prev_tag_close'] = '</li>';
+//
+//        $config['next_link'] = 'Next <i class="fa fa-long-arrow-right" ></i>';
+//        $config['next_tag_open'] = '<li style="color:black">';
+//        $config['next_tag_close'] = '</li>';
+//        //-----initialise pagination library with passing parameter config-----------//
+//        $this->pagination->initialize($config);
+//        //-----initialise pagination library with passing parameter config-----------//
+//        //echo $this->uri->segment(3);die();
+//        $data["OpenOrderslinks"] = $this->pagination->create_links();
+//        $path = base_url();
+//        $url = $path . 'api/Dashboard_api/AllOpen_Orders?per_page='.$config['per_page'].'&offset='.$this->uri->segment(4);
+//        $ch = curl_init($url);
+//        curl_setopt($ch, CURLOPT_HTTPGET, true);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        $response_openorders = curl_exec($ch);
+//        curl_close($ch);
+//        $data['Open_orders'] = json_decode($response_openorders, true);
+//        
+//        
+//        
+//        $path = base_url();
+//        $url = $path . 'api/Dashboard_api/AllClosed_OrdersCount';
+//        $ch = curl_init($url);
+//        curl_setopt($ch, CURLOPT_HTTPGET, true);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        $response_closeddata = curl_exec($ch);
+//        curl_close($ch);
+//        //----------pagination code starts here-------------------------------------
+//        //------loading the library pagination----------------------//
+//        $this->load->library('pagination');
+//        //--------------creating the config array for pagination basic requirements----------------//
+//        $config = [
+//            'base_url' => base_url('admin/orders/index'),
+//            'per_page' => 10,
+//            'total_rows' => json_decode($response_closeddata, true),
+//        ];
+//        $config['full_tag_open'] = "<ul class='pagination' style='color:black'>";
+//        $config['full_tag_close'] = '</ul>';
+//        $config['num_tag_open'] = '<li style="color:black">';
+//        $config['num_tag_close'] = '</li>';
+//        $config['cur_tag_open'] = '<li class="active" style="background-color: #4CAF50;"><a href="#" style="color:white">';
+//        $config['cur_tag_close'] = '</a></li>';
+//        $config['prev_tag_open'] = '<li style="color:black">';
+//        $config['prev_tag_close'] = '</li>';
+//        $config['first_tag_open'] = '<li style="color:black">';
+//        $config['first_tag_close'] = '</li>';
+//        $config['last_tag_open'] = '<li style="color:black">';
+//        $config['last_tag_close'] = '</li>';
+//
+//        $config['prev_link'] = '<i class="fa fa-long-arrow-left" ></i> Previous';
+//        $config['prev_tag_open'] = '<li style="color:black">';
+//        $config['prev_tag_close'] = '</li>';
+//
+//        $config['next_link'] = 'Next <i class="fa fa-long-arrow-right" ></i>';
+//        $config['next_tag_open'] = '<li style="color:black">';
+//        $config['next_tag_close'] = '</li>';
+//        //-----initialise pagination library with passing parameter config-----------//
+//        $this->pagination->initialize($config);
+//        //-----initialise pagination library with passing parameter config-----------//
+//        //echo $this->uri->segment(3);die();
+//        $data["ClosedOrderslinks"] = $this->pagination->create_links();
+//        $path = base_url();
+//        $url = $path . 'api/Dashboard_api/AllClosed_Orders?per_page='.$config['per_page'].'&offset='.$this->uri->segment(4);
+//        $ch = curl_init($url);
+//        curl_setopt($ch, CURLOPT_HTTPGET, true);
+//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//        $response_closed = curl_exec($ch);
+//        curl_close($ch);
+//        $data['Closed_orders'] = json_decode($response_closed, true);
+//        
+        
+        
+       // print_r($data);
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/admin/all_orders', $data);
         //$this->load->view('includes/footer.php');

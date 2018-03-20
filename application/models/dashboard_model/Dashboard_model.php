@@ -9,23 +9,45 @@ class Dashboard_model extends CI_Model {
         parent::__construct();
         //$this->load->model('search_model');
     }
+    public function all_ActiveOrdersCount(){
+       $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=1 ORDER BY ot.order_id DESC"; 
+       $result = $this->db->query($query);
+       return $result->num_rows();
+    }
+//        public function AllOpen_OrdersCount(){
+//       $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=2 ORDER BY ot.order_id DESC"; 
+//       $result = $this->db->query($query);
+//       return $result->num_rows();
+//    }
+//        public function AllClosed_OrdersCount_get(){
+//       $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=0 ORDER BY ot.order_id DESC"; 
+//       $result = $this->db->query($query);
+//       return $result->num_rows();
+//    }
 
     // -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
     //-------------------------------------------------------------//
     public function AllOpen_Orders() {
 
-        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=2 ORDER BY ot.order_id DESC";
+         $query = $this->db->select('*')
+                      ->from('order_tab')
+                      ->join('customer_tab', 'order_tab.user_id=customer_tab.user_id')
+                      ->where('order_tab.status', 2)
+                      ->order_by('order_id', 'DESC')
+                      ->get();
+        
+        //$query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=2 ORDER BY ot.order_id DESC";
 
-        $result = $this->db->query($query);
+        //$result = $this->db->query($query);
 
-        if ($result->num_rows() <= 0) {
+        if ($query->num_rows() <= 0) {
             $response = array(
                 'status' => 500,
                 'status_message' => 'No orders found.');
         } else {
             $response = array(
                 'status' => 200,
-                'status_message' => $result->result_array());
+                'status_message' => $query->result_array());
         }
         return $response;
     }
@@ -33,20 +55,28 @@ class Dashboard_model extends CI_Model {
     // -----------------------GET ALL ORDERS on admin dashboard MODEL----------------------//
     // -----------------------GET ALL OPEN ORDERS on admin dashboard  MODEL----------------------//
     //-------------------------------------------------------------//
-    public function AllOrders() {
+    public function AllOrders($limit,$offset) {
 
-        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=1 ORDER BY ot.order_id DESC";
+    $query = $this->db->select('*')
+                      ->from('order_tab')
+                      ->join('customer_tab', 'order_tab.user_id=customer_tab.user_id')
+                      ->where('order_tab.status', 1)
+                      ->order_by('order_id', 'DESC')
+                      ->limit($limit, $offset)            
+                      ->get();
+        
+        //$query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=1 ORDER BY ot.order_id DESC LIMIT $limit,$offset";
+//echo $query;die();
+        //$result = $this->db->query($query);
 
-        $result = $this->db->query($query);
-
-        if ($result->num_rows() <= 0) {
+        if ($query->num_rows() <= 0) {
             $response = array(
                 'status' => 500,
                 'status_message' => 'No orders found.');
         } else {
             $response = array(
                 'status' => 200,
-                'status_message' => $result->result_array());
+                'status_message' => $query->result_array());
         }
         return $response;
     }
@@ -56,18 +86,25 @@ class Dashboard_model extends CI_Model {
     //-------------------------------------------------------------//
     public function AllClosed_Orders() {
 
-        $query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=0 ORDER BY ot.order_id DESC";
+        $query = $this->db->select('*')
+                      ->from('order_tab')
+                      ->join('customer_tab', 'order_tab.user_id=customer_tab.user_id')
+                      ->where('order_tab.status', 0)
+                      ->order_by('order_id', 'DESC')
+                      ->get();
+        
+        //$query = "SELECT * FROM order_tab as ot join customer_tab as ct on (ct.user_id = ot.user_id) WHERE ot.status=0 ORDER BY ot.order_id DESC";
 
-        $result = $this->db->query($query);
+        //$result = $this->db->query($query);
 
-        if ($result->num_rows() <= 0) {
+        if ($query->num_rows() <= 0) {
             $response = array(
                 'status' => 500,
                 'status_message' => 'No orders found.');
         } else {
             $response = array(
                 'status' => 200,
-                'status_message' => $result->result_array());
+                'status_message' => $query->result_array());
         }
         return $response;
     }
