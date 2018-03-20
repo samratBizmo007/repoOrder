@@ -122,7 +122,7 @@ class Login extends CI_Model {
 	 	//if email-Id already regiterd then show error
 			$response=array(
 				'status' => 500,
-				'status_message' =>'Email ID Already Registered for this profile. Login by same or use another Email-ID!!!'					
+				'status_message' =>'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'					
 			);	
 		}	
 		return $response;
