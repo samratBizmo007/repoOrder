@@ -196,6 +196,15 @@ error_reporting(E_ERROR | E_PARSE);
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="text-center">
+                                                    <a href="#" class="btn w3-small w3-text-blue w3-hover-text-grey" id="forget_link" class="forgot-password">Forgot your Password? Click Here.</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </form>
                                 </div>
                                 <form id="register_form" role="form" method='post' enctype='multipart/form-data' style=" display: none;">
