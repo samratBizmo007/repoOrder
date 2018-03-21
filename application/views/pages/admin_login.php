@@ -6,7 +6,7 @@ error_reporting(E_ERROR | E_PARSE);
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login Page</title>
+        <title>Admin Login</title>
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
@@ -160,10 +160,10 @@ error_reporting(E_ERROR | E_PARSE);
                                     <form id="Adminlogin_form" role="form" method='post' enctype='multipart/form-data' style="display: block;">
                                         <center><img class="img img-responsive" title="Ijarline- Administrator Login" src="<?php echo base_url(); ?>css/logos/admin.png" width="100px" height="auto"></center>
                                         <div class="form-group w3-margin-top">
-                                            <input type="text" name="login_username" id="login_username" tabindex="2" class="form-control" placeholder="Username" required>
+                                            <input type="text" name="login_username" id="login_username" tabindex="2" class="form-control" placeholder="Admin Username" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="login_password" id="login_password" tabindex="3" class="form-control" placeholder="Password" required>
+                                            <input type="password" name="login_password" id="login_password" tabindex="3" class="form-control" placeholder="Admin Password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
@@ -182,8 +182,8 @@ error_reporting(E_ERROR | E_PARSE);
         </div>
         <div class="w3-center">       
 <!--     <span class="w3-medium">© Copyright and All Rights reserved</span><br>
- -->    <span class="w3-medium">© Powered by <a class="w3-text-blue" href="https://bizmo-tech.com" target="_blank">Bizmo Technologies</a> </span>
-  </div>
+-->    <span class="w3-medium">© Powered by <a class="w3-text-blue" href="#" target="_blank">HQ Mobiles</a> </span>
+</div>
         <script>
             $(function () {
                 $('#login_form-link').click(function (e) {
