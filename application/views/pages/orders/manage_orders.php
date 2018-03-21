@@ -61,7 +61,7 @@ error_reporting(E_ERROR | E_PARSE);
       <div class="tab-pane active" id="show_table">  <!-- tab for Raw material starts here -->
         <div class="">                    
           <div class="w3-col l6 w3-margin-top">
-            <div class="" id="All_Orders" name="All_Orders" style="height: 450px;overflow: scroll ">
+            <div class="" id="All_Orders" name="All_Orders">
               <table class="table table-striped table-responsive w3-small"> 
                 <!-- table starts here -->
                 <thead>
