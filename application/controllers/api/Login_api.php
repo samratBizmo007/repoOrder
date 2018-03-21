@@ -58,7 +58,7 @@ class Login_api extends REST_Controller {
     }
 
     //-----------user logout ---------------//
-    //---------------------veerify otp---------//
+    //---------------------verify otp---------//
     public function verify_otp_post() {
         extract($_POST);
         $result = $this->login->verify_otp($register_username, $register_email, $register_password, $register_mobile_no, $register_address, $OTP_id);
@@ -74,4 +74,13 @@ class Login_api extends REST_Controller {
     }
 
 //---------------------veerify otp for Mobile---------//
+
+    // -----------------------GET USER PASSWORD BY EMAIL API----------------------//
+    //-------------------------------------------------------------//
+    public function getPassword_post(){
+        extract($_POST);
+        $result = $this->login->getPassword($forget_email);
+        return $this->response($result);            
+    }
+    //---------------------GET USER PASSWORD BY EMAIL END------------------------------//
 }

@@ -202,7 +202,7 @@ error_reporting(E_ERROR | E_PARSE);
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <div class="text-center">
-                                                        <a href="#" class="btn w3-small w3-text-blue w3-hover-text-grey" id="forget_link" class="forgot-password">Forgot your Password? Click Here.</a>
+                                                        <a href="<?php echo base_url(); ?>user/forget_password" class="btn w3-small w3-text-blue w3-hover-text-grey" class="forgot-password">Forgot your Password? Click Here.</a>
                                                     </div>
                                                 </div>
                                             </div>
