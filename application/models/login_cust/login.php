@@ -4,14 +4,14 @@ class Login extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        //$this->load->model('search_model');
+        $this->load->model('admin_model/settings_model');
     }
 
     // -----------------------USER REGISTERATION MODEL BY MOBILE----------------------//
     //-------------------------------------------------------------//
     public function send_otpForMobile($user_name, $email_id) {
-        
-            if ($user_name == '') {
+
+        if ($user_name == '') {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Username Not Found..!');
@@ -36,13 +36,13 @@ class Login extends CI_Model {
             $otp = rand(100000, 999999);
 
             $otp_function = login::sendEmailotp($user_name, $email_id, $otp);
-            
+
             if ($otp_function) {
                 //$otp_save_pudate =login::saveOtp($email_id,$otp); 
                 $sqlselect = "SELECT email_id FROM otp_expiry WHERE email_id = '$email_id'";
-                
+
                 $result = $this->db->query($sqlselect);
-                
+
                 if ($result->num_rows() >= 1) {
                     foreach ($result->result_array() as $row) {
                         $email_idRegistered = $row['email_id'];
@@ -52,7 +52,7 @@ class Login extends CI_Model {
                 if ($email_id == $email_idRegistered) {
 
                     $query = "UPDATE otp_expiry SET otp = '$otp',user_name = '$user_name' WHERE email_id = '$email_id' AND user_name='$user_name'";
-                    
+
                     $result = $this->db->query($query);
 
                     if ($result) {
@@ -64,7 +64,7 @@ class Login extends CI_Model {
                     }
                 } else {
                     $query = "INSERT INTO otp_expiry(email_id,otp,create_at,user_name) VALUES ('$email_id','$otp',NOW(),'$user_name')";
-                    
+
                     $result = $this->db->query($query);
                     if ($result) {
                         $response = array(
@@ -91,43 +91,97 @@ class Login extends CI_Model {
     }
 
     // -----------------------USER REGISTERATION MODEL by mobile----------------------//
-    
+
     public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address) {
-    	
+        $admin_email = '';
         $checkEmail = login::checkEmail_exist($email_id);
         $checkusername = login::checkUsername_exist($user_name);
         if ($checkEmail == 0 && $checkusername == 0) {
-        	$data = array(
-               'username' => $user_name,
-               'password' => base64_encode($password),
+            $data = array(
+                'username' => $user_name,
+                'password' => base64_encode($password),
                 'email' => $email_id,
                 'mobile_no' => $register_mobile_no,
                 'address' => $register_address
-        	);
-        	if($this->db->insert('customer_tab', $data))
-        	{
-	        	$response=array(
-					'status' => 200,	//---------insert db success code
-					'status_message' =>'Registration Successfull. Please Login With Your Registered Email-ID.'
-				);
-        	
-        	} else
-			{
-				$response=array(
-				'status' => 500,	//---------db error code 
-				'status_message' =>'Something went wrong... Registration Failed!!!'
-			);
-			}
-    	  }else{
-	 	//if email-Id already regiterd then show error
-			$response=array(
-				'status' => 500,
-				'status_message' =>'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'					
-			);	
-		}	
-		return $response;
-    }  
+            );
+            if ($this->db->insert('customer_tab', $data)) {
+                $response = array(
+                    'status' => 200, //---------insert db success code
+                    'status_message' => 'Registration Successfull. Please Login With Your Registered Email-ID.'
+                );
+                $admin_email = $this->settings_model->getAdminEmail();
+                Login::sendUserIs_RegisteredEmail($user_name,$email_id,$admin_email);
+            } else {
+                $response = array(
+                    'status' => 500, //---------db error code 
+                    'status_message' => 'Something went wrong... Registration Failed!!!'
+                );
+            }
+        } else {
+            //if email-Id already regiterd then show error
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'
+            );
+        }
+        return $response;
+    }
+
     // -----------------------USER REGISTERATION MODEL----------------------//
+    public function sendUserIs_RegisteredEmail($user_name,$email_id,$admin_email){
+         $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'mx1.hostinger.in',
+            'smtp_port' => '587',
+            'smtp_user' => 'customercare@jumlakuwait.com', // change it to yours
+            'smtp_pass' => 'Descartes@1990', // change it to yours
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'wordwrap' => TRUE
+        );
+        $config['smtp_crypto'] = 'tls';
+        //return ($config);die();
+
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+        $this->email->to($admin_email);
+        $this->email->subject("New User Registered - JUMLA BUSINESS");
+        $this->email->message('<html>
+            <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            </head>
+            <body>
+            <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+            <h2 style="color:#4CAF50; font-size:30px">New User Registered to Jumla Business!!</h2>
+            <h3 style="font-size:15px;">Hello Admin,<br></h3>
+            <h3 style="font-size:15px;">New user has been registered to Jumla Business.</h3>
+            <h3 style="font-size:15px;">Following are the user details-</h3>
+            <h3><b>User Name:</b> '.$user_name.'</h3>
+            <h3><b>User Email:</b> '.$email_id.'</h3>
+            <div class="col-lg-12">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+            
+            </div>
+            </body></html>');
+
+        if ($this->email->send()) {
+            $response = array(
+                'status' => 200, //---------email sending succesfully 
+                'status_message' => 'Email Sent Successfully.',
+            );
+        } else {
+        //print_r($this->email->print_debugger());die();
+            $response = array(
+                'status' => 500, //---------email send failed
+                'status_message' => 'Email Sending Failed.'
+            );
+        }
+        return $response;
+    
+    }
+    // 
     //-------------------------------------------------------------//
 //    public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address) {
 //        $cust_id = "";
@@ -197,7 +251,6 @@ class Login extends CI_Model {
 //
 //        return $response;
 //    }
-
     // -----------------------USER REGISTERATION MODEL----------------------//
     public function getNextID($col_name, $table_name) {
 
@@ -257,8 +310,6 @@ class Login extends CI_Model {
     }
 
 //-----------------------function to check whether email-ID or username already exists------------------//
- 
-
     // -----------------------USER LOGIN API----------------------//
     public function sendEmailotp($username, $email, $otp) {
 
@@ -319,29 +370,29 @@ class Login extends CI_Model {
 
     //----------------------email verification code ends------------------------//
 //----------------------verify otp for mobile---------------------------------------//
-    public function verify_otpForRegisterCustomer($register_username, $register_email, $register_password, $register_mobile_no, $register_address, $OTP_id){
+    public function verify_otpForRegisterCustomer($register_username, $register_email, $register_password, $register_mobile_no, $register_address, $OTP_id) {
         //echo strlen($register_password);        die();
         if ($register_password == '' || strlen($register_password) < 8) {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Password size is invalid must be greater than 8 chars!');
-                return $response;
-                die();
-            }
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Password size is invalid must be greater than 8 chars!');
+            return $response;
+            die();
+        }
         if ($register_email == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Email Not Found!');
-                return $response;
-                die();
-            }
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Email Not Found!');
+            return $response;
+            die();
+        }
         if ($register_username == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Username not found!');
-                return $response;
-                die();
-            }
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Username not found!');
+            return $response;
+            die();
+        }
         if (!(is_numeric($register_mobile_no))) {
             if ($register_mobile_no == '') {
                 $response = array(
@@ -357,7 +408,7 @@ class Login extends CI_Model {
                 die();
             }
         }
-          if (!(is_numeric($OTP_id))) {
+        if (!(is_numeric($OTP_id))) {
             if ($OTP_id == '') {
                 $response = array(
                     'status' => 500,
@@ -403,8 +454,8 @@ class Login extends CI_Model {
         }
         return $response;
     }
-    //----------------------verify otp for mobile---------------------------------------//
 
+    //----------------------verify otp for mobile---------------------------------------//
     //----------------------otp verification code starts here------------------------//
 
     function verify_otp($register_username, $register_email, $register_password, $register_mobile_no, $register_address, $OTP_id) {

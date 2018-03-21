@@ -95,6 +95,30 @@ class Settings_model extends CI_Model {
         }
         return $response;
     }
+    //--------------------------------------------------------------//
+  
+
+      // -----------------------GET ADMIN EMAIL----------------------//
+    //-------------------------------------------------------------//
+    public function getAdminEmail() {
+        $admin_email = '';
+        $query = "SELECT * FROM admin_tab WHERE admin_id=1";
+
+        $result = $this->db->query($query);
+
+        if ($result->num_rows() <= 0) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'No data found.');
+        } else {
+            foreach ($result->result_array() as $key) {
+                $admin_email = $key['admin_email'];
+            }
+        }
+        return $admin_email;
+    }
+      // -----------------------GET ADMIN EMAIL----------------------//
+    
 }
 
 ?>
