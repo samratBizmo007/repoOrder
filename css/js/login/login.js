@@ -2,8 +2,7 @@
 $(function () {
     $("#register_form").submit(function () {
         dataString = $("#register_form").serialize();
-
-        $("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
+        $.LoadingOverlay("show");
         $.ajax({
             type: "POST",
             url: BASE_URL + "login/registerCustomer",
@@ -11,7 +10,8 @@ $(function () {
             data: dataString,
             return: false, //stop the actual form post !important!
             success: function (data){
-                console.log(data);  
+                $.LoadingOverlay("hide");
+               // console.log(data);  
                 if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
                     $("html").animate({scrollTop:0},"slow");
                 } else {
@@ -78,7 +78,7 @@ $(function () {
     $("#login_form").submit(function () {
         dataString = $("#login_form").serialize();
 
-        $("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
+        $.LoadingOverlay("show");
         $.ajax({
             type: "POST",
             url: BASE_URL + "login/loginCustomer",
@@ -86,6 +86,7 @@ $(function () {
             return: false, //stop the actual form post !important!
             success: function (data)
             {
+                $.LoadingOverlay("hide");
                 if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
                     $("html").animate({scrollTop:0},"slow");
                 } else {
@@ -105,8 +106,8 @@ $(function () {
 $(function () {
     $("#Adminlogin_form").submit(function () {
         dataString = $("#Adminlogin_form").serialize();
+        $.LoadingOverlay("show");
 
-        $("#spinnerDiv").html('<center><img width="70%" height="auto" src="'+BASE_URL+'css/logos/reg.gif"/></center>');
         $.ajax({
             type: "POST",
             url: BASE_URL + "admin_login/adminLogin",
@@ -114,7 +115,7 @@ $(function () {
             return: false, //stop the actual form post !important!
             success: function (data)
             {
-                $("#spinnerDiv").html('');
+                $.LoadingOverlay("hide");
                 $("#login_err").html(data);
             }
         });
