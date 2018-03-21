@@ -24,6 +24,8 @@ error_reporting(E_ERROR | E_PARSE);
         <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>css/js/login/login.js"></script>
+        <script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay_progress.min.js"></script>
         <style>
             .panel-login {
                 border-color: #ccc;

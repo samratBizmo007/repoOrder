@@ -684,7 +684,8 @@ error_reporting(E_ERROR | E_PARSE);
           <script>
             function reOpen_Orders(id){
               $.confirm({
-                title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are You Sure To Reopen Order..!</h4>',
+                title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are you sure you want to Reopen Order!</h4>',
+                content:'',
                 type: 'green',
                 buttons: {
                   confirm: function () {
@@ -710,7 +711,8 @@ error_reporting(E_ERROR | E_PARSE);
             }
             function Open_Orders(id){
               $.confirm({
-                title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are You Sure To Open Order..!</h4>',
+                title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are you sure you want to Open Order!</h4>',
+                content:'',
                 type: 'green',
                 buttons: {
                   confirm: function () {
@@ -740,7 +742,8 @@ error_reporting(E_ERROR | E_PARSE);
           <script>
             function delOrder(id){
               $.confirm({
-                title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Close Order !!!</h4>',
+                title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are you sure you want to Close Order!</h4>',
+                content: '',
                 type: 'red',
                 buttons: {
                   confirm: function () {
@@ -765,7 +768,8 @@ error_reporting(E_ERROR | E_PARSE);
             }
             function regretProduct(prod_no,order_id){
               $.confirm({
-                title: '<h4 class="w3-text-orange"><i class="fa fa-minus-square"></i> Are you sure you want to proceed further?!</h4>',
+                title: '<h4 class="w3-text-orange"><i class="fa fa-minus-square"></i> Are you sure you want to proceed further?</h4>',
+                content:'',
                 type: 'orange',
                 buttons: {
                   confirm: function () {
