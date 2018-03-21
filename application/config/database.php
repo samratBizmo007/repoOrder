@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'repoorder',
+	'hostname' => 'mysql.hostinger.in',
+	'username' => 'u235233230_order',
+	'password' => 'Descartes@1990',
+	'database' => 'u235233230_order',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
