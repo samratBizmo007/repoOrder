@@ -13,7 +13,8 @@ $(function () {
                 $.LoadingOverlay("hide");
                // console.log(data);  
                 if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
-                    $("html").animate({scrollTop:0},"slow");
+                    $("html,body").animate({scrollTop:0},"slow");
+                    document.scrollingElement.scrollTop;
                 } else {
                    $("html,body").animate({scrollTop:0},"slow");
                }
@@ -88,7 +89,8 @@ $(function () {
             {
                 $.LoadingOverlay("hide");
                 if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
-                    $("html").animate({scrollTop:0},"slow");
+                    $("html,body").animate({scrollTop:0},"slow");
+                    document.scrollingElement.scrollTop;
                 } else {
                    $("html,body").animate({scrollTop:0},"slow");
                }

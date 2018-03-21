@@ -195,7 +195,8 @@ error_reporting(E_ERROR | E_PARSE);
                 {
                     $.LoadingOverlay("hide");
                     if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
-                        $("html").animate({scrollTop:0},"slow");
+                        $("html,body").animate({scrollTop:0},"slow");
+                        document.scrollingElement.scrollTop;
                     } else {
                        $("html,body").animate({scrollTop:0},"slow");
                    }
