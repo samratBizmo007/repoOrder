@@ -10,16 +10,16 @@ class Settings_model extends CI_Model {
         //$this->load->model('search_model');
     }
 
-   //-------UPDATE ADMIN EMAIL FUNCTION--------------//
+    //-------UPDATE ADMIN EMAIL FUNCTION--------------//
     public function updateEmail($email) {
-      
+
         $sql = "UPDATE admin_tab SET admin_email='$email' WHERE admin_id='1'";
 
-       if($this->db->query($sql)){
-        $response = array(
+        if ($this->db->query($sql)) {
+            $response = array(
                 'status' => 200,
-                'status_message' => 'Email Updated Successfully..!');        
-        }else{
+                'status_message' => 'Email Updated Successfully..!');
+        } else {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Email Updation Failed...!');
@@ -28,17 +28,16 @@ class Settings_model extends CI_Model {
     }
 
     //---------UPDATE ADMIN EMAIL ENDS------------------//
-
     //-------UPDATE USER DASHBOARD IMAGE FUNCTION--------------//
     public function updateDashboardImage($imagePath) {
-      
+
         $sql = "UPDATE admin_settings SET setting_value='$imagePath' WHERE setting_name='dash_image'";
 
-       if($this->db->query($sql)){
-        $response = array(
+        if ($this->db->query($sql)) {
+            $response = array(
                 'status' => 200,
-                'status_message' => 'Image Uploaded Successfully..!');        
-        }else{
+                'status_message' => 'Image Uploaded Successfully..!');
+        } else {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Image Uploading Failed...!');
@@ -47,7 +46,6 @@ class Settings_model extends CI_Model {
     }
 
     //---------UPDATE USER DASHBOARD IMAGE ENDS------------------//
-
     // -----------------------GET ADMIN SETTINGS DETAILS----------------------//
     //-------------------------------------------------------------//
     public function getSettingDetails($setting_name) {
@@ -68,14 +66,14 @@ class Settings_model extends CI_Model {
             $response = array(
                 'status' => 200,
                 'status_message' => 'Admin Setting data found',
-                'setting_name'  =>  $setting_name,
-                'setting_value'  =>  $setting_value
+                'setting_name' => $setting_name,
+                'setting_value' => $setting_value
             );
         }
         return $response;
     }
-    //---------GET ADMIN SETTINGS DETAILS ENDS------------------//
 
+    //---------GET ADMIN SETTINGS DETAILS ENDS------------------//
     // -----------------------GET ADMIN DETAILS----------------------//
     //-------------------------------------------------------------//
     public function getAdminDetails() {
@@ -95,10 +93,9 @@ class Settings_model extends CI_Model {
         }
         return $response;
     }
-    //--------------------------------------------------------------//
-  
 
-      // -----------------------GET ADMIN EMAIL----------------------//
+    //--------------------------------------------------------------//
+    // -----------------------GET ADMIN EMAIL----------------------//
     //-------------------------------------------------------------//
     public function getAdminEmail() {
         $admin_email = '';
@@ -117,8 +114,8 @@ class Settings_model extends CI_Model {
         }
         return $admin_email;
     }
-      // -----------------------GET ADMIN EMAIL----------------------//
-    
+
+    // -----------------------GET ADMIN EMAIL----------------------//
 }
 
 ?>
