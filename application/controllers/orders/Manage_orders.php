@@ -82,20 +82,21 @@ class Manage_orders extends CI_controller{
   }
 
  //----------this function to get all my orders details-----------------------------
-  public function getMyOrders() {
-    $user_id=$this->session->userdata('user_id');
-  //$user_id=1;
+  public function getMyOrders_mobile() {
+    $user_id = $this->session->userdata('user_id');
+        //$user_id=1;
+    
+        $path = base_url();
+        $url = $path . 'api/ManageOrder_api/getMyOrders?user_id=' . $user_id . '&per_page=' . $config['per_page'] . '&page_no=' . $this->uri->segment(4);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        print_r($response_json);die();
 
-    $path = base_url();
-    $url = $path.'api/ManageOrder_api/getMyOrders?user_id='.$user_id;
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_HTTPGET, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response_json = curl_exec($ch);
-    curl_close($ch);
-    $response = json_decode($response_json, true);
-    return $response;
-  }
+    }
 //----------------this fun get all my orders details end---------------//
 
 
