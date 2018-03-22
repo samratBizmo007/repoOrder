@@ -220,11 +220,11 @@ error_reporting(E_ERROR | E_PARSE);
                 </tbody><!-- table body close here -->
               </table>   <!-- table closed here -->
             </div>
-                <center>
-                    <div class="pagination" style=" margin: 0px; position: static;">
-                        <?php echo $ActiveOrderslinks; ?>
-                    </div>
-                </center>
+            <center>
+              <div class="pagination" style=" margin: 0px; position: static;">
+                <?php echo $ActiveOrderslinks; ?>
+              </div>
+            </center>
           </div>
         </div>
       </div><!-- table container ends here -->
@@ -390,11 +390,11 @@ error_reporting(E_ERROR | E_PARSE);
           </tbody><!-- table body close here -->
         </table>   <!-- table closed here -->
       </div>
-            <center>
-                <div class="pagination" style=" margin: 0px; position: static;">
-                    <?php// echo $OpenOrderslinks; ?>
-                </div>
-            </center>
+      <center>
+        <div class="pagination" style=" margin: 0px; position: static;">
+          <?php// echo $OpenOrderslinks; ?>
+        </div>
+      </center>
     </div>
   </div>     
 </div>         
@@ -536,11 +536,11 @@ error_reporting(E_ERROR | E_PARSE);
         </tbody><!-- table body close here -->
       </table><!-- table closed here -->
     </div>
-      <center>
-          <div class="pagination" style=" margin: 0px; position: static;">
-              <?php //echo $ClosedOrderslinks; ?>
-          </div>
-      </center>
+    <center>
+      <div class="pagination" style=" margin: 0px; position: static;">
+        <?php //echo $ClosedOrderslinks; ?>
+      </div>
+    </center>
   </div>
 </div>
 </div><!-- table container ends here -->
@@ -697,6 +697,8 @@ error_reporting(E_ERROR | E_PARSE);
                       cache: false,
                       success:function(html){     
                         $.alert(html);              
+                        $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+                        $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
                         $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
                         location.reload();
                       }
@@ -724,6 +726,8 @@ error_reporting(E_ERROR | E_PARSE);
                       cache: false,
                       success:function(html){     
                         $.alert(html);              
+                        $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+                        $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
                         $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
                         //location.reload();
                       }
@@ -756,6 +760,8 @@ error_reporting(E_ERROR | E_PARSE);
                       success:function(html){     
                         $.alert(html);              
                         $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+                        $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
+                        $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
                         //location.reload();
                       }
                     });
@@ -784,14 +790,11 @@ error_reporting(E_ERROR | E_PARSE);
                       cache: false,
                       success:function(html){     
                         $.alert(html);              
-             // $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
-             // $('#modal_'+order_id).load(location.href + " #modal_"+order_id+">*", ""); 
-             //location.reload();
-             
-             $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
-             $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
-           }
-         });
+                        
+                        $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
+                        $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
+                      }
+                    });
                   },
                   cancel: function () {
                     $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 

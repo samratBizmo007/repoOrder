@@ -274,9 +274,13 @@ public function numRows($user_id) {
 		<th>product Quantity </th>
 		</tr>';
 		  foreach (json_decode($prod_associated,TRUE) as $key){ 
+            $img='';
+            if(isset($key['prod_image'])){
+                $img=$key['prod_image'];
+            }
             $message.='<tr>'
              .'<td>
-            <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.IMAGE_PATH.''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
+            <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.IMAGE_PATH.''.$img.'" onerror="this.src=\''.base_url().'images/default_image.png\'">
             </td>'
             . '<td>'.$key['prod_Name'].'</td>
             <td>'.$key['prod_quantity'].'</td>
