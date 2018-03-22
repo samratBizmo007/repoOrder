@@ -4,6 +4,7 @@ class Login extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        date_default_timezone_set('Asia/Kuwait');   //set Kuwait's timezone
         $this->load->model('admin_model/settings_model');
     }
 

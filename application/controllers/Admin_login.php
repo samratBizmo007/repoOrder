@@ -5,6 +5,7 @@ class Admin_login extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        date_default_timezone_set('Asia/Kuwait');   //set Kuwait's timezone
     }
 
     public function index() {

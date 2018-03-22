@@ -5,7 +5,7 @@ class Manage_orders extends CI_controller{
 
   public function __construct(){
     parent::__construct();
-    
+    date_default_timezone_set('Asia/Kuwait'); //set Kuwait's timezone
 
     //start session   
     $user_id=$this->session->userdata('user_id');
@@ -19,8 +19,7 @@ class Manage_orders extends CI_controller{
 
   public function index(){
     $this->load->library('user_agent');
-        //$data['orders'] = Manage_orders::getMyOrders();
-        //print_r($data);//-------show all Raw prods
+    
     $user_id = $this->session->userdata('user_id');
 
     $path = base_url();

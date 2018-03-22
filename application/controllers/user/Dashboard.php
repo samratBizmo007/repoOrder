@@ -4,6 +4,7 @@ class Dashboard extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		date_default_timezone_set('Asia/Kuwait');	//set Kuwait's timezone
 
         //start session   
 		$user_id=$this->session->userdata('user_id');

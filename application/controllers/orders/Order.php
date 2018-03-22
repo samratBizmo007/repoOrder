@@ -5,6 +5,7 @@ class Order extends CI_controller{
 
   public function __construct(){
     parent::__construct();
+    date_default_timezone_set('Asia/Kuwait'); //set Kuwait's timezone
   }
     public function index()    {
    $data['orders'] = Order::getMyOrders();
