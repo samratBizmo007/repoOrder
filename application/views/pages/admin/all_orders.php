@@ -90,13 +90,40 @@ error_reporting(E_ERROR | E_PARSE);
                           $value = 'Cosmetics';  
                         }
                         if($orders['status_message'][$i]['business_field'] == 3){
-                          $value = 'Watch and Glasses';  
+                          $value = 'Watch';  
                         }
                         if($orders['status_message'][$i]['business_field'] == 4){
-                          $value = 'Bags';  
+                          $value = 'Glasses';  
                         }
                         if($orders['status_message'][$i]['business_field'] == 5){
-                          $value = 'Others';  
+                          $value = 'Ladies Bags';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 6){
+                          $value = 'Hardware';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 7){
+                          $value = 'Wallets';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 8){
+                          $value = 'Imitation';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 9){
+                          $value = 'Mobile Spare parts';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 10){
+                          $value = 'Garments';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 11){
+                          $value = 'Baby clothes';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 12){
+                          $value = 'Car Spare parts';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 13){
+                          $value = 'Perfumes';  
+                        }
+                        if($orders['status_message'][$i]['business_field'] == 14){
+                          $value = 'Other';  
                         }  
                       // -----------business type end--------------//
 
@@ -263,13 +290,40 @@ error_reporting(E_ERROR | E_PARSE);
                     $value = 'Cosmetics';  
                   }
                   if($Open_orders['status_message'][$i]['business_field'] == 3){
-                    $value = 'Watch and Glasses';  
+                    $value = 'Watch';  
                   }
                   if($Open_orders['status_message'][$i]['business_field'] == 4){
-                    $value = 'Bags';  
+                    $value = 'Glasses';  
                   }
                   if($Open_orders['status_message'][$i]['business_field'] == 5){
-                    $value = 'Others';  
+                    $value = 'Ladies Bags';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 6){
+                    $value = 'Hardware';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 7){
+                    $value = 'Wallets';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 8){
+                    $value = 'Imitation';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 9){
+                    $value = 'Mobile Spare parts';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 10){
+                    $value = 'Garments';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 11){
+                    $value = 'Baby clothes';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 12){
+                    $value = 'Car Spare parts';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 13){
+                    $value = 'Perfumes';  
+                  }
+                  if($Open_orders['status_message'][$i]['business_field'] == 14){
+                    $value = 'Other';  
                   }  
                       // -----------business type end--------------//
                   if($Open_orders['status_message'][$i]['status'] == 2){
@@ -432,14 +486,41 @@ error_reporting(E_ERROR | E_PARSE);
                 $value = 'Cosmetics';  
               }
               if($Closed_orders['status_message'][$i]['business_field'] == 3){
-                $value = 'Watch and Glasses';  
+                $value = 'Watch';  
               }
               if($Closed_orders['status_message'][$i]['business_field'] == 4){
-                $value = 'Bags';  
+                $value = 'Glasses';  
               }
               if($Closed_orders['status_message'][$i]['business_field'] == 5){
-                $value = 'Others';  
-              }  
+                $value = 'Ladies Bags';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 6){
+                $value = 'Hardware';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 7){
+                $value = 'Wallets';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 8){
+                $value = 'Imitation';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 9){
+                $value = 'Mobile Spare parts';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 10){
+                $value = 'Garments';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 11){
+                $value = 'Baby clothes';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 12){
+                $value = 'Car Spare parts';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 13){
+                $value = 'Perfumes';  
+              }
+              if($Closed_orders['status_message'][$i]['business_field'] == 14){
+                $value = 'Other';  
+              } 
                       // -----------business type end--------------//
               if($Closed_orders['status_message'][$i]['status'] == 2){
                 $status = 'Open';
@@ -545,265 +626,137 @@ error_reporting(E_ERROR | E_PARSE);
 </div>
 </div><!-- table container ends here -->
 
-<!--_______________________________ tab 3 starts here_____________________________________________ -->
-<!--            <div class="tab-pane" id="regretedOrders"> tab 3 starts here 
 
-                 <div class="">                    
-                        <div class="w3-col l12 w3-margin-top">
-                            <div class="" id="Regreted_Orders" name="Regreted_Orders" style="max-height: 700px; overflow: scroll;">
-                            <table class="table table-striped table-responsive w3-small"> 
-                                    <thead>
-                                        <tr class="w3-black">
-                                            <th class="text-center">SR. No</th>
-                                            <th class="text-center">Order No</th>  
-                                            <th class="text-center">Customer Name</th>              
-                                            <th class="text-center">date</th>                                                          
-                                            <th class="text-center">status</th>                                                          
-                                            <th class="text-center">Actions</th>  
-                                        </tr>
-                                    </thead>
-                                    <tbody> table body starts here 
-                                        <?php
-//                                        $count = 1;
-//                                           $status = '';
-//                                $color = '';
-//                                    $regret = '';
-//                                if ($Regreted_orders['status'] == 200) {
-//                                    for ($i = 0; $i < count($Regreted_orders['status_message']); $i++) {
-//                                           if($Regreted_orders['status_message'][$i]['status'] == -1){
-//                                            $status = 'Regreted';
-//                                            $color = 'w3-text-brown';
-//                                         }
-//                                         if($Regreted_orders['status_message'][$i]['status'] == 0){
-//                                            $status = 'Closed';
-//                                            $color = 'w3-text-red';
-//                                         }
-//                                        echo '<tr class="text-center">
-//                                        <td class="text-center">' . $count . '.</td>
-//                                        <td class="text-center">#000' . $Regreted_orders['status_message'][$i]['order_id'] . '</td>
-//                                        <td class="text-center">' . $Regreted_orders['status_message'][$i]['user_name'] . '</td>
-//                                        <td class="text-center">' . $Regreted_orders['status_message'][$i]['order_date'] . '</td>
-//                                        <td class="text-center '.$color.'">' .$status. '</td>
-//                                        <td class="text-center">
-//                                        <a class="btn w3-text-blue w3-medium w3-padding-small" data-toggle="modal" data-target="#regretOrder_' . $Regreted_orders['status_message'][$i]['order_id'] . '" title="View Order" style="padding:0"><i class="fa fa-eye"></i></a>';
-//                                        //echo'<a class="btn w3-text-green w3-medium w3-padding-small" title="Open Order" id="OpenOrder_'.$Regreted_orders['status_message'][$i]['order_id'].'" onclick="reOpen_Orders('.$Regreted_orders['status_message'][$i]['order_id'].');" style="padding:0"><i class="fa fa-refresh"></i></a> 
-//                                        echo'</td>
-//
-//                                         Modal  starts here
-//
-//                                        <div id="regretOrder_'.$Regreted_orders['status_message'][$i]['order_id'].'" class="modal fade" role="dialog">
-//                                        <div class="modal-dialog">
-//
-//                                         Modal content
-//                                        <div class="modal-content">
-//                                        <div class="modal-header">
-//                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-//                                        <div><h4><b>Order Details</b></h4></div>
-//                                        </div>
-//                                        <div class="modal-body w3-light-grey w3-margin-top">
-//                                       <h3 class="w3-center"><b>Order No. #OID-'.$Regreted_orders['status_message'][$i]['order_id'].'</b> <span class="badge '.$badge_color.'">'.$badge_text.'</span></h3>
-//                                        <h5 class="w3-center"><b>Customer Name: '.$Regreted_orders['status_message'][$i]['username'].'</b><span class="badge '.$badge_color.'">'.$badge_text.'</span></h5>
-//                                        <div class="modal-body w3-light-grey">
-//                                        <div class="w3-container">';   
-//                                        $product_info=json_decode($Regreted_orders['status_message'][$i]['order_products'],TRUE);
-//
-//                                        foreach($product_info as $key)
-//                                        {
-//                                          if($key['prod_regret'] == 1){
-//                                              $regret = 'Regreted Product';
-//                                              $class = 'w3-text-red';
-//                                          }
-//                                          if($key['prod_regret'] == 0){
-//                                              $regret = '';
-//                                              $class = '';
-//                                          }
-//                                         echo'
-//                                         <div class="w3-right"><label class="'.$class.'">'.$regret.'</label></div>
-//                                         <div class="col-lg-12 w3-margin-bottom">
-//                                         <div class="w3-col l6 s6 w3-padding-small w3-center">
-//                                        <img class="img img-thumbnail" alt="Item Image not available" style="height: 100px; width: 100px; object-fit: contain" src="'.base_url().''.$key['prod_image'].'" onerror="this.src=\''.base_url().'images/default_image.png\'">
-//                                        </div>
-//                                        <div class="w3-col l6 s6 w3-padding-small">
-//                                        <div class="w3-col l12 ">
-//                                        <div class="w3-col l6">
-//                                        <label class="">Product Name:</label>
-//                                        <p class="">'.$key['prod_Name'].'</p>
-//                                        </div>
-//                                        <div class="w3-col l6">
-//                                        <label class="">Address:</label>
-//                                        <p class="">'.$Regreted_orders['status_message'][$i]['address'].'</p>
-//                                        </div>
-//                                        </div>
-//                                        <div class="w3-col l12 ">
-//                                        <div class="w3-col l6">
-//                                        <label class="">Quantity:</label>
-//                                        <p class="" >'.$key['prod_quantity'].' No(s).</p>
-//                                        </div>
-//                                        <div class="w3-col l6">
-//                                         <label class="">Mobile No:</label>
-//                                        <p class="" >'.$Regreted_orders['status_message'][$i]['mobile_no'].'</p>
-//                                        </div>
-//                                        </div>
-//                                        </div>
-//                                        </div>';
-//                                          
-//                                       }
-//                                       echo'
-//                                       </div>
-//                                       </div>
-//                                       </div>
-//                                       </div>
-//                                       </div>
-//                                       </tr>'; 
-//                                       $count++;
-//                                     }
-//                                   }
-//                                   else {
-//
-//                                    echo '
-//                                    <tr class="text-center" >
-//                                    <td colspan="6"><b>No Orders Available</b></td>
-//                                    </tr>
-//                                    ';
-//                                  }
-                                
-                                        ?>
-                                    </tbody> table body close here 
-                                </table> table closed here 
-                            </div>
-                        </div>
-                    </div>
-                  </div> table container ends here -->
-                </div>
-                <!-- ___________________________tab 3 div ends here__________________________________ -->
-              </div><!-- tab containt ends here -->
-            </div><!-- tab containt div ends here -->
-          </div><!-- container for tab -->
-          <!--_______________________ div for main container____________________________ -->
+</div>
+<!-- ___________________________tab 3 div ends here__________________________________ -->
+</div><!-- tab containt ends here -->
+</div><!-- tab containt div ends here -->
+</div><!-- container for tab -->
+<!--_______________________ div for main container____________________________ -->
 
-          <script>
-            function reOpen_Orders(id){
-              $.confirm({
-                title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are you sure you want to Reopen Order!</h4>',
-                content:'',
-                type: 'green',
-                buttons: {
-                  confirm: function () {
-                    var dataS = 'order_id='+ id;
-                    $.ajax({
-                      url:"<?php echo base_url(); ?>admin/orders/reOpen_Orders", 
-                      type: "POST", 
-                      data: dataS,
-                      cache: false,
-                      success:function(html){     
-                        $.alert(html);              
-                        $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
-                        $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
-                        $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
-                        location.reload();
-                      }
-                    });
-                  },
-                  cancel: function () {
-
-                  }
-                }
-              });
-
+<script>
+  function reOpen_Orders(id){
+    $.confirm({
+      title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are you sure you want to Reopen Order!</h4>',
+      content:'',
+      type: 'green',
+      buttons: {
+        confirm: function () {
+          var dataS = 'order_id='+ id;
+          $.ajax({
+            url:"<?php echo base_url(); ?>admin/orders/reOpen_Orders", 
+            type: "POST", 
+            data: dataS,
+            cache: false,
+            success:function(html){     
+              $.alert(html);              
+              $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+              $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
+              $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
+              location.reload();
             }
-            function Open_Orders(id){
-              $.confirm({
-                title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are you sure you want to Open Order!</h4>',
-                content:'',
-                type: 'green',
-                buttons: {
-                  confirm: function () {
-                    var dataS = 'order_id='+ id;
-                    $.ajax({
-                      url:"<?php echo base_url(); ?>admin/orders/reOpen_Orders", 
-                      type: "POST", 
-                      data: dataS,
-                      cache: false,
-                      success:function(html){     
-                        $.alert(html);              
-                        $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
-                        $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
-                        $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
+          });
+        },
+        cancel: function () {
+
+        }
+      }
+    });
+
+  }
+  function Open_Orders(id){
+    $.confirm({
+      title: '<h4 class="w3-text-green"><i class="fa fa-folder-open"></i> Are you sure you want to Open Order!</h4>',
+      content:'',
+      type: 'green',
+      buttons: {
+        confirm: function () {
+          var dataS = 'order_id='+ id;
+          $.ajax({
+            url:"<?php echo base_url(); ?>admin/orders/reOpen_Orders", 
+            type: "POST", 
+            data: dataS,
+            cache: false,
+            success:function(html){     
+              $.alert(html);              
+              $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+              $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
+              $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
                         //location.reload();
                       }
                     });
-                  },
-                  cancel: function () {
+        },
+        cancel: function () {
 
-                  }
-                }
-              });
+        }
+      }
+    });
 
-            }
-          </script>
+  }
+</script>
 
-          <!-- script to delete order -->
-          <script>
-            function delOrder(id){
-              $.confirm({
-                title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are you sure you want to Close Order!</h4>',
-                content: '',
-                type: 'red',
-                buttons: {
-                  confirm: function () {
-                    var dataS = 'order_id='+ id;
-                    $.ajax({
-                      url:"<?php echo base_url(); ?>admin/orders/closeOrder", 
-                      type: "POST", 
-                      data: dataS,
-                      cache: false,
-                      success:function(html){     
-                        $.alert(html);              
-                        $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
-                        $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
-                        $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
+<!-- script to delete order -->
+<script>
+  function delOrder(id){
+    $.confirm({
+      title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are you sure you want to Close Order!</h4>',
+      content: '',
+      type: 'red',
+      buttons: {
+        confirm: function () {
+          var dataS = 'order_id='+ id;
+          $.ajax({
+            url:"<?php echo base_url(); ?>admin/orders/closeOrder", 
+            type: "POST", 
+            data: dataS,
+            cache: false,
+            success:function(html){     
+              $.alert(html);              
+              $('#All_Orders').load(location.href + " #All_Orders>*", ""); 
+              $('#Opened_Orders').load(location.href + " #Opened_Orders>*", ""); 
+              $('#Closed_Orders').load(location.href + " #Closed_Orders>*", "");
                         //location.reload();
                       }
                     });
-                  },
-                  cancel: function () {        
-                  }
-                }
-              });
+        },
+        cancel: function () {        
+        }
+      }
+    });
 
+  }
+  function regretProduct(prod_no,order_id){
+    $.confirm({
+      title: '<h4 class="w3-text-orange"><i class="fa fa-minus-square"></i> Are you sure you want to proceed further?</h4>',
+      content:'',
+      type: 'orange',
+      buttons: {
+        confirm: function () {
+
+          $.ajax({
+            url:"<?php echo base_url(); ?>admin/orders/regretProduct", 
+            type: "POST", 
+            data: {
+              prod_no: prod_no,
+              order_id: order_id
+            },
+            cache: false,
+            success:function(html){     
+              $.alert(html);              
+              
+              $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
+              $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
             }
-            function regretProduct(prod_no,order_id){
-              $.confirm({
-                title: '<h4 class="w3-text-orange"><i class="fa fa-minus-square"></i> Are you sure you want to proceed further?</h4>',
-                content:'',
-                type: 'orange',
-                buttons: {
-                  confirm: function () {
+          });
+        },
+        cancel: function () {
+          $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
+          $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
 
-                    $.ajax({
-                      url:"<?php echo base_url(); ?>admin/orders/regretProduct", 
-                      type: "POST", 
-                      data: {
-                        prod_no: prod_no,
-                        order_id: order_id
-                      },
-                      cache: false,
-                      success:function(html){     
-                        $.alert(html);              
-                        
-                        $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
-                        $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
-                      }
-                    });
-                  },
-                  cancel: function () {
-                    $('#myModalnew_'+order_id).load(location.href + " #myModalnew_"+order_id+">*", ""); 
-                    $('#openOrder_'+order_id).load(location.href + " #openOrder_"+order_id+">*", ""); 
-
-                  }
-                }
-              });
-            }
-          </script>
+        }
+      }
+    });
+  }
+</script>
 
 

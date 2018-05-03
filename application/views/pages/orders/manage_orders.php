@@ -87,14 +87,41 @@ error_reporting(E_ERROR | E_PARSE);
                     $value = 'Cosmetics';  
                   }
                   if($orders['status_message'][$i]['business_field'] == 3){
-                    $value = 'Watch and Glasses';  
+                    $value = 'Watch';  
                   }
                   if($orders['status_message'][$i]['business_field'] == 4){
-                    $value = 'Bags';  
+                    $value = 'Glasses';  
                   }
                   if($orders['status_message'][$i]['business_field'] == 5){
-                    $value = 'Others';  
-                  }                                            
+                    $value = 'Ladies Bags';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 6){
+                    $value = 'Hardware';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 7){
+                    $value = 'Wallets';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 8){
+                    $value = 'Imitation';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 9){
+                    $value = 'Mobile Spare parts';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 10){
+                    $value = 'Garments';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 11){
+                    $value = 'Baby clothes';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 12){
+                    $value = 'Car Spare parts';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 13){
+                    $value = 'Perfumes';  
+                  }
+                  if($orders['status_message'][$i]['business_field'] == 14){
+                    $value = 'Other';  
+                  }                 
                   echo '<tr class="text-center">
                   <td class="text-center">' . $count . '.</td>
                   <td class="text-center">#OID-'.$orders['status_message'][$i]['order_id'].'</td>
@@ -224,10 +251,20 @@ error_reporting(E_ERROR | E_PARSE);
                 <option class="w3-light-grey" selected <?php if ($this->uri->segment(2) == '') echo 'selected'; ?> value="0">Select Business Field</option>
                 <option value="1" <?php if ($this->input->get('field', TRUE) == 1) echo 'selected'; ?>>Mobile Accessories</option>
                 <option value="2" <?php if ($this->input->get('field', TRUE) == 2) echo 'selected'; ?>>Cosmetics</option>
-                <option value="3" <?php if ($this->input->get('field', TRUE) == 3) echo 'selected'; ?>>Watch and Glasses</option>
-                <option value="4" <?php if ($this->input->get('field', TRUE) == 4) echo 'selected'; ?>>Bags</option>
-                <option value="5" <?php if ($this->input->get('field', TRUE) == 5) echo 'selected'; ?>>Other</option>
+                <option value="3" <?php if ($this->input->get('field', TRUE) == 3) echo 'selected'; ?>>Watch</option>
+                <option value="4" <?php if ($this->input->get('field', TRUE) == 4) echo 'selected'; ?>>Glasses</option>
+                <option value="5" <?php if ($this->input->get('field', TRUE) == 5) echo 'selected'; ?>>Ladies Bags</option>
+                <option value="6" <?php if ($this->input->get('field', TRUE) == 6) echo 'selected'; ?>>Hardware</option>
+                <option value="7" <?php if ($this->input->get('field', TRUE) == 7) echo 'selected'; ?>>Wallets</option>
+                <option value="8" <?php if ($this->input->get('field', TRUE) == 8) echo 'selected'; ?>>Imitation</option>
+                <option value="9" <?php if ($this->input->get('field', TRUE) == 9) echo 'selected'; ?>>Mobile Spare parts</option>
+                <option value="10" <?php if ($this->input->get('field', TRUE) == 10) echo 'selected'; ?>>Garments</option>
+                <option value="11" <?php if ($this->input->get('field', TRUE) == 11) echo 'selected'; ?>>Baby clothes</option>
+                <option value="12" <?php if ($this->input->get('field', TRUE) == 12) echo 'selected'; ?>>Car Spare parts</option>
+                <option value="13" <?php if ($this->input->get('field', TRUE) == 13) echo 'selected'; ?>>Perfumes</option>
+                <option value="14" <?php if ($this->input->get('field', TRUE) == 14) echo 'selected'; ?>>Other</option>
               </select>
+              
             </div>
           </div>
           
