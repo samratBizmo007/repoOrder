@@ -19,6 +19,70 @@ public function numRows($user_id) {
     return $query->num_rows();
 }
     
+
+    // -----------------------GET ALL MY ORDERS MODEL----------------------//
+    //-------------------------------------------------------------//
+    public function getMyOrders_mobile($user_id,$limit,$page_no) {
+        $rec_count = '';
+
+        if (!(is_numeric($user_id))) {
+            if ($user_id == '') {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'No Orders Found..!');
+                return $response;
+                die();
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'Order Placing Failed..!');
+                return $response;
+                die();
+            }
+        }
+        
+          /* Get total number of records */
+         $sql = "SELECT count(*) as data FROM order_tab";
+         $result = $this->db->query($sql);
+         
+         if (!$result) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'No Orders Found..!');
+            return $response;
+            die();
+        }
+       foreach ($result->result_array() as $row) {
+            $rec_count = $row['data'];
+        }
+
+         if(isset($page_no)) {
+            $page = $page_no + 1;
+            $offset = $limit * $page ;
+         }else {
+            $page = 0;
+            $offset = 0;
+         }
+         
+         $left_rec = $rec_count - ($page * $limit);
+         $query = "SELECT * FROM order_tab WHERE user_id = '$user_id' ORDER BY order_id DESC LIMIT $offset, $limit";
+         $resultdata = $this->db->query($query);
+         
+        if ($resultdata->num_rows() <= 0) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'No orders found.');
+        } else {
+            $response = array(
+                'status' => 200,
+                'imageBasePath' => IMAGE_PATH,
+                'status_message' => $resultdata->result_array());
+        }
+        return $response;
+    }
+
+    // -----------------------GET ALL MY ORDERS MODEL----------------------//
+
     // -----------------------GET ALL MY ORDERS MODEL----------------------//
     //-------------------------------------------------------------//
     public function getMyOrders($user_id,$limit,$offset) {

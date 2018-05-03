@@ -26,6 +26,16 @@ class ManageOrder_api extends REST_Controller
 	}
 	//---------------------ALL MY ORDERS END------------------------------//
 
+	// -----------------------ALL MY ORDERS API----------------------//
+	//-------------------------------------------------------------//
+	public function getMyOrders_mobile_get(){
+		extract($_GET);
+                //print_r($_POST);die();
+		$result = $this->manageOrder_model->getMyOrders_mobile($user_id,$per_page,$page_no);
+		return $this->response($result);			
+	}
+	//---------------------ALL MY ORDERS END------------------------------//
+
         // -----------------------ALL ORDERS API----------------------//
 	//-------------------------------------------------------------//
 	public function getAllOrders_get(){
