@@ -277,7 +277,10 @@ error_reporting(E_ERROR | E_PARSE);
                                             </div>
                                             <div class="w3-center">       
 <!--     <span class="w3-medium">© Copyright and All Rights reserved</span><br>
--->    <span class="w3-medium">© Powered by <a class="w3-text-blue" href="#" target="_blank">HQ Mobiles</a> </span>
+-->    
+<span class="w3-medium">© Powered by <a class="w3-text-blue" href="#" target="_blank">HQ Mobiles</a> </span><br>
+<span class="w3-medium">Checkout our <a class="w3-text-blue" href="<?php echo base_url(); ?>privacy_terms">Terms & Privacy Policy</a>! </span>
+
 </div>
 <script>
     $(function () {

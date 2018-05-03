@@ -52,26 +52,28 @@ public function numRows($user_id) {
             return $response;
             die();
         }
-       foreach ($result->result_array() as $row) {
+foreach ($result->result_array() as $row) {
             $rec_count = $row['data'];
         }
 
-         if(isset($page_no)) {
-            $page = $page_no + 1;
-            $offset = $limit * $page ;
-         }else {
-            $page = 0;
-            $offset = 0;
-         }
+         $tot_page=$rec_count/$limit;
          
-         $left_rec = $rec_count - ($page * $limit);
-         $query = "SELECT * FROM order_tab WHERE user_id = '$user_id' ORDER BY order_id DESC LIMIT $offset, $limit";
+         if($page_no>$tot_page){
+             
+             $offset=$rec_count+1;
+         }
+         else{
+             
+             $offset=$page_no*$limit;
+         }
+
+         $query = "SELECT * FROM order_tab WHERE user_id = '$user_id' ORDER BY order_id DESC LIMIT $offset,$limit";
          $resultdata = $this->db->query($query);
          
         if ($resultdata->num_rows() <= 0) {
             $response = array(
                 'status' => 500,
-                'status_message' => 'No orders found.');
+                'status_message' => array());
         } else {
             $response = array(
                 'status' => 200,
