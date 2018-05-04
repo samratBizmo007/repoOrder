@@ -28,6 +28,46 @@ class Settings_model extends CI_Model {
     }
 
     //---------UPDATE ADMIN EMAIL ENDS------------------//
+        //-------UPDATE username FUNCTION--------------//
+    public function updateUname($uname) {
+
+        $sql = "UPDATE admin_tab SET username='$uname' WHERE admin_id='1'";
+
+        if ($this->db->query($sql)) {
+            $response = array(
+                'status' => 200,
+                'status_message' => 'Username Updated Successfully..!');
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Username Updation Failed...!');
+        }
+        return $response;
+    }
+
+    //---------UPDATE ADMIN EMAIL ENDS------------------//
+
+           //-------UPDATE Password FUNCTION--------------//
+    public function updatePass($pass) {
+
+        $sql = "UPDATE admin_tab SET password='$pass' WHERE admin_id='1'";
+
+        if ($this->db->query($sql)) {
+            $response = array(
+                'status' => 200,
+                'status_message' => 'Password Updated Successfully..!');
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Password Updation Failed...!');
+        }
+        return $response;
+    }
+
+    //---------UPDATE ADMIN EMAIL ENDS------------------//
+
+
+
     //-------UPDATE USER DASHBOARD IMAGE FUNCTION--------------//
     public function updateDashboardImage($imagePath) {
 
@@ -45,7 +85,22 @@ class Settings_model extends CI_Model {
         return $response;
     }
     //---------UPDATE USER DASHBOARD IMAGE ENDS------------------//
+    //-------update private security key-----------------//
+       public function updateKey($admin_key){        
+    $sql = "UPDATE admin_settings SET setting_value='$admin_key' WHERE setting_name='pass_privateKey'";
 
+        if ($this->db->query($sql)) {
+            $response = array(
+                'status' => 200,
+                'status_message' => 'Private Key Updated Successfully..!');
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => ' Private Key Updation Failed...!');
+        }
+        return $response;
+    }
+   //-------update private security key-----------------//
     // -----------------------GET ADMIN SETTINGS DETAILS----------------------//
     //-------------------------------------------------------------//
     public function getSettingDetails($setting_name) {

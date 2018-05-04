@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
-error_reporting(E_ERROR | E_PARSE);
-
+// error_reporting(E_ERROR | E_PARSE);
+$admin_name=$this->session->userdata('admin_name');
+$admin_role=$this->session->userdata('admin_role');
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,13 @@ error_reporting(E_ERROR | E_PARSE);
 		</header>
 		<div class="w3-row-padding w3-margin-bottom">
 			<div class="w3-col l12">
-				<div class="col-lg-6 w3-padding-small ">
+
+					<!-- div for update email id -->
+					<?php 
+    			if($admin_role==1){
+      				?>
+      				<div class="col-lg-6 w3-padding-small ">
+
 					<div class="w3-col l12 w3-small w3-margin-bottom">
 						<label><i class="fa fa-envelope"></i> SetUp Email-ID</label><br>
 
@@ -41,8 +48,77 @@ error_reporting(E_ERROR | E_PARSE);
 						</form>
 
 					</div>
-				</div>
+					</div>
 
+					<?php } ?>
+					<!-- div for update user name -->
+
+					<?php 
+    				if($admin_role==1){
+      				?>
+      					<div class="col-lg-6 w3-padding-small  ">
+
+					<div class="w3-col l12 w3-small w3-margin-bottom">
+						<label><i class="fa fa-users"></i> Update Username</label><br>
+
+						<form id="updateUname">
+							<div class="w3-col l8 w3-padding-right w3-margin-bottom">
+								<input type="text" name="admin_uname" value="<?php echo $adminDetails['status_message'][0]['username']; ?>" placeholder="Enter Username Here..." id="admin_uname" class="w3-input" required>
+							</div>
+							<div class="w3-col l4">
+								<button type="submit" class="w3-button w3-red">Update Username</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+					<?php } ?>
+				</div>
+					<!-- div for update password -->
+					<div class="w3-col l12">
+
+					<?php 
+    				if($admin_role==1){
+      				?>
+					<div class="w3-col l6 w3-small w3-margin-bottom">
+						<label><i class="fa fa-key"></i> SetUp Private Key</label><br>
+
+						<form id="updateKey">
+							<div class="w3-col l8 w3-padding-right w3-margin-bottom">
+								<input type="text" name="admin_key" value="<?php echo $key['setting_value']; ?>" placeholder="Enter Private Key here..." id="admin_key" class="w3-input" required>
+							</div>
+							<div class="w3-col l4">
+								<button type="submit" class="w3-button w3-red">Update Private Key</button>
+							</div>
+						</form>
+
+						
+					</div>
+					<?php } ?>
+					<!-- div for update private key -->
+					<?php 
+    				if($admin_role==1){
+      				?>
+					<div class="w3-col l6 w3-small w3-margin-bottom">
+						<label><i class="fa fa-lock"></i> Update Password</label><br>
+
+						<form id="updatePass">
+							<div class="w3-col l8 w3-padding-right w3-margin-bottom">
+								<input type="text" name="admin_pass" value="<?php echo $adminDetails['status_message'][0]['password']; ?>" placeholder="Enter Password here..." id="admin_email" class="w3-input" required>
+							</div>
+							<div class="w3-col l4">
+								<button type="submit" class="w3-button w3-red">Update Password</button>
+							</div>
+						</form>
+
+						
+					</div>
+				</div>
+					<?php } ?>
+				
+				  <?php 
+      				if($admin_role==1 || $admin_role==2){
+        		   ?>
 				<div class="col-lg-6 w3-padding-small ">
 					<div class="w3-col l12 w3-small w3-margin-bottom">
 						<hr class="w3-hide-large">
@@ -63,6 +139,7 @@ error_reporting(E_ERROR | E_PARSE);
 
 					</div>
 				</div>
+				<?php } ?>
 			</div>
 		</div>
 		<!-- End page content -->
@@ -93,6 +170,81 @@ error_reporting(E_ERROR | E_PARSE);
 		});
 	</script>
 	<!-- script ends here -->
+
+	<!--  script to update email id   -->
+	<script>
+		$(function(){
+			$("#updateUname").submit(function(){
+				dataString = $("#updateUname").serialize();
+
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url(); ?>admin/admin_settings/updateUname",
+					data: dataString,
+           return: false,  //stop the actual form post !important!
+
+           success: function(data)
+           {
+           	$.alert(data);                       
+           }
+
+       });
+
+         return false;  //stop the actual form post !important!
+
+     });
+		});
+	</script>
+	<!-- script ends here -->
+		<!--  script to update email id   -->
+	<script>
+		$(function(){
+			$("#updatePass").submit(function(){
+				dataString = $("#updatePass").serialize();
+
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url(); ?>admin/admin_settings/updatePass",
+					data: dataString,
+           return: false,  //stop the actual form post !important!
+
+           success: function(data)
+           {
+           	$.alert(data);                       
+           }
+
+       });
+
+         return false;  //stop the actual form post !important!
+
+     });
+		});
+	</script>
+	<!-- script ends here -->
+<!-- update private key -->
+	<script>
+		$(function(){
+			$("#updateKey").submit(function(){
+				dataString = $("#updateKey").serialize();
+
+				$.ajax({
+					type: "POST",
+					url: "<?php echo base_url(); ?>admin/admin_settings/updateKey",
+					data: dataString,
+           return: false,  //stop the actual form post !important!
+
+           success: function(data)
+           {
+           	$.alert(data);                       
+           }
+
+       });
+
+         return false;  //stop the actual form post !important!
+
+     });
+		});
+	</script>
 
 	<!--  script to update user dashboard image   -->
 	<script>

@@ -21,6 +21,32 @@ class Admin_api extends REST_Controller
 	}
 	//---------------------UPDATE EMAIL END------------------------------//
 
+		// -----------------------UPDATE username API----------------------//
+	//-------------------------------------------------------------//
+	public function updateUname_post(){
+		extract($_POST);
+		$result = $this->settings_model->updateUname($admin_uname);
+		return $this->response($result);			
+	}
+	//---------------------UPDATE username END------------------------------//
+// -----------------------UPDATE Password API----------------------//
+	//-------------------------------------------------------------//
+	public function updatePass_post(){
+		extract($_POST);
+		$result = $this->settings_model->updatePass($admin_pass);
+		return $this->response($result);			
+	}
+	//---------------------UPDATE username END------------------------------//
+
+	// -----------------------UPDATE Password API----------------------//
+	//-------------------------------------------------------------//
+	public function updateKey_post(){
+		extract($_POST);
+		$result = $this->settings_model->updateKey($admin_key);
+		return $this->response($result);			
+	}
+	//---------------------UPDATE username END------------------------------//
+
 	// -----------------------UPDATE USER DASHBOARD IMAGE API----------------------//
 	//-------------------------------------------------------------//
 	public function updateDashboardImage_post(){
@@ -53,6 +79,13 @@ class Admin_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------GET IMAGE PATH FROM SETTINGS END------------------------------//
+//---------get private key----------//
+	public function getpasskey_get(){
+		extract($_GET);
+		$result = $this->settings_model->getSettingDetails($setting_name);
+		return $this->response($result);			
+	}
+
 
 	// -----------------------GET ALL ADMIN USERS API----------------------//
 	//-------------------------------------------------------------//

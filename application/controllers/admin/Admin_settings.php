@@ -18,6 +18,7 @@ class Admin_settings extends CI_Controller {
    }
    $data['adminDetails']=Admin_settings::getAdminDetails();
    $data['dashImage']=Admin_settings::getDashImage();
+   $data['key']=Admin_settings::getpasskey();
    $this->load->view('includes/admin_header.php');
    $this->load->view('pages/admin/admin_settings',$data);
         //$this->load->view('includes/footer.php');
@@ -54,6 +55,99 @@ class Admin_settings extends CI_Controller {
  }
 }
 //----------------this fun to update admin email end---------------//
+//------function for update user name------//
+public function updateUname()
+{
+    extract($_POST);
+    // print_r($_POST);die();
+  $data=$_POST;
+  $path = base_url();
+  $url = $path.'api/Admin_api/updateUname';
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $response_json = curl_exec($ch);
+  curl_close($ch);
+  $response = json_decode($response_json, true);
+  //print_r($response_json);die();
+  
+  if ($response['status'] != 200) {
+    echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
+    ';
+  } else {
+    echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>
+    <script>
+    window.setTimeout(function() {
+     location.reload();
+   }, 1000);
+   </script>';
+ }
+
+}
+
+
+
+//------function for update Password------//
+public function updatePass()
+{
+    extract($_POST);
+    // print_r($_POST);die();
+  $data=$_POST;
+  $path = base_url();
+  $url = $path.'api/Admin_api/updatePass';
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $response_json = curl_exec($ch);
+  curl_close($ch);
+  $response = json_decode($response_json, true);
+  //print_r($response_json);die();
+  
+  if ($response['status'] != 200) {
+    echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
+    ';
+  } else {
+    echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>
+    <script>
+    window.setTimeout(function() {
+     location.reload();
+   }, 1000);
+   </script>';
+ }
+
+}
+
+//-----------function for update private key-----------------//
+public function updateKey()
+{
+   extract($_POST);
+    // print_r($_POST);die();
+  $data=$_POST;
+  $path = base_url();
+  $url = $path.'api/Admin_api/updateKey';
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_POST, true);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $response_json = curl_exec($ch);
+  curl_close($ch);
+  $response = json_decode($response_json, true);
+  // print_r($response_json);die();
+  
+  if ($response['status'] != 200) {
+    echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
+    ';
+  } else {
+    echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> '.$response['status_message'].'</h4>
+    <script>
+    window.setTimeout(function() {
+     location.reload();
+   }, 1000);
+   </script>';
+ }
+}
 
      //----------this function to update user dashboard image-----------------------------//
 public function updateDashboardImage() { 
@@ -161,4 +255,17 @@ public function getDashImage() {
   return $response;
 }
 //----------------this fun get admin details end---------------//
+
+public function getpasskey() {
+
+  $path = base_url();
+  $url = $path . 'api/Admin_api/getpasskey?setting_name=pass_privateKey';
+  $ch = curl_init($url);
+  curl_setopt($ch, CURLOPT_HTTPGET, true);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $response_json = curl_exec($ch);
+  curl_close($ch);
+  $response = json_decode($response_json, true);
+  return $response;
+}
 }
