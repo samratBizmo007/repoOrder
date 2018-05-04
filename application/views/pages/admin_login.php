@@ -107,7 +107,7 @@ error_reporting(E_ERROR | E_PARSE);
 	}
 
 	.btn-register {
-		background-color: #1CB94E;
+		background-color: #59B2E0;
 		outline: none;
 		color: #fff;
 		font-size: 14px;
@@ -115,7 +115,7 @@ error_reporting(E_ERROR | E_PARSE);
 		font-weight: normal;
 		padding: 14px 0;
 		text-transform: uppercase;
-		border-color: #1CB94A;
+		border-color: #59B2E0;
 	}
 	.btn-register:hover,
 	.btn-register:focus {
@@ -169,9 +169,9 @@ error_reporting(E_ERROR | E_PARSE);
 						<div class="row">
 							<div class="col-lg-12" id="Login_RegisterDiv">
 								     <form id="Adminlogin_form" style="display: block;">
-                                        <center><img class="img img-responsive" title="Ijarline- Administrator Login" src="<?php echo base_url(); ?>css/logos/admin.png" width="100px" height="auto"></center>
+                                        <center><img class="img img-responsive w3-padding-bottom" title="Ijarline- Administrator Login" src="<?php echo base_url(); ?>css/logos/admin.png" style="margin-bottom: 10px;" width="100px" height="auto"></center>
                                        <div class="form-group">
-										<select name="user_role" id="user_role" tabindex="1" class="form-control">
+										<select name="user_role" id="user_role" tabindex="1" class="form-control ">
 											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select Your Role</option>
 											<option value="1" <?php if($this->input->get('profile', TRUE)==1) echo 'selected'; ?>>Super Admin</option>
 											<option value="2" <?php if($this->input->get('profile', TRUE)==2) echo 'selected'; ?>>Admin</option>
