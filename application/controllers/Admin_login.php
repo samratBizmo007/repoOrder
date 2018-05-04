@@ -25,8 +25,7 @@ class Admin_login extends CI_Controller {
 
     public function adminLogin() {
         extract($_POST);
-        // print_r($_POST);
-        //die();
+        //print_r($_POST);die();
         //Connection establishment, processing of data and response from REST API		
         $data = array(
             'login_username' => $login_username,
@@ -44,7 +43,7 @@ class Admin_login extends CI_Controller {
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-//print_r($response_json);die();
+// print_r($response_json);die();
         //API processing end
         if ($response['status'] == 500) {
             echo '<div class="alert alert-danger ">
@@ -56,7 +55,7 @@ class Admin_login extends CI_Controller {
             $session_data = array(
                 // 'admin_id' => $response['user_id'],
                 'admin_name' => $response['user_name'],
-                'admin_role' => $response['user_role']
+                'admin_role' => $user_role
             );
         	// print_r($session_data);
             //start session of user if login success
@@ -67,13 +66,13 @@ class Admin_login extends CI_Controller {
             <strong>' . $response['status_message'] . '</strong> 
             </div>
             <script>
-            window.setTimeout(function() {
-               $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                  $(this).remove(); 
-              });
-              window.location.href="' . base_url() . 'admin/dashboard";
-          }, 100);
-          </script>
+                    window.setTimeout(function() {
+                        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+                            $(this).remove(); 
+                        });
+                        window.location.href="'.base_url().'admin/dashboard";
+                    }, 100);
+                    </script>
           ';
           
         }

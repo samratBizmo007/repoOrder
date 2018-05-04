@@ -118,7 +118,7 @@ $(function () {
             success: function (data)
             {
                 $.LoadingOverlay("hide");
-                $("#login_err").html(data);
+                $("#message_div").html(data);
             }
         });
         return false;  //stop the actual form post !important!

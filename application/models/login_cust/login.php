@@ -574,11 +574,17 @@ function checkEmail_exist($email_id) {
     //----------------------------LOGIN END------------------------------//
     // -----------------------Admin LOGIN ----------------------//
     //-------------------------------------------------------------//
-    public function adminLogin($user_name, $password) {
+    public function adminLogin($user_name, $password,$role) {
         //sql query to check login credentials
         $pass = base64_encode($password);
+        if($role==1)
+        {
         $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
-        //echo $query;die();
+       }
+       else{
+                $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$password'";
+
+       } //echo $query;die();
         $result = $this->db->query($query);
         $admin_id = '0';
         $privilege = '';
