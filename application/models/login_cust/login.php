@@ -120,20 +120,20 @@ class Login extends CI_Model {
               );  
           }
           else{
-           $response = array(
+             $response = array(
               'status' => 500,
               'status_message' => 'Email Error. Password sending failed.'
           );   
-       }
+         }
 
-   }
-   return $response;
-}
+     }
+     return $response;
+ }
     // ----------------------FORGET PASSWORD MODEL ENDS-------------------------------------//
 
 
     // -----------------------USER REGISTERATION MODEL----------------------//
-public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address) {
+ public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address) {
     $admin_email = '';
     $checkEmail = login::checkEmail_exist($email_id);
     $checkusername = login::checkUsername_exist($user_name);
@@ -170,7 +170,7 @@ public function registerCustomer($user_name, $email_id, $password, $register_mob
 
     // -----------------------USER REGISTERATION MODEL----------------------//
 public function sendUserIs_RegisteredEmail($user_name,$email_id,$admin_email){
- $config = Array(
+   $config = Array(
     'protocol' => 'smtp',
     'smtp_host' => 'mx1.hostinger.in',
     'smtp_port' => '587',
@@ -180,15 +180,15 @@ public function sendUserIs_RegisteredEmail($user_name,$email_id,$admin_email){
             'charset' => 'utf-8',
             'wordwrap' => TRUE
         );
- $config['smtp_crypto'] = 'tls';
+   $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
- $this->load->library('email', $config);
- $this->email->set_newline("\r\n");
- $this->email->from('customercare@jumlakuwait.com', "Admin Team");
- $this->email->to($admin_email);
- $this->email->subject("New User Registered - JUMLA BUSINESS");
- $this->email->message('<html>
+   $this->load->library('email', $config);
+   $this->email->set_newline("\r\n");
+   $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+   $this->email->to($admin_email);
+   $this->email->subject("New User Registered - JUMLA BUSINESS");
+   $this->email->message('<html>
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -207,7 +207,7 @@ public function sendUserIs_RegisteredEmail($user_name,$email_id,$admin_email){
     </div>
     </body></html>');
 
- if ($this->email->send()) {
+   if ($this->email->send()) {
     $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
@@ -226,7 +226,7 @@ return $response;
 
     // -----------------------PASSWORD EMAIL MODEL----------------------//
 public function sendPassword($email_id,$password){
- $config = Array(
+   $config = Array(
     'protocol' => 'smtp',
     'smtp_host' => 'mx1.hostinger.in',
     'smtp_port' => '587',
@@ -236,15 +236,15 @@ public function sendPassword($email_id,$password){
             'charset' => 'utf-8',
             'wordwrap' => TRUE
         );
- $config['smtp_crypto'] = 'tls';
+   $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
- $this->load->library('email', $config);
- $this->email->set_newline("\r\n");
- $this->email->from('customercare@jumlakuwait.com', "Admin Team");
- $this->email->to($email_id);
- $this->email->subject("Current Password-JUMLA BUSINESS");
- $this->email->message('<html>
+   $this->load->library('email', $config);
+   $this->email->set_newline("\r\n");
+   $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+   $this->email->to($email_id);
+   $this->email->subject("Current Password-JUMLA BUSINESS");
+   $this->email->message('<html>
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -264,7 +264,7 @@ public function sendPassword($email_id,$password){
     </div>
     </body></html>');
 
- if ($this->email->send()) {
+   if ($this->email->send()) {
     $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
@@ -364,24 +364,24 @@ function checkEmail_exist($email_id) {
         //$this->email->message("Dear ".$username.",\nPlease click on below URL or paste into your browser to verify your Email Address\n\n <a href='".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."'>".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."</a>\n"."\n\nThanks\nAdmin Team");
 
         $this->email->message('<html>
-           <head>
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-           <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
-           <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
-           <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
-           </head>
-           <body>
-           <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-           <h2 style="color:#4CAF50; font-size:30px">Welcome To Joomla Business!!</h2>
-           <h3 style="font-size:15px;">Hello ' . $username . ',<br></h3>
-           <h3 style="font-size:15px;">Your OTP is ' . $otp . ',<br>Please Login with OTP</h3>
+         <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
+         <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
+         <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
+         </head>
+         <body>
+         <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+         <h2 style="color:#4CAF50; font-size:30px">Welcome To Joomla Business!!</h2>
+         <h3 style="font-size:15px;">Hello ' . $username . ',<br></h3>
+         <h3 style="font-size:15px;">Your OTP is ' . $otp . ',<br>Please Login with OTP</h3>
 
-           <div class="col-lg-12">
-           <div class="col-lg-4"></div>
-           <div class="col-lg-4">
+         <div class="col-lg-12">
+         <div class="col-lg-4"></div>
+         <div class="col-lg-4">
 
-           </div>
-           </body></html>');
+         </div>
+         </body></html>');
 
         if ($this->email->send()) {
             $response = array(
@@ -579,49 +579,39 @@ function checkEmail_exist($email_id) {
         $pass = base64_encode($password);
         if($role==1)
         {
-        $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
-       }
-       else{
-                $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$password'";
+            $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
+        }
+        else{
+            $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$password'";
 
        } //echo $query;die();
-        $result = $this->db->query($query);
-        $admin_id = '0';
-        $privilege = '';
-        //if credentials are true, their is obviously only one record
-        if ($result->num_rows() == 1) {
+       $result = $this->db->query($query);
 
-            foreach ($result->result_array() as $row) {
-                $user_name = $row['username'];
-                $admin_id = $row['admin_id'];
-            }
+        //if credentials are true, their is obviously only one record
+       if ($result->num_rows() == 1) {
 
             //response with values to be stored in sessions if update session_bool true
-            $response = array(
-                'status' => 200,
-                'user_id' => $admin_id,
-                'user_name' => $user_name,
-                'status_message' => 'Login Successfull'
-            );
-        } else {
+        $response = array(
+            'status' => 200,
+            'status_message' => 'Login Successfull.'
+        );
+    } else {
             //login failed response
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Sorry..Login credentials are incorrect!!!',
-                'user_id' => $admin_id,
-                'user_name' => $user_name,
-            );
-        }
-        return $response;
+        $response = array(
+            'status' => 500,
+            'status_message' => 'Sorry..Login credentials are incorrect!!!'
+        );
     }
+    return $response;
+}
 
     //--------------Logout User-----------------------------//
-    function logout_user($user_id) {
-        $sql = "UPDATE customer_tab SET active='0' WHERE user_id='$user_id'";
+function logout_user($user_id) {
+    $sql = "UPDATE customer_tab SET active='0' WHERE user_id='$user_id'";
         //echo $sql;die();
-        $this->db->query($sql);
-        return $this->db->affected_rows();
-    }
+    $this->db->query($sql);
+    return $this->db->affected_rows();
+}
 
     //-------End Logout user--------------------------------//
     //----------------------------LOGIN END------------------------------//
