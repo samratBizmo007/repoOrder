@@ -78,7 +78,7 @@ $(function () {
 $(function () {
     $("#login_form").submit(function () {
         dataString = $("#login_form").serialize();
-
+       
         $.LoadingOverlay("show");
         $.ajax({
             type: "POST",
@@ -125,6 +125,44 @@ $(function () {
     });
 });
 //  -------------------------END -------------------------------//
+
+//-------------------REGISTER FORM------------------------ //
+$(function () {
+    $("#admin_register_form").submit(function () {
+        dataString = $("#admin_register_form").serialize();
+         // alert(dataString);
+        $.LoadingOverlay("show");
+        $.ajax({
+            type: "POST",
+            url: BASE_URL + "admin_login/admin_registration",
+            dataType : 'text',
+            data: dataString,
+            return: false, //stop the actual form post !important!
+            success: function (data){
+              // alert(data);
+                $.LoadingOverlay("hide");
+               // console.log(data);  
+                if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
+                    $("html,body").animate({scrollTop:0},"slow");
+                    document.scrollingElement.scrollTop;
+                } else {
+                   $("html,body").animate({scrollTop:0},"slow");
+               }
+               $("#spinnerDiv").html('');
+               $("#registration_err").html(data);
+                 $('form :input').val("");
+               
+           }
+       });
+        return false;  //stop the actual form post !important!
+    });
+});
+//  --------------------END --------------------------------- //
+
+
+
+
+
 
 
 //-------------------fucntion to check confirm password---------------

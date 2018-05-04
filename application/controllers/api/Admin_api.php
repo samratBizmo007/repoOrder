@@ -37,7 +37,13 @@ class Admin_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------UPDATE EMAIL END------------------------------//
-
+	 public function registerAdmin_post() {
+        extract($_POST);
+        $result = $this->settings_model->registerCustomer($register_username,$register_email,$register_mobile_no,$user_role);
+        return $this->response($result);
+    }
+	
+	
 	// -----------------------GET IMAGE PATH FROM SETTINGS API----------------------//
 	//-------------------------------------------------------------//
 	public function getDashImage_get(){
