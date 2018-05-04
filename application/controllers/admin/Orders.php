@@ -8,6 +8,14 @@ class Orders extends CI_Controller {
     }
 
     public function index() {
+        //start session   
+        $admin_name=$this->session->userdata('admin_name');
+        $admin_role=$this->session->userdata('admin_role');
+
+    //check session variable set or not, otherwise logout
+        if(($admin_name=='') || ($admin_role=='')){
+           redirect('admin_login');
+       }
 
 //        $data['orders'] = Orders::AllOrders();     //-------show all Raw prods
         $data['Open_orders'] = Orders::AllOpen_Orders();     //-------show all Raw prods

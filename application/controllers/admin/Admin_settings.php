@@ -3,21 +3,28 @@
 //Admin Settings controller
 class Admin_settings extends CI_Controller {
 
-    public function __construct() {
-        parent::__construct();
-    }
+  public function __construct() {
+    parent::__construct();
+  }
 
-    public function index() {
+  public function index() {
+    //start session   
+    $admin_name=$this->session->userdata('admin_name');
+    $admin_role=$this->session->userdata('admin_role');
 
-        $data['adminDetails']=Admin_settings::getAdminDetails();
-        $data['dashImage']=Admin_settings::getDashImage();
-        $this->load->view('includes/admin_header.php');
-        $this->load->view('pages/admin/admin_settings',$data);
+    //check session variable set or not, otherwise logout
+    if(($admin_name=='') || ($admin_role=='')){
+     redirect('admin_login');
+   }
+   $data['adminDetails']=Admin_settings::getAdminDetails();
+   $data['dashImage']=Admin_settings::getDashImage();
+   $this->load->view('includes/admin_header.php');
+   $this->load->view('pages/admin/admin_settings',$data);
         //$this->load->view('includes/footer.php');
-    }
+ }
 
      //----------this function to update admin email-----------------------------//
-public function updateEmail() { 
+ public function updateEmail() { 
   extract($_POST);
   //print_r($_POST);die();
 
@@ -42,9 +49,9 @@ public function updateEmail() {
     <script>
     window.setTimeout(function() {
      location.reload();
-    }, 1000);
-    </script>';
-  }
+   }, 1000);
+   </script>';
+ }
 }
 //----------------this fun to update admin email end---------------//
 
@@ -55,7 +62,7 @@ public function updateDashboardImage() {
   $prod_Arr=array();  //prod_image array
   $allowed_types=['gif','jpg','png','jpeg','JPG','GIF','JPEG','PNG'];
   
-    if(!empty(($_FILES['admin_image']['name']))){
+  if(!empty(($_FILES['admin_image']['name']))){
     $extension_img = pathinfo($_FILES['admin_image']['name'], PATHINFO_EXTENSION); //get prod image file extension 
     //image validating---------------------------//
     //check whether image size is less than 2 mb or not
@@ -94,37 +101,37 @@ public function updateDashboardImage() {
         $imagePath = $fileData['file_name'];
       }
     }
-  
+    
    //echo $imagePath;die();
   //validating image ends---------------------------//
   //print_r($data);die();
-  $data['imagePath']=$imagePath;
-  $path = base_url();
-  $url = $path.'api/Admin_api/updateDashboardImage';
-  $ch = curl_init($url);
-  curl_setopt($ch, CURLOPT_POST, true);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  $response_json = curl_exec($ch);
-  curl_close($ch);
-  $response = json_decode($response_json, true);
+    $data['imagePath']=$imagePath;
+    $path = base_url();
+    $url = $path.'api/Admin_api/updateDashboardImage';
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response_json = curl_exec($ch);
+    curl_close($ch);
+    $response = json_decode($response_json, true);
   //print_r($response_json);die();
-  
-  if ($response['status'] != 200) {
-    echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
-    ';
-  } else {
-    echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> '.$response['status_message'].'</h4>
-    <script>
-    window.setTimeout(function() {
-     location.reload();
-    }, 1000);
-    </script>';
-  }
-}
+    
+    if ($response['status'] != 200) {
+      echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> '.$response['status_message'].'</h4>
+      ';
+    } else {
+      echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> '.$response['status_message'].'</h4>
+      <script>
+      window.setTimeout(function() {
+       location.reload();
+     }, 1000);
+     </script>';
+   }
+ }
 //----------------this fun to update user dashboard image end---------------//
 
-    
+ 
 //----------this function to get admin details-----------------------------
  public function getAdminDetails() {
 
@@ -141,7 +148,7 @@ public function updateDashboardImage() {
 //----------------this fun get admin details end---------------//
 
 //----------this function to get admin details-----------------------------
- public function getDashImage() {
+public function getDashImage() {
 
   $path = base_url();
   $url = $path . 'api/Admin_api/getDashImage?setting_name=dash_image';

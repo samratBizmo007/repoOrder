@@ -1,6 +1,5 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 //error_reporting(E_ERROR | E_PARSE);
-print_r($private_key['setting_value']);
 ?>
 <!DOCTYPE html>
 <html>

@@ -8,27 +8,36 @@ class Manage_products extends CI_Controller {
     }
 
     public function index() {
-        $data['categories'] = Manage_products::getAllCategories(); //----fun for get all category
-        $data['products'] = Manage_products::getPostedImagesBy_Role(); //----fun for get all products by role
-        $this->load->view('includes/admin_header.php');
-        $this->load->view('pages/admin/manage_product', $data);
-    }
+       
+        //start session   
+        $admin_name=$this->session->userdata('admin_name');
+        $admin_role=$this->session->userdata('admin_role');
+
+    //check session variable set or not, otherwise logout
+        if(($admin_name=='') || ($admin_role=='')){
+           redirect('admin_login');
+       }
+       $data['categories'] = Manage_products::getAllCategories();
+       $data['products'] = Manage_products::getPostedImagesBy_Role();
+       $this->load->view('includes/admin_header.php');
+       $this->load->view('pages/admin/manage_product', $data);
+   }
 
     //------------fun for get the all categories -----------------------//
-    public function getAllCategories() {
-        $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getAllCategories';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        return $response;
-    }
+   public function getAllCategories() {
+    $path = base_url();
+    $url = $path . 'api/ManageProduct_api/getAllCategories';
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_HTTPGET, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response_json = curl_exec($ch);
+    curl_close($ch);
+    $response = json_decode($response_json, true);
+    return $response;
+}
 
     //------------fun for get the all categories -----------------------//
-    //------------fun for get the all categories -----------------------//
+    //------------fun for get posted products all categories -----------------------//
     public function getPostedImagesBy_Role() {
         $admin_role = $this->session->userdata('admin_role');
         $path = base_url();
@@ -42,7 +51,8 @@ class Manage_products extends CI_Controller {
         return $response;
     }
 
-    //------------fun for get the all categories -----------------------//
+    //------------fun for get posted products all categories -----------------------//
+    //------------fun for remove product-----------------------//
     public function removeProduct() {
         extract($_POST);
         $path = base_url();
@@ -64,6 +74,7 @@ class Manage_products extends CI_Controller {
                   </script>';
         }
     }
+    //------------fun for remove product-----------------------//
 
 //------------fun for add new product to product table---------------------------//
     public function addProduct() {
@@ -78,9 +89,9 @@ class Manage_products extends CI_Controller {
         // print_r($data);
         // die();
 
-        $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
+    $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
 
-        if (!empty(($_FILES['prod_image']['name']))) {
+    if (!empty(($_FILES['prod_image']['name']))) {
             $extension_img = pathinfo($_FILES['prod_image']['name'], PATHINFO_EXTENSION); //get prod image file extension 
             //image validating---------------------------//
             //check whether image size is less than 2 mb or not
@@ -139,16 +150,16 @@ class Manage_products extends CI_Controller {
 
         if ($response['status'] != 200) {
             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
-    ';
+            ';
         } else {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
-    <script>
-    window.setTimeout(function() {
-     location.reload();
-    }, 1000);
-    </script>';
-        }
-    }
+            <script>
+            window.setTimeout(function() {
+               location.reload();
+           }, 1000);
+           </script>';
+       }
+   }
 
 //------------fun for add new product to product table---------------------------//
 }

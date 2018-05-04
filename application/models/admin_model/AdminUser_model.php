@@ -14,16 +14,16 @@ class AdminUser_model extends CI_Model {
     //-------REJECT USER REQUEST FUNCTION--------------//
     public function rejectUser($user_id) {
         if ($user_id=='') {
-         $response = array(
+           $response = array(
             'status' => 500,
             'status_message' => 'Please provide User-ID!');
-         return $response;
-         die();
-     }
+           return $response;
+           die();
+       }
 
-     $sql = "UPDATE user_tab SET status='2' WHERE user_id='$user_id'";
+       $sql = "UPDATE user_tab SET status='2' WHERE user_id='$user_id'";
 
-     if ($this->db->query($sql)) {
+       if ($this->db->query($sql)) {
         $response = array(
             'status' => 200,
             'status_message' => 'Request for #UID-0'.$user_id.' Rejected');
@@ -40,23 +40,23 @@ class AdminUser_model extends CI_Model {
 public function apprUser($user_id,$passwd) {
 
     if ($user_id=='') {
-     $response = array(
+       $response = array(
         'status' => 500,
         'status_message' => 'Please provide User-ID!');
-     return $response;
-     die();
- }
- if ($passwd=='') {
-     $response = array(
+       return $response;
+       die();
+   }
+   if ($passwd=='') {
+       $response = array(
         'status' => 500,
         'status_message' => 'Please provide password!');
-     return $response;
-     die();
- }
+       return $response;
+       die();
+   }
+   $pass=base64_encode($passwd);
+   $sql = "UPDATE user_tab SET status='1',password='$pass' WHERE user_id='$user_id'";
 
- $sql = "UPDATE user_tab SET status='1',password='$passwd' WHERE user_id='$user_id'";
-
- if ($this->db->query($sql)) {
+   if ($this->db->query($sql)) {
     $response = array(
         'status' => 200,
         'status_message' => 'Request for #UID-0'.$user_id.' Approved.');
