@@ -27,137 +27,148 @@ error_reporting(E_ERROR | E_PARSE);
         <script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay_progress.min.js"></script>
         <style>
-            .panel-login {
-                border-color: #ccc;
-                -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-                -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-                box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-            }
-            .panel-login>.panel-heading {
-                color: #00415d;
-                background-color: #fff;
-                border-color: #fff;
-                text-align:center;
-            }
-            .panel-login>.panel-heading a{
-                text-decoration: none;
-                color: #666;
-                font-weight: bold;
-                font-size: 15px;
-                -webkit-transition: all 0.1s linear;
-                -moz-transition: all 0.1s linear;
-                transition: all 0.1s linear;
-            }
-            .panel-login>.panel-heading a.active{
-                color: #029f5b;
-                font-size: 18px;
-            }
-            .panel-login>.panel-heading hr{
-                margin-top: 10px;
-                margin-bottom: 0px;
-                clear: both;
-                border: 0;
-                height: 1px;
-                background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
-                background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-                background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-                background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-            }
-            .panel-login select,.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
-                height: 45px;
-                border: 1px solid #ddd;
-                font-size: 16px;
-                -webkit-transition: all 0.1s linear;
-                -moz-transition: all 0.1s linear;
-                transition: all 0.1s linear;
-            }
-            .panel-login select:hover,.panel-login input:hover,
-            .panel-login select:focus,.panel-login input:focus {
-                outline:none;
-                -webkit-box-shadow: none;
-                -moz-box-shadow: none;
-                box-shadow: none;
-                border-color: #ccc;
-            }
-            .btn-login {
-                background-color: #59B2E0;
-                outline: none;
-                color: #fff;
-                font-size: 14px;
-                height: auto;
-                font-weight: normal;
-                padding: 10px 0;
-                text-transform: uppercase;
-                border-color: #59B2E6;
-            }
-            .btn-login:hover,
-            .btn-login:focus {
-                color: #fff;
-                background-color: #1fbea9;
-                border-color: #1fbea9;
-            }
-            .forgot-password {
-                text-decoration: underline;
-                color: #888;
-            }
-            .forgot-password:hover,
-            .forgot-password:focus {
-                text-decoration: underline;
-                color: #666;
-            }
+	.panel-login {
+		border-color: #ccc;
+		-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+		-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+		box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+	}
+	.panel-login>.panel-heading {
+		color: #00415d;
+		background-color: #fff;
+		border-color: #fff;
+		text-align:center;
+	}
+	.panel-login>.panel-heading a{
+		text-decoration: none;
+		color: #666;
+		font-weight: bold;
+		font-size: 15px;
+		-webkit-transition: all 0.1s linear;
+		-moz-transition: all 0.1s linear;
+		transition: all 0.1s linear;
+	}
+	.panel-login>.panel-heading a.active{
+		color: #029f5b;
+		font-size: 18px;
+	}
+	.panel-login>.panel-heading hr{
+		margin-top: 10px;
+		margin-bottom: 0px;
+		clear: both;
+		border: 0;
+		height: 1px;
+		background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+		background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+		background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+		background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+	}
+	.panel-login select,.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+		height: 45px;
+		border: 1px solid #ddd;
+		font-size: 16px;
+		-webkit-transition: all 0.1s linear;
+		-moz-transition: all 0.1s linear;
+		transition: all 0.1s linear;
+	}
+	.panel-login select:hover,.panel-login input:hover,
+	.panel-login select:focus,.panel-login input:focus {
+		outline:none;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		border-color: #ccc;
+	}
+	.btn-login {
+		background-color: #59B2E0;
+		outline: none;
+		color: #fff;
+		font-size: 14px;
+		height: auto;
+		font-weight: normal;
+		padding: 14px 0;
+		text-transform: uppercase;
+		border-color: #59B2E6;
+	}
+	.btn-login:hover,
+	.btn-login:focus {
+		color: #fff;
+		background-color: #1fbea9;
+		border-color: #1fbea9;
+	}
+	.forgot-password {
+		text-decoration: underline;
+		color: #888;
+	}
+	.forgot-password:hover,
+	.forgot-password:focus {
+		text-decoration: underline;
+		color: #666;
+	}
 
-            .btn-register {
-                background-color: #1CB94E;
-                outline: none;
-                color: #fff;
-                font-size: 14px;
-                height: auto;
-                font-weight: normal;
-                padding: 14px 0;
-                text-transform: uppercase;
-                border-color: #1CB94A;
-            }
-            .btn-register:hover,
-            .btn-register:focus {
-                color: #fff;
-                background-color: #1fbea9;
-                border-color: #1fbea9;
-            }
-
-            @media only screen and (max-width: 377px) {
-                input[type="text"] {
-                    /*width: 220px;*/
-                    /*margin-left: 0px;*/
-                }
-                input[type="password"] {
-                    /*width: 220px;*/
-                    /*margin-left: 0px;*/
-                }
-                input[type="email"] {
-                    /*width: 220px;*/
-                    /*margin-left: 0px;*/
-                }
-            }
-        </style>
+	.btn-register {
+		background-color: #1CB94E;
+		outline: none;
+		color: #fff;
+		font-size: 14px;
+		height: auto;
+		font-weight: normal;
+		padding: 14px 0;
+		text-transform: uppercase;
+		border-color: #1CB94A;
+	}
+	.btn-register:hover,
+	.btn-register:focus {
+		color: #fff;
+		background-color: #1fbea9;
+		border-color: #1fbea9;
+	}
+	
+	@media only screen and (max-width: 377px) {
+		input[type="text"] {
+			/*width: 220px;*/
+			/*margin-left: 0px;*/
+		}
+		input[type="password"] {
+			/*width: 220px;*/
+			/*margin-left: 0px;*/
+		}
+		input[type="email"] {
+			/*width: 220px;*/
+			/*margin-left: 0px;*/
+		}
+	}
+</style>
     </head>
     <body class="" >
-        <div class="row w3-light-grey w3-xxxlarge w3-padding-small">
+    <div class="row w3-light-grey w3-xxxlarge w3-padding-small">
             <center>JUMLA BUSINESS</center>
         </div>
         <a href="<?php echo base_url(); ?>" class="btn w3-margin "><i class="fa fa-arrow-left"></i> Goto <u class="w3-text-blue">ordertracker</u> website</a>
-        <div class="w3-middle" id="spinnerDiv"></div>
-        <div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
-            <div class="row">
-                <div class="w3-col m4 col-md-offset-4 w3-center" id="messageDiv"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="panel panel-login">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12" id="Login_RegisterDiv">
-                                  <div class="w3-col l12 " id="login_err"></div>
-                                    <form id="Adminlogin_form" role="form" method='post' enctype='multipart/form-data' style="display: block;">
+       <div class="w3-middle" id="spinnerDiv"></div>
+		<div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
+		<div class="row">
+			<div class="w3-col m4 col-md-offset-4 w3-center" id="messageDiv"></div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="w3-col l12 w3-margin w3-left" id="message_div">
+						</div>
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login_form-link"><i class="fa fa-unlock-alt"></i> Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register_form-link"><i class="fa fa-sign-in"></i> Register</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12" id="Login_RegisterDiv">
+								     <form id="Adminlogin_form" role="form" method='post' enctype='multipart/form-data' style="display: block;">
                                         <center><img class="img img-responsive" title="Ijarline- Administrator Login" src="<?php echo base_url(); ?>css/logos/admin.png" width="100px" height="auto"></center>
                                         <div class="form-group w3-margin-top">
                                             <input type="text" name="login_username" id="login_username" tabindex="2" class="form-control" placeholder="Admin Username" required>
@@ -173,24 +184,47 @@ error_reporting(E_ERROR | E_PARSE);
                                             </div>
                                         </div>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="w3-center">       
-<!--     <span class="w3-medium">© Copyright and All Rights reserved</span><br>
--->    <span class="w3-medium">© Powered by <a class="w3-text-blue" href="#" target="_blank">HQ Mobiles</a> </span>
-<br><span class="w3-medium">Checkout our <a class="w3-text-blue" href="<?php echo base_url(); ?>privacy_terms">Terms & Privacy Policy</a>! </span>
-
-</div>
+							<form id="admin_register_form" role="form" method='post' enctype='multipart/form-data' style="display: none;">
+									<div class="w3-col l12 " id="registration_err"></div>
+									<div class="form-group">
+										<select name="user_role" id="register_profile_type" tabindex="1" class="form-control">
+											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select Your Role</option>
+											<option value="2" <?php if($this->input->get('profile', TRUE)==1) echo 'selected'; ?>>Admin</option>
+											<option value="3" <?php if($this->input->get('profile', TRUE)==2) echo 'selected'; ?>>Seller</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<input type="text" name="register_username" id="register_username" tabindex="2" class="form-control" placeholder="Username" value="" required>
+									</div>
+									<div class="form-group">
+										<input type="email" name="register_email" id="register_email" tabindex="4" class="form-control" placeholder="Email address" required>
+									</div>
+									<div class="form-group">
+										<input type="number" name="mob_number" id="mob_number" tabindex="4" class="form-control" placeholder="Mobile Number" required>
+									</div>
+									
+									<div id="message"></div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<button type="submit" name="register_register_submit" id="register_register_submit" class="form-control  btn btn-register bluishGreen_bg"><i class="fa fa-sign-in"> Register Now</i> </button>
+												<!-- <button type="submit" name="register_register_submit" id="register_register_submit" tabindex="5" class="form-control  btn btn-register bluishGreen_bg" value="Register Now"> -->
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
         <script>
             $(function () {
                 $('#login_form-link').click(function (e) {
-                    $("#login_form").delay(100).fadeIn(100);
-                    $("#register_form").fadeOut(100);
+                    $("#Adminlogin_form").delay(100).fadeIn(100);
+                    $("#admin_register_form").fadeOut(100);
                     //$("#forget_password").fadeOut(100);
                     //$('#mainBody').load(location.href + " #mainBody>*", ""); 
                     $('#login_form-link').html('<i class="fa fa-unlock-alt"></i> Login');
@@ -200,8 +234,8 @@ error_reporting(E_ERROR | E_PARSE);
                     e.preventDefault();
                 });
                 $('#register_form-link').click(function (e) {
-                    $("#register_form").delay(100).fadeIn(100);
-                    $("#login_form").fadeOut(100);
+                    $("#admin_register_form").delay(100).fadeIn(100);
+                    $("#Adminlogin_form").fadeOut(100);
                     //$("#forget_password").fadeOut(100);
                     $('#login_form-link').removeClass('active');
                     $(this).addClass('active');

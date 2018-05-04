@@ -572,7 +572,7 @@ function checkEmail_exist($email_id) {
     }
 
     //----------------------------LOGIN END------------------------------//
-    // -----------------------USER LOGIN API----------------------//
+    // -----------------------Admin LOGIN ----------------------//
     //-------------------------------------------------------------//
     public function adminLogin($user_name, $password) {
         //sql query to check login credentials
