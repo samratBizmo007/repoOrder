@@ -147,13 +147,13 @@ error_reporting(E_ERROR | E_PARSE);
                             ?>
                             <!-- Image Div -->
                             <div class="w3-col l2 w3-padding-small allImage-div ">
-                                <div class="allImage w3-card-2" style="background-position:center;background-image: url('<?php echo base_url() . $key['prod_image']; ?>');">
+                                <div class="allImage w3-card-2" style="background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $key['prod_image']; ?>');">
                                     <div class="w3-col l12">
                                         <!-- overlay for action div -->
                                         <div class="w3-col l12 saved-image">
                                             <div class="w3-col l12 w3-center" style="margin-top: 30px">
-                                                <a href="#" title="View Full Image" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-search-plus" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> "></span></a>									
-                                                <a id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" title="Remove from Homeslider" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-minus-circle"></span></a>
+                                                <a href="#" title="View Product" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-search-plus" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> "></span></a>									
+                                                <a id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" title="Remove product" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-minus-circle"></span></a>
                                             </div>
                                             <div class="w3-text-white" style="padding: 0 4px 0 4px">
                                                 <label class="w3-tiny"><?php //echo $key['cat_name'];    ?></label>
