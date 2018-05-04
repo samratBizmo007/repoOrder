@@ -45,8 +45,8 @@ class Settings_model extends CI_Model {
         }
         return $response;
     }
-
     //---------UPDATE USER DASHBOARD IMAGE ENDS------------------//
+
     // -----------------------GET ADMIN SETTINGS DETAILS----------------------//
     //-------------------------------------------------------------//
     public function getSettingDetails($setting_name) {
@@ -66,15 +66,15 @@ class Settings_model extends CI_Model {
             }
             $response = array(
                 'status' => 200,
-                'status_message' => 'Admin Setting data found',
+                'status_message' => 'Admin Settings data found',
                 'setting_name' => $setting_name,
                 'setting_value' => $setting_value
             );
         }
         return $response;
     }
-
     //---------GET ADMIN SETTINGS DETAILS ENDS------------------//
+    
     // -----------------------GET ADMIN DETAILS----------------------//
     //-------------------------------------------------------------//
     public function getAdminDetails() {

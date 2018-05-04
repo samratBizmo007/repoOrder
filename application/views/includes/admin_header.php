@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 //error_reporting(E_ERROR | E_PARSE);
 $admin_name=$this->session->userdata('admin_name');
-//echo $admin_name;
-// $profile_type=$this->session->userdata('profile_type');
-// /echo $profile_type;
+$role=1;
+$admin_role=$role;//$this->session->userdata('admin_role');
+//echo $admin_role;
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,11 +53,26 @@ $admin_name=$this->session->userdata('admin_name');
       <div class="clear"></div>
     </a>
 
+
+<?php 
+if($admin_role==1){
+?>
+    <a href="<?php echo base_url(); ?>admin/all_users" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
+      <div class="w3-col l12"><i class="w3-xlarge fa fa-users fa-fw"></i></div>
+      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">All Users<br><br></div>      
+      <div class="clear"></div>
+    </a>
+<?php } ?>
+
+<?php 
+if($admin_role==1 || $admin_role==2){
+?>
     <a href="<?php echo base_url(); ?>admin/admin_settings" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
       <div class="w3-col l12"><i class="w3-xlarge fa fa-cog fa-fw"></i></div>
       <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Settings<br><br></div>      
       <div class="clear"></div>
     </a>
+<?php } ?>
 
   </div>
 </nav>
