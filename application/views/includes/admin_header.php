@@ -79,7 +79,7 @@ $admin_role=$this->session->userdata('admin_role');
     </nav>
 
     <!-- Top container -->
-    <div class="w3-bar w3-white w3-card-2 w3-large w3-padding" style="z-index:0px">
+    <div class="w3-bar w3-white w3-card-2 w3-large w3-padding" style="z-index:0px;">
       <div class="w3-col l12">
         <div class="w3-col l6 s6">
          <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey w3-blue" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
@@ -90,7 +90,7 @@ $admin_role=$this->session->userdata('admin_role');
         </div>
         <div class="w3-col l2">
           <div class="ui-group-buttons ">
-            <a href="<?php echo base_url(); ?>admin_login/logout" class="btn  waves-effect waves-light  w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px">Logout <i class="fa fa-sign-out" ></i></a>
+            <a href="<?php echo base_url(); ?>admin_login/logout" class="btn waves-effect waves-light  w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px">Logout <i class="fa fa-sign-out" ></i></a>
           </div>
           <!--      <div class="w3-right">        -->
             <!--        <a href="<?php echo base_url(); ?>admin_login/logout" title="Logout user" class="w3-button w3-padding-small"><strong>Logout</strong> <i class="fa  fa-sign-out"></i></a> -->
