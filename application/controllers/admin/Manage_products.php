@@ -8,8 +8,8 @@ class Manage_products extends CI_Controller {
     }
 
     public function index() {
-        $data['categories'] = Manage_products::getAllCategories();
-        $data['products'] = Manage_products::getPostedImagesBy_Role();
+        $data['categories'] = Manage_products::getAllCategories(); //----fun for get all category
+        $data['products'] = Manage_products::getPostedImagesBy_Role(); //----fun for get all products by role
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/admin/manage_product', $data);
     }
@@ -30,8 +30,9 @@ class Manage_products extends CI_Controller {
     //------------fun for get the all categories -----------------------//
     //------------fun for get the all categories -----------------------//
     public function getPostedImagesBy_Role() {
+        $admin_role = $this->session->userdata('admin_role');
         $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_Role?role=2';
+        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_Role?role='.$admin_role;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -53,7 +54,7 @@ class Manage_products extends CI_Controller {
         curl_close($ch);
         $response = json_decode($response_json, true);
         if ($response['status'] != 200) {
-         echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
+            echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
     ';
         } else {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
@@ -66,6 +67,8 @@ class Manage_products extends CI_Controller {
 
 //------------fun for add new product to product table---------------------------//
     public function addProduct() {
+        $admin_name=$this->session->userdata('admin_name');
+        $admin_role=$this->session->userdata('admin_role');
         extract($_POST);
         if ($cat_id == 0) {
             echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-large"></i> Please Select Category First.</label>';
@@ -120,6 +123,8 @@ class Manage_products extends CI_Controller {
         //validating image ends---------------------------//
         //print_r($data);die();
         $data['imagePath'] = $uploadPath . $imagePath;
+        $data['posted_by'] = $admin_name;
+        $data['role'] = $admin_role;
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/addProduct';
         $ch = curl_init($url);

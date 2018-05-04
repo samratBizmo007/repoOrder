@@ -151,7 +151,7 @@ error_reporting(E_ERROR | E_PARSE);
                                         <!-- overlay for action div -->
                                         <div class="w3-col l12 saved-image">
                                             <div class="w3-col l12 w3-center" style="margin-top: 30px">
-                                                <a href="#" title="View Full Image" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-search-plus" data-toggle="modal" data-target="#sliderImageModal_<?php echo $key['prod_id']; ?> "></span></a>									
+                                                <a href="#" title="View Full Image" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-search-plus" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> "></span></a>									
                                                 <a id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" title="Remove from Homeslider" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-minus-circle"></span></a>
                                             </div>
                                             <div class="w3-text-white" style="padding: 0 4px 0 4px">
@@ -164,7 +164,7 @@ error_reporting(E_ERROR | E_PARSE);
                             </div>
                             <!-- Image Div ends -->	
                             <!-- Modal for show images -->	
-                            <div id="sliImageModal_<?php echo $key['prod_id']; ?>" class="modal fade" role="dialog">
+                            <div id="productModal_<?php echo $key['prod_id']; ?>" class="modal fade" role="dialog">
                                 <div class="modal-dialog modal-md">
                                     <!-- Modal content-->
                                     <center><a data-dismiss="modal" title="Close Image" class="btn fa fa-close w3-xlarge w3-padding-small w3-text-white"></a></center>

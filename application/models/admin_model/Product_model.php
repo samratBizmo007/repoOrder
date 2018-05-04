@@ -28,12 +28,12 @@ class Product_model extends CI_Model {
     }
 
     //-------get all categories from category table--------------//
-    //-------ADD NEW ORDER FUNCTION--------------//
+    //-------ADD NEW product FUNCTION--------------//
     public function addProduct($data) {
         extract($data);
         //print_r($data);die();
         $sql = "INSERT INTO product_tab(cat_id,product_name,prod_description,prod_image,posted_by,role,posted_date,posted_time,active) VALUES
-        ('$cat_id','$product_name','$product_description','$imagePath','','',NOW(),NOW(),'1')";
+        ('$cat_id','$product_name','$product_description','$imagePath','$posted_by','$role',NOW(),NOW(),'1')";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
@@ -47,6 +47,9 @@ class Product_model extends CI_Model {
         }
         return $response;
     }
+
+    //-------ADD NEW product FUNCTION ends--------------//
+    //-------get posted products and images from product--------------//
 
     public function getPostedImagesBy_Role($role) {
         $sql = "SELECT * FROM product_tab WHERE role = '$role'";
@@ -63,6 +66,9 @@ class Product_model extends CI_Model {
         return $response;
     }
 
+    //-------get posted products and images from product--------------//
+    //-------fun for remove product from product table--------------//
+
     public function removeProduct($prod_id) {
         $sql = "DELETE FROM product_tab WHERE prod_id = '$prod_id'";
         $result = $this->db->query($sql);
@@ -78,4 +84,5 @@ class Product_model extends CI_Model {
         return $response;
     }
 
+    //-------fun for remove product from product table--------------//
 }
