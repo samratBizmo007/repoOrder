@@ -582,7 +582,7 @@ function checkEmail_exist($email_id) {
             $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
         }
         else{
-            $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$password'";
+            $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass'";
 
        } //echo $query;die();
        $result = $this->db->query($query);

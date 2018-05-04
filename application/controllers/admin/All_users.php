@@ -8,7 +8,14 @@ class All_users extends CI_Controller {
   }
 
   public function index() {
+    //start session   
+    $admin_name=$this->session->userdata('admin_name');
+    $admin_role=$this->session->userdata('admin_role');
 
+    //check session variable set or not, otherwise logout
+    if(($admin_name=='') || ($admin_role=='')){
+     redirect('admin_login');
+   }
     $data['all_users'] = All_users::AllUsers();     //-------show all admin users
     $data['private_key'] = All_users::getPrivateKey();     //-------get Private key for password generation
 
