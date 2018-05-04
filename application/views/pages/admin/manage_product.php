@@ -91,7 +91,8 @@ error_reporting(E_ERROR | E_PARSE);
                                 <font color ="red"><span id ="cat_id_span"></span></font>							
                                 <select class="w3-select w3-margin-bottom" name="cat_id" id="cat_id">
                                     <option value="0" class="w3-light-grey">Select Business Field</option>
-                                    <?php //print_r($categories);
+                                    <?php
+                                    //print_r($categories);
                                     foreach ($categories['status_message'] as $result) {
                                         ?>
                                         <option value="<?php echo $result['cat_id']; ?>"><?php echo $result['category_name']; ?></option>
@@ -155,7 +156,7 @@ error_reporting(E_ERROR | E_PARSE);
                                                 <a id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" title="Remove from Homeslider" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-minus-circle"></span></a>
                                             </div>
                                             <div class="w3-text-white" style="padding: 0 4px 0 4px">
-                                                <label class="w3-tiny"><?php //echo $key['cat_name'];   ?></label>
+                                                <label class="w3-tiny"><?php //echo $key['cat_name'];    ?></label>
                                             </div>
                                         </div>
                                         <!-- overlay for action div ends -->
