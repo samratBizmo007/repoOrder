@@ -187,7 +187,6 @@ class Orders extends CI_Controller {
         $response = json_decode($response_json, true);
         return $response;
     }
-
     // ---------------function to get all orders------------------------//
      // ---------------function to get all orders------------------------//
     public function AllRegreted_orders() {
@@ -240,7 +239,7 @@ class Orders extends CI_Controller {
 
         //Connection establishment to get data from REST API
         $path = base_url();
-        $url = $path . 'api/Dashboard_api/reOpen_Orders?order_id=' . $order_id;
+        $url = $path . 'api/Dashboard_api/reOpen_Orders?order_id='.$order_id;
         //echo $url;  
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
@@ -264,7 +263,7 @@ class Orders extends CI_Controller {
 
         //Connection establishment to get data from REST API
         $path = base_url();
-        $url = $path . 'api/Dashboard_api/closeOrder?order_id=' . $order_id;
+        $url = $path . 'api/Dashboard_api/closeOrder?order_id='.$order_id;
         //echo $url;  
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);

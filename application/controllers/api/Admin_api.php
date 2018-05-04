@@ -7,6 +7,7 @@ class Admin_api extends REST_Controller
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('admin_model/settings_model');
+		$this->load->model('admin_model/adminUser_model');
 		//date_default_timezone_set('Asia/Kolkata');	//set Kuwait's timezone
 	}
 	
@@ -52,6 +53,43 @@ class Admin_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------GET IMAGE PATH FROM SETTINGS END------------------------------//
+
+	// -----------------------GET ALL ADMIN USERS API----------------------//
+	//-------------------------------------------------------------//
+	public function allUsers_get(){
+		extract($_GET);
+		$result = $this->adminUser_model->allUsers();
+		return $this->response($result);			
+	}
+	//---------------------GET ALL ADMIN USERS API END------------------------------//
+
+	// -----------------------GET PRIVATE KEY FROM SETTINGS API----------------------//
+	//-------------------------------------------------------------//
+	public function getPrivateKey_get(){
+		extract($_GET);
+		$result = $this->settings_model->getSettingDetails($setting_name);
+		return $this->response($result);			
+	}
+	//---------------------GET PRIVATE KEY FROM SETTINGS END------------------------------//
+
+
+	// -----------------------REJECT USER REQUEST API----------------------//
+	//-------------------------------------------------------------//
+	public function rejectUser_post(){
+		extract($_POST);
+		$result = $this->adminUser_model->rejectUser($user_id);
+		return $this->response($result);			
+	}
+	//---------------------REJECT USER REQUEST END------------------------------//
+
+	// -----------------------APPROVE USER REQUEST API----------------------//
+	//-------------------------------------------------------------//
+	public function apprUser_post(){
+		extract($_POST);
+		$result = $this->adminUser_model->apprUser($user_id,$auto_passwd);
+		return $this->response($result);			
+	}
+	//---------------------APPROVE USER REQUEST END------------------------------//
 
 	
 }
