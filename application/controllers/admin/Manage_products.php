@@ -37,7 +37,7 @@ class Manage_products extends CI_Controller {
 }
 
     //------------fun for get the all categories -----------------------//
-    //------------fun for get posted products all categories -----------------------//
+    //------------fun for get posted products  -----------------------//
     public function getPostedImagesBy_Role() {
         $admin_role = $this->session->userdata('admin_role');
         $path = base_url();
@@ -51,7 +51,7 @@ class Manage_products extends CI_Controller {
         return $response;
     }
 
-    //------------fun for get posted products all categories -----------------------//
+    //------------fun for get posted products  -----------------------//
     //------------fun for remove product-----------------------//
     public function removeProduct() {
         extract($_POST);
