@@ -10,9 +10,9 @@ class Userprofile_model extends CI_Model {
         date_default_timezone_set('Asia/Kuwait');   //set Kuwait's timezone
         //$this->load->model('search_model');
     }
-    
+//-------------fun for get user details from usertab----------------------------------//    
     public function getUserDetails($username){
-        $sql = "SELECT * FROM user_tab WHERE username = '$username'";
+        $sql = "SELECT * FROM user_tab WHERE email = '$username'";
         $result = $this->db->query($sql);
         if ($result->num_rows() <= 0) {
             $response = array(
@@ -25,4 +25,6 @@ class Userprofile_model extends CI_Model {
         }
         return $response;
     }
+//-------------fun for get user details from usertab----------------------------------//    
+    
 }

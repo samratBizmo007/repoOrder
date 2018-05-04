@@ -17,7 +17,7 @@ class User_profile extends CI_Controller {
         if(($admin_name=='') || ($admin_role=='')){
            redirect('admin_login');
        }
-        $data['userDetails'] = Manage_products::getUserDetails();
+        $data['userDetails'] = User_profile::getUserDetails();
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/admin/user_profile',$data);
     }
@@ -26,13 +26,14 @@ class User_profile extends CI_Controller {
     public function getUserDetails() {
         $admin_name=$this->session->userdata('admin_name');
         $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getUserDetails?username='.$admin_name;
+        $url = $path . 'api/Userprofile_api/getUserDetails?username='.$admin_name;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
+        //print_r($response_json);die();
         return $response;
     }
 
