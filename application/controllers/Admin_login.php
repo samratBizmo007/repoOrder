@@ -30,7 +30,8 @@ class Admin_login extends CI_Controller {
         //Connection establishment, processing of data and response from REST API		
         $data = array(
             'login_username' => $login_username,
-            'login_password' => $login_password
+            'login_password' => $login_password,
+            'role' =>$user_role
                 //'login_remember' => $remember_me
         );
         //print_r($data);die();
@@ -79,11 +80,13 @@ class Admin_login extends CI_Controller {
     }
 
     public function logout() {
-        $admin_id=$this->session->userdata('admin_id');
+        // $admin_id=$this->session->userdata('admin_id');
         $admin_name=$this->session->userdata('admin_name');
+        $admin_role=$this->session->userdata('admin_role');
+
         //if logout success then destroy session and unset session variables
         //if logout success then destroy session and unset session variables
-        $this->session->unset_userdata(array("admin_id" => "", "admin_name" => ""));
+        $this->session->unset_userdata(array("admin_name" => "","admin_role" =>""));
         $this->session->sess_destroy();
 
         redirect(admin_login);

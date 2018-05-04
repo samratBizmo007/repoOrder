@@ -170,6 +170,15 @@ error_reporting(E_ERROR | E_PARSE);
 							<div class="col-lg-12" id="Login_RegisterDiv">
 								     <form id="Adminlogin_form" role="form" method='post' enctype='multipart/form-data' style="display: block;">
                                         <center><img class="img img-responsive" title="Ijarline- Administrator Login" src="<?php echo base_url(); ?>css/logos/admin.png" width="100px" height="auto"></center>
+                                       <div class="form-group">
+										<select name="user_role" id="register_profile_type" tabindex="1" class="form-control">
+											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select Your Role</option>
+											<option value="2" <?php if($this->input->get('profile', TRUE)==1) echo 'selected'; ?>>Admin</option>
+											<option value="3" <?php if($this->input->get('profile', TRUE)==2) echo 'selected'; ?>>Seller</option>
+										</select>
+									</div>
+
+                              
                                         <div class="form-group w3-margin-top">
                                             <input type="text" name="login_username" id="login_username" tabindex="2" class="form-control" placeholder="Admin Username" required>
                                         </div>
