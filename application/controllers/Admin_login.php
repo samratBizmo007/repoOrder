@@ -53,7 +53,7 @@ class Admin_login extends CI_Controller {
             //----create session array--------//
     $session_data = array(
                 // 'admin_id' => $response['user_id'],
-      'admin_name' => $login_username,
+      'admin_name' => $response['user_name'],
       'admin_role' => $user_role
     );
         	//print_r($session_data);die();
@@ -70,7 +70,7 @@ class Admin_login extends CI_Controller {
         $(this).remove(); 
       });
       window.location.href="'.base_url().'admin/dashboard";
-    }, 100);
+    }, 1000);
     </script>
     ';
 
@@ -122,16 +122,7 @@ public function admin_registration()
 
   echo '<div class="alert alert-success" style="margin-bottom:5px">
   <strong>' . $response['status_message'] . '</strong> 
-  </div>
-  <script>
-  window.setTimeout(function() {
-   $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
-    $(this).remove(); 
-  });
-
-}, 2000);
-</script>
-';
+  </div>';
 
 }
 

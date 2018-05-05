@@ -118,7 +118,15 @@ $(function () {
             success: function (data)
             {
                 $.LoadingOverlay("hide");
-                $("#message_div").html(data);
+                if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
+                    $("html,body").animate({scrollTop:0},"slow");
+                    document.scrollingElement.scrollTop;
+                } else {
+                   $("html,body").animate({scrollTop:0},"slow");
+               }
+               
+               $("#spinnerDiv").html('');
+               $("#login_err").html(data);
             }
         });
         return false;  //stop the actual form post !important!

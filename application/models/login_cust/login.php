@@ -586,19 +586,25 @@ function checkEmail_exist($email_id) {
 
        } //echo $query;die();
        $result = $this->db->query($query);
-
+       $user_name ="";
         //if credentials are true, their is obviously only one record
        if ($result->num_rows() == 1) {
+         foreach ($result->result_array() as $row) {
+                $user_name = $row['username'];
+                // $user_id = $row['user_id'];
+            }
 
             //response with values to be stored in sessions if update session_bool true
         $response = array(
             'status' => 200,
+            'user_name' => $user_name,
             'status_message' => 'Login Successfull.'
         );
     } else {
             //login failed response
         $response = array(
             'status' => 500,
+            'user_name' => $user_name,
             'status_message' => 'Sorry..Login credentials are incorrect!!!'
         );
     }
