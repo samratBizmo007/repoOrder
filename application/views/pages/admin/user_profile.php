@@ -80,7 +80,7 @@ error_reporting(E_ERROR | E_PARSE);
             <!-- Header -->
             <?php // print_r($userDetails);
             ?>
-                        <!-- DIV FOR profile Description ends-->
+            <!-- DIV FOR profile Description ends-->
             <div class="w3-col l12 w3-padding-small">
                 <header class="w3-container w3-padding-bottom" >
                     <h5><b><i class="fa fa-users"></i> Profile</b></h5>
@@ -102,6 +102,12 @@ error_reporting(E_ERROR | E_PARSE);
                             </div>
                             <div class="w3-col l12">
                                 <div class="w3-col l8"><b><?php echo $userDetails['status_message'][0]['full_name']; ?></b></div>
+                            </div>
+                            <div class="w3-col l12">
+                                <div class="w3-col l8"><?php echo $userDetails['status_message'][0]['bio']; ?></div>
+                            </div>
+                            <div class="w3-col l12">
+                                <div class="w3-col l8"><?php echo $userDetails['status_message'][0]['website']; ?></div>
                             </div>
                         </div>
                     </div>
