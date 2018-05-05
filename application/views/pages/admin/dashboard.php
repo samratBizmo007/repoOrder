@@ -14,6 +14,23 @@ error_reporting(E_ERROR | E_PARSE);
   <!-- <link rel="stylesheet" href="assets/css/alert/jquery-confirm.css"> -->
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
   <!-- <script type="text/javascript" src="assets/css/alert/jquery-confirm.js"></script> -->
+
+  <style type="text/css">
+  .user_img{
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .timeline_img{
+    height:500px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+</style>
 </head>
 <body class="w3-light-grey">
 
@@ -62,115 +79,75 @@ error_reporting(E_ERROR | E_PARSE);
     <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-container">
         <div class="col-lg-2"></div>
-        <div class="w3-col l8">
+        <div class="w3-col l8 ">
           <!-- Header -->
           <header class="w3-container" style="margin-left: 30px">
             <h5><b><i class="fa fa-rss-square"></i> Latest Feeds</b></h5>
           </header>
           <div class="w3-col l12 w3-padding-xxlarge">
-            <div class="w3-col l12 w3-card-2 w3-margin-bottom">
+            <?php
+            if($timelineData['status']!=500){
+              foreach ($timelineData['status_message'] as $key) { ?>
+              <div class="w3-col l12 w3-card-2 w3-margin-bottom">
 
-              <!-- Top section div start -->
-              <div class="w3-col l12 w3-border-bottom">
-                <div class="w3-col l1 w3-padding">
-                  <div class="w3-circle w3-border" style="height: 40px;width: 40px;background-image: url('<?php echo base_url(); ?>images/users/1.jpg');background-size: contain;"></div>
+                <!-- Top section div start -->
+                <div class="w3-col l12 w3-border-bottom">
+                  <div class="w3-col l1 w3-padding">
+                    <div class="w3-circle w3-border user_img" style="background-image: url('<?php echo base_url(); ?><?php echo $key['user_image']; ?>');"></div>
+                  </div>
+                  <div class="w3-col l11 w3-padding-left w3-padding-top">
+                    <label class="w3-margin-top w3-small"><?php echo $key['username']; ?></label>
+                  </div>
                 </div>
-                <div class="w3-col l11 w3-padding-left">
-                  <label class="w3-margin-top w3-small">Username007</label>
+                <!-- Top section div ends -->
+
+                <!-- Mid section div start -->
+                <div class="w3-col l12 w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $key['prod_image']; ?>');">
+                  <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
                 </div>
-              </div>
-              <!-- Top section div ends -->
+                <!-- Mid section div ends -->
 
-              <!-- Mid section div start -->
-              <div class="w3-col l12 w3-border-bottom">
-                <img src="<?php echo base_url(); ?>images/users/1.jpg" style="width: 100%;height: auto;" class="img img-responsive" >
-              </div>
-              <!-- Mid section div ends -->
+                <!-- Bottom section div starts -->
+                <div class="w3-col l12">
+                  <div class="w3-col l12 w3-padding-small w3-right">
+                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:965-6589745" title="<?php echo $key['phone']; ?>" style="padding-right: 0px;padding-left: 5px">
+                      <span class="fa fa-phone w3-xlarge"></span>
+                    </a>
 
-              <!-- Bottom section div starts -->
-              <div class="w3-col l12">
-                <div class="w3-col l12 w3-padding-small">
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:965-6589745" title="Call: 965-6589745" style="padding-right: 0px">
-                    <span class="fa fa-phone w3-xlarge"></span>
-                  </a>
+                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:example@gm.com" title="<?php echo $key['email']; ?>" style="padding-right: 0px;padding-left: 5px">
+                      <span class="fa fa-envelope-o w3-xlarge"></span>
+                    </a>                  
+                  </div>
 
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:example@gm.com" title="Mail: example@gm.com" style="padding-right: 0px">
-                    <span class="fa fa-envelope-o w3-xlarge"></span>
-                  </a>                  
+                  <div class="w3-col l12 w3-padding ">
+                    <label><?php echo $key['product_name']; ?></label><br>
+                    <span class="w3-small"><?php echo $key['prod_description']; ?></span>
+                    <hr>
+                  </div>
+
                 </div>
-
-                <div class="w3-col l12 w3-padding ">
-                  <label>Prodcyt title</label><br>
-                  <span class="w3-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                  <hr>
-                </div>
-
-              </div>
-              <!-- Bottom section div ends -->
-
-            </div>
-
-
-            <div class="w3-col l12 w3-card-2 w3-margin-bottom">
-
-              <!-- Top section div start -->
-              <div class="w3-col l12 w3-border-bottom">
-                <div class="w3-col l1 w3-padding">
-                  <div class="w3-circle w3-border" style="height: 40px;width: 40px;background-image: url('<?php echo base_url(); ?>images/users/1.jpg');background-size: contain;"></div>
-                </div>
-                <div class="w3-col l11 w3-padding-left">
-                  <label class="w3-margin-top w3-small">Username007</label>
-                </div>
-              </div>
-              <!-- Top section div ends -->
-
-              <!-- Mid section div start -->
-              <div class="w3-col l12 w3-border-bottom">
-                <img src="<?php echo base_url(); ?>images/users/3.jpg" style="width: 100%;height: auto;" class="img img-responsive" >
-              </div>
-              <!-- Mid section div ends -->
-
-              <!-- Bottom section div starts -->
-              <div class="w3-col l12">
-                <div class="w3-col l12 w3-padding-small">
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:965-6589745" title="Call: 965-6589745" style="padding-right: 0px">
-                    <span class="fa fa-phone w3-xlarge"></span>
-                  </a>
-
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:example@gm.com" title="Mail: example@gm.com" style="padding-right: 0px">
-                    <span class="fa fa-envelope-o w3-xlarge"></span>
-                  </a>                  
-                </div>
-
-                <div class="w3-col l12 w3-padding ">
-                  <label>Prodcyt title</label><br>
-                  <span class="w3-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-                  <hr>
-                </div>
+                <!-- Bottom section div ends -->
 
               </div>
-              <!-- Bottom section div ends -->
-
-            </div>
-          
-          </div>
-          
+              <?php
+            }
+          }
+          else{
+            ?>
+            <div class="alert alert-warning w3-center">
+              <b><?php echo $all_users['status_message']; ?></b>
+            </div>               
+            <?php 
+          } 
+          ?>          
         </div>
-        <div class="col-lg-2"></div>
+
       </div>
+      <div class="col-lg-2"></div>
     </div>
-    <!-- Product timeline ends here -->
   </div>
+  <!-- Product timeline ends here -->
+</div>
 
 </body>
 </html>

@@ -63,11 +63,6 @@ class Dashboard_api extends REST_Controller {
         return $this->response($result);
     }
 
-    public function AllRegreted_orders_get() {
-        extract($_GET);
-        $result = $this->dashboard_model->AllRegreted_orders();
-        return $this->response($result);
-    }
 
     // -----------------------ALL ORDERS COUNT API----------------------//
     //-------------------------------------------------------------//
@@ -76,8 +71,16 @@ class Dashboard_api extends REST_Controller {
         $result = $this->dashboard_model->getOrderCount();
         return $this->response($result);
     }
-
     //---------------------ALL ORDERS COUNT END------------------------------//
+
+    // -----------------------GET TIMELINE DATA API----------------------//
+    //-------------------------------------------------------------//
+    public function getTimeline_get() {
+        //extract($_GET);
+        $result = $this->dashboard_model->getTimeline();
+        return $this->response($result);
+    }
+    //---------------------GET TIMELINE DATA END------------------------------//
 
     public function all_ActiveOrdersCount_get() {
         $result = $this->dashboard_model->all_ActiveOrdersCount();
