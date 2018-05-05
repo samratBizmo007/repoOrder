@@ -20,9 +20,9 @@ class ManageProduct_api extends REST_Controller {
 //--------fun for get all categories from category tab-----------------------//
 //--------fun for get all posted images and products by role from products tab-----------------------//
 
-    public function getPostedImagesBy_Role_get() {
+    public function getPostedImagesBy_username_get() {
         extract($_GET);
-        $result = $this->Product_model->getPostedImagesBy_Role($role);
+        $result = $this->Product_model->getPostedImagesBy_username($username);
         return $this->response($result);
     }
 //--------fun for get all posted images and products by role from products tab-----------------------//

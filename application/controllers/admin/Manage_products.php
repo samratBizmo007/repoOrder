@@ -18,7 +18,7 @@ class Manage_products extends CI_Controller {
            redirect('admin_login');
        }
        $data['categories'] = Manage_products::getAllCategories();
-       $data['products'] = Manage_products::getPostedImagesBy_Role();
+       $data['products'] = Manage_products::getPostedImagesBy_username();
        $this->load->view('includes/admin_header.php');
        $this->load->view('pages/admin/manage_product', $data);
    }
@@ -38,10 +38,10 @@ class Manage_products extends CI_Controller {
 
     //------------fun for get the all categories -----------------------//
     //------------fun for get posted products  -----------------------//
-    public function getPostedImagesBy_Role() {
-        $admin_role = $this->session->userdata('admin_role');
+    public function getPostedImagesBy_username() {
+        $admin_name = $this->session->userdata('admin_name');
         $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_Role?role='.$admin_role;
+        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_username?username='.$admin_name;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
