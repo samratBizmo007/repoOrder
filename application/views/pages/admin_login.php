@@ -82,7 +82,7 @@ error_reporting(E_ERROR | E_PARSE);
 									<div class="w3-col l12 " id="login_err"></div>
 									<div class="form-group">
 										<select name="user_role" id="user_role" class="w3-input w3-border">
-											<option class="w3-light-grey" value="0">Select Your Role</option>
+											<option class="w3-light-grey" value="0" selected>Select Your Role</option>
 											<option value="1">Super Admin</option>
 											<option value="2">Admin</option>
 											<option value="3">Wholesaler</option>
@@ -105,7 +105,7 @@ error_reporting(E_ERROR | E_PARSE);
 									<div class="w3-col l12 " id="registration_err"></div>
 									<div class="form-group">
 										<select name="user_role" id="register_profile_type" class="w3-input w3-border">
-											<option class="w3-light-grey" selected <?php if($this->uri->segment(2)=='') echo 'selected'; ?> value="0">Select Your Role</option>
+											<option class="w3-light-grey" value="0" selected>Select Your Role</option>
 											<option value="2">Admin</option>
 											<option value="3">Wholesaler</option>
 										</select>
