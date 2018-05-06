@@ -11,10 +11,17 @@ class Userprofile_api extends REST_Controller {
         $this->load->model('admin_model/Userprofile_model');
         //date_default_timezone_set('Asia/Kolkata');	//set Kuwait's timezone
     }
-    
-    public function getUserDetails_get(){
+
+    public function getUserDetails_get() {
         extract($_GET);
         $result = $this->Userprofile_model->getUserDetails($username);
         return $this->response($result);
     }
+
+    public function getProductCountBy_username_get() {
+        extract($_GET);
+        $result = $this->Userprofile_model->getProductCountBy_username($username);
+        return $this->response($result);
+    }
+
 }

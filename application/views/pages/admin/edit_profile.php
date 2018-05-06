@@ -22,7 +22,8 @@ error_reporting(E_ERROR | E_PARSE);
         <div class="w3-main w3-padding-small" style="margin-left:120px;">
             <!-- Header -->
             <header class="w3-container" >
-                <h5><b><i class="fa fa-cog"></i> Edit Profile</b></h5>
+                <h5><b><i class="fa fa-cog"></i> Edit Profile</b><a class="w3-button w3-right" href="<?php echo base_url(); ?>admin/user_profile"><span class="w3-text-blue"><b>Back To Profile </b></span></a></h5>
+
             </header>
             <?php // print_r($userDetails);?>
 
@@ -151,6 +152,7 @@ error_reporting(E_ERROR | E_PARSE);
                 success: function (data)
                 {
                     $.alert(data);
+                    location.reload();
                 }
             });
             return false;  //stop the actual form post !important!

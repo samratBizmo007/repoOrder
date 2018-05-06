@@ -91,23 +91,51 @@ error_reporting(E_ERROR | E_PARSE);
 
                     <div class="w3-col l12">
                         <div class="w3-col l4">
-                            <div class="w3-padding w3-circle w3-center w3-large" style="background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:150px;width:150px;">
-                            </div>                                 
+                            <?php
+                            $default_image = 'images/default_male.png';
+                            if ($userDetails['status_message'][0]['user_image'] == '') {
+                                ?>
+                                <div class="w3-padding w3-circle w3-center w3-large" title="profile image" style="background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:150px;width:150px;"></div>
+                            <?php } else { ?>
+                                <div class="w3-padding w3-circle w3-center w3-large" title="profile image" style="background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:150px;width:150px;">
+                                </div>
+                            <?php } ?>
                         </div>
                         <div class="w3-col l8 w3-margin-top">
                             <label class="w3-large"><?php echo $userDetails['status_message'][0]['username']; ?></label>                           
                             <a class="btn w3-right" href="<?php echo base_url(); ?>admin/edit_profile"><span class="w3-small bluish-green "><b>Edit Profile </b><i class="w3-medium w3-text-black fa fa-gear"></i></span></a>
                             <div class="w3-col l12 w3-margin-bottom">
-                                <div class="w3-col l8"><b>0</b> Posts</div>
+                                <div class="w3-col l8"><b><?php echo $prod_count; ?></b> Posts</div>
                             </div>
                             <div class="w3-col l12">
-                                <div class="w3-col l8"><b><?php echo $userDetails['status_message'][0]['full_name']; ?></b></div>
+                                <div class="w3-col l8"><b>
+                                        <?php
+                                        if ($userDetails['status_message'][0]['full_name'] != '') {
+                                            echo $userDetails['status_message'][0]['full_name'];
+                                        } else {
+                                            echo 'Enter Full Name.  <a href="' . base_url() . 'admin/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                        }
+                                        ?></b></div>
                             </div>
                             <div class="w3-col l12">
-                                <div class="w3-col l8"><?php echo $userDetails['status_message'][0]['bio']; ?></div>
+                                <div class="w3-col l8">
+                                    <?php
+                                    if ($userDetails['status_message'][0]['bio'] != '') {
+                                        echo $userDetails['status_message'][0]['bio'];
+                                    } else {
+                                        echo 'Enter Your Bio.  <a href="' . base_url() . 'admin/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                    }
+                                    ?></div>
                             </div>
                             <div class="w3-col l12">
-                                <div class="w3-col l8"><?php echo $userDetails['status_message'][0]['website']; ?></div>
+                                <div class="w3-col l8">
+                                    <?php
+                                    if ($userDetails['status_message'][0]['website'] != '') {
+                                        echo $userDetails['status_message'][0]['website'];
+                                    } else {
+                                        echo 'Enter Website.  <a href="' . base_url() . 'admin/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                    }
+                                    ?></div>
                             </div>
                         </div>
                     </div>
