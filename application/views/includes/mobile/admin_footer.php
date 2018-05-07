@@ -43,7 +43,7 @@ $admin_role=$this->session->userdata('admin_role');
   ?>
 
   <?php 
-  if($admin_role=='2' || $admin_role=='3'){?>
+  if($admin_role=='2'){?>
   <!-- Super Admin Menu in mobile view -->
   <div class="w3-col s3 w3-center" style="padding:0px">
     <a href="<?php echo base_url(); ?>admin/dashboard" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='dashboard'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>Home</label></a>
@@ -56,6 +56,22 @@ $admin_role=$this->session->userdata('admin_role');
   </div>
   <div class="w3-col s3 w3-center" style="padding:0px">
     <a href="<?php echo base_url(); ?>admin/admin_settings" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='admin_settings'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>Settings</label></a>
+  </div>
+  <?php 
+}
+?>
+
+<?php 
+  if($admin_role=='3'){?>
+  <!-- Super Admin Menu in mobile view -->
+  <div class="w3-col s4 w3-center" style="padding:0px">
+    <a href="<?php echo base_url(); ?>admin/dashboard" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='dashboard'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>Home</label></a>
+  </div>
+  <div class="w3-col s4 w3-center" style="padding:0px">
+    <a href="<?php echo base_url(); ?>admin/orders" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='orders'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>All Order</label></a>
+  </div>
+  <div class="w3-col s4 w3-center" style="padding:0px">
+    <a href="<?php echo base_url(); ?>admin/manage_products" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='all_users'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>My Post</label></a>
   </div>
   <?php 
 }
