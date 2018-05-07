@@ -581,7 +581,7 @@ function checkEmail_exist($email_id) {
         $pass = base64_encode($password);
         if($role==1)
         {
-            $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password' AND role='$role'";
+            $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
         }
         else{
             // ------check username registration request status
