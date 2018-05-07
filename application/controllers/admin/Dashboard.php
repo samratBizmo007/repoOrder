@@ -12,7 +12,8 @@ class Dashboard extends CI_Controller {
     //start session   
     $admin_name=$this->session->userdata('admin_name');
     $admin_role=$this->session->userdata('admin_role');
-
+    $this->load->library('user_agent');
+    $this->load->library('user_agent');
     //check session variable set or not, otherwise logout
     if(($admin_name=='') || ($admin_role=='')){
      redirect('admin_login');
@@ -20,9 +21,16 @@ class Dashboard extends CI_Controller {
     $data['orderCount'] = Dashboard::getOrderCount();   
     $data['timelineData'] = Dashboard::getTimeline();   
 
+     if ($this->agent->is_mobile())
+    {
+      $this->load->view('includes/mobile/header');
+      $this->load->view('pages/admin/adminmobile_dashboard',$data);
+      $this->load->view('includes/mobile/footer');
+    }
+    else{
     $this->load->view('includes/admin_header.php');
     $this->load->view('pages/admin/dashboard', $data);
-        //$this->load->view('includes/footer.php');
+   }     //$this->load->view('includes/footer.php');
   }
 
     //----------this function to get all my orders count-----------------------------
