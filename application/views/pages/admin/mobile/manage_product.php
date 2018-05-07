@@ -46,7 +46,9 @@ error_reporting(E_ERROR | E_PARSE);
 
     <div class="w3-margin-bottom">
       <!-- Manage Profiles div -->
-      <form id="addOrder_formMobile" enctype="multipart/form-data">  
+                      
+
+      <form id="addProduct_form"   name="addProduct_form" enctype="multipart/form-data">  
         <div class="w3-col l12 w3-padding-left w3-padding-right ">
           <div class="w3-col l12 w3-small">
            
@@ -54,7 +56,7 @@ error_reporting(E_ERROR | E_PARSE);
             <div class="w3-col l12 w3-margin-bottom">
 
               <div class="w3-col l12 s12 m12">
-                <div class="w3-col l12 s12 m12 w3-margin-top">
+                <div class="w3-col l12 s12 m12 ">
                   <label class="w3-label w3-text-black">Business Type:</label>                      
                   <select  name="cat_id" id="cat_id" tabindex="2" class="form-control" required>
                     <option class="w3-light-grey" selected <?php if ($this->uri->segment(2) == '') echo 'selected'; ?> value="0">Select Business Field</option>
