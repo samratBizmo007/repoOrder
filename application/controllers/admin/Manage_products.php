@@ -12,7 +12,6 @@ class Manage_products extends CI_Controller {
         //start session   
         $admin_name = $this->session->userdata('admin_name');
         $admin_role = $this->session->userdata('admin_role');
-
         $this->load->library('user_agent');
         //check session variable set or not, otherwise logout
         if (($admin_name == '') || ($admin_role == '')) {
@@ -20,17 +19,18 @@ class Manage_products extends CI_Controller {
         }
         $data['categories'] = Manage_products::getAllCategories();
         $data['products'] = Manage_products::getPostedImagesBy_username();
-         if ($this->agent->is_mobile())
+
+        if ($this->agent->is_mobile())
         {
           $this->load->view('includes/mobile/header');
           $this->load->view('pages/admin/mobile/manage_product',$data);
           $this->load->view('includes/mobile/admin_footer');
-    }
-    else{
+      }
+      else{
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/admin/manage_product', $data);
     }
-    }
+}
 
     //------------fun for get the all categories -----------------------//
     public function getAllCategories() {
@@ -74,13 +74,13 @@ class Manage_products extends CI_Controller {
         $response = json_decode($response_json, true);
         if ($response['status'] != 200) {
             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
-    ';
+            ';
         } else {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
-                  <script>
-                  window.setTimeout(function() {
-                  }, 1000);
-                  </script>';
+            <script>
+            window.setTimeout(function() {
+            }, 1000);
+            </script>';
         }
     }
 
@@ -95,7 +95,6 @@ class Manage_products extends CI_Controller {
             die();
         }
         $data = $_POST;
-         // print_r($data);die();
 
         $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
 
@@ -163,26 +162,26 @@ class Manage_products extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-               location.reload();
-           }, 1000);
-           </script>';
-        }
-    }
+             location.reload();
+         }, 1000);
+         </script>';
+     }
+ }
 
 //------------fun for add new product to product table---------------------------//
     //-----------fun for get the product category by cat id -------------------------//
-    public function getProductCategory() {
-        extract($_POST);
-        $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getProductCategory?cat_id='.$cat_id;
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        print_r($response);
-    }
+ public function getProductCategory() {
+    extract($_POST);
+    $path = base_url();
+    $url = $path . 'api/ManageProduct_api/getProductCategory?cat_id='.$cat_id;
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_HTTPGET, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response_json = curl_exec($ch);
+    curl_close($ch);
+    $response = json_decode($response_json, true);
+    print_r($response);
+}
     //-----------fun for get the product category by cat id -------------------------//
 
 }

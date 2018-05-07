@@ -13,7 +13,6 @@ class Admin_settings extends CI_Controller {
     $admin_role=$this->session->userdata('admin_role');
 
     $this->load->library('user_agent');
-    $this->load->library('user_agent');
 
     //check session variable set or not, otherwise logout
     if(($admin_name=='') || ($admin_role=='')){
@@ -25,7 +24,7 @@ class Admin_settings extends CI_Controller {
 
      if ($this->agent->is_mobile())
     {
-      $this->load->view('includes/mobile/header');
+      $this->load->view('includes/mobile/admin_header');
       $this->load->view('pages/admin/mobile/settings',$data);
       $this->load->view('includes/mobile/admin_footer');
     }

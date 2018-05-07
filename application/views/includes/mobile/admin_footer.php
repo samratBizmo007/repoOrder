@@ -52,7 +52,7 @@ $admin_role=$this->session->userdata('admin_role');
     <a href="<?php echo base_url(); ?>admin/orders" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='orders'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>All Order</label></a>
   </div>
   <div class="w3-col s3 w3-center" style="padding:0px">
-    <a href="<?php echo base_url(); ?>admin/manage_products" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='all_users'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>My Post</label></a>
+    <a href="<?php echo base_url(); ?>admin/manage_products" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='manage_products'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>My Post</label></a>
   </div>
   <div class="w3-col s3 w3-center" style="padding:0px">
     <a href="<?php echo base_url(); ?>admin/admin_settings" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='admin_settings'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>Settings</label></a>
@@ -71,7 +71,7 @@ $admin_role=$this->session->userdata('admin_role');
     <a href="<?php echo base_url(); ?>admin/orders" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='orders'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>All Order</label></a>
   </div>
   <div class="w3-col s4 w3-center" style="padding:0px">
-    <a href="<?php echo base_url(); ?>admin/manage_products" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='all_users'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>My Post</label></a>
+    <a href="<?php echo base_url(); ?>admin/manage_products" style="width: 100%;height: 100%;padding-left:10px;background-color: <?php if($record_num=='manage_products'){ echo '#0097A7'; }else{ echo '#bcb8b8'; } ?>" class="w3-button w3-text-white"><label>My Post</label></a>
   </div>
   <?php 
 }
