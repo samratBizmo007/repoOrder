@@ -581,7 +581,7 @@ function checkEmail_exist($email_id) {
         $pass = base64_encode($password);
         if($role==1)
         {
-            $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
+            $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password' AND role='$role'";
         }
         else{
             // ------check username registration request status
@@ -590,7 +590,7 @@ function checkEmail_exist($email_id) {
                 return $stat;die();
             }
             else{
-                $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass'";
+                $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass' AND role='$role'";
             }          
 
        } //echo $query;die();

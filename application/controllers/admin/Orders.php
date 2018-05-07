@@ -12,6 +12,9 @@ class Orders extends CI_Controller {
         $admin_name=$this->session->userdata('admin_name');
         $admin_role=$this->session->userdata('admin_role');
 
+
+    $this->load->library('user_agent');
+    $this->load->library('user_agent');
     //check session variable set or not, otherwise logout
         if(($admin_name=='') || ($admin_role=='')){
            redirect('admin_login');
@@ -72,11 +75,18 @@ class Orders extends CI_Controller {
         curl_close($ch);
         $data['orders'] = json_decode($response_json, true);
         //print_r($response_json);
-
+         if ($this->agent->is_mobile())
+    {
+      $this->load->view('includes/mobile/header');
+      $this->load->view('pages/admin/allorder_mobile',$data);
+      $this->load->view('includes/mobile/footer');
+    }
+    else{
        // print_r($data);
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/admin/all_orders', $data);
         //$this->load->view('includes/footer.php');
+        }
     }
 
     // ---------------function to get all orders------------------------//
