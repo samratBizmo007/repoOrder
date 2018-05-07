@@ -95,7 +95,7 @@ class Manage_products extends CI_Controller {
             die();
         }
         $data = $_POST;
-         print_r($data);die();
+         // print_r($data);die();
 
         $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
 
