@@ -70,9 +70,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <label class="w3-label w3-small">Bio: </label>
                                 </div>
                                 <div class="w3-col l10">
-                                    <textarea class="w3-input w3-small w3-margin-bottom" name="bio" id="bio" rows="5" cols="50" style="resize: none;" required>
-                                        <?php echo $userDetails['status_message'][0]['bio']; ?>
-                                    </textarea>
+                                    <textarea class="w3-input w3-small w3-margin-bottom" name="bio" id="bio" rows="5" cols="50" style="resize: none;" required><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
@@ -88,9 +86,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <label class="w3-label w3-small">Address: </label>
                                 </div>
                                 <div class="w3-col l10">
-                                    <textarea class="w3-input w3-small w3-margin-bottom" name="address" id="address" rows="5" cols="50" style="resize: none; text-align: left;" required>
-                                        <?php echo $userDetails['status_message'][0]['address']; ?>
-                                    </textarea>
+                                    <textarea class="w3-input w3-small w3-margin-bottom" name="address" id="address" rows="5" cols="50" style="resize: none; text-align: left;" required><?php echo $userDetails['status_message'][0]['address']; ?></textarea>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-center w3-padding-small w3-margin-top">

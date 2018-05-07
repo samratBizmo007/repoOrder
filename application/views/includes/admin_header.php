@@ -44,7 +44,15 @@ $admin_role=$this->session->userdata('admin_role');
       <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Dashboard<br><br></div>      
       <div class="clear"></div>
     </a>
-
+    <?php 
+    if($admin_role==2 || $admin_role == 3){
+      ?>
+      <a href="<?php echo base_url(); ?>admin/user_profile" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
+        <div class="w3-col l12"><i class="w3-xlarge fa fa-user-circle"></i></div>
+        <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Profile<br><br></div>      
+        <div class="clear"></div>
+      </a>
+      <?php } ?>
     <a href="<?php echo base_url(); ?>admin/orders" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
       <div class="w3-col l12"><i class="w3-xlarge fa fa-cubes fa-fw"></i></div>
       <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">All Orders<br><br></div>      

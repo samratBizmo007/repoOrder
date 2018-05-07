@@ -110,7 +110,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <!-- Bottom section div starts -->
                 <div class="w3-col l12">
                   <div class="w3-col l12 w3-padding-small w3-right">
-                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:965-6589745" title="<?php echo $key['phone']; ?>" style="padding-right: 0px;padding-left: 5px">
+                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="padding-right: 0px;padding-left: 5px">
                       <span class="fa fa-phone w3-xlarge"></span>
                     </a>
 
