@@ -85,4 +85,21 @@ class Product_model extends CI_Model {
     }
 
     //-------fun for remove product from product table--------------//
+    //------------fun for get the category name from category id-----------------//
+    public function getProductCategory($cat_id) {
+        $sql = "SELECT * FROM category_tab WHERE cat_id = '$cat_id'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() <= 0) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'No records found.');
+        } else {
+            foreach ($result->result_array() as $row) {
+                $response = $row['category_name']; //----getting the frrelance ids
+            }
+        }
+        return $response;
+    }
+
+    //------------fun for get the category name from category id-----------------//
 }

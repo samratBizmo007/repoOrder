@@ -96,7 +96,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     foreach ($categories['status_message'] as $result) {
                                         ?>
                                         <option value="<?php echo $result['cat_id']; ?>"><?php echo $result['category_name']; ?></option>
-<?php } ?>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -152,11 +152,11 @@ error_reporting(E_ERROR | E_PARSE);
                                         <!-- overlay for action div -->
                                         <div class="w3-col l12 saved-image">
                                             <div class="w3-col l12 w3-center" style="margin-top: 30px">
-                                                <a href="#" title="View Product" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-search-plus" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> "></span></a>									
+                                                <a href="#" title="View Product" class="btn w3-xlarge w3-text-orange allImage-btn" onclick="getProductCategory(<?php echo $key['cat_id']; ?>,<?php echo $key['prod_id']; ?>)"><span class="fa fa-search-plus" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> "></span></a>									
                                                 <a id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" title="Remove product" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-minus-circle"></span></a>
                                             </div>
                                             <div class="w3-text-white" style="padding: 0 4px 0 4px">
-                                                <label class="w3-tiny"><?php //echo $key['cat_name'];    ?></label>
+                                                <label class="w3-tiny"><?php //echo $key['cat_name'];        ?></label>
                                             </div>
                                         </div>
                                         <!-- overlay for action div ends -->
@@ -172,8 +172,9 @@ error_reporting(E_ERROR | E_PARSE);
                                     <div class="modal-content">
                                         <div class="modal-body ">
                                             <img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">
-                                            <label class="w3-margin-top w3-label">Product Name: </label><b> <?php echo $key['product_name']; ?></b><br>                                   
-                                            <label class="w3-margin-top w3-label">Product Description: </label><b class="w3-small"> <?php echo $key['prod_description']; ?></b>
+                                            <label class="w3-margin-top w3-label">Product Category: </label><span id="prod_category_<?php echo $key['prod_id']; ?>"><b></b></span><br>                                   
+                                            <label class="w3-margin-top w3-label">Product Name: </label><span><b> <?php echo $key['product_name']; ?></b></span><br>                                   
+                                            <label class="w3-margin-top w3-label">Product Description: </label><span><b class="w3-small"> <?php echo $key['prod_description']; ?></b></span>
                                         </div>							
                                     </div>
                                 </div>
@@ -228,6 +229,7 @@ error_reporting(E_ERROR | E_PARSE);
     </script>
     <!-- script ends here -->
     <script>
+        //--------------fun for remove product from product table-------------------------------//
         function RemoveProduct(prod_id) {
             $.confirm({
                 title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are you sure you want to delete this product.!</h4>',
@@ -253,5 +255,23 @@ error_reporting(E_ERROR | E_PARSE);
                 }
             });
         }
+        //------------fun ends here------------------------------------------------------//
+        //-----------fun for get the category name using category id----------------//
+        function getProductCategory(cat_id, prod_id) {
+        //alert(cat_id);
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>admin/manage_products/getProductCategory",
+                data: {
+                    cat_id: cat_id
+                },
+                cache: false,
+                success: function (data) {
+                    //alert(data);
+                    $('#prod_category_' + prod_id).html('&nbsp;<b>'+data+'</b>');
+                }
+            });
+        }
+        //-----------fun for get the category name using category id----------------//
     </script>
 </html>
