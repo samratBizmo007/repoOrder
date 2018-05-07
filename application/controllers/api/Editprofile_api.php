@@ -21,4 +21,12 @@ class Editprofile_api extends REST_Controller {
     }
 
 //--------fun for update profile ends here-----------------------//
+    //----------fun for change password------------------------//
+    public function changePassword_post() {
+        $data = ($_POST);
+        $result = $this->Editprofile_model->changePassword($data);
+        return $this->response($result);
+    }
+
+    //--------------fun ends here-----------------------------//
 }

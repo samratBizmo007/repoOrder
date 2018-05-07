@@ -22,10 +22,10 @@ error_reporting(E_ERROR | E_PARSE);
         <div class="w3-main w3-padding-small" style="margin-left:120px;">
             <!-- Header -->
             <header class="w3-container" >
-                <h5><b><i class="fa fa-cog"></i> Edit Profile</b><a class="w3-button w3-right" href="<?php echo base_url(); ?>admin/user_profile"><span class="w3-text-blue"><b>Back To Profile </b></span></a></h5>
+                <h5><b><i class="fa fa-cog"></i> Edit Profile</b><a class="w3-button w3-right" href="<?php echo base_url(); ?>admin/user_profile"><span class="w3-text-orange"><b>Back To Profile </b></span></a></h5>
 
             </header>
-            <?php // print_r($userDetails);?>
+
 
             <div class="col-lg-2"></div>
             <div class="w3-col l8 w3-margin-top w3-margin-bottom">
@@ -97,41 +97,43 @@ error_reporting(E_ERROR | E_PARSE);
                     <!-- DIV FOR edit profile PASSWORD-->
                     <!-- DIV FOR CHNGE PASSWORD-->
                     <div class="w3-col l9 w3-border-left" id="changepassword" style="display: none;">
-                        <div class="w3-col l12 w3-padding-small w3-margin-top">
-                            <div class="w3-col l2">
-                                <label class="w3-label w3-small">Current password: </label>
+                        <form id="changepass_Form" name="changepass_Form">
+                            <div class="w3-col l12 w3-padding-small w3-margin-top">
+                                <div class="w3-col l2">
+                                    <label class="w3-label w3-small">Current password: </label>
+                                </div>
+                                <div class="w3-col l10">
+                                    <input type="text" class="w3-input w3-border w3-small" value="" name="curr_password" id="curr_password" required>
+                                </div>
                             </div>
-                            <div class="w3-col l10">
-                                <input type="text" class="w3-input w3-border w3-small" value="" name="curr_password" id="curr_password" required>
+                            <div class="w3-col l12 w3-padding-small w3-margin-top">
+                                <div class="w3-col l2">
+                                    <label class="w3-label w3-small">New Password: </label>
+                                </div>
+                                <div class="w3-col l10">
+                                    <input type="password" onkeyup="checkPassword();" class="w3-input w3-border w3-small" value="" name="new_password" id="new_password" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="w3-col l12 w3-padding-small w3-margin-top">
-                            <div class="w3-col l2">
-                                <label class="w3-label w3-small">New Password: </label>
+                            <div class="w3-col l12 w3-padding-small w3-margin-top">
+                                <div class="w3-col l2">
+                                    <label class="w3-label w3-small">Confirm Password: </label>
+                                </div>
+                                <div class="w3-col l10">
+                                    <input type="password" onkeyup="checkPassword();" class="w3-input w3-border w3-small" value="" name="conf_password" id="conf_password" required>
+                                </div>
                             </div>
-                            <div class="w3-col l10">
-                                <input type="password" onkeyup="checkPassword();" class="w3-input w3-border w3-small" value="" name="new_password" id="new_password" required>
+                            <div class="w3-col l12 w3-margin-left w3-padding-small" id="message"></div>
+                            <div class="w3-col l12 w3-center w3-padding-small w3-margin-top">
+                                <button  type="submit" id="changepass_submit" title="Change Password" class="w3-margin w3-center w3-button w3-blue" disabled>Submit</button>                            
                             </div>
-                        </div>
-                        <div class="w3-col l12 w3-padding-small w3-margin-top">
-                            <div class="w3-col l2">
-                                <label class="w3-label w3-small">Confirm Password: </label>
-                            </div>
-                            <div class="w3-col l10">
-                                <input type="password" onkeyup="checkPassword();" class="w3-input w3-border w3-small" value="" name="conf_password" id="conf_password" required>
-                            </div>
-                        </div>
-                        <div class="w3-col l12 w3-margin-left w3-padding-small" id="message"></div>
-                        <div class="w3-col l12 w3-center w3-padding-small w3-margin-top">
-                            <button  type="submit" id="changepass_submit" title="Change Password" class="w3-margin w3-center w3-button w3-blue" disabled>Submit</button>                            
-                        </div>
+                        </form>
                     </div>
                     <!-- DIV FOR CHNGE PASSWORD-->
                 </div>
 
             </div>
             <div class="col-lg-2"></div>
-        </div>
+        </div>       
     </body>
 </html>
 <!--  script to update user dashboard image   -->
@@ -185,5 +187,26 @@ error_reporting(E_ERROR | E_PARSE);
         }
     }
 //-----------function ends------------------------
+
+//  ------------------------Change Password -------------------------//
+    $(function () {
+        $("#changepass_Form").submit(function () {
+            dataString = $("#changepass_Form").serialize();
+
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url(); ?>admin/edit_profile/changePassword",
+                data: dataString,
+                return: false, //stop the actual form post !important!
+                success: function (data)
+                {
+                    $.alert(data);
+                }
+            });
+            return false;  //stop the actual form post !important!
+        });
+    });
+//  -------------------------END -------------------------------//
+
 </script>
 <!-- script ends here -->

@@ -10,8 +10,8 @@ class Editprofile_model extends CI_Model {
         date_default_timezone_set('Asia/Kuwait');   //set Kuwait's timezone
         //$this->load->model('search_model');
     }
-    
-     //-------UPDATE PROFILE FUNCTION--------------//
+
+    //-------UPDATE PROFILE FUNCTION--------------//
     public function updateProfile($data) {
         extract($data);
         //print_r($data);die();
@@ -33,4 +33,43 @@ class Editprofile_model extends CI_Model {
     }
 
     //-------UPDATE PROFILE FUNCTION ends--------------//
+    //--------------fun for change password------------------------//
+    public function changePassword($data) {
+        extract($data);
+        $checkCurrPassword = Editprofile_model::checkCurrPassword_exist($curr_password, $username);
+        if ($checkCurrPassword == 1) {
+            $new_pass = base64_encode($new_password);
+            $sql = "UPDATE user_tab SET password='$new_pass' WHERE username = '$username'";
+            $result = $this->db->query($sql);
+            if ($result) {
+                $response = array(
+                    'status' => 200,
+                    'status_message' => 'Password Updated Successfully..!');
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'Password Not Updated Successfully...!');
+            }
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Current password Not Correct...!');
+        }
+        return $response;
+    }
+
+    //--------------fun for change password ends here------------------------//
+    //----------fun for check current password exist -------------------------------//
+    public function checkCurrPassword_exist($curr_password, $username) {
+        $curr_pass = base64_encode($curr_password);
+        $sql = "SELECT * FROM user_tab WHERE username = '$username' AND password = '$curr_pass'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows() <= 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //-----------------fun ends -----------------------------------------------------//
 }

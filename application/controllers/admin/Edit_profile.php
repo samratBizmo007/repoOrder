@@ -93,7 +93,7 @@ class Edit_profile extends CI_Controller {
         //echo $imagePath;die();
         //validating image ends---------------------------//
         //print_r($data);die();
-        $data['imagePath'] = $uploadPath.$imagePath;
+        $data['imagePath'] = $uploadPath . $imagePath;
         $data['username'] = $admin_name;
         $path = base_url();
         $url = $path . 'api/Editprofile_api/updateProfile';
@@ -121,4 +121,33 @@ class Edit_profile extends CI_Controller {
     }
 
     //------------function ends------------------------------------------//
+
+    public function changePassword() {
+        extract($_POST);
+        $data = $_POST;
+        $admin_name = $this->session->userdata('admin_name');
+        $data['username'] = $admin_name;
+        $path = base_url();
+        $url = $path . 'api/Editprofile_api/changePassword';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        //print_r($response_json);die();
+        if ($response['status'] != 200) {
+            echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
+            ';
+        } else {
+            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
+            <script>
+            window.setTimeout(function() {
+               location.reload();
+           }, 1000);
+           </script>';
+        }
+    }
+
 }
