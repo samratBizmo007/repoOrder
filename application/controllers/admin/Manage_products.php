@@ -12,7 +12,7 @@ class Manage_products extends CI_Controller {
         //start session   
         $admin_name = $this->session->userdata('admin_name');
         $admin_role = $this->session->userdata('admin_role');
-
+        $this->load->library('user_agent');
         //check session variable set or not, otherwise logout
         if (($admin_name == '') || ($admin_role == '')) {
             redirect('admin_login');
@@ -30,6 +30,7 @@ class Manage_products extends CI_Controller {
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/admin/manage_product', $data);
     }
+}
 
     //------------fun for get the all categories -----------------------//
     public function getAllCategories() {
@@ -94,7 +95,7 @@ class Manage_products extends CI_Controller {
             die();
         }
         $data = $_POST;
-        print_r($data);die();
+        //  print_r($data);die();
 
         $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
 
