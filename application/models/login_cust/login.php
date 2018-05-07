@@ -590,7 +590,7 @@ function checkEmail_exist($email_id) {
                 return $stat;die();
             }
             else{
-                $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass'";
+                $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass' AND role='$role'";
             }          
 
        } //echo $query;die();
