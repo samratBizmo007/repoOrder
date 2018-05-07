@@ -234,7 +234,7 @@ public function regretProduct($prod_no, $order_id) {
     // -----------------fucntion to get all timeline data- ---------------------//
     public function getTimeline() {
 
-    $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id)";
+    $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC";
 
     $result = $this->db->query($query);
 

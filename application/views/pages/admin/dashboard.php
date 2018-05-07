@@ -112,19 +112,19 @@ error_reporting(E_ERROR | E_PARSE);
                 <!-- Bottom section div starts -->
                 <div class="w3-col l12">
                   <div class="w3-col l12 w3-padding-small w3-right">
-                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="padding-right: 0px;padding-left: 5px">
+                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="padding-right: 0px;padding-left: 8px">
                       <span class="fa fa-phone w3-xlarge"></span>
                     </a>
 
-                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>" style="padding-right: 0px;padding-left: 5px">
+                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>" style="padding-right: 0px;padding-left: 15px">
                       <span class="fa fa-envelope-o w3-xlarge"></span>
                     </a> 
-                      <label class="w3-margin-top w3-right w3-small"><i><?php echo $key['category_name']; ?></i></label>
+                      <span class="w3-margin-top w3-right w3-small"><i><?php echo $key['category_name']; ?></i></span>
                   </div>
 
                   <div class="w3-col l12 w3-padding ">
-                    <label><?php echo $key['product_name']; ?></label><br>
-                    <span class="w3-small"><?php echo $key['prod_description']; ?></span>
+                    <label><?php echo $key['product_name']; ?></label>
+                    <span class="w3-small w3-margin-left"><?php echo $key['prod_description']; ?></span>
                     <hr>
                   </div>
 
