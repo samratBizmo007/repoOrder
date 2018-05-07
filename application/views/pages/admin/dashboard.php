@@ -98,6 +98,8 @@ error_reporting(E_ERROR | E_PARSE);
                   <div class="w3-col l11 w3-padding-left w3-padding-top">
                     <label class="w3-margin-top w3-small"><?php echo $key['username']; ?></label>
                   </div>
+<!--                    <div class="w3-col l7 w3-left w3-padding-top">
+                    </div>-->
                 </div>
                 <!-- Top section div ends -->
 
@@ -114,9 +116,10 @@ error_reporting(E_ERROR | E_PARSE);
                       <span class="fa fa-phone w3-xlarge"></span>
                     </a>
 
-                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:example@gm.com" title="<?php echo $key['email']; ?>" style="padding-right: 0px;padding-left: 5px">
+                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>" style="padding-right: 0px;padding-left: 5px">
                       <span class="fa fa-envelope-o w3-xlarge"></span>
-                    </a>                  
+                    </a> 
+                      <label class="w3-margin-top w3-right w3-small"><i><?php echo $key['category_name']; ?></i></label>
                   </div>
 
                   <div class="w3-col l12 w3-padding ">

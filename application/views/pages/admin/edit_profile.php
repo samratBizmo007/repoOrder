@@ -32,11 +32,11 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="w3-col l12 w3-border">
                     <div class="w3-col l3">
                         <ul class="nav nav-pills nav-stacked">
-                            <li class="edit"><a>Edit profile</a></li>
-                            <li class="change"><a href="#">Change Password</a></li>                            
+                            <li class="active" id="edit"><a href="#">Edit profile</a></li>
+                            <li class="" id="change"><a href="#">Change Password</a></li>                            
                         </ul> 
                     </div>
-                    <div class="w3-col l9 w3-card" id="editprofile">
+                    <div class="w3-col l9 w3-border-left" id="editprofile">
                         <form id="editProfileForm" name="editProfileForm">
                             <div class="w3-col l12 w3-right">
                                 <div class="w3-col l4 w3-right w3-padding">
@@ -54,7 +54,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <label class="w3-label w3-small">Full Name: </label>
                                 </div>
                                 <div class="w3-col l10">
-                                    <input type="text" class="w3-input w3-small" value="<?php echo $userDetails['status_message'][0]['full_name']; ?>" name="fullname" id="fullname" required>
+                                    <input type="text" class="w3-input w3-border w3-small" value="<?php echo $userDetails['status_message'][0]['full_name']; ?>" name="fullname" id="fullname" required>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
@@ -62,7 +62,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <label class="w3-label w3-small">Website: </label>
                                 </div>
                                 <div class="w3-col l10">
-                                    <input type="text" class="w3-input w3-small" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website" required>
+                                    <input type="text" class="w3-input w3-border w3-small" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website" required>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
@@ -70,7 +70,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <label class="w3-label w3-small">Bio: </label>
                                 </div>
                                 <div class="w3-col l10">
-                                    <textarea class="w3-input w3-small w3-margin-bottom" name="bio" id="bio" rows="5" cols="50" style="resize: none;" required><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
+                                    <textarea class="w3-input w3-border w3-small w3-margin-bottom" name="bio" id="bio" rows="5" cols="50" style="resize: none;" required><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
@@ -78,7 +78,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <label class="w3-label w3-small">phone no: </label>
                                 </div>
                                 <div class="w3-col l10">
-                                    <input type="number" class="w3-input w3-small" value="<?php echo $userDetails['status_message'][0]['phone']; ?>" name="phone" id="phone" required>
+                                    <input type="number" class="w3-input w3-border w3-small" value="<?php echo $userDetails['status_message'][0]['phone']; ?>" name="phone" id="phone" required>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
@@ -86,7 +86,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <label class="w3-label w3-small">Address: </label>
                                 </div>
                                 <div class="w3-col l10">
-                                    <textarea class="w3-input w3-small w3-margin-bottom" name="address" id="address" rows="5" cols="50" style="resize: none; text-align: left;" required><?php echo $userDetails['status_message'][0]['address']; ?></textarea>
+                                    <textarea class="w3-input w3-border w3-small" name="address" id="address" rows="5" cols="50" style="resize: none; text-align: left;" required><?php echo $userDetails['status_message'][0]['address']; ?></textarea>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-center w3-padding-small w3-margin-top">
@@ -96,13 +96,13 @@ error_reporting(E_ERROR | E_PARSE);
                     </div>
                     <!-- DIV FOR edit profile PASSWORD-->
                     <!-- DIV FOR CHNGE PASSWORD-->
-                    <div class="w3-col l9 w3-card" id="changepassword" style="display: none;">
+                    <div class="w3-col l9 w3-border-left" id="changepassword" style="display: none;">
                         <div class="w3-col l12 w3-padding-small w3-margin-top">
                             <div class="w3-col l2">
                                 <label class="w3-label w3-small">Current password: </label>
                             </div>
                             <div class="w3-col l10">
-                                <input type="text" class="w3-input w3-small" value="" name="curr_password" id="curr_password" required>
+                                <input type="text" class="w3-input w3-border w3-small" value="" name="curr_password" id="curr_password" required>
                             </div>
                         </div>
                         <div class="w3-col l12 w3-padding-small w3-margin-top">
@@ -110,7 +110,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 <label class="w3-label w3-small">New Password: </label>
                             </div>
                             <div class="w3-col l10">
-                                <input type="text" class="w3-input w3-small" value="" name="new_password" id="new_password" required>
+                                <input type="password" onkeyup="checkPassword();" class="w3-input w3-border w3-small" value="" name="new_password" id="new_password" required>
                             </div>
                         </div>
                         <div class="w3-col l12 w3-padding-small w3-margin-top">
@@ -118,11 +118,12 @@ error_reporting(E_ERROR | E_PARSE);
                                 <label class="w3-label w3-small">Confirm Password: </label>
                             </div>
                             <div class="w3-col l10">
-                                <input type="text" class="w3-input w3-small" value="" name="conf_password" id="conf_password" required>
+                                <input type="password" onkeyup="checkPassword();" class="w3-input w3-border w3-small" value="" name="conf_password" id="conf_password" required>
                             </div>
                         </div>
+                        <div class="w3-col l12 w3-margin-left w3-padding-small" id="message"></div>
                         <div class="w3-col l12 w3-center w3-padding-small w3-margin-top">
-                            <button  type="submit" title="Change Password" class="w3-margin w3-center w3-button w3-blue">Submit</button>                            
+                            <button  type="submit" id="changepass_submit" title="Change Password" class="w3-margin w3-center w3-button w3-blue" disabled>Submit</button>                            
                         </div>
                     </div>
                     <!-- DIV FOR CHNGE PASSWORD-->
@@ -155,14 +156,34 @@ error_reporting(E_ERROR | E_PARSE);
 
         });
     });
-
-    $(".edit").click(function () {
+//----------------change pills on click to edit profile------------------//
+    $("#edit").click(function () {
+        $("#edit").addClass("active");
+        $("#change").removeClass("active");
         $("#editprofile").show();
         $("#changepassword").hide();
     });
-    $(".change").click(function () {
+    //---------------------fun ends here--------------------------------------//
+    //----------------change pills on click to change password------------------//
+
+    $("#change").click(function () {
+        $("#change").addClass("active");
+        $("#edit").removeClass("active");
         $("#editprofile").hide();
         $("#changepassword").show();
     });
+    //----------------change pills on click to change password------------------//    
+    //-------------------fucntion to check confirm password---------------
+    function checkPassword() {
+        if ($('#new_password').val() == $('#conf_password').val()) {
+            $('#changepass_submit').prop("disabled", false);
+            $('#message').html('');
+
+        } else {
+            $('#message').html('<label>Password Not Matching</label>').css('color', 'red');
+            $('#changepass_submit').prop("disabled", true);
+        }
+    }
+//-----------function ends------------------------
 </script>
 <!-- script ends here -->
