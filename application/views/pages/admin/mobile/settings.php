@@ -121,9 +121,9 @@ $admin_role=$this->session->userdata('admin_role');
  <?php 
               if($admin_role==1 || $admin_role==2){
                ?>
-    <div class="col-lg-6 w3-padding-small ">
+    <div class="col-lg-6 w3-padding-small">
       <div class="w3-col l12 w3-small w3-margin-bottom">
-        <hr class="w3-hide-large">
+       
         <label><i class="fa fa-image"></i> SetUp Dashboard Image</label><br>
 
         <form id="updateDashboardImage">
@@ -144,7 +144,7 @@ $admin_role=$this->session->userdata('admin_role');
     <?php } ?>
   </div>
   <!-- End page content -->
-  <center><a href="<?php echo base_url(); ?>login/logout" style="background-color: #00B8D4" class="btn w3-margin w3-center btn-sm w3-text-white"><label>Sign Out</label></a></center>
+ 
 </div>
 
 <!--  script to update email id   -->
