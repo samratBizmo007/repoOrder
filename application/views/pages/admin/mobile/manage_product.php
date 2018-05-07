@@ -94,17 +94,6 @@ error_reporting(E_ERROR | E_PARSE);
           </div>
         </div>
         
-        
-       <!--  <div class="w3-col l12 w3-padding" >
-          <div class="w3-light-grey" style=" height: 180px;overflow-y: scroll">
-            <div id="added_newProduct" class="w3-col l12"></div>            
-          </div>
-        </div> -->
-
-
-       <!--  <div class="w3-col l12 w3-center" id="btnsubmit">
-          <button  type="submit" title="Place Order" class="w3-margin-bottom w3-round w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Add Product</button>
-        </div> -->
       </form>
     </div>
   </div>
