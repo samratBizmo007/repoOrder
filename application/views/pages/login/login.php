@@ -67,15 +67,11 @@ error_reporting(E_ERROR | E_PARSE);
             <div class="w3-container " style="padding:0 36px 12px 36px">
                <div id="Login_RegisterDiv">
 
-                <form id="register_form" role="form" method='post' enctype='multipart/form-data' style="">
+                <form id="login_form" role="form" method='post' enctype='multipart/form-data' style="">
                     <div class="w3-col l12 " id="registration_err"></div>
                     <div id = "registerDiv">
                         <div class="w3-margin-bottom w3-col l12 s12"> 
-                            <select name="user_role" id="user_role" class="w3-input w3-border w3-light-grey" required>
-                                <option class="w3-red" selected>Select your role</option>
-                                <option value="1">Consumer</option>
-                                <option value="2">WholeSeller</option>
-                            </select>
+                            
                         </div>
                         <div id="2" class="jumla_role  w3-col l12 s12">
                             <div class="w3-margin-bottom">
