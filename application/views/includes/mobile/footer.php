@@ -20,11 +20,11 @@
       </a>
     </div>
     <div class="w3-col s4 w3-center" style="padding:0 ">
-      <a href="<?php echo base_url(); ?>user/dashboard" class="btn icon"><label><i class="fa fa-plus-square w3-text-lightgrey w3-xlarge"></i></label>
+      <a href="<?php echo base_url(); ?>user/manage_products" class="btn icon"><label><i class="fa fa-plus-square w3-text-lightgrey w3-xlarge"></i></label>
       </a>
     </div>
     <div class="w3-col s2 w3-center">
-      <a href="<?php echo base_url(); ?>user/dashboard" class="btn icon"><label><i class="fa fa-cubes w3-text-lightgrey w3-xlarge"></i></label>
+      <a href="<?php echo base_url(); ?>orders/manage_orders" class="btn icon"><label><i class="fa fa-cubes w3-text-lightgrey w3-xlarge"></i></label>
       </a>
     </div>
     <div class="w3-col s2 w3-center" style="padding:0 ">

@@ -86,7 +86,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <img src="" width="auto" id="adminImagePreview" height="180px" alt="Product Image will be displayed here once chosen." class=" w3-centerimg img-thumbnail">
                                 </div>
                             
-                        <div class="w3-col l12 w3-margin-top w3-margin-bottom w3-center" id="btnsubmit">
+                        <div class="w3-col l12 w3-margin-top w3-margin-bottom w3-center w3-padding-bottom" id="btnsubmit">
                         <button  type="submit" title="add Product" class="w3-margin-bottom w3-round w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Add Product</button>
                     </div>
               
@@ -123,7 +123,7 @@ error_reporting(E_ERROR | E_PARSE);
                 dataString = $("#addProduct_form").serialize();
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url(); ?>admin/manage_products/addProduct",
+                    url: "<?php echo base_url(); ?>user/manage_products/addProduct",
                     data: new FormData(this),
                     contentType: false,
                     cache: false,

@@ -76,6 +76,7 @@ error_reporting(E_ERROR | E_PARSE);
         }
     </style>
     <body class="w3-light-grey">
+    
         <!-- !PAGE CONTENT! -->
         <div class="w3-main w3-padding-small" style="margin-left:120px;">
             <!-- Header -->
@@ -211,7 +212,7 @@ error_reporting(E_ERROR | E_PARSE);
                 dataString = $("#addProduct_form").serialize();
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo base_url(); ?>admin/manage_products/addProduct",
+                    url: "<?php echo base_url(); ?>user/manage_products/addProduct",
                     data: new FormData(this),
                     contentType: false,
                     cache: false,
@@ -239,7 +240,7 @@ error_reporting(E_ERROR | E_PARSE);
                     confirm: function () {
                         var dataS = 'prod_id=' + prod_id;
                         $.ajax({
-                            url: "<?php echo base_url(); ?>admin/manage_products/removeProduct",
+                            url: "<?php echo base_url(); ?>user/manage_products/removeProduct",
                             type: "POST",
                             data: dataS,
                             cache: false,
@@ -261,7 +262,7 @@ error_reporting(E_ERROR | E_PARSE);
         //alert(cat_id);
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url(); ?>admin/manage_products/getProductCategory",
+                url: "<?php echo base_url(); ?>user/manage_products/getProductCategory",
                 data: {
                     cat_id: cat_id
                 },
