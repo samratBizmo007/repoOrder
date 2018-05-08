@@ -27,7 +27,8 @@ error_reporting(E_ERROR | E_PARSE);
 <!--                                <img class="img img-circle w3-center" alt="Profile Image not found" style="height: 50%; width: 50%; object-fit:contain; "  src="<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>" id="profile_imagePreview" onerror="this.src='<?php echo base_url() ?>css/logos/default_noimage.jpg'">-->
                                 <div class="w3-col l12 ">
                                     <h6 class="w3-small" style="color: #00B8D4;">Change photo</h6>
-                                    <input type="file" class="w3-input " name="profile_image" id="profile_image" required>
+                                    <input type="file" class="w3-input " name="profile_image" id="profile_image" >
+                                    <input type="hidden" class="w3-input" name="profile_image_edit" id="profile_image_edit">
                                 </div>
                             </div>
                         </div>
@@ -46,7 +47,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small">Website: </label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-border w3-small" placeholder="website" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website" required>
+                            <input type="text" class="w3-input w3-border w3-small" placeholder="website" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website">
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding w3-margin-top">
@@ -54,7 +55,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small">Bio: </label>
                         </div>
                         <div class="w3-col l10">
-                            <textarea class="w3-input w3-border w3-small w3-margin-bottom" placeholder="bio" name="bio" id="bio" rows="5" cols="50" style="resize: none;" required><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
+                            <textarea class="w3-input w3-border w3-small w3-margin-bottom" placeholder="bio" name="bio" id="bio" rows="5" cols="50" style="resize: none;"><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding w3-margin-top">
@@ -70,7 +71,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small">Company Name: </label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-border w3-small" placeholder="company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name" required>
+                            <input type="text" class="w3-input w3-border w3-small" placeholder="company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name">
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding w3-margin-top w3-margin-bottom">

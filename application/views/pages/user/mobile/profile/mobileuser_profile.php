@@ -113,7 +113,7 @@ error_reporting(E_ERROR | E_PARSE);
                             if ($userDetails['status_message'][0]['full_name'] != '') {
                                 echo $userDetails['status_message'][0]['full_name'];
                             } else {
-                                echo 'Enter Full Name.  <a href="' . base_url() . 'admin/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                echo 'Enter Full Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
                             ?>
                         </b>
@@ -126,7 +126,7 @@ error_reporting(E_ERROR | E_PARSE);
                             if ($userDetails['status_message'][0]['bio'] != '') {
                                 echo $userDetails['status_message'][0]['bio'];
                             } else {
-                                echo 'Enter Your Bio.  <a href="' . base_url() . 'admin/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                echo 'Enter Your Bio.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
                             ?></span>
                     </div>
@@ -135,7 +135,7 @@ error_reporting(E_ERROR | E_PARSE);
                             if ($userDetails['status_message'][0]['website'] != '') {
                                 echo $userDetails['status_message'][0]['website'];
                             } else {
-                                echo 'Enter Website.  <a href="' . base_url() . 'admin/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                echo 'Enter Website.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
                             ?></span>
                     </div>
@@ -144,7 +144,7 @@ error_reporting(E_ERROR | E_PARSE);
                             if ($userDetails['status_message'][0]['company_name'] != '') {
                                 echo $userDetails['status_message'][0]['company_name'];
                             } else {
-                                echo 'Enter Company Name.  <a href="' . base_url() . 'admin/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                echo 'Enter Company Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
                             ?></span>
                     </div>
