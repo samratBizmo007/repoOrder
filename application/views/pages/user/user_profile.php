@@ -6,6 +6,7 @@ error_reporting(E_ERROR | E_PARSE);
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>View Profile</title>
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
@@ -137,6 +138,16 @@ error_reporting(E_ERROR | E_PARSE);
                                     }
                                     ?></div>
                             </div>
+                            <div class="w3-col l12">
+                                <div class="w3-col l8">
+                                    <?php
+                                    if ($userDetails['status_message'][0]['company_name'] != '') {
+                                        echo $userDetails['status_message'][0]['company_name'];
+                                    } else {
+                                        echo 'Enter Comapany Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                    }
+                                    ?></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,7 +159,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="col-lg-2"></div>
                 <div class="w3-col l8">
                     <div class="w3-col l12 w3-center w3-margin-bottom">
-                        <span class="w3-center">Posts</span>
+                        <span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span>
                     </div>
                     <!-- MAIN CONTENT STARTS -->
                     <div class="w3-col l12" style="" id="myProductDiv" >
@@ -180,6 +191,7 @@ error_reporting(E_ERROR | E_PARSE);
                                             <center><a data-dismiss="modal" title="Close Image" class="btn fa fa-close w3-xlarge w3-padding-small w3-text-white"></a></center>
                                             <div class="modal-content">
                                                 <div class="modal-body ">
+                                                    <div class="w3-right w3-padding-bottom"><a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-blue w3-button"><span>Delete</span></a></div>
                                                     <img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">
                                                     <label class="w3-margin-top w3-label">Product Name: </label><b> <?php echo $key['product_name']; ?></b><br>                                   
                                                     <label class="w3-margin-top w3-label">Product Description: </label><b class="w3-small"> <?php echo $key['prod_description']; ?></b>
@@ -203,4 +215,34 @@ error_reporting(E_ERROR | E_PARSE);
         </div>
         <!-- div with small buttons row -->
     </body>
+    <script>
+        //--------------fun for remove product from product table-------------------------------//
+        function RemoveProduct(prod_id) {
+            $.confirm({
+                title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are you sure you want to delete this product.!</h4>',
+                content: '',
+                type: 'red',
+                buttons: {
+                    confirm: function () {
+                        var dataS = 'prod_id=' + prod_id;
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>admin/manage_products/removeProduct",
+                            type: "POST",
+                            data: dataS,
+                            cache: false,
+                            success: function (html) {
+                                $.alert(html);
+                                $('#myProductDiv').load(location.href + " #myProductDiv>*", "");
+                                location.reload();
+                            }
+                        });
+                    },
+                    cancel: function () {
+                    }
+                }
+            });
+        }
+        //------------fun ends here------------------------------------------------------//
+
+    </script>
 </html>
