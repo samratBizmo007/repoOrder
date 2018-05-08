@@ -12,6 +12,7 @@ class Edit_profile extends CI_Controller {
         //start session   
         $admin_name = $this->session->userdata('admin_name');
         $admin_role = $this->session->userdata('admin_role');
+        $this->load->library('user_agent');
 
         //check session variable set or not, otherwise logout
         if (($admin_name == '') || ($admin_role == '')) {
@@ -19,8 +20,16 @@ class Edit_profile extends CI_Controller {
         }
         $data['userDetails'] = Edit_profile::getUserDetails();
         //$data['products'] = Edit_profile::getPostedImagesBy_username();
+        if ($this->agent->is_mobile())
+    {
+      $this->load->view('includes/mobile/header');
+      $this->load->view('pages/admin/mobile/edit_profile',$data);
+      $this->load->view('includes/mobile/admin_footer');
+    }
+    else{
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/admin/edit_profile', $data);
+    }
     }
 
     //------------fun for get user details -----------------------//
