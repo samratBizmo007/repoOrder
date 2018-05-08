@@ -28,7 +28,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 <div class="w3-col l12 ">
                                     <h6 class="w3-small" style="color: #00B8D4;">Change photo</h6>
                                     <input type="file" class="w3-input " name="profile_image" id="profile_image" >
-                                    <input type="hidden" class="w3-input" name="profile_image_edit" id="profile_image_edit">
+                                    <input type="hidden" class="w3-input" value="<?php echo $userDetails['status_message'][0]['user_image']; ?>" name="profile_image_edit" id="profile_image_edit">
                                 </div>
                             </div>
                         </div>

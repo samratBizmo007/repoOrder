@@ -56,6 +56,7 @@ class Edit_profile extends CI_Controller {
         //print_r($_FILES);
         //die();
         $imagePath = '';
+        $imagepath = '';
 //        if ($profile_image_edit == '') {
 //            $image_path = '';
 //        } else {
@@ -78,6 +79,11 @@ class Edit_profile extends CI_Controller {
             }
         }
         $image_name = $_FILES['profile_image']['name'];
+        if ($profile_image_edit == '') {
+            $imagepath = '';
+        } else {
+            $imagepath = $profile_image_edit;
+        }
         if (!empty(($_FILES['profile_image']['name']))) {
             $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
 
@@ -96,25 +102,16 @@ class Edit_profile extends CI_Controller {
             $this->upload->initialize($config);
             $image_path = '';
 
-            if (isset($_FILES['profile_image'])) {
-                $this->upload->do_upload('userFile');
+            if ($this->upload->do_upload('userFile')) {
                 $fileData = $this->upload->data();
-                $imagePath = 'images/users/' . $fileData['file_name'];
-            } else {
-                $image_path = $profile_image_edit;
+                $imagepath = 'images/users/' . $fileData['file_name'];
             }
         }
 
         //echo $_FILES['profile_image']['name'];die();
         //validating image ends---------------------------//
         //print_r($data);die();
-        $data['imagePath'] = $imagePath;
-
-
-        print_r($data);
-        die();
-
-
+        $data['imagePath'] = $imagepath;
         $data['username'] = $user_name;
         $path = base_url();
         $url = $path . 'api/Editprofile_api/updateProfile';
@@ -135,7 +132,7 @@ class Edit_profile extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-               //location.reload();
+               location.reload();
            }, 1000);
            </script>';
         }
