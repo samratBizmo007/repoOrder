@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
          </div>
 
-         <div class="w3-container " style="padding:0 44px 12px 44px">
+         <div class="w3-container " style="padding:0 36px 12px 36px">
              <div id="Login_RegisterDiv">
 
                 <form id="register_form" role="form" method='post' enctype='multipart/form-data' style="">
