@@ -4,11 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require(APPPATH . '/libraries/REST_Controller.php');
 
-class Dashboard_api extends REST_Controller {
+class Feeds_api extends REST_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('dashboard_model/dashboard_model');
+        $this->load->model('feeds_model/feeds_model');
         date_default_timezone_set('Asia/Kolkata'); //set Kuwait's timezone
     }
 
@@ -16,7 +16,7 @@ class Dashboard_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function AllOrders_get() {
         extract($_GET);
-        $result = $this->dashboard_model->AllOrders($per_page, $offset);
+        $result = $this->feeds_model->AllOrders($per_page, $offset);
         return $this->response($result);
     }
 
@@ -25,7 +25,7 @@ class Dashboard_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function AllOpen_Orders_get() {
         extract($_GET);
-        $result = $this->dashboard_model->AllOpen_Orders();
+        $result = $this->feeds_model->AllOpen_Orders();
         return $this->response($result);
     }
 
@@ -34,7 +34,7 @@ class Dashboard_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function AllClosed_Orders_get() {
         extract($_GET);
-        $result = $this->dashboard_model->AllClosed_Orders();
+        $result = $this->feeds_model->AllClosed_Orders();
         return $this->response($result);
     }
 
@@ -43,7 +43,7 @@ class Dashboard_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function reOpen_Orders_get() {
         extract($_GET);
-        $result = $this->dashboard_model->reOpen_Orders($order_id);
+        $result = $this->feeds_model->reOpen_Orders($order_id);
         return $this->response($result);
     }
 
@@ -52,14 +52,14 @@ class Dashboard_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function closeOrder_get() {
         extract($_GET);
-        $result = $this->dashboard_model->closeOrder($order_id);
+        $result = $this->feeds_model->closeOrder($order_id);
         return $this->response($result);
     }
 
     //---------------------DELETE MY ORDERS END------------------------------//
     public function regretProduct_get() {
         extract($_GET);
-        $result = $this->dashboard_model->regretProduct($prod_no, $order_id);
+        $result = $this->feeds_model->regretProduct($prod_no, $order_id);
         return $this->response($result);
     }
 
@@ -68,7 +68,7 @@ class Dashboard_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function getOrderCount_get() {
         //extract($_GET);
-        $result = $this->dashboard_model->getOrderCount();
+        $result = $this->feeds_model->getOrderCount();
         return $this->response($result);
     }
     //---------------------ALL ORDERS COUNT END------------------------------//
@@ -76,24 +76,33 @@ class Dashboard_api extends REST_Controller {
     // -----------------------GET TIMELINE DATA API----------------------//
     //-------------------------------------------------------------//
     public function getTimeline_get() {
-        //extract($_GET);
-        $result = $this->dashboard_model->getTimeline();
+        extract($_GET);
+        $result = $this->feeds_model->getTimeline($per_page,$offset);
         return $this->response($result);
     }
     //---------------------GET TIMELINE DATA END------------------------------//
 
+    // -----------------------GET TIMELINE ROW COUNT API----------------------//
+    //-------------------------------------------------------------//
+    public function getTimelineRows_get() {
+        //extract($_GET);
+        $result = $this->feeds_model->numRows();
+        return $this->response($result);
+    }
+    //---------------------GET TIMELINE ROW COUNT END------------------------------//
+
     public function all_ActiveOrdersCount_get() {
-        $result = $this->dashboard_model->all_ActiveOrdersCount();
+        $result = $this->feeds_model->all_ActiveOrdersCount();
         return $this->response($result);
     }
 
     public function AllOpen_OrdersCount_get() {
-        $result = $this->dashboard_model->AllOpen_OrdersCount();
+        $result = $this->feeds_model->AllOpen_OrdersCount();
         return $this->response($result);
     }
 
     public function AllClosed_OrdersCount_get() {
-        $result = $this->dashboard_model->AllClosed_OrdersCount();
+        $result = $this->feeds_model->AllClosed_OrdersCount();
         return $this->response($result);
     }
 

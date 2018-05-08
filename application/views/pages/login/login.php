@@ -54,24 +54,19 @@ error_reporting(E_ERROR | E_PARSE);
         <div class="col-lg-4 w3-hide-small"></div>
         <div class="col-lg-4 ">
             <div class="col-lg-12 w3-card-2"> 
-               <div class="w3-padding " style="margin-top: 30px">
+             <div class="w3-padding " style="margin-top: 30px">
                 <div class="row  w3-xlarge w3-padding-small">
                     <center>JUMLA BUSINESS</center>
                 </div>
-                  <!-- <select id="role" name="role" class="form-control w3-margin-bottom" required>
-                    <option class="w3-red" selected>Select your role</option>
-                    <option value="Cashier">Consumer</option>
-                    <option value="Customer">WholeSeller</option>
-                </select> -->
             </div>
             <div class="w3-container " style="padding:0 36px 12px 36px">
-               <div id="Login_RegisterDiv">
+             <div id="Login_RegisterDiv">
 
                 <form id="login_form" role="form" method='post' enctype='multipart/form-data' style="">
                     <div class="w3-col l12 " id="registration_err"></div>
                     <div id = "registerDiv">
                         <div class="w3-margin-bottom w3-col l12 s12"> 
-                            
+
                         </div>
                         <div id="2" class="jumla_role  w3-col l12 s12">
                             <div class="w3-margin-bottom">
@@ -85,12 +80,12 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
 
                         <div class="w3-margin-bottom" style="">
-                         <input type="submit" name="register_register_submit" id="register_register_submit" class="form-control btn btn-register w3-blue" value="Sign In">
-                     </div>
+                           <input type="submit" name="register_register_submit" id="register_register_submit" class="form-control btn btn-register w3-blue" value="Sign In">
+                       </div>
 
-                     <p class="w3-center"> OR </p>
-                     <p class="text-center text-muted">
-                         <i class=" w3-large fa fa-facebook-square" style="color:#3F5271;"></i> Log in with Facebook
+                       <p class="w3-center"> OR </p>
+                       <p class="text-center text-muted">
+                         <button type="button" class="btn btn-block w3-blue"><i class=" w3-large fa fa-facebook-square" style="color:#ffffff;"></i> Log in with Facebook</button>
                      </p>
                      <div class="form-group">
                         <div class="row">
@@ -105,14 +100,14 @@ error_reporting(E_ERROR | E_PARSE);
 
             </div>
         </div>
- </div>
+    </div>
 </div>
-    <div class="col-lg-12 w3-card-2 w3-padding-top w3-margin-top" style="height:50px;">
-       <p class="text-center text-muted">
-         <i class=" w3-large "></i> 
-         Don't Have an Account?<a href="<?php echo base_url(); ?>registration" class="w3-text-blue"> Sign Up</a>
-     </p>
- </div>
+<div class="col-lg-12 w3-card-2 w3-padding-top w3-margin-top" style="height:50px;">
+ <p class="text-center text-muted">
+   <i class=" w3-large "></i> 
+   Don't Have an Account?<a href="<?php echo base_url(); ?>registration" class="w3-text-blue"> Sign Up</a>
+</p>
+</div>
 
 </div>
 
@@ -134,73 +129,6 @@ error_reporting(E_ERROR | E_PARSE);
 <span class="w3-medium">Checkout our <a class="w3-text-blue" href="<?php echo base_url(); ?>privacy_terms">Terms & Privacy Policy</a>! </span>
 
 </div>
-<script>
-    $(function () {
-        $('#login_form-link').click(function (e) {
-            $("#login_form").delay(100).fadeIn(100);
-            $("#register_form").fadeOut(100);
-                    //$("#forget_password").fadeOut(100);
-                    //$('#mainBody').load(location.href + " #mainBody>*", ""); 
-                    $('#login_form-link').html('<i class="fa fa-unlock-alt"></i> Login');
-                    //window.location.reload();
-                    $('#register_form-link').removeClass('active');
-                    $(this).addClass('active');
-                    e.preventDefault();
-                });
-        $('#register_form-link').click(function (e) {
-            $("#register_form").delay(100).fadeIn(100);
-            $("#login_form").fadeOut(100);
-                    //$("#forget_password").fadeOut(100);
-                    $('#login_form-link').removeClass('active');
-                    $(this).addClass('active');
-                    e.preventDefault();
-                });
-        $('#forget_link').click(function (e) {
-                    //$("#forget_password").delay(100).fadeIn(100);
-                    $("#login_form").fadeOut(100);
-                    $('#login_form-link').html('<i class="fa fa-unlock"></i> Forget Password');
-                    $('#register_form-link').html('');
-                    $('#login_form-link').removeClass('active');
-                    $(this).addClass('active');
-                    e.preventDefault();
-                });
-    });
-
-</script>
-<script>
-    $(function () {
-        $("#otp_submit").click(function () {
-            var dataString = $("#register_form").serialize();
-            $("#spinnerDiv").html('<center><img width="70%" height="auto" src="' + BASE_URL + 'css/logos/reg.gif"/></center>');
-            $.ajax({
-                type: "POST",
-                url: BASE_URL + "login/verify_otp",
-                data: dataString,
-                        return: false, //stop the actual form post !important!
-                        success: function (data)
-                        {
-                            //console.log(data);
-                            var key = JSON.parse(data);
-                            if (key.status == 200) {
-                                //alert(key.status_message);
-                                $("#spinnerDiv").html('');
-                                $("#messageDiv").html('<div class="alert alert-success" style="margin-bottom:5px"><strong>' + key.status_message + '</strong></div>');
-                                window.setTimeout(
-                                    function () {
-                                        location.reload(true);
-                                    },
-                                    2000
-                                    );
-                            } else {
-                                $("#spinnerDiv").html('');
-                                $("#messageDiv").html('<div class="alert alert-danger" style="margin-bottom:5px"><strong>' + key.status_message + '</strong></div>');
-                            }
-                        }
-                    });
-                    return false;  //stop the actual form post !important!
-                });
-    });
-</script>
 
 </body>
 </html>

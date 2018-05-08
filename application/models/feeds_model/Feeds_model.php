@@ -3,7 +3,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Dashboard_model extends CI_Model {
+class Feeds_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -232,9 +232,9 @@ public function regretProduct($prod_no, $order_id) {
 
 
     // -----------------fucntion to get all timeline data- ---------------------//
-    public function getTimeline() {
+    public function getTimeline($per_page,$offset) {
 
-    $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC";
+    $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $offset,$per_page";
 
     $result = $this->db->query($query);
 
@@ -250,6 +250,16 @@ public function regretProduct($prod_no, $order_id) {
     return $response;
 }
     // ----------------------fcuntion  ends here --------------------------//
+
+// ----------------get all timeline dta rows count------------//
+public function numRows() {
+    $query = $this->db->select('*')
+    ->from('product_tab')
+    ->order_by('prod_id', 'DESC')
+    ->get();
+    return $query->num_rows();
+}
+// -----------------------fucntion ends-------------------------//
 
 }
 

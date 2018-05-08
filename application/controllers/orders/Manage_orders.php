@@ -29,10 +29,12 @@ class Manage_orders extends CI_controller{
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response_data = curl_exec($ch);
     curl_close($ch);
-        //----------pagination code starts here-------------------------------------
-        //------loading the library pagination----------------------//
+    
+    //----------pagination code starts here-------------------------------------    
+    //------loading the library pagination----------------------//
     $this->load->library('pagination');
-        //--------------creating the config array for pagination basic requirements----------------//
+    
+    //--------------creating the config array for pagination basic requirements----------------//
     $config = [
       'base_url' => base_url('orders/Manage_orders/index'),
       'per_page' => 10,

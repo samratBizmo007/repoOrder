@@ -29,86 +29,88 @@ $user_name=$this->session->userdata('user_name');
 <style></style>
 </head>
 <body id="home" class="homepage">
-  
+
   <!-- Sidebar/menu -->
   <nav class="w3-sidebar w3-collapse w3-black w3-animate-left w3-white" style="z-index:2px;width:120px;" id="navigation"><br>
 
     <div class="w3-bar-block">
-      <!--__________________SEALWINGS LOGO _____________________ -->
-    <!-- <div class="w3-col l12 w3-margin-bottom" style="padding: 0">
-      <center><img class="img img-responsive" title="Seal Wings logo" src="<?php echo base_url(); ?>css/logos/login.jpg" width="180px" height="auto"></center>
-      <hr>
-    </div> -->
-    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu "><i class="fa fa-remove fa-fw"></i>&nbsp; Close
-    </a>
 
-    <a href="<?php echo base_url(); ?>user/dashboard" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
-      <div class="w3-col l12"><i class="w3-xlarge fa fa-dashboard fa-fw"></i></div>
-      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Dashboard<br><br></div>      
-      <div class="clear"></div>
-    </a>
+      <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu "><i class="fa fa-remove fa-fw"></i>&nbsp; Close
+      </a>
 
-    <a href="<?php echo base_url(); ?>orders/manage_orders" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
-      <div class="w3-col l12"><i class="w3-xlarge fa fa-cubes fa-fw"></i></div>
-      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">My Orders<br><br></div>      
-      <div class="clear"></div>
-    </a>
+      <a href="<?php echo base_url(); ?>user/user_profile" class="w3-bar-item <?php if($this->uri->segment(2)=='user_profile'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center ">
+        <div class="w3-col l12"><i class="w3-xlarge fa fa-user-circle fa-fw"></i></div>
+        <div class="w3-col l12 w3-wide w3-small w3-border-bottom w3-margin-bottom" style="letter-spacing: 2px"><?php echo $user_name; ?><br><br></div>      
+        <div class="clear"></div>
+      </a>
 
-    <a href="<?php echo base_url(); ?>user/user_settings" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
-      <div class="w3-col l12"><i class="w3-xlarge fa fa-cog fa-fw"></i></div>
-      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Settings<br><br></div>      
-      <div class="clear"></div>
-    </a>
-    
-     <a href="<?php echo base_url(); ?>user/user_profile" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
-      <div class="w3-col l12"><i class="w3-xlarge fa fa-user"></i></div>
-      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Profile<br><br></div>      
-      <div class="clear"></div>
-    </a>
-    
-<!--     <a href="<?php echo base_url(); ?>user/user_settings" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
-      <div class="w3-col l12"><i class="w3-xlarge fa fa-cog fa-fw"></i></div>
-      <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Settings<br><br></div>      
-      <div class="clear"></div>
-    </a>-->
+      <a href="<?php echo base_url(); ?>user/feeds" class="w3-bar-item <?php if($this->uri->segment(2)=='feeds'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center ">
+        <div class="w3-col l12"><i class="w3-xlarge fa fa-rss-square fa-fw"></i></div>
+        <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Latest Feeds<br><br></div>      
+        <div class="clear"></div>
+      </a>
+
+      <a href="<?php echo base_url(); ?>user/all_categories" class="w3-bar-item <?php if($this->uri->segment(2)=='all_categories'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center">
+        <div class="w3-col l12"><i class="w3-xlarge fa fa-search fa-fw"></i></div>
+        <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Search Category<br><br></div>      
+        <div class="clear"></div>
+      </a>
+
+      <a href="<?php echo base_url(); ?>user/post_product" class="w3-bar-item <?php if($this->uri->segment(2)=='post_product'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center">
+        <div class="w3-col l12"><i class="w3-xlarge fa fa-plus-square fa-fw"></i></div>
+        <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Add Product<br><br></div>      
+        <div class="clear"></div>
+      </a>
+
+      <a href="<?php echo base_url(); ?>orders/add_order" class="w3-bar-item <?php if($this->uri->segment(2)=='add_order'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center">
+        <div class="w3-col l12"><i class="w3-xlarge fa fa-list-alt fa-fw"></i></div>
+        <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">My Orders<br><br></div>      
+        <div class="clear"></div>
+      </a>
+
+      <!-- <a href="<?php echo base_url(); ?>user/user_settings" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
+        <div class="w3-col l12"><i class="w3-xlarge fa fa-cog fa-fw"></i></div>
+        <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Settings<br><br></div>      
+        <div class="clear"></div>
+      </a> -->
+    </div>
+  </nav>
+
+  <!-- Top container -->
+  <div class="w3-bar w3-white w3-card-2 w3-large w3-padding" style="z-index:0px">
+    <div class="w3-col l12">
+      <div class="w3-col l6 s6">
+       <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey w3-blue" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+     </div>
+     <div class="w3-col l6 s6 w3-right">
+      <div class="w3-col l10">
+        <span class="w3-button w3-right w3-medium w3-hover-none">Welcome, <strong><?php echo $user_name; ?></strong></span>
+      </div>
+      <div class="w3-col l2 ">
+
+        <div class="ui-group-buttons ">
+          <a href="<?php echo base_url(); ?>login/logout" class="btn  waves-effect waves-light  w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px">Logout <i class="fa fa-sign-out" ></i></a>
+        </div>
+
+        <!--    <div class="ui-group-buttons">-->
+          <!--        <a href="<?php echo base_url(); ?>login/logout" title="Logout user" class="w3-button w3-padding-small"><strong>Logout</strong> <i class="fa  fa-sign-out"></i></a> -->
+          <!--             -->
+          <!--              </div>-->
+        </div>
+
+      </div>
+
+    </div>
+
+
+
   </div>
-</nav>
 
-<!-- Top container -->
-<div class="w3-bar w3-white w3-card-2 w3-large w3-padding" style="z-index:0px">
-  <div class="w3-col l12">
-    <div class="w3-col l6 s6">
-     <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey w3-blue" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-   </div>
-   <div class="w3-col l6 s6 w3-right">
-    <div class="w3-col l10">
-      <span class="w3-button w3-right w3-medium w3-hover-none">Welcome, <strong><?php echo $user_name; ?></strong></span>
-    </div>
-    <div class="w3-col l2 ">
-    
-    <div class="ui-group-buttons ">
-      <a href="<?php echo base_url(); ?>login/logout" class="btn  waves-effect waves-light  w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px">Logout <i class="fa fa-sign-out" ></i></a>
-    </div>
-    
-<!--    <div class="ui-group-buttons">-->
-<!--        <a href="<?php echo base_url(); ?>login/logout" title="Logout user" class="w3-button w3-padding-small"><strong>Logout</strong> <i class="fa  fa-sign-out"></i></a> -->
-<!--             -->
-<!--              </div>-->
-    </div>
-
-  </div>
-
-</div>
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 
-
-</div>
-
-<!-- Overlay effect when opening sidebar on small screens -->
-<div class="w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-
-
-<script>
+  <script>
 // Get the Sidebar
 var navigation = document.getElementById("navigation");
 
