@@ -8,27 +8,27 @@ class User_profile extends CI_Controller {
     }
 
     public function index() {
-        
-          //start session   
-        $admin_name=$this->session->userdata('admin_name');
-        $admin_role=$this->session->userdata('admin_role');
-
-    //check session variable set or not, otherwise logout
-        if(($admin_name=='') || ($admin_role=='')){
-           redirect('admin_login');
-       }
+        $this->load->library('user_agent');
+        $this->load->library('user_agent');
         $data['userDetails'] = User_profile::getUserDetails();
         $data['prod_count'] = User_profile::getProductCountBy_username();
-        $data['products'] = User_profile::getPostedImagesBy_username();        
-        $this->load->view('includes/admin_header.php');
-        $this->load->view('pages/admin/user_profile',$data);
+        $data['products'] = User_profile::getPostedImagesBy_username();
+        if ($this->agent->is_mobile()) {
+            $this->load->view('includes/mobile/header');
+            $this->load->view('pages/user/mobile/profile/mobileuser_profile', $data);
+            $this->load->view('includes/mobile/footer');
+        } else {
+            $this->load->view('includes/header.php');
+            $this->load->view('pages/user/user_profile', $data);
+        }
     }
-    
-     //------------fun for get user details -----------------------//
+
+    //------------fun for get user details -----------------------//
     public function getUserDetails() {
-        $admin_name=$this->session->userdata('admin_name');
+//        $admin_name = $this->session->userdata('admin_name');
+        $user_name = $this->session->userdata('user_name');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getUserDetails?username='.$admin_name;
+        $url = $path . 'api/Userprofile_api/getUserDetails?username=' . $user_name;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -40,11 +40,11 @@ class User_profile extends CI_Controller {
     }
 
     //------------fun for get user details -----------------------//
-      //------------fun for get posted products  -----------------------//
+    //------------fun for get posted products  -----------------------//
     public function getPostedImagesBy_username() {
-        $admin_name = $this->session->userdata('admin_name');
+        $user_name = $this->session->userdata('user_name');
         $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_username?username='.$admin_name;
+        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_username?username=' . $user_name;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -57,11 +57,11 @@ class User_profile extends CI_Controller {
 
     //------------fun for get posted products  -----------------------//
     //------------fun for get the count of posted products---------------------//
-    
-    public function getProductCountBy_username(){
-        $admin_name=$this->session->userdata('admin_name');
+
+    public function getProductCountBy_username() {
+        $user_name = $this->session->userdata('user_name');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getProductCountBy_username?username='.$admin_name;
+        $url = $path . 'api/Userprofile_api/getProductCountBy_username?username=' . $user_name;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -71,6 +71,6 @@ class User_profile extends CI_Controller {
         //print_r($response_json);die();
         return $response;
     }
+
     //------------fun for get the count of posted products ends---------------------//
-    
 }

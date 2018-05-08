@@ -17,7 +17,7 @@ class Editprofile_model extends CI_Model {
         //print_r($data);die();
         $sql = "UPDATE user_tab SET full_name='$fullname',"
                 . " website='$website', bio='$bio', address='$address',"
-                . " phone='$phone',user_image='$imagePath' WHERE username = '$username'";
+                . " phone='$phone',user_image='$imagePath',company_name='$company_name' WHERE username = '$username'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
