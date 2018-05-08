@@ -63,7 +63,7 @@ error_reporting(E_ERROR | E_PARSE);
              <div id="Login_RegisterDiv">
 
                 <form id="login_form" role="form" method='post' enctype='multipart/form-data' style="">
-                    <div class="w3-col l12 " id="registration_err"></div>
+                    <div class="w3-col l12 " id="login_err"></div>
                     <div id = "registerDiv">
                         <div class="w3-margin-bottom w3-col l12 s12"> 
 
