@@ -15,14 +15,19 @@ class Login_api extends REST_Controller {
     // -----------------------USER REGISTER API----------------------//
     //-------------------------------------------------------------//
     public function registerCustomer_post() {
-        extract($_POST);
-        $result = $this->login->registerCustomer($register_username, $register_email, $register_password, $register_mobile_no, $register_address);
+        $data=$_POST;
+        $result = $this->login->registerCustomer($data);
         return $this->response($result);
     }
 
-    // -----------------------USER REGISTER API----------------------//
+    // -----------------------seller REGISTER API----------------------//
+      public function registerSeller_post() {
+        $data=$_POST;
+        $result = $this->login->registerSeller($data);
+        return $this->response($result);
+    }
     //-------------------------------------------------------------// 
-    // -----------------------USER REGISTER API----------------------//
+    // -----------------------seller REGISTER API----------------------//
     //-------------------------------------------------------------//
     public function send_otpForMobile_post() {
         extract($_POST);

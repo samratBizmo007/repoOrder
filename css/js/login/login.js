@@ -2,16 +2,17 @@
 $(function () {
     $("#register_form").submit(function () {
         dataString = $("#register_form").serialize();
+        // alert(dataString);
         $.LoadingOverlay("show");
         $.ajax({
             type: "POST",
-            url: BASE_URL + "login/registerCustomer",
+            url: BASE_URL + "registration/registerCustomer",
             dataType : 'text',
             data: dataString,
             return: false, //stop the actual form post !important!
             success: function (data){
                 $.LoadingOverlay("hide");
-               // console.log(data);  
+               // alert(data);  
                 if(navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {           
                     $("html,body").animate({scrollTop:0},"slow");
                     document.scrollingElement.scrollTop;

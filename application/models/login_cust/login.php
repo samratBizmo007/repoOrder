@@ -133,25 +133,35 @@ class Login extends CI_Model {
 
 
     // -----------------------USER REGISTERATION MODEL----------------------//
- public function registerCustomer($user_name, $email_id, $password, $register_mobile_no, $register_address) {
+ public function registerCustomer($data) {
+    extract($data);
+    //print_r($data);die();
+    if($register_password == '')
+            {
+                 $response = array(
+                    'status' => 500, //---------db error code 
+                    'status_message' => 'Enter Your password!!!'
+                );
+                 return $response;die();
+            }
     $admin_email = '';
-    $checkEmail = login::checkEmail_exist($email_id);
-    $checkusername = login::checkUsername_exist($user_name);
+    $checkEmail = login::checkEmail_exist($register_email);
+    $checkusername = login::checkUsername_exist($register_username);
     if ($checkEmail == 0 && $checkusername == 0) {
         $data = array(
-            'username' => $user_name,
-            'password' => base64_encode($password),
-            'email' => $email_id,
-            'mobile_no' => $register_mobile_no,
-            'address' => $register_address
+            'role' => $user_role,
+            'username' => $register_username,
+            'password' => base64_encode($register_password),
+            'email' => $register_email,
+            'phone' => $register_mobile_no
         );
-        if ($this->db->insert('customer_tab', $data)) {
+        if ($this->db->insert('user_tab', $data)) {
             $response = array(
                     'status' => 200, //---------insert db success code
                     'status_message' => 'Registration Successfull. Please Login With Your Registered Email-ID.'
                 );
-            $admin_email = $this->settings_model->getAdminEmail();
-            Login::sendUserIs_RegisteredEmail($user_name,$email_id,$admin_email);
+            // $admin_email = $this->settings_model->getAdminEmail();
+            // Login::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email);
         } else {
             $response = array(
                     'status' => 500, //---------db error code 
@@ -167,6 +177,49 @@ class Login extends CI_Model {
     }
     return $response;
 }
+
+ //-----------FUNCTION FOR Seller REGISTRATION-------------------//
+   public function registerSeller($data)
+    {
+        extract($data);
+        //print_r($data);die();
+          $admin_email = '';
+    $checkEmail = login::checkEmail_exist($register_email);
+    $checkusername = login::checkUsername_exist($register_username);
+    if ($checkEmail == 0 && $checkusername == 0) {
+        $data = array(
+            'username' => $register_username,
+            'email' => $register_email,
+            'phone' => $register_mobile_no,
+            'role' => $user_role
+        );
+
+        // print_r($data);die();
+        if ($this->db->insert('user_tab', $data)) {
+            $response = array(
+                    'status' => 200, //---------insert db success code
+                    'status_message' => 'Your Registration Request has been succesfully sent to JUMLA TEAM.Soon you will get Login Password on your email'
+                );
+            $admin_email = $this->settings_model->getAdminEmail();
+            //settings_model::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$user_role);
+           //print_r($d);die();
+        } else {
+            $response = array(
+                    'status' => 500, //---------db error code 
+                    'status_message' => 'Something went wrong... Registration Failed!!!'
+                );
+        }
+    } else {
+            //if email-Id already regiterd then show error
+        $response = array(
+            'status' => 500,
+            'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'
+        );
+    }
+    return $response;
+    }
+
+
 
     // -----------------------USER REGISTERATION MODEL----------------------//
 public function sendUserIs_RegisteredEmail($user_name,$email_id,$admin_email){
@@ -301,7 +354,7 @@ public function getNextID($col_name, $table_name) {
 
 function checkEmail_exist($email_id) {
     $query = null;
-        $query = $this->db->get_where('customer_tab', array(//making selection
+        $query = $this->db->get_where('user_tab', array(//making selection
             'email' => $email_id
         ));
 
@@ -316,7 +369,7 @@ function checkEmail_exist($email_id) {
 
     public function checkUsername_exist($user_name) {
         $query = null;
-        $query = $this->db->get_where('customer_tab', array(//making selection
+        $query = $this->db->get_where('user_tab', array(//making selection
             'username' => $user_name
         ));
 
@@ -526,7 +579,7 @@ function checkEmail_exist($email_id) {
     public function loginCustomer($user_name, $password) {
         //sql query to check login credentials
         $pass = base64_encode($password);
-        $query = "SELECT * FROM customer_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass'";
+        $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass'";
         //echo $query;die();
         $result = $this->db->query($query);
         $user_id = '0';

@@ -19,7 +19,8 @@ class Login extends CI_Controller {
         //start session		
         $user_id = $this->session->userdata('user_id');
         $user_name = $this->session->userdata('user_name');
-        if (($user_id != '') || ($user_name != '')) {
+        $user_role = $this->session->userdata('user_role');
+        if (($user_id != '') || ($user_name != '') || ($user_role !='')) {
             redirect('user/dashboard');
         }
         $this->load->view('pages/login/login');
