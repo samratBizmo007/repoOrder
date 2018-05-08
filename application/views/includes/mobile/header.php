@@ -15,7 +15,7 @@
 	<style></style>
 </head>
 <body>
-	<div class="w3-row w3-center w3-border-bottom header_bg">
+	<div class="w3-row w3-center w3-top w3-border-bottom header_bg" style="position: fixed;z-index: 3">
 		<h4>Jumla Business</h4>
 	</div>
 </body>

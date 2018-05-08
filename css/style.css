@@ -884,3 +884,33 @@ margin-top: 3px;
    -webkit-box-orient: vertical;
    
 }
+
+.user_img{
+    height: 50px;
+    width: 50px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .timeline_img{
+    height:500px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .user_imgMob{
+    height: 30px;
+    width: 30px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .timeline_imgMob{
+    height:250px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
