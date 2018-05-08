@@ -10,33 +10,31 @@ class Edit_profile extends CI_Controller {
     public function index() {
 
         //start session   
-        $admin_name = $this->session->userdata('admin_name');
-        $admin_role = $this->session->userdata('admin_role');
+//        $admin_name = $this->session->userdata('admin_name');
+//        $admin_role = $this->session->userdata('admin_role');
         $this->load->library('user_agent');
 
         //check session variable set or not, otherwise logout
-        if (($admin_name == '') || ($admin_role == '')) {
-            redirect('admin_login');
-        }
+//        if (($admin_name == '') || ($admin_role == '')) {
+//            redirect('admin_login');
+//        }
         $data['userDetails'] = Edit_profile::getUserDetails();
         //$data['products'] = Edit_profile::getPostedImagesBy_username();
-        if ($this->agent->is_mobile())
-    {
-      $this->load->view('includes/mobile/header');
-      $this->load->view('pages/admin/mobile/edit_profile',$data);
-      $this->load->view('includes/mobile/admin_footer');
-    }
-    else{
-        $this->load->view('includes/admin_header.php');
-        $this->load->view('pages/admin/edit_profile', $data);
-    }
+        if ($this->agent->is_mobile()) {
+            $this->load->view('includes/mobile/header');
+            $this->load->view('pages/user/mobile/profile/mobileedit_profile', $data);
+            $this->load->view('includes/mobile/footer');
+        } else {
+            $this->load->view('includes/admin_header.php');
+            $this->load->view('pages/user/edit_profile', $data);
+        }
     }
 
     //------------fun for get user details -----------------------//
     public function getUserDetails() {
-        $admin_name = $this->session->userdata('admin_name');
+        $user_name = $this->session->userdata('user_name');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getUserDetails?username=' . $admin_name;
+        $url = $path . 'api/Userprofile_api/getUserDetails?username=' . $user_name;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -50,8 +48,7 @@ class Edit_profile extends CI_Controller {
     //------------fun for get user details -----------------------//
     //--------this fun is used to update the profile---------------------//
     public function updateProfile() {
-        $admin_name = $this->session->userdata('admin_name');
-        $admin_role = $this->session->userdata('admin_role');
+        $user_name = $this->session->userdata('user_name');
         extract($_POST);
         $data = $_POST;
         //print_r($data);
@@ -76,10 +73,11 @@ class Edit_profile extends CI_Controller {
         }
 
         $imagePath = '';
+        $image_name = $_FILES['profile_image']['name'];
         if (!empty(($_FILES['profile_image']['name']))) {
             $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
 
-            $_FILES['userFile']['name'] = $admin_name . '.' . $extension;
+            $_FILES['userFile']['name'] = $user_name . $image_name . '.' . $extension;
             $_FILES['userFile']['type'] = $_FILES['profile_image']['type'];
             $_FILES['userFile']['tmp_name'] = $_FILES['profile_image']['tmp_name'];
             $_FILES['userFile']['error'] = $_FILES['profile_image']['error'];
@@ -103,7 +101,7 @@ class Edit_profile extends CI_Controller {
         //validating image ends---------------------------//
         //print_r($data);die();
         $data['imagePath'] = $uploadPath . $imagePath;
-        $data['username'] = $admin_name;
+        $data['username'] = $user_name;
         $path = base_url();
         $url = $path . 'api/Editprofile_api/updateProfile';
         $ch = curl_init($url);
@@ -134,8 +132,8 @@ class Edit_profile extends CI_Controller {
     public function changePassword() {
         extract($_POST);
         $data = $_POST;
-        $admin_name = $this->session->userdata('admin_name');
-        $data['username'] = $admin_name;
+        $user_name = $this->session->userdata('user_name');
+        $data['username'] = $user_name;
         $path = base_url();
         $url = $path . 'api/Editprofile_api/changePassword';
         $ch = curl_init($url);
