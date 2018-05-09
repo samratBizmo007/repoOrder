@@ -79,7 +79,7 @@ $(function () {
 $(function () {
     $("#login_form").submit(function () {
         dataString = $("#login_form").serialize();
-       //alert(dataString);
+
         $.LoadingOverlay("show");
         $.ajax({
             type: "POST",
