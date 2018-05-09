@@ -32,8 +32,8 @@ class Product_model extends CI_Model {
     public function addProduct($data) {
         extract($data);
         //print_r($data);die();
-        $sql = "INSERT INTO product_tab(cat_id,product_name,prod_description,prod_image,posted_by,role,posted_date,posted_time,active) VALUES
-        ('$cat_id','$product_name','$product_description','$imagePath','$posted_by','$role',NOW(),NOW(),'1')";
+        $sql = "INSERT INTO product_tab(cat_id,user_id,product_name,prod_description,prod_image,posted_by,role,posted_date,posted_time,active) "
+                . "VALUES ('$cat_id','$user_id','$product_name','$product_description','$prod_images','$posted_by','$role',NOW(),NOW(),'1')";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {

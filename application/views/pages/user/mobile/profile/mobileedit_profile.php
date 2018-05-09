@@ -22,7 +22,8 @@ error_reporting(E_ERROR | E_PARSE);
                             $default_image = 'images/default_male.png';
                             if ($userDetails['status_message'][0]['user_image'] == '') {
                                 ?>
-                                <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:80px;width:80px;"></div>
+                                <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">
+                               <!--  <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:80px;width:80px;"></div> -->
                                 <?php } else { ?>
                                 <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>" style="height: 80px; width: 80px;">
                                 <!-- <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:80px;width:80px;"></div> -->
