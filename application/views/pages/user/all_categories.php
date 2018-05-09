@@ -25,16 +25,34 @@ error_reporting(E_ERROR | E_PARSE);
       <h5><b><i class="fa fa-search"></i> All Categories</b></h5>
     </header>
     <div class="w3-row-padding w3-margin-bottom">
-      <div class="w3-col l4 w3-padding">
-        <select  name="cat_id" id="cat_id" class="w3-input w3-border">
-        <option class="w3-light-grey" selected value="0">Select Business Field</option>
+      
+      <!-- All categories -->
+      <div class="w3-col l12" id="categoryDiv">
+
         <?php
         foreach ($all_categories['status_message'] as $result) {
          ?>
-         <option value="<?php echo $result['cat_id']; ?>"><?php echo $result['category_name']; ?></option>
-         <?php } ?>
-       </select>
+         <!-- category div block -->
+         <div class="w3-col l3" style="padding: 6px">
+          <div class="w3-col s12 w3-border w3-round-large w3-card-2" style="height: 120px">
+            <div class="w3-col l12 w3-center w3-padding-top">
+              <a class="btn w3-padding" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($result['cat_id']); ?>">
+                <span>
+                <i class="fa fa-cubes w3-jumbo"></i>
+              </span>
+              <div class="w3-col l12">
+                <span class="w3-small"><?php echo $result['category_name']; ?></span>
+              </div>
+              
+              </a>              
+            </div>            
+          </div>
+        </div>
+        <?php } ?>
+        <!-- category div block ends -->
+
       </div>
+      <!-- All Categories end -->
     </div>
     <!-- End page content -->
   </div>

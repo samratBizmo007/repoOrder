@@ -29,7 +29,7 @@
       <div class="w3-container">
         <div class="col-lg-2"></div>
         <div class="w3-col l8 ">
-          
+
           <div class="w3-col l12 w3-padding-xxlarge">
             <?php
             if($timelineData['status']!=500){
@@ -44,64 +44,62 @@
                   <div class="w3-col l11 w3-padding-left w3-padding-top">
                     <label class="w3-margin-top w3-small"><?php echo $key['username']; ?></label>
                   </div>
-<!--                    <div class="w3-col l7 w3-left w3-padding-top">
-</div>-->
-</div>
-<!-- Top section div ends -->
+                </div>
+                <!-- Top section div ends -->
 
-<!-- Mid section div start -->
-<div class="w3-col l12 w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $key['prod_image']; ?>');">
-  <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
-</div>
-<!-- Mid section div ends -->
+                <!-- Mid section div start -->
+                <div class="w3-col l12 w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $key['prod_image']; ?>');">
+                  <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
+                </div>
+                <!-- Mid section div ends -->
 
-<!-- Bottom section div starts -->
-<div class="w3-col l12">
-  <div class="w3-col l12 w3-padding-small w3-right">
-    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="padding-right: 0px;padding-left: 8px">
-      <span class="fa fa-phone w3-xlarge"></span>
-    </a>
+                <!-- Bottom section div starts -->
+                <div class="w3-col l12">
+                  <div class="w3-col l12 w3-padding-small w3-right">
+                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="padding-right: 0px;padding-left: 8px">
+                      <span class="fa fa-phone w3-xlarge"></span>
+                    </a>
 
-    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>" style="padding-right: 0px;padding-left: 15px">
-      <span class="fa fa-envelope-o w3-xlarge"></span>
-    </a> 
-    <a class="btn w3-right" style="padding: 0">
-      <span class="w3-margin-top w3-small"><i><?php echo $key['category_name']; ?></i></span>
-    </a>
+                    <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>" style="padding-right: 0px;padding-left: 15px">
+                      <span class="fa fa-envelope-o w3-xlarge"></span>
+                    </a> 
+                    <a class="btn w3-right" style="padding: 0">
+                      <span class="w3-margin-top w3-small"><i><?php echo $key['category_name']; ?></i></span>
+                    </a>
+                  </div>
+
+                  <div class="w3-col l12 w3-padding ">
+                    <label><?php echo $key['product_name']; ?></label>
+                    <span class="w3-small w3-margin-left"><?php echo $key['prod_description']; ?></span>
+                    <hr>
+                  </div>
+
+                </div>
+                <!-- Bottom section div ends -->
+
+              </div>
+              <?php
+            }
+          }
+          else{
+            ?>
+            <div class="alert alert-warning w3-center">
+              <b><?php echo $all_users['status_message']; ?></b>
+            </div>               
+            <?php 
+          } 
+          ?>          
+        </div>
+        <center>
+          <div class="pagination" style="margin:10px;padding: 10px;">
+            <?php echo $links; ?>
+          </div>
+        </center>
+      </div>
+      <div class="col-lg-2"></div>
+    </div>
   </div>
-
-  <div class="w3-col l12 w3-padding ">
-    <label><?php echo $key['product_name']; ?></label>
-    <span class="w3-small w3-margin-left"><?php echo $key['prod_description']; ?></span>
-    <hr>
-  </div>
-
-</div>
-<!-- Bottom section div ends -->
-
-</div>
-<?php
-}
-}
-else{
-  ?>
-  <div class="alert alert-warning w3-center">
-    <b><?php echo $all_users['status_message']; ?></b>
-  </div>               
-  <?php 
-} 
-?>          
-</div>
-<center>
-  <div class="pagination" style="margin:10px;padding: 10px;">
-    <?php echo $links; ?>
-  </div>
-</center>
-</div>
-<div class="col-lg-2"></div>
-</div>
-</div>
-<!-- Product timeline ends here -->
+  <!-- Product timeline ends here -->
 </div>
 <!-- End page content -->
 </body>
