@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
 error_reporting(E_ERROR | E_PARSE);
 $user_name=$this->session->userdata('user_name');
+$user_id=$this->session->userdata('user_id');
 
 // $profile_type=$this->session->userdata('profile_type');
 // /echo $profile_type;
@@ -38,7 +39,7 @@ $user_name=$this->session->userdata('user_name');
       <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu "><i class="fa fa-remove fa-fw"></i>&nbsp; Close
       </a>
 
-      <a href="<?php echo base_url(); ?>user/user_profile" class="w3-bar-item <?php if($this->uri->segment(2)=='user_profile'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center ">
+      <a href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($user_id);?>" class="w3-bar-item <?php if($this->uri->segment(2)=='user_profile'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center ">
         <div class="w3-col l12"><i class="w3-xlarge fa fa-user-circle fa-fw"></i></div>
         <div class="w3-col l12 w3-wide w3-small w3-border-bottom w3-margin-bottom" style="letter-spacing: 2px"><?php echo $user_name; ?><br><br></div>      
         <div class="clear"></div>

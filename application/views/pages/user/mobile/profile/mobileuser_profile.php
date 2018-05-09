@@ -102,9 +102,11 @@ error_reporting(E_ERROR | E_PARSE);
                             <div class="w3-col s12">
                                 <label class="w3-small"><b><?php echo $prod_count; ?></b> Posts</label> 
                             </div>
+                            <?php if($link_user_id == $user_id){ ?>                          
                             <div class="w3-col s12 w3-margin-bottom">
                                 <a class="btn btn-block w3-padding-tiny w3-border w3-center w3-small" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-small bluish-green "><b>Edit Profile </b></span></a>
                             </div>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="w3-col s12 w3-small w3-margin-top">
@@ -176,7 +178,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="col-lg-2"></div>
                 <div class="w3-col l8">
                     <div class="w3-col s12 w3-center w3-margin-bottom">
-                        <span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span> &nbsp;<span class="w3-center">History</span>
+                        <span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span>
                     </div>
 
                     <!-- MAIN CONTENT STARTS -->

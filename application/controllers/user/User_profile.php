@@ -7,12 +7,14 @@ class User_profile extends CI_Controller {
         parent::__construct();
     }
 
-    public function index() {
+    public function index($profileuser_id='') {
+        $user_id = base64_decode($profileuser_id);
+        $data['link_user_id'] = $user_id;
         $this->load->library('user_agent');
         $this->load->library('user_agent');
-        $data['userDetails'] = User_profile::getUserDetails();
-        $data['prod_count'] = User_profile::getProductCountBy_userid();
-        $data['products'] = User_profile::getPostedImagesBy_username();
+        $data['userDetails'] = User_profile::getUserDetails($user_id);
+        $data['prod_count'] = User_profile::getProductCountBy_userid($user_id);
+        $data['products'] = User_profile::getPostedImagesBy_username($user_id);
         if ($this->agent->is_mobile()) {
             $this->load->view('includes/mobile/header');
             $this->load->view('pages/user/mobile/profile/mobileuser_profile', $data);
@@ -24,9 +26,9 @@ class User_profile extends CI_Controller {
     }
 
     //------------fun for get user details -----------------------//
-    public function getUserDetails() {
+    public function getUserDetails($user_id) {
 //        $admin_name = $this->session->userdata('admin_name');
-        $user_id = $this->session->userdata('user_id');
+        //$user_id = $this->session->userdata('user_id');
         $path = base_url();
         $url = $path . 'api/Userprofile_api/getUserDetails?user_id=' . $user_id;
         $ch = curl_init($url);
@@ -41,8 +43,8 @@ class User_profile extends CI_Controller {
 
     //------------fun for get user details -----------------------//
     //------------fun for get posted products  -----------------------//
-    public function getPostedImagesBy_username() {
-        $user_id = $this->session->userdata('user_id');
+    public function getPostedImagesBy_username($user_id) {
+        //$user_id = $this->session->userdata('user_id');
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/getPostedImagesBy_username?user_id=' . $user_id;
         $ch = curl_init($url);
@@ -58,8 +60,8 @@ class User_profile extends CI_Controller {
     //------------fun for get posted products  -----------------------//
     //------------fun for get the count of posted products---------------------//
 
-    public function getProductCountBy_userid() {
-        $user_id = $this->session->userdata('user_id');
+    public function getProductCountBy_userid($user_id) {
+        //$user_id = $this->session->userdata('user_id');
         $path = base_url();
         $url = $path . 'api/Userprofile_api/getProductCountBy_userid?user_id=' . $user_id;
         $ch = curl_init($url);

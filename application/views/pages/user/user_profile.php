@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(E_ERROR | E_PARSE);
+$user_id = $this->session->userdata('user_id');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -103,8 +105,10 @@ error_reporting(E_ERROR | E_PARSE);
                             <?php } ?>
                         </div>
                         <div class="w3-col l8 w3-margin-top">
-                            <label class="w3-large"><?php echo $userDetails['status_message'][0]['username']; ?></label>                           
+                            <label class="w3-large"><?php echo $userDetails['status_message'][0]['username']; ?></label>
+                            <?php if($link_user_id == $user_id){ ?>                          
                             <a class="btn w3-right" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-small bluish-green "><b>Edit Profile </b><i class="w3-medium w3-text-black fa fa-gear"></i></span></a>
+                            <?php } ?>
                             <div class="w3-col l12 w3-margin-bottom">
                                 <div class="w3-col l8"><b><?php echo $prod_count; ?></b> Posts</div>
                             </div>
@@ -179,7 +183,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="col-lg-2"></div>
                 <div class="w3-col l8">
                     <div class="w3-col s12 w3-center w3-margin-bottom">
-                        <a><span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span></a> &nbsp;<a><span class="w3-center">History</span></a>
+                        <a><span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span></a>
                     </div>
                     <!-- MAIN CONTENT STARTS -->
                     <!--------------------------- Div for posted products and my products --------------------------->
@@ -231,7 +235,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                     </div>
                         <!--------------------------- Div for posted products and my products ends--------------------------->
-                        
+
 <!--------------------------- Div for my orders or order history ends------------------------------ -->
 
                 </div>
