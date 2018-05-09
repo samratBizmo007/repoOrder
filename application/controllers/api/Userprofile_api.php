@@ -14,13 +14,13 @@ class Userprofile_api extends REST_Controller {
 
     public function getUserDetails_get() {
         extract($_GET);
-        $result = $this->Userprofile_model->getUserDetails($username);
+        $result = $this->Userprofile_model->getUserDetails($user_id);
         return $this->response($result);
     }
 
-    public function getProductCountBy_username_get() {
+    public function getProductCountBy_userid_get() {
         extract($_GET);
-        $result = $this->Userprofile_model->getProductCountBy_username($username);
+        $result = $this->Userprofile_model->getProductCountBy_userid($user_id);
         return $this->response($result);
     }
 

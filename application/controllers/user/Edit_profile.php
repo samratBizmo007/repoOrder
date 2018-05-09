@@ -9,15 +9,14 @@ class Edit_profile extends CI_Controller {
 
     public function index() {
 
-        //start session   
-//        $admin_name = $this->session->userdata('admin_name');
-//        $admin_role = $this->session->userdata('admin_role');
+        $user_name = $this->session->userdata('user_name');
+        $user_id = $this->session->userdata('user_id');
         $this->load->library('user_agent');
 
         //check session variable set or not, otherwise logout
-//        if (($admin_name == '') || ($admin_role == '')) {
-//            redirect('admin_login');
-//        }
+        if (($user_name == '') || ($user_id == '')) {
+            redirect('login');
+        }
         $data['userDetails'] = Edit_profile::getUserDetails();
         //$data['products'] = Edit_profile::getPostedImagesBy_username();
         if ($this->agent->is_mobile()) {
@@ -33,8 +32,9 @@ class Edit_profile extends CI_Controller {
     //------------fun for get user details -----------------------//
     public function getUserDetails() {
         $user_name = $this->session->userdata('user_name');
+        $user_id = $this->session->userdata('user_id');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getUserDetails?username=' . $user_name;
+        $url = $path . 'api/Userprofile_api/getUserDetails?user_id=' . $user_id;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -49,6 +49,7 @@ class Edit_profile extends CI_Controller {
     //--------this fun is used to update the profile---------------------//
     public function updateProfile() {
         $user_name = $this->session->userdata('user_name');
+        $user_id = $this->session->userdata('user_id');
         extract($_POST);
         extract($_FILES);
         $data = $_POST;
@@ -113,6 +114,7 @@ class Edit_profile extends CI_Controller {
         //print_r($data);die();
         $data['imagePath'] = $imagepath;
         $data['username'] = $user_name;
+        $data['user_id'] = $user_id;
         $path = base_url();
         $url = $path . 'api/Editprofile_api/updateProfile';
         $ch = curl_init($url);
@@ -144,7 +146,10 @@ class Edit_profile extends CI_Controller {
         extract($_POST);
         $data = $_POST;
         $user_name = $this->session->userdata('user_name');
+        $user_id = $this->session->userdata('user_id');
+
         $data['username'] = $user_name;
+        $data['user_id'] = $user_id;
         $path = base_url();
         $url = $path . 'api/Editprofile_api/changePassword';
         $ch = curl_init($url);

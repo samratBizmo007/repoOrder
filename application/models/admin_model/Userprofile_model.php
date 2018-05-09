@@ -12,8 +12,8 @@ class Userprofile_model extends CI_Model {
     }
 
 //-------------fun for get user details from usertab----------------------------------//    
-    public function getUserDetails($username) {
-        $sql = "SELECT * FROM user_tab WHERE username = '$username'";
+    public function getUserDetails($user_id) {
+        $sql = "SELECT * FROM user_tab WHERE user_id = '$user_id'";
         $result = $this->db->query($sql);
         if ($result->num_rows() <= 0) {
             $response = array(
@@ -29,8 +29,8 @@ class Userprofile_model extends CI_Model {
 
 //-------------fun for get user details from usertab----------------------------------//    
     //------------fun for get the count of products by username-------------------//
-    public function getProductCountBy_username($username) {
-        $sql = "SELECT count(*) as prodcount FROM product_tab WHERE posted_by = '$username'";
+    public function getProductCountBy_userid($user_id) {
+        $sql = "SELECT count(*) as prodcount FROM product_tab WHERE user_id = '$user_id'";
         $result = $this->db->query($sql);
         if ($result->num_rows() <= 0) {
             $response = array(

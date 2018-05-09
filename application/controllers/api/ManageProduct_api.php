@@ -24,7 +24,7 @@ class ManageProduct_api extends REST_Controller {
 
     public function getPostedImagesBy_username_get() {
         extract($_GET);
-        $result = $this->Product_model->getPostedImagesBy_username($username);
+        $result = $this->Product_model->getPostedImagesBy_username($user_id);
         return $this->response($result);
     }
 

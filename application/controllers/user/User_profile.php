@@ -11,7 +11,7 @@ class User_profile extends CI_Controller {
         $this->load->library('user_agent');
         $this->load->library('user_agent');
         $data['userDetails'] = User_profile::getUserDetails();
-        $data['prod_count'] = User_profile::getProductCountBy_username();
+        $data['prod_count'] = User_profile::getProductCountBy_userid();
         $data['products'] = User_profile::getPostedImagesBy_username();
         if ($this->agent->is_mobile()) {
             $this->load->view('includes/mobile/header');
@@ -26,9 +26,9 @@ class User_profile extends CI_Controller {
     //------------fun for get user details -----------------------//
     public function getUserDetails() {
 //        $admin_name = $this->session->userdata('admin_name');
-        $user_name = $this->session->userdata('user_name');
+        $user_id = $this->session->userdata('user_id');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getUserDetails?username=' . $user_name;
+        $url = $path . 'api/Userprofile_api/getUserDetails?user_id=' . $user_id;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -42,9 +42,9 @@ class User_profile extends CI_Controller {
     //------------fun for get user details -----------------------//
     //------------fun for get posted products  -----------------------//
     public function getPostedImagesBy_username() {
-        $user_name = $this->session->userdata('user_name');
+        $user_id = $this->session->userdata('user_id');
         $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_username?username=' . $user_name;
+        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_username?user_id=' . $user_id;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -58,10 +58,10 @@ class User_profile extends CI_Controller {
     //------------fun for get posted products  -----------------------//
     //------------fun for get the count of posted products---------------------//
 
-    public function getProductCountBy_username() {
-        $user_name = $this->session->userdata('user_name');
+    public function getProductCountBy_userid() {
+        $user_id = $this->session->userdata('user_id');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getProductCountBy_username?username=' . $user_name;
+        $url = $path . 'api/Userprofile_api/getProductCountBy_userid?user_id=' . $user_id;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

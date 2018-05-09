@@ -113,7 +113,7 @@ error_reporting(E_ERROR | E_PARSE);
                             if ($userDetails['status_message'][0]['full_name'] != '') {
                                 echo $userDetails['status_message'][0]['full_name'];
                             } else {
-                                echo 'Enter Full Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                //echo 'Enter Full Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
                             ?>
                         </b>
@@ -121,21 +121,12 @@ error_reporting(E_ERROR | E_PARSE);
                     <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
                         <span><b><?php echo $userDetails['status_message'][0]['username']; ?></b></span>
                     </div>
-                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                    <div class="w3-col s12 w3-tiny w3-margin-bottom" style=" padding-top: 0px;">
                         <span><?php
                             if ($userDetails['status_message'][0]['bio'] != '') {
                                 echo $userDetails['status_message'][0]['bio'];
                             } else {
-                                echo 'Enter Your Bio.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
-                            }
-                            ?></span>
-                    </div>
-                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
-                        <span><?php
-                            if ($userDetails['status_message'][0]['website'] != '') {
-                                echo $userDetails['status_message'][0]['website'];
-                            } else {
-                                echo 'Enter Website.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                //echo 'Enter Your Bio.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
                             ?></span>
                     </div>
@@ -144,10 +135,38 @@ error_reporting(E_ERROR | E_PARSE);
                             if ($userDetails['status_message'][0]['company_name'] != '') {
                                 echo $userDetails['status_message'][0]['company_name'];
                             } else {
-                                echo 'Enter Company Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                //echo 'Enter Company Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
                             ?></span>
                     </div>
+                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                        <span><?php
+                            if ($userDetails['status_message'][0]['website'] != '') {
+                                echo $userDetails['status_message'][0]['website'];
+                            } else {
+                               // echo 'Enter Website.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                            }
+                            ?></span>
+                    </div>
+                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                        <span><?php
+                            if ($userDetails['status_message'][0]['address'] != '') {
+                                echo $userDetails['status_message'][0]['address'];
+                            } else {
+                                //echo 'Enter Company Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                            }
+                            ?></span>
+                    </div>
+                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                        <span><?php
+                            if ($userDetails['status_message'][0]['phone'] != '') {
+                                echo $userDetails['status_message'][0]['phone'];
+                            } else {
+                                //echo 'Enter Company Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                            }
+                            ?></span>
+                    </div>
+                    
                 </div>
                 <div class="col-lg-2"></div>
             </div>
@@ -157,7 +176,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="col-lg-2"></div>
                 <div class="w3-col l8">
                     <div class="w3-col s12 w3-center w3-margin-bottom">
-                        <span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span> &nbsp;<span class="w3-center">Saved</span>
+                        <span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span> &nbsp;<span class="w3-center">History</span>
                     </div>
 
                     <!-- MAIN CONTENT STARTS -->
