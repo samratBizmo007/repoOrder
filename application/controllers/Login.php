@@ -21,7 +21,7 @@ class Login extends CI_Controller {
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
         if (($user_id != '') || ($user_name != '') || ($user_role !='')) {
-            redirect('user/dashboard');
+            redirect('user/feeds');
         }
         $this->load->view('pages/login/login');
     }
@@ -219,7 +219,7 @@ public function loginCustomer() {
          $(".alert").fadeTo(500, 0).slideUp(500, function(){
           $(this).remove(); 
       });
-      window.location.href="' . base_url() . 'user/dashboard";
+      window.location.href="' . base_url() . 'user/feeds";
   }, 100);
   </script>
   ';
