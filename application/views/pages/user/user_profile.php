@@ -158,8 +158,8 @@ error_reporting(E_ERROR | E_PARSE);
                 <hr>
                 <div class="col-lg-2"></div>
                 <div class="w3-col l8">
-                    <div class="w3-col l12 w3-center w3-margin-bottom">
-                        <span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span>
+                    <div class="w3-col s12 w3-center w3-margin-bottom">
+                        <span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span> &nbsp;<span class="w3-center">History</span>
                     </div>
                     <!-- MAIN CONTENT STARTS -->
                     <div class="w3-col l12" style="" id="myProductDiv" >

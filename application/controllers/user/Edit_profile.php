@@ -25,7 +25,7 @@ class Edit_profile extends CI_Controller {
             $this->load->view('pages/user/mobile/profile/mobileedit_profile', $data);
             $this->load->view('includes/mobile/footer');
         } else {
-            $this->load->view('includes/admin_header.php');
+            $this->load->view('includes/header.php');
             $this->load->view('pages/user/edit_profile', $data);
         }
     }
@@ -50,11 +50,18 @@ class Edit_profile extends CI_Controller {
     public function updateProfile() {
         $user_name = $this->session->userdata('user_name');
         extract($_POST);
+        extract($_FILES);
         $data = $_POST;
-        //print_r($data);
+        // print_r($_FILES);die();
         //print_r($_FILES);
         //die();
-
+        $imagePath = '';
+        $imagepath = '';
+//        if ($profile_image_edit == '') {
+//            $image_path = '';
+//        } else {
+//            $image_path = $profile_image_edit;
+//        }
         $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
 
         if (!empty(($_FILES['profile_image']['name']))) {
@@ -71,9 +78,12 @@ class Edit_profile extends CI_Controller {
                 die();
             }
         }
-
-        $imagePath = '';
         $image_name = $_FILES['profile_image']['name'];
+        if ($profile_image_edit == '') {
+            $imagepath = '';
+        } else {
+            $imagepath = $profile_image_edit;
+        }
         if (!empty(($_FILES['profile_image']['name']))) {
             $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
 
@@ -90,17 +100,18 @@ class Edit_profile extends CI_Controller {
             // print_r($fileData = $this->upload->data());die();
             $this->load->library('upload', $config);  //load upload file config.
             $this->upload->initialize($config);
+            $image_path = '';
 
             if ($this->upload->do_upload('userFile')) {
                 $fileData = $this->upload->data();
-                $imagePath = $fileData['file_name'];
+                $imagepath = 'images/users/' . $fileData['file_name'];
             }
         }
 
-        //echo $imagePath;die();
+        //echo $_FILES['profile_image']['name'];die();
         //validating image ends---------------------------//
         //print_r($data);die();
-        $data['imagePath'] = $uploadPath . $imagePath;
+        $data['imagePath'] = $imagepath;
         $data['username'] = $user_name;
         $path = base_url();
         $url = $path . 'api/Editprofile_api/updateProfile';
