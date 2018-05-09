@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-//$route['auth/login/verify_email/(:any)'] = "auth/login/verify_email/$1";
+$route['user/category/(:any)'] = "user/category/index/$1";
 
 //$route['login/(:any)'] = 'login/index/$1';
 //$route['auth/login/(:any)'] = "auth/login/login_auth/$1";
