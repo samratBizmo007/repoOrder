@@ -590,6 +590,7 @@ function checkEmail_exist($email_id) {
             foreach ($result->result_array() as $row) {
                 $user_name = $row['username'];
                 $user_id = $row['user_id'];
+                $role = $row['role'];
             }
 
             if ($result) {
@@ -602,6 +603,7 @@ function checkEmail_exist($email_id) {
                     'status' => 200,
                     'user_id' => $user_id,
                     'user_name' => $user_name,
+                    'role' => $role,
                     'status_message' => 'Login Successfull'
                 );
             } else {

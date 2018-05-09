@@ -124,10 +124,11 @@ class Manage_products extends CI_Controller {
         //$imagePath = '';
         for ($i = 0; $i < count($_FILES['prod_image']['name']); $i++) {
             $imagePath = '';
+            $product_image = $_FILES['prod_image']['name'][$i];
             if (!empty(($_FILES['prod_image']['name'][$i]))) {
                 $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
 
-                $_FILES['userFile']['name'] = $product_name . '-' . $user_name . '-' . $user_id . '.' . $extension;
+                $_FILES['userFile']['name'] = $product_name . '-' . $user_name . '-'.$product_image.$user_id . '.' . $extension;
                 $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
                 $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
                 $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];
@@ -159,7 +160,7 @@ class Manage_products extends CI_Controller {
         $data['user_id'] = $user_id;
         $data['role'] = $user_role;
         $data['prod_images'] = json_encode($prod_Arr);
-        print_r($data);die();
+        //print_r($data);die();
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/addProduct';
         $ch = curl_init($url);

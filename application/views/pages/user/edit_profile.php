@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(E_ERROR | E_PARSE);
+$user_id = $this->session->userdata('user_id');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +24,7 @@ error_reporting(E_ERROR | E_PARSE);
         <div class="w3-main w3-padding-small" style="margin-left:120px;">
             <!-- Header -->
             <header class="w3-container" >
-                <h5><b><i class="fa fa-cog"></i> Edit Profile</b><a class="w3-button w3-right" href="<?php echo base_url(); ?>user/user_profile"><span class="w3-text-orange"><b>Back To Profile </b></span></a></h5>
+                <h5><b><i class="fa fa-cog"></i> Edit Profile</b><a class="w3-button w3-right" href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($user_id);?>"><span class="w3-text-orange"><b>Back To Profile </b></span></a></h5>
 
             </header>
 
