@@ -32,7 +32,7 @@
     </div>
     
     <div class="w3-col s2 w3-center" style="padding:0 ">
-      <a href="<?php echo base_url(); ?>user/user_profile" class="btn icon"><label><i class="fa fa-user <?php if($record_num=='user_profile'){ echo 'icon_active';}else{ echo 'w3-text-lightgrey';}?> w3-xlarge"></i></label>
+      <a href="<?php echo base_url(); ?>user/user_profile" class="btn icon"><label><i class="fa fa-user <?php if($record_num=='user_profile' || $record_num=='edit_profile'){ echo 'icon_active';}else{ echo 'w3-text-lightgrey';}?> w3-xlarge"></i></label>
       </a>
     </div>
   </div>

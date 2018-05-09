@@ -108,6 +108,11 @@ error_reporting(E_ERROR | E_PARSE);
     </div>
   </div>
   <!-- manage profile div end -->
+  
+  <!-- add more space below form-->
+  <div class="w3-col l12" style="height: 50px"></div>
+
+
   <!-- ___________________________tab 2 div ends here__________________________________ -->
   <!-- ____________________________the tab 2 ends here____________________ -->
   <!-- End page content -->

@@ -4,30 +4,28 @@ error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edit Profile</title>
-
-        <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-    </head>
-    <body class="">
-        <!-- !PAGE CONTENT! -->
-        <div class="w3-main" style="margin-top: 40px; margin-bottom: 40px;">
-            <div class="w3-col l9 w3-border-left w3-margin-bottom" id="editprofile">
-                <form id="editProfileForm" name="editProfileForm">
-                    <div class="w3-col l12 w3-right">
-                        <div class="col-sm-3 col-xs-3"></div>
-                        <div class="w3-col s6 w3-center w3-padding">
-                            <div class="text-center w3-padding profile_portfolio">
-                                <?php
-                                $default_image = 'images/default_male.png';
-                                if ($userDetails['status_message'][0]['user_image'] == '') {
-                                    ?>
-                                    <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:80px;width:80px;"></div>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+</head>
+<body>
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-top: 40px;">
+        <div class="w3-col l9">
+            <form id="editProfileForm" name="editProfileForm">
+                <div class="w3-col l12 w3-right">
+                    <div class="col-sm-3 col-xs-3"></div>
+                    <div class="w3-col s6 w3-center w3-padding">
+                        <div class="text-center w3-padding profile_portfolio">
+                            <?php
+                            $default_image = 'images/default_male.png';
+                            if ($userDetails['status_message'][0]['user_image'] == '') {
+                                ?>
+                                <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:80px;width:80px;"></div>
                                 <?php } else { ?>
-                                    <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:80px;width:80px;"></div>
+                                <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:80px;width:80px;"></div>
                                 <?php } ?>
-<!--                                <img class="img img-circle w3-center" alt="Profile Image not found" style="height: 50%; width: 50%; object-fit:contain; "  src="<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>" id="profile_imagePreview" onerror="this.src='<?php echo base_url() ?>css/logos/default_noimage.jpg'">-->
                                 <div class="w3-col l12 ">
                                     <h6 class="w3-small" style="color: #00B8D4;">Change photo</h6>
                                     <input type="file" class="w3-input " name="profile_image" id="profile_image" >
@@ -37,7 +35,7 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                         <div class="col-sm-3 col-xs-3"></div>
                     </div>
-                    <div class="w3-col l12 w3-padding w3-margin-top">
+                    <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">Full Name: </label>
                         </div>
@@ -45,7 +43,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <input type="text" class="w3-input w3-border w3-small" placeholder="full name" value="<?php echo $userDetails['status_message'][0]['full_name']; ?>" name="fullname" id="fullname" required>
                         </div>
                     </div>
-                    <div class="w3-col l12 w3-padding w3-margin-top">
+                    <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">Website: </label>
                         </div>
@@ -53,15 +51,15 @@ error_reporting(E_ERROR | E_PARSE);
                             <input type="text" class="w3-input w3-border w3-small" placeholder="website" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website">
                         </div>
                     </div>
-                    <div class="w3-col l12 w3-padding w3-margin-top">
+                    <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">Bio: </label>
                         </div>
                         <div class="w3-col l10">
-                            <textarea class="w3-input w3-border w3-small w3-margin-bottom" placeholder="bio" name="bio" id="bio" rows="5" cols="50" style="resize: none;"><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
+                            <textarea class="w3-input w3-border w3-small " placeholder="bio" name="bio" id="bio" rows="5" cols="50" style="resize: none;"><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
                         </div>
                     </div>
-                    <div class="w3-col l12 w3-padding w3-margin-top">
+                    <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">phone no: </label>
                         </div>
@@ -69,7 +67,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <input type="number" class="w3-input w3-border w3-small" placeholder="phone no" value="<?php echo $userDetails['status_message'][0]['phone']; ?>" name="phone" id="phone" required>
                         </div>
                     </div>
-                    <div class="w3-col l12 w3-padding w3-margin-top">
+                    <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">Company Name: </label>
                         </div>
@@ -77,7 +75,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <input type="text" class="w3-input w3-border w3-small" placeholder="company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name">
                         </div>
                     </div>
-                    <div class="w3-col l12 w3-padding w3-margin-top w3-margin-bottom">
+                    <div class="w3-col l12 w3-padding ">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">Address: </label>
                         </div>
@@ -85,18 +83,18 @@ error_reporting(E_ERROR | E_PARSE);
                             <textarea class="w3-input w3-border w3-small" placeholder="address" name="address" id="address" rows="5" cols="50" style="resize: none; text-align: left;" required><?php echo $userDetails['status_message'][0]['address']; ?></textarea>
                         </div>
                     </div>
-                    <div class="w3-col l12 w3-margin-bottom w3-padding-bottom w3-center" id="btnsubmit">
-                        <button  type="submit" title="submit profile" class="w3-margin-bottom w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Submit</button>
+                    <div class="w3-col l12 w3-padding w3-center" id="btnsubmit">
+                        <button  type="submit" title="submit profile" class="w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Update</button>
                     </div>
                 </form>
             </div>
-            <div class="w3-col l9 w3-border-left w3-margin-bottom" id="editprofile">
+            <div class="w3-col l9 w3-margin-bottom">
                 <hr>
                 <div class="w3-col l12 w3-center">
                     <span class="w3-center w3-label w3-large">Change Password</span>
                 </div>
                 <form id="changepass_Form" name="changepass_Form">
-                    <div class="w3-col l12 w3-padding w3-margin-top">
+                    <div class="w3-col l12 w3-padding ">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">Current password: </label>
                         </div>
@@ -104,7 +102,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <input type="text" class="w3-input w3-border w3-small" placeholder="Current Password" value="" name="curr_password" id="curr_password" required>
                         </div>
                     </div>
-                    <div class="w3-col l12 w3-padding w3-margin-top">
+                    <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">New Password: </label>
                         </div>
@@ -112,7 +110,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <input type="password" onkeyup="checkPassword();" placeholder="New Password" class="w3-input w3-border w3-small" value="" name="new_password" id="new_password" required>
                         </div>
                     </div>
-                    <div class="w3-col l12 w3-padding w3-margin-top">
+                    <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small">Confirm Password: </label>
                         </div>
@@ -122,12 +120,15 @@ error_reporting(E_ERROR | E_PARSE);
                     </div>
                     <div class="w3-col l12 w3-margin-left w3-padding-small" id="message"></div>
                     <div class="w3-col l12 w3-center w3-padding-small w3-margin-bottom">
-                        <button  type="submit" id="changepass_submit" title="Change Password" class="w3-center w3-button w3-medium w3-blue" disabled>Submit</button>                            
+                        <button  type="submit" id="changepass_submit" title="Change Password" class="w3-center w3-button w3-medium w3-blue" disabled>Change</button>                            
                     </div>
                 </form>
 
             </div>
         </div>
+
+        <!-- add more space below form-->
+        <div class="w3-col l12" style="height: 50px"></div>
     </body>
     <!--  script to update user dashboard image   -->
     <script>
@@ -164,14 +165,14 @@ error_reporting(E_ERROR | E_PARSE);
 //-----------function ends------------------------
 
 //  ------------------------Change Password -------------------------//
-        $(function () {
-            $("#changepass_Form").submit(function () {
-                dataString = $("#changepass_Form").serialize();
+$(function () {
+    $("#changepass_Form").submit(function () {
+        dataString = $("#changepass_Form").serialize();
 
-                $.ajax({
-                    type: "POST",
-                    url: "<?php echo base_url(); ?>user/edit_profile/changePassword",
-                    data: dataString,
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>user/edit_profile/changePassword",
+            data: dataString,
                     return: false, //stop the actual form post !important!
                     success: function (data)
                     {
@@ -180,8 +181,8 @@ error_reporting(E_ERROR | E_PARSE);
                 });
                 return false;  //stop the actual form post !important!
             });
-        });
+});
 //  -------------------------END -------------------------------//
 
-    </script>
+</script>
 </html>
