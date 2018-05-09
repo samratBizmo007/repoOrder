@@ -110,6 +110,30 @@ error_reporting(E_ERROR | E_PARSE);
 // ------------function preview image end------------------//
     </script>
     <!--  script to update user dashboard image   -->
+<script>
+$(document).ready(function (e){
+    $("#addOrder_formMobile").on('submit',(function(e){       
+        e.preventDefault();   
+        $("#btnsubmit").html('<center><span class="w3-xxlarge fa fa-spinner fa-spin"></span></center>');
+        $.ajax({
+            url: BASE_URL + "orders/Manage_orders/addOrder",
+            type: "POST",
+            data:  new FormData(this),
+            contentType: false,
+            cache: false,
+            processData:false,
+            success: function(data){
+                $.alert(data);
+                $("#btnsubmit").html('<button  type="submit" title="Raise Order" class="w3-margin w3-medium w3-button  w3-red">Raise New Order</button>');
+            },
+            error: function(){}             
+        });
+    }));
+});
+</script>
+//- This script is used to save profile information -->
+
+
     <script>
         $(function () {
             $("#addProduct_form").submit(function () {

@@ -77,7 +77,7 @@
           else{
             ?>
             <div class="alert alert-warning w3-center">
-              <b><?php echo $all_users['status_message']; ?></b>
+              <b><?php echo $timelineData['status_message']; ?></b>
             </div>               
             <?php 
           } 
