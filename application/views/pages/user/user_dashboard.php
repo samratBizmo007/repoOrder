@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
+
   <!-- <link rel="stylesheet" href="assets/css/alert/jquery-confirm.css"> -->
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
   <!-- <script type="text/javascript" src="assets/css/alert/jquery-confirm.js"></script> -->
@@ -48,9 +51,43 @@
                 <!-- Top section div ends -->
 
                 <!-- Mid section div start -->
-                <div class="w3-col l12 w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $key['prod_image']; ?>');">
-                  <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
-                </div>
+                <?php 
+                $imageArr=json_decode($key['prod_image'],TRUE);
+                if(count($imageArr)>1){
+                  ?>
+                  <!-- Image slider Swiper repo -->
+                  <div class="swiper-container" style="height: 500px;width: 100%">
+                    <div class="swiper-wrapper">
+                      <?php 
+                      foreach ($imageArr as $image) {
+                        ?>
+                        <div class="w3-col l12 swiper-slide w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
+                          <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
+                        </div>
+                        <?php 
+                      }
+                      ?>
+                    </div>
+                    <!-- Add Pagination for multiple images-->
+                    <div class="swiper-pagination w3-opacity"></div>
+                  </div>
+                <?php } //-------end of if count of images
+                else{ ?>
+
+                <!-- Single image div -->
+                <?php 
+                foreach ($imageArr as $image) {
+                  ?>
+                  <div class="w3-col l12 w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
+                  </div>
+                  <?php 
+                }
+                ?>
+
+                <?php 
+                } //----------------end of else count of images
+                ?>
+
                 <!-- Mid section div ends -->
 
                 <!-- Bottom section div starts -->
@@ -102,5 +139,17 @@
   <!-- Product timeline ends here -->
 </div>
 <!-- End page content -->
+
+<!-- Swiper JS -->
+<script src="<?php echo base_url(); ?>css/posts/dist/js/swiper.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  });
+</script>
 </body>
 </html>

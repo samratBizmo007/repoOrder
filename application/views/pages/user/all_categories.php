@@ -38,7 +38,7 @@ error_reporting(E_ERROR | E_PARSE);
             <div class="w3-col l12 w3-center w3-padding-top">
               <a class="btn w3-padding" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($result['cat_id']); ?>">
                 <span>
-                <i class="fa fa-cubes w3-jumbo"></i>
+                <i class="fa fa-mobile w3-jumbo"></i>
               </span>
               <div class="w3-col l12">
                 <span class="w3-small"><?php echo $result['category_name']; ?></span>
