@@ -216,7 +216,9 @@ $user_id = $this->session->userdata('user_id');
                                             <center><a data-dismiss="modal" title="Close Image" class="btn fa fa-close w3-xlarge w3-padding-small w3-text-white"></a></center>
                                             <div class="modal-content">
                                                 <div class="modal-body ">
+                                                    <?php if($link_user_id == $user_id){ ?>                                             
                                                     <div class="w3-right w3-small w3-padding-bottom"><a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-button" style="padding: 3px;"><span>Delete</span></a></div>
+                                                    <?php } ?>
                                                     <img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">
                                                     <label class="w3-margin-top w3-label">Product Name: </label><b> <?php echo $key['product_name']; ?></b><br>                                   
                                                     <label class="w3-label">Product Description: </label><b class="w3-small"> <?php echo $key['prod_description']; ?></b>
