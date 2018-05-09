@@ -17,7 +17,7 @@ class Editprofile_model extends CI_Model {
         //print_r($data);die();
         $sql = "UPDATE user_tab SET full_name='$fullname',"
                 . " website='$website', bio='$bio', address='$address',"
-                . " phone='$phone',user_image='$imagePath',company_name='$company_name' WHERE username = '$username'";
+                . " phone='$phone',user_image='$imagePath',company_name='$company_name' WHERE user_id = '$user_id'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
@@ -36,10 +36,10 @@ class Editprofile_model extends CI_Model {
     //--------------fun for change password------------------------//
     public function changePassword($data) {
         extract($data);
-        $checkCurrPassword = Editprofile_model::checkCurrPassword_exist($curr_password, $username);
+        $checkCurrPassword = Editprofile_model::checkCurrPassword_exist($curr_password, $user_id);
         if ($checkCurrPassword == 1) {
             $new_pass = base64_encode($new_password);
-            $sql = "UPDATE user_tab SET password='$new_pass' WHERE username = '$username'";
+            $sql = "UPDATE user_tab SET password='$new_pass' WHERE user_id = '$user_id'";
             $result = $this->db->query($sql);
             if ($result) {
                 $response = array(
