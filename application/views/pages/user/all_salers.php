@@ -35,9 +35,9 @@ error_reporting(E_ERROR | E_PARSE);
             <div class="w3-col l3 w3-card w3-round w3-margin-bottom" style="margin:6px">
               <div class="w3-col s4 w3-padding-small w3-padding-top ">
                 <?php 
-                if($key['prod_image']!=''){
+                if($key['user_image']!=''){
                 ?>
-                 <div class="w3-circle w3-border" style="height: 80px;width: 80px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url().$key['prod_image']; ?>');"></div>
+                 <div class="w3-circle w3-border" style="height: 80px;width: 80px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url().$key['user_image']; ?>');"></div>
                 <?php 
               }
               else{
