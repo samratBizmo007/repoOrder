@@ -24,11 +24,11 @@
       </a>
     </div>
     <div class="w3-col s4 w3-center" style="padding:0 ">
-      <a href="<?php echo base_url(); ?>user/manage_products" class="btn icon"><label><i class="fa fa-plus-square <?php if($record_num=='post_product'){ echo 'icon_active';}else{ echo 'w3-text-lightgrey';}?>w3-xlarge"></i></label>
+      <a href="<?php echo base_url(); ?>user/manage_products" class="btn icon"><label><i class="fa fa-plus-square <?php if($record_num=='manage_products'){ echo 'icon_active';}else{ echo 'w3-text-lightgrey';}?> w3-xlarge"></i></label>
       </a>
     </div>
-    <div class="w3-col s2 w3-center">
-      <a href="<?php echo base_url(); ?>orders/manage_orders" class="btn icon"><label><i class="fa fa-cubes <?php if($record_num=='add_order'){ echo 'icon_active';}else{ echo 'w3-text-lightgrey';}?> w3-xlarge"></i></label>
+    <div class="w3-col s2 w3-center" style="padding:0;margin-left: -12px">
+      <a href="<?php echo base_url(); ?>orders/manage_orders" class="btn icon"><label><i class="fa fa-cubes <?php if($record_num=='manage_orders'){ echo 'icon_active';}else{ echo 'w3-text-lightgrey';}?> w3-xlarge"></i></label></a>
     </div>
     
     <div class="w3-col s2 w3-center" style="padding:0 ">

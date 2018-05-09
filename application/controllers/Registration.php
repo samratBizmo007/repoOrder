@@ -92,16 +92,7 @@ class Registration extends CI_controller{
 
             echo '<div class="alert alert-success" style="margin-bottom:5px">
             <strong>' . $response['status_message'] . '</strong> 
-            </div>
-            <script>
-            window.setTimeout(function() {
-             $(".alert").fadeTo(500, 0).slideUp(500, function(){
-              $(this).remove(); 
-          });
-          window.location.href="' . base_url() . 'user/dashboard";
-      }, 2000);
-      </script>
-      ';
+            </div>';
   }
         //echo $response_json;
 }

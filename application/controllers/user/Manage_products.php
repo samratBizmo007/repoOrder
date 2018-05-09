@@ -35,7 +35,7 @@ class Manage_products extends CI_Controller {
           $this->load->view('includes/mobile/footer');
       }
       else{
-        $this->load->view('includes/admin_header.php');
+        $this->load->view('includes/header.php');
         $this->load->view('pages/user/manage_product', $data);
     }
 }

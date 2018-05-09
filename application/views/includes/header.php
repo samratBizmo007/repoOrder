@@ -56,13 +56,13 @@ $user_name=$this->session->userdata('user_name');
         <div class="clear"></div>
       </a>
 
-      <a href="<?php echo base_url(); ?>user/post_product" class="w3-bar-item <?php if($this->uri->segment(2)=='post_product'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center">
+      <a href="<?php echo base_url(); ?>user/manage_products" class="w3-bar-item <?php if($this->uri->segment(2)=='manage_products'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center">
         <div class="w3-col l12"><i class="w3-xlarge fa fa-plus-square fa-fw"></i></div>
         <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Add Product<br><br></div>      
         <div class="clear"></div>
       </a>
 
-      <a href="<?php echo base_url(); ?>orders/add_order" class="w3-bar-item <?php if($this->uri->segment(2)=='add_order'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center">
+      <a href="<?php echo base_url(); ?>orders/manage_orders" class="w3-bar-item <?php if($this->uri->segment(2)=='manage_orders'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center">
         <div class="w3-col l12"><i class="w3-xlarge fa fa-list-alt fa-fw"></i></div>
         <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">My Orders<br><br></div>      
         <div class="clear"></div>

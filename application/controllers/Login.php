@@ -21,7 +21,7 @@ class Login extends CI_Controller {
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
         if (($user_id != '') || ($user_name != '') || ($user_role !='')) {
-            redirect('user/dashboard');
+            redirect('user/feeds');
         }
         $this->load->view('pages/login/login');
     }
@@ -83,14 +83,6 @@ class Login extends CI_Controller {
             echo '<div class="alert alert-success" style="margin-bottom:5px">
             <strong>' . $response['status_message'] . '</strong> 
             </div>
-            <script>
-            window.setTimeout(function() {
-             $(".alert").fadeTo(500, 0).slideUp(500, function(){
-              $(this).remove(); 
-          });
-          window.location.href="' . base_url() . 'user/dashboard";
-      }, 2000);
-      </script>
       ';
   }
         //echo $response_json;
@@ -219,7 +211,7 @@ public function loginCustomer() {
          $(".alert").fadeTo(500, 0).slideUp(500, function(){
           $(this).remove(); 
       });
-      window.location.href="' . base_url() . 'user/dashboard";
+      window.location.href="' . base_url() . 'user/feeds";
   }, 100);
   </script>
   ';
@@ -232,14 +224,14 @@ public function logout() {
 
     $user_id = $this->session->userdata('user_id');
         //if logout success then destroy session and unset session variables
-    $path = base_url();
-    $url = $path . 'api/Login_api/logout?user_id=' . $user_id;
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_HTTPGET, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response_json = curl_exec($ch);
-    curl_close($ch);
-    $response = json_decode($response_json, true);
+    // $path = base_url();
+    // $url = $path . 'api/Login_api/logout?user_id=' . $user_id;
+    // $ch = curl_init($url);
+    // curl_setopt($ch, CURLOPT_HTTPGET, true);
+    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    // $response_json = curl_exec($ch);
+    // curl_close($ch);
+    // $response = json_decode($response_json, true);
 
         //if logout success then destroy session and unset session variables
     $this->session->unset_userdata(array("user_id" => "", "user_name" => ""));

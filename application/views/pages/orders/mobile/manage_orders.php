@@ -39,9 +39,9 @@ error_reporting(E_ERROR | E_PARSE);
   }
 </style>
 </head>
-<body class=" w3-light-grey">
+<body class="">
   <!-- !PAGE CONTENT! -->
-  <div class="w3-main" style="margin-left:120px;">
+  <div class="w3-main" style="margin-top:40px;margin-bottom: 40px">
 
     <div class="w3-margin-bottom">
       <!-- Manage Profiles div -->

@@ -8,14 +8,7 @@ error_reporting(E_ERROR | E_PARSE);
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Manage Product</title>
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
-  <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-  <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
-  <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
+ 
   <script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/js/orders/manage_order.js"></script>
   <style>
@@ -40,9 +33,9 @@ error_reporting(E_ERROR | E_PARSE);
   }
 </style>
 </head>
-<body class=" w3-light-grey">
+<body>
   <!-- !PAGE CONTENT! -->
-  <div class="w3-main" style="margin-left:120px;">
+  <div class="w3-main" style="margin-top:40px;margin-bottom: 40px">
 
     <div class="w3-margin-bottom">
       <!-- Manage Profiles div -->
