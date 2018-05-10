@@ -158,7 +158,7 @@ class Manage_products extends CI_Controller {
         //$data['imagePath'] = $uploadPath . $imagePath;
         $data['posted_by'] = $user_name;
         $data['user_id'] = $user_id;
-        $data['role'] = $user_role;
+        //$data['role'] = $user_role;
         $data['prod_images'] = json_encode($prod_Arr);
         //print_r($data);die();
         $path = base_url();
