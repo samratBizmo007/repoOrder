@@ -95,7 +95,6 @@ class Manage_products extends CI_Controller {
     public function addProduct() {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
-        $user_role = $this->session->userdata('user_role');
         extract($_POST);
         if ($cat_id == 0) {
             echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-large"></i> Please Select Category First.</label>';
@@ -128,7 +127,7 @@ class Manage_products extends CI_Controller {
             if (!empty(($_FILES['prod_image']['name'][$i]))) {
                 $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
 
-                $_FILES['userFile']['name'] = $product_name . '-' . $user_name . '-'.$product_image.$user_id . '.' . $extension;
+                $_FILES['userFile']['name'] = $product_name . '-' . $user_name . '-' . $product_image . $user_id . '.' . $extension;
                 $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
                 $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
                 $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];

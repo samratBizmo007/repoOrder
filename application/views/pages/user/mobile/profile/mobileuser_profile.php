@@ -7,12 +7,13 @@ $user_id = $this->session->userdata('user_id');
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>View Profile</title>
+        <title>View Profile</title>
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">        
         <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
         <script type="text/javascript" src="<?php echo base_url(); ?>css/js/admin/admin_settings.js"></script>
@@ -103,10 +104,10 @@ $user_id = $this->session->userdata('user_id');
                             <div class="w3-col s12">
                                 <label class="w3-small"><b><?php echo $prod_count; ?></b> Posts</label> 
                             </div>
-                            <?php if($link_user_id == $user_id){ ?>                          
-                            <div class="w3-col s12 w3-margin-bottom">
-                                <a class="btn btn-block w3-padding-tiny w3-border w3-center w3-small" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-small bluish-green "><b>Edit Profile </b></span></a>
-                            </div>
+                            <?php if ($link_user_id == $user_id) { ?>                          
+                                <div class="w3-col s12 w3-margin-bottom">
+                                    <a class="btn btn-block w3-padding-tiny w3-border w3-center w3-small" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-small bluish-green "><b>Edit Profile </b></span></a>
+                                </div>
                             <?php } ?>
                         </div>
                     </div>
@@ -147,7 +148,7 @@ $user_id = $this->session->userdata('user_id');
                             if ($userDetails['status_message'][0]['website'] != '') {
                                 echo $userDetails['status_message'][0]['website'];
                             } else {
-                               // echo 'Enter Website.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                // echo 'Enter Website.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
                             ?></span>
                     </div>
@@ -169,7 +170,7 @@ $user_id = $this->session->userdata('user_id');
                             }
                             ?></span>
                     </div>
-                    
+
                 </div>
                 <div class="col-lg-2"></div>
             </div>
@@ -189,14 +190,20 @@ $user_id = $this->session->userdata('user_id');
                             //print_r($sliderInfo);die();
                             if (count($products['status_message']) != 0) {
                                 foreach ($products['status_message'] as $key) {
-                                    ?>
-                                    <!-- Image Div -->
-                                    <div class="w3-col s6 w3-padding-small allImage-div ">
-                                        <a href="#" title="View Product" class="allImage w3-button w3-text-orange" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> " style="background-position:center;background-repeat: no-repeat; background-image: url('<?php echo base_url() . $key['prod_image']; ?>');">
+                                    $prodimagesdata = json_decode($key['prod_image'], TRUE);
+                                    foreach ($prodimagesdata as $val) {
+                                        ?>
+                                        <!-- Image Div -->
+                                        <div class="w3-col s6 w3-padding-small allImage-div ">
+                                            <a href="#" title="View Product" class="allImage w3-button w3-text-orange" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> " style="background-position:center;background-repeat: no-repeat; background-image: url('<?php echo base_url() . $val['prod_image']; ?>');">
 
-                                        </a>
-                                    </div>
-                                    <!-- Image Div ends -->	
+                                            </a>
+                                        </div>
+                                        <!-- Image Div ends -->
+                                        <?php
+                                        break;
+                                    }
+                                    ?>
                                     <!-- Modal for show images -->	
                                     <div id="productModal_<?php echo $key['prod_id']; ?>" class="modal fade" role="dialog">
                                         <div class="modal-dialog modal-md">
@@ -204,10 +211,48 @@ $user_id = $this->session->userdata('user_id');
                                             <center><a data-dismiss="modal" title="Close Image" class="btn fa fa-close w3-xlarge w3-padding-small w3-text-white"></a></center>
                                             <div class="modal-content">
                                                 <div class="modal-body ">
-                                            <?php if($link_user_id == $user_id){ ?>                          
-                                                    <div class="w3-right w3-small w3-padding-bottom"><a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-button" style="padding: 2px;"><span>Delete</span></a></div>
+                                                    <?php if ($link_user_id == $user_id) { ?>                          
+                                                        <div class="w3-right w3-small w3-padding-bottom"><a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-button" style="padding: 2px;"><span>Delete</span></a></div>
                                                     <?php } ?>
-                                                    <img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">
+                                                    <!-- Mid section div start -->
+                                                    <?php
+                                                    $imageArr = json_decode($key['prod_image'], TRUE);
+                                                    if (count($imageArr) > 1) {
+                                                        ?>
+                                                        <!-- Image slider Swiper repo -->
+                                                        <div class="swiper-container" style="height: 250px;width: 100%">
+                                                            <div class="swiper-wrapper">
+                                                                <?php
+                                                                foreach ($imageArr as $image) {
+                                                                    ?>
+                                                                    <div class="w3-col l12 swiper-slide w3-border-bottom w3-black timeline_imgMob" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
+                                                                      <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
+                                                                    </div>
+                                                                    <?php
+                                                                }
+                                                                ?>
+                                                            </div>
+                                                            <!-- Add Pagination for multiple images-->
+                                                            <div class="swiper-pagination w3-opacity"></div>
+                                                        </div>
+                                                        <?php
+                                                    } //-------end of if count of images
+                                                    else {
+                                                        ?>
+                                                        <!-- Single image div -->
+                                                        <?php
+                                                        foreach ($imageArr as $image) {
+                                                            ?>
+                                                            <div class="w3-col l12 w3-border-bottom w3-black timeline_imgMob" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
+                                                            </div>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        <?php
+                                                    } //----------------end of else count of images
+                                                    ?>
+                                                    <!-- Mid section div ends -->
+                                                    <!--<img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">-->
                                                     <label class="w3-margin-top w3-label">Product Name: </label><b> <?php echo $key['product_name']; ?></b><br>                                   
                                                     <label class="w3-label">Product Description: </label><b class="w3-small"> <?php echo $key['prod_description']; ?></b>
                                                 </div>							
@@ -230,6 +275,17 @@ $user_id = $this->session->userdata('user_id');
         </div>
         <!-- div with small buttons row -->
     </body>
+    <!-- Swiper JS -->
+    <script src="<?php echo base_url(); ?>css/posts/dist/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+                                                var swiper = new Swiper('.swiper-container', {
+                                                    pagination: {
+                                                        el: '.swiper-pagination',
+                                                    },
+                                                });
+    </script>
     <script>
         //--------------fun for remove product from product table-------------------------------//
         function RemoveProduct(prod_id) {

@@ -183,7 +183,6 @@ error_reporting(E_ERROR | E_PARSE);
                 }));
             });
         </script>
-        //- This script is used to save profile information -->
 
 
         <script>
