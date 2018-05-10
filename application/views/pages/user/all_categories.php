@@ -30,15 +30,16 @@ error_reporting(E_ERROR | E_PARSE);
       <div class="w3-col l12" id="categoryDiv">
 
         <?php
+        // print_r($all_categories['status_message']);die();
         foreach ($all_categories['status_message'] as $result) {
          ?>
          <!-- category div block -->
-         <div class="w3-col l3" style="padding: 6px">
+         <div class="w3-col l2" style="padding: 6px">
           <div class="w3-col s12 w3-border w3-round-large w3-card-2" style="height: 120px">
             <div class="w3-col l12 w3-center w3-padding-top">
               <a class="btn w3-padding" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($result['cat_id']); ?>">
                 <span>
-                <i class="fa fa-mobile w3-jumbo"></i>
+                <i class="fa fa-<?php echo $result['fa_symbol']; ?> w3-xxlarge"></i>
               </span>
               <div class="w3-col l12">
                 <span class="w3-small"><?php echo $result['category_name']; ?></span>

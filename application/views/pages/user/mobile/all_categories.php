@@ -30,10 +30,10 @@ error_reporting(E_ERROR | E_PARSE);
          <!-- category div block -->
          <div class="w3-col s6" style="padding: 6px">
           <div class="w3-col s12 w3-border w3-round-large w3-card-2" style="height: 120px">
-            <div class="w3-col l12 w3-center w3-padding-top">
+            <div class="w3-col l12 w3-center w3-padding-top " >
               <a class="btn w3-padding" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($result['cat_id']); ?>">
                 <span>
-                <i class="fa fa-cubes w3-jumbo"></i>
+                <i class="fa fa-<?php echo $result['fa_symbol']; ?> w3-xxlarge"></i>
               </span>
               <div class="w3-col l12">
                 <span class="w3-small"><?php echo $result['category_name']; ?></span>
