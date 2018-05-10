@@ -68,8 +68,11 @@
                       }
                       ?>
                     </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next w3-white w3-opacity"></div>
+                    <div class="swiper-button-prev w3-white w3-opacity"></div>
                     <!-- Add Pagination for multiple images-->
-                    <div class="swiper-pagination w3-opacity"></div>
+                    <!-- <div class="swiper-pagination w3-opacity"></div> -->
                   </div>
                 <?php } //-------end of if count of images
                 else{ ?>
@@ -87,7 +90,6 @@
                 <?php 
                 } //----------------end of else count of images
                 ?>
-
                 <!-- Mid section div ends -->
 
                 <!-- Bottom section div starts -->
@@ -146,8 +148,9 @@
 <!-- Initialize Swiper -->
 <script>
   var swiper = new Swiper('.swiper-container', {
-    pagination: {
-      el: '.swiper-pagination',
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     },
   });
 </script>
