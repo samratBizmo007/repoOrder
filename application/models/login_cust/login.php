@@ -614,48 +614,41 @@ class Login extends CI_Model {
     //----------------------------LOGIN END------------------------------//
     // -----------------------Admin LOGIN ----------------------//
     //-------------------------------------------------------------//
-    public function adminLogin($user_name, $password, $role) {
-
-
+   public function adminLogin($user_name, $password) {
         //sql query to check login credentials
         $pass = base64_encode($password);
-        if ($role == 1) {
-            $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
-        } else {
-            // ------check username registration request status
-            $stat = Login::checkPassword_status($user_name);
-            if ($stat['status'] == 500) {
-                return $stat;
-                die();
-            } else {
-                $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass' AND role='$role'";
-            }
-        } //echo $query;die();
+        $query = "SELECT * FROM admin_tab WHERE (admin_email='$user_name' || username='$user_name') AND password='$password'";
+        //echo $query;die();
         $result = $this->db->query($query);
-        $user_name = "";
+        $admin_id = '0';
+        $privilege = '';
         //if credentials are true, their is obviously only one record
         if ($result->num_rows() == 1) {
+
             foreach ($result->result_array() as $row) {
                 $user_name = $row['username'];
-                // $user_id = $row['user_id'];
+                $admin_id = $row['admin_id'];
             }
 
             //response with values to be stored in sessions if update session_bool true
             $response = array(
                 'status' => 200,
+                'user_id' => $admin_id,
                 'user_name' => $user_name,
-                'status_message' => 'Login Successfull.'
+                'status_message' => 'Login Successfull'
             );
         } else {
             //login failed response
             $response = array(
                 'status' => 500,
+                'status_message' => 'Sorry..Login credentials are incorrect!!!',
+                'user_id' => $admin_id,
                 'user_name' => $user_name,
-                'status_message' => 'Sorry..Login credentials are incorrect!!!'
             );
         }
         return $response;
     }
+
 
 // --function to check password request status---------//
 

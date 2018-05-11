@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller {
     $admin_role=$this->session->userdata('admin_role');
     $this->load->library('user_agent');
     //check session variable set or not, otherwise logout
-    if(($admin_name=='') || ($admin_role=='')){
+    if($admin_name=='') {
      redirect('admin_login');
    }
     $data['orderCount'] = Dashboard::getOrderCount();   

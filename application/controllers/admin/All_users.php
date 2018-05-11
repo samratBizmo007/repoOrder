@@ -13,7 +13,7 @@ class All_users extends CI_Controller {
     $admin_role=$this->session->userdata('admin_role');
 
     //check session variable set or not, otherwise logout
-    if(($admin_name=='') || ($admin_role=='')){
+    if($admin_name==''){
      redirect('admin_login');
    }
     $data['all_users'] = All_users::AllUsers();     //-------show all admin users

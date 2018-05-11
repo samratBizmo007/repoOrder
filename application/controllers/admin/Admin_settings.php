@@ -15,7 +15,7 @@ class Admin_settings extends CI_Controller {
     $this->load->library('user_agent');
 
     //check session variable set or not, otherwise logout
-    if(($admin_name=='') || ($admin_role=='')){
+    if($admin_name=='') {
      redirect('admin_login');
    }
    $data['adminDetails']=Admin_settings::getAdminDetails();

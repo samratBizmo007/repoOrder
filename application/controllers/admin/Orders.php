@@ -16,7 +16,7 @@ class Orders extends CI_Controller {
     $this->load->library('user_agent');
     $this->load->library('user_agent');
     //check session variable set or not, otherwise logout
-        if(($admin_name=='') || ($admin_role=='')){
+        if($admin_name==''){
            redirect('admin_login');
        }
 

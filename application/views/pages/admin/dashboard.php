@@ -41,7 +41,7 @@ error_reporting(E_ERROR | E_PARSE);
     <header class="w3-container" >
       <h5><b><i class="fa fa-user-secret"></i> Dashboard</b></h5>
     </header>
-    <div class="w3-row-padding w3-margin-bottom">
+    <!-- <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-third">
         <div class="w3-container w3-blue w3-padding-16">
           <div class="w3-left"><i class="fa fa-check-square w3-jumbo"></i></div>
@@ -72,7 +72,7 @@ error_reporting(E_ERROR | E_PARSE);
           <h4>Closed Orders</h4>
         </div>
       </div>      
-    </div>
+    </div> -->
     <!-- End page content -->
 
     <!-- Product timeline div starts -->

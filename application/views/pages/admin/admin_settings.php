@@ -30,9 +30,7 @@ $admin_role=$this->session->userdata('admin_role');
 			<div class="w3-col l12">
 
 					<!-- div for update email id -->
-					<?php 
-    			if($admin_role==1){
-      				?>
+					
       				<div class="col-lg-6 w3-padding-small ">
 
 					<div class="w3-col l12 w3-small w3-margin-bottom">
@@ -50,12 +48,10 @@ $admin_role=$this->session->userdata('admin_role');
 					</div>
 					</div>
 
-					<?php } ?>
+					
 					<!-- div for update user name -->
 
-					<?php 
-    				if($admin_role==1){
-      				?>
+					
       					<div class="col-lg-6 w3-padding-small  ">
 
 					<div class="w3-col l12 w3-small w3-margin-bottom">
@@ -72,14 +68,12 @@ $admin_role=$this->session->userdata('admin_role');
 
 					</div>
 				</div>
-					<?php } ?>
+					
 				</div>
 					<!-- div for update password -->
 					<div class="w3-col l12">
 
-					<?php 
-    				if($admin_role==1){
-      				?>
+					
 					<div class="w3-col l6 w3-small w3-margin-bottom">
 						<label><i class="fa fa-key"></i> SetUp Private Key</label><br>
 
@@ -94,11 +88,9 @@ $admin_role=$this->session->userdata('admin_role');
 
 						
 					</div>
-					<?php } ?>
-					<!-- div for update private key -->
-					<?php 
-    				if($admin_role==1){
-      				?>
+					
+					<!-- div for update password -->
+					
 					<div class="w3-col l6 w3-small w3-margin-bottom">
 						<label><i class="fa fa-lock"></i> Update Password</label><br>
 
@@ -114,12 +106,8 @@ $admin_role=$this->session->userdata('admin_role');
 						
 					</div>
 				</div>
-					<?php } ?>
 				
-				  <?php 
-      				if($admin_role==1 || $admin_role==2){
-        		   ?>
-				<div class="col-lg-6 w3-padding-small ">
+			<!-- 	<div class="col-lg-6 w3-padding-small ">
 					<div class="w3-col l12 w3-small w3-margin-bottom">
 						<hr class="w3-hide-large">
 						<label><i class="fa fa-image"></i> SetUp Dashboard Image</label><br>
@@ -138,8 +126,8 @@ $admin_role=$this->session->userdata('admin_role');
 						</form>
 
 					</div>
-				</div>
-				<?php } ?>
+				</div> -->
+				
 			</div>
 		</div>
 		<!-- End page content -->
