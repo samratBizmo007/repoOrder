@@ -246,6 +246,26 @@ public function regretProduct($prod_no, $order_id) {
 }
     // ----------------------fcuntion  ends here --------------------------//
 
+// -----------------fucntion to get all timeline data scroll- ---------------------//
+    public function getTimelineScroll($limit,$start) {
+
+    $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $start,$limit";
+
+    $result = $this->db->query($query);
+
+    if ($result->num_rows() <= 0) {
+        $response = array(
+            'status' => 500,
+            'status_message' => 'Oops! No more Feeds available.');
+    } else {
+        $response = array(
+            'status' => 200,
+            'status_message' => $result->result_array());
+    }
+    return $response;
+}
+    // ----------------------fcuntion  ends here --------------------------//
+
 // ----------------get all timeline dta rows count------------//
 public function numRows() {
     $query = $this->db->select('*')

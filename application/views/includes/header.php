@@ -68,7 +68,7 @@ $user_role=$this->session->userdata('user_role');
       </a>
       <?php } ?>
 
-      <?php if($user_role=='2' || $user_id!=''){ ?>
+      <?php if($user_role=='2' && $user_id!=''){ ?>
       <a href="<?php echo base_url(); ?>user/manage_products" class="w3-bar-item <?php if($this->uri->segment(2)=='manage_products'){ echo 'w3-text-orange';}else{ echo 'w3-text-white';}?> w3-hover-text-orange w3-padding w3-center">
         <div class="w3-col l12"><i class="w3-xlarge fa fa-plus-square fa-fw"></i></div>
         <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">Add Product<br><br></div>      
