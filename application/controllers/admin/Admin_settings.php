@@ -12,7 +12,7 @@ class Admin_settings extends CI_Controller {
     $admin_name=$this->session->userdata('admin_name');
     $admin_role=$this->session->userdata('admin_role');
 
-    $this->load->library('user_agent');
+    // $this->load->library('user_agent');
 
     //check session variable set or not, otherwise logout
     if($admin_name=='') {
@@ -22,17 +22,17 @@ class Admin_settings extends CI_Controller {
    $data['dashImage']=Admin_settings::getDashImage();
    $data['key']=Admin_settings::getpasskey();
 
-     if ($this->agent->is_mobile())
-    {
-      $this->load->view('includes/mobile/admin_header');
-      $this->load->view('pages/admin/mobile/settings',$data);
-      $this->load->view('includes/mobile/admin_footer');
-    }
-    else{
+    //  if ($this->agent->is_mobile())
+    // {
+    //   $this->load->view('includes/mobile/admin_header');
+    //   $this->load->view('pages/admin/mobile/settings',$data);
+    //   $this->load->view('includes/mobile/admin_footer');
+    // }
+    // else{
    $this->load->view('includes/admin_header.php');
    $this->load->view('pages/admin/admin_settings',$data);
         //$this->load->view('includes/footer.php');
- }
+ // }
  }
 
      //----------this function to update admin email-----------------------------//

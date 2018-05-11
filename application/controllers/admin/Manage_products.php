@@ -12,7 +12,7 @@ class Manage_products extends CI_Controller {
         //start session   
         $admin_name = $this->session->userdata('admin_name');
         $admin_role = $this->session->userdata('admin_role');
-        $this->load->library('user_agent');
+        // $this->load->library('user_agent');
         //check session variable set or not, otherwise logout
         if ($admin_name == '') {
             redirect('admin_login');
@@ -20,16 +20,16 @@ class Manage_products extends CI_Controller {
         $data['categories'] = Manage_products::getAllCategories();
         $data['products'] = Manage_products::getPostedImagesBy_username();
 
-        if ($this->agent->is_mobile())
-        {
-          $this->load->view('includes/mobile/header');
-          $this->load->view('pages/admin/mobile/manage_product',$data);
-          $this->load->view('includes/mobile/admin_footer');
-      }
-      else{
+      //   if ($this->agent->is_mobile())
+      //   {
+      //     $this->load->view('includes/mobile/header');
+      //     $this->load->view('pages/admin/mobile/manage_product',$data);
+      //     $this->load->view('includes/mobile/admin_footer');
+      // }
+      // else{
         $this->load->view('includes/admin_header.php');
         $this->load->view('pages/admin/manage_product', $data);
-    }
+    // }
 }
 
     //------------fun for get the all categories -----------------------//
