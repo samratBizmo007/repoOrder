@@ -7,16 +7,8 @@ $user_id = $this->session->userdata('user_id');
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>View Profile</title>
-        <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">        
-        <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>css/js/admin/admin_settings.js"></script>
+        <title>View Profile</title>        
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">                
     </head>
     <style>
         /* saved images overlay opacity overlay */
@@ -135,38 +127,46 @@ $user_id = $this->session->userdata('user_id');
                             ?></span>
                     </div>
                     <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
-                        <span><?php
+                        <span>
+                            <i class="fa fa-briefcase" title="Company"></i>
+                            <?php
                             if ($userDetails['status_message'][0]['company_name'] != '') {
                                 echo $userDetails['status_message'][0]['company_name'];
                             } else {
-                                //echo 'Enter Company Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                echo '<span class="w3-text-red">Not Disclosed.</span>';
                             }
                             ?></span>
                     </div>
                     <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
-                        <span><?php
+                        <span>
+                            <i class="fa fa-globe" title="Company"></i>
+                            <?php
                             if ($userDetails['status_message'][0]['website'] != '') {
                                 echo $userDetails['status_message'][0]['website'];
                             } else {
-                                // echo 'Enter Website.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                echo '<span class="w3-text-red">Not Disclosed.</span>';
                             }
                             ?></span>
                     </div>
                     <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
-                        <span><?php
+                        <span>
+                            <i class="fa fa-address-book" title="Company"></i>
+                            <?php
                             if ($userDetails['status_message'][0]['address'] != '') {
                                 echo $userDetails['status_message'][0]['address'];
                             } else {
-                                //echo 'Enter Company Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                echo '<span class="w3-text-red">Not Disclosed.</span>';
                             }
                             ?></span>
                     </div>
                     <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
-                        <span><?php
+                        <span>
+                            <i class="fa fa-phone" title="Company"></i>
+                            <?php
                             if ($userDetails['status_message'][0]['phone'] != '') {
                                 echo $userDetails['status_message'][0]['phone'];
                             } else {
-                                //echo 'Enter Company Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                echo '<span class="w3-text-red">Not Disclosed.</span>';
                             }
                             ?></span>
                     </div>

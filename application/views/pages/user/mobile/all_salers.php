@@ -7,13 +7,6 @@ error_reporting(E_ERROR | E_PARSE);
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Categories</title>
-  <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
-  <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-  <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script> -->
 </head>
 <body>
 
@@ -45,17 +38,13 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="w3-circle w3-border" style="height: 60px;width: 60px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url(); ?>images/default_male.png');"></div>
                 <?php } ?>
 
-                <div class="w3-col l12 w3-center ">
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="padding: 2px">
+                <div class="w3-col l12 w3-center w3-padding-right">
+                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="padding: 5px">
                     <span class="fa fa-phone w3-medium"></span>
                   </a>
 
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>" style="padding: 2px">
+                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>" style="padding: 5px">
                     <span class="fa fa-envelope-o w3-medium"></span>
-                  </a>
-
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($key['user_id']); ?>" title="View <?php echo $key['username']; ?>" style="padding: 2px">
-                    <span class="fa fa-binoculars w3-medium"></span>
                   </a>
 
                 </div>
@@ -70,6 +59,12 @@ error_reporting(E_ERROR | E_PARSE);
                   <div class="w3-col s12">
                     <span class="w3-small"><i class="fa fa-briefcase"></i> <?php if($key['company_name']==''){ echo '<span class="w3-text-red">Not Disclosed.</span>';}else { echo $key['company_name']; }?> </span>
                     <!-- <span>Samrat Munde scdscdsv ecwcdscv </span> -->
+                  </div>
+
+                  <div class="w3-col s12 w3-margin-top">
+                    <a class="w3-button badge w3-right w3-hover-text-orange w3-hover-white" href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($key['user_id']); ?>" title="View <?php echo $key['username']; ?>" style="padding: 3px">
+                    <span class="w3-small">view</span> <span class="fa fa-chevron-circle-right w3-medium"></span>
+                  </a>
                   </div>
 
                 </div>

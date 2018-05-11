@@ -132,58 +132,62 @@ $user_id = $this->session->userdata('user_id');
                                     </div>
                                     <div class="w3-col l12">
                                         <div class="w3-col l8">
+                                            <i class="fa fa-briefcase" title="Company"></i>
                                             <?php
                                             if ($userDetails['status_message'][0]['company_name'] != '') {
                                                 echo $userDetails['status_message'][0]['company_name'];
                                             } else {
-                                        // echo 'Enter Comapany Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                               echo '<span class="w3-text-red">Not Disclosed.</span>';
+                                           }
+                                           ?></div>
+                                       </div>
+                                       <div class="w3-col l12">
+                                        <div class="w3-col l8">
+                                            <i class="fa fa-globe" title="Website"></i>
+                                            <?php
+                                            if ($userDetails['status_message'][0]['website'] != '') {
+                                                echo $userDetails['status_message'][0]['website'];
+                                            } else {
+                                                echo '<span class="w3-text-red">Not Disclosed.</span>';
                                             }
                                             ?></div>
                                         </div>
                                         <div class="w3-col l12">
                                             <div class="w3-col l8">
+                                                <i class="fa fa-address-book" title="Address"></i>
                                                 <?php
-                                                if ($userDetails['status_message'][0]['website'] != '') {
-                                                    echo $userDetails['status_message'][0]['website'];
+                                                if ($userDetails['status_message'][0]['address'] != '') {
+                                                    echo $userDetails['status_message'][0]['address'];
                                                 } else {
-                                        //echo 'Enter Website.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                                    echo '<span class="w3-text-red">Not Disclosed.</span>';
                                                 }
                                                 ?></div>
                                             </div>
                                             <div class="w3-col l12">
                                                 <div class="w3-col l8">
+                                                    <i class="fa fa-phone" title="Contact"></i>
                                                     <?php
-                                                    if ($userDetails['status_message'][0]['address'] != '') {
-                                                        echo $userDetails['status_message'][0]['address'];
+                                                    if ($userDetails['status_message'][0]['phone'] != '') {
+                                                        echo $userDetails['status_message'][0]['phone'];
                                                     } else {
-                                        //echo 'Enter Comapany Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
+                                                        echo '<span class="w3-text-red">Not Disclosed.</span>';
                                                     }
                                                     ?></div>
                                                 </div>
-                                                <div class="w3-col l12">
-                                                    <div class="w3-col l8">
-                                                        <?php
-                                                        if ($userDetails['status_message'][0]['phone'] != '') {
-                                                            echo $userDetails['status_message'][0]['phone'];
-                                                        } else {
-                                        //echo 'Enter Comapany Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
-                                                        }
-                                                        ?></div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2"></div>
                                     </div>
-                                    <!-- DIV FOR profile Description ends-->
-                                    <div class="w3-col l12 w3-padding-small">
-                                        <hr>
-                                        <div class="col-lg-2"></div>
-                                        <div class="w3-col l8">
-                                            <div class="w3-col s12 w3-center w3-margin-bottom">
-                                                <a><span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span></a>
-                                            </div>
-                                            <!-- MAIN CONTENT STARTS -->
+                                    <div class="col-lg-2"></div>
+                                </div>
+                                <!-- DIV FOR profile Description ends-->
+                                <div class="w3-col l12 w3-padding-small">
+                                    <hr>
+                                    <div class="col-lg-2"></div>
+                                    <div class="w3-col l8">
+                                        <div class="w3-col s12 w3-center w3-margin-bottom">
+                                            <a><span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span></a>
+                                        </div>
+                                        <!-- MAIN CONTENT STARTS -->
                     <!--------------------------- Div for posted products and my products --------------------------->
                     <div class="w3-col l12" style="" id="myProductDiv" >
                         <div class="w3-col l12" id="sliderImages">
@@ -326,9 +330,9 @@ $user_id = $this->session->userdata('user_id');
               prevEl: '.swiper-button-prev',
           },
       });
-     </script>
+  </script>
 
-    <script>
+  <script>
         //--------------fun for remove product from product table-------------------------------//
         function RemoveProduct(prod_id) {
             $.confirm({

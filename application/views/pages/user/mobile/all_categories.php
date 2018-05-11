@@ -22,7 +22,7 @@ error_reporting(E_ERROR | E_PARSE);
     <div class="w3-row-padding w3-margin-bottom">
 
       <!-- All categories -->
-      <div class="w3-col l12" id="categoryDiv">
+      <div class="w3-col l12 w3-margin-bottom" id="categoryDiv">
 
         <?php
         foreach ($all_categories['status_message'] as $result) {

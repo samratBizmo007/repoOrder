@@ -1,4 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); 
+$user_name=$this->session->userdata('user_name');
+$user_id=$this->session->userdata('user_id');
+$user_role=$this->session->userdata('user_role');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,8 +19,22 @@
 	<style></style>
 </head>
 <body>
-	<div class="w3-row w3-center w3-top w3-border-bottom header_bg" style="position: fixed;z-index: 3">
+	<div class="w3-row w3-left w3-padding-left w3-top w3-border-bottom header_bg" style="position: fixed;z-index: 3">
 		<h4>Jumla Business</h4>
-	</div>
-</body>
+
+		<!-- Before login div -->
+		<?php if($user_role=='' || $user_id=='' || $user_name==''){ ?>
+		<a href="<?php echo base_url(); ?>login" class="w3-small w3-display-topright w3-button header_bg w3-border-left" style="height: 100%;padding: 4px;padding-top: 10px">Login</a>
+		<?php } ?>
+		<!-- Before login div ends -->
+
+		<!-- After login div -->
+		<?php if($user_role!='' || $user_id!='' || $user_name!=''){ ?>
+		<a href="<?php echo base_url(); ?>login/logout" class="w3-small w3-display-topright w3-button header_bg w3-border-left" style="height: 100%;padding: 4px;padding-top: 10px">Logout</a>
+		<?php } ?>
+		<!-- After login div ends -->
+
+	</body>
+</div>
+
 </html>

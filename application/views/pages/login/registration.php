@@ -27,30 +27,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
 </head>
 <body>
-   <div class="w3-middle" id="spinnerDiv"></div>
-   <div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
+ <div class="w3-middle" id="spinnerDiv"></div>
+ <div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
     <div class="row">
         <div class="w3-col m4 col-md-offset-4 w3-center" id="messageDiv"></div>
     </div>
     <div class="row">
         <div class="col-lg-4 w3-hide-small"></div>
         <div class="col-lg-4 ">
-            <div class="col-lg-12 w3-card-2"> 
-               <div class="w3-padding " style="margin-top: 30px">
+            <!-- SKIP SIGNIN DIV -->
+            <div class="col-lg-12 w3-card-2 w3-padding-top w3-margin-bottom" style="height:50px;">
+                <p class="text-center text-muted w3-medium">
+                    <a href="<?php echo base_url(); ?>user/feeds" class="w3-text-blue"> Skip Sign In <i class="fa fa-chevron-circle-right"></i></a>
+                </p>
+            </div>
+            <!-- SKIP SIGN IN DIV ENDS -->
+
+            <!-- REGISTER DIV -->
+            <div class="col-lg-12 w3-card-2 w3-margin-bottom"> 
+             <div class="w3-padding " style="margin-top: 30px">
                 <div class="row  w3-xlarge w3-padding-small">
                     <center>JUMLA BUSINESS</center>
                 </div>
 
                 <p class="text-center text-muted w3-padding-left w3-padding-right">
-                   <button type="button" class="btn btn-block w3-blue"><i class=" w3-large fa fa-facebook-square" style="color:#ffffff;"></i> Log in with Facebook</button>
-               </p>
-               <p class="w3-center"> OR </p>
+                 <button type="button" class="btn btn-block w3-blue"><i class=" w3-large fa fa-facebook-square" style="color:#ffffff;"></i> Log in with Facebook</button>
+             </p>
+             <p class="w3-center"> OR </p>
 
 
-           </div>
+         </div>
 
-           <div class="w3-container " style="padding:0 36px 12px 36px">
-               <div id="Login_RegisterDiv">
+         <div class="w3-container " style="padding:0 36px 12px 36px">
+             <div id="Login_RegisterDiv">
 
                 <form id="register_form" role="form" method='post' enctype='multipart/form-data' style="">
                     <div class="w3-col l12 " id="registration_err"></div>
@@ -92,24 +101,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <div id="message"></div>
                         </div>
                         <div class="w3-margin-bottom" style="">
-                         <input type="submit" name="register_register_submit" id="register_register_submit" class="form-control btn btn-register w3-blue" value="Sign In">
-                     </div>
+                           <input type="submit" name="register_register_submit" id="register_register_submit" class="form-control btn btn-register w3-blue" value="Sign In">
+                       </div>
 
-                 </div>
+                   </div>
 
-             </form>
+               </form>
 
-         </div>
-     </div>
+           </div>
+       </div>
 
- </div>
+   </div>
+   <!-- REGISTER DIV ENDS -->
 
- <div class="col-lg-12 w3-card-2 w3-padding-top w3-margin-top" style="height:50px;">
-   <p class="text-center text-muted">
-     <i class=" w3-large "></i> 
-     Have an Account?<a href="<?php echo base_url(); ?>login" class="w3-text-blue"> Log in</a>
- </p>
+   <!-- LOGIN DIV -->
+   <div class="col-lg-12 w3-card-2 w3-padding-top" style="height:50px;">
+     <p class="text-center text-muted w3-medium">
+       Have an Account?<a href="<?php echo base_url(); ?>login" class="w3-text-blue"> Log in</a>
+   </p>
 </div>
+<!-- LOGIN DIV ENDS -->
+
 </div>
 
 
@@ -121,8 +133,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // SELECT BOX DEPENDENCY CODE
 $(document).ready(function()
 {
- $(function() {
-  $('#user_role').change(function(){
+   $(function() {
+      $('#user_role').change(function(){
     // $('.jumla_role').hide();
     var val=$(this).val();
     if(val==1){
@@ -133,7 +145,7 @@ $(document).ready(function()
     }
     // $('#' + $(this).val()).show();
 });
-});
+  });
 });
 </script>
 

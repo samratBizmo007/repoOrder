@@ -10,7 +10,6 @@ class All_categories extends CI_Controller {
 
   public function index() {
     $this->load->library('user_agent');
-    $this->load->library('user_agent');
     $data['all_categories']=All_categories::getAllCategories();
 
     if ($this->agent->is_mobile())

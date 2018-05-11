@@ -11,10 +11,11 @@ class Edit_profile extends CI_Controller {
 
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
+        $user_role=$this->session->userdata('user_role');
         $this->load->library('user_agent');
 
         //check session variable set or not, otherwise logout
-        if (($user_name == '') || ($user_id == '')) {
+        if (($user_name == '') || ($user_id == '') || ($user_role != '2')) {
             redirect('login');
         }
         $data['userDetails'] = Edit_profile::getUserDetails();
@@ -134,43 +135,43 @@ class Edit_profile extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-               location.reload();
-           }, 1000);
-           </script>';
-        }
-    }
+             location.reload();
+         }, 1000);
+         </script>';
+     }
+ }
 
     //------------function ends------------------------------------------//
 
-    public function changePassword() {
-        extract($_POST);
-        $data = $_POST;
-        $user_name = $this->session->userdata('user_name');
-        $user_id = $this->session->userdata('user_id');
+ public function changePassword() {
+    extract($_POST);
+    $data = $_POST;
+    $user_name = $this->session->userdata('user_name');
+    $user_id = $this->session->userdata('user_id');
 
-        $data['username'] = $user_name;
-        $data['user_id'] = $user_id;
-        $path = base_url();
-        $url = $path . 'api/Editprofile_api/changePassword';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
+    $data['username'] = $user_name;
+    $data['user_id'] = $user_id;
+    $path = base_url();
+    $url = $path . 'api/Editprofile_api/changePassword';
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response_json = curl_exec($ch);
+    curl_close($ch);
+    $response = json_decode($response_json, true);
         //print_r($response_json);die();
-        if ($response['status'] != 200) {
-            echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
-            ';
-        } else {
-            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
-            <script>
-            window.setTimeout(function() {
-               location.reload();
-           }, 1000);
-           </script>';
-        }
-    }
+    if ($response['status'] != 200) {
+        echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
+        ';
+    } else {
+        echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
+        <script>
+        window.setTimeout(function() {
+         location.reload();
+     }, 1000);
+     </script>';
+ }
+}
 
 }

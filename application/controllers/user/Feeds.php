@@ -11,9 +11,9 @@ class Feeds extends CI_Controller {
 		$user_name=$this->session->userdata('user_name');
 		
     //check session variable set or not, otherwise logout
-		if(($user_id=='') || ($user_name=='')){
-			redirect('login');
-		}  
+		// if(($user_id=='') || ($user_name=='')){
+		// 	redirect('login');
+		// }  
 	}
 
 	public function index() {

@@ -10,21 +10,14 @@ class Manage_products extends CI_Controller {
     public function index() {
 
         //start session  
-        //start session       
         $user_id = $this->session->userdata('user_id');
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
         $this->load->library('user_agent');
-        if (($user_id != '') || ($user_name != '') || ($user_role != '')) {
-            // redirect('user/dashboard');
+        if (($user_id != '') || ($user_role != '2')) {
+            redirect('login');
         }
-        // $admin_name = $this->session->userdata('admin_name');
-        // $admin_role = $this->session->userdata('admin_role');
-        // $this->load->library('user_agent');
-        // //check session variable set or not, otherwise logout
-        // if (($admin_name == '') || ($admin_role == '')) {
-        //     redirect('admin_login');
-        // }
+        
         $data['categories'] = Manage_products::getAllCategories();
         $data['products'] = Manage_products::getPostedImagesBy_username();
 

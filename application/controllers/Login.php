@@ -178,7 +178,7 @@ public function loginCustomer() {
         $session_data = array(
             'user_id' => $response['user_id'],
             'user_name' => $response['user_name'],
-            'user_role'=>$role
+            'user_role'=>$response['role']
         );
             //start session of user if login success
         $this->session->set_userdata($session_data);

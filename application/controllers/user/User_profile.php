@@ -11,7 +11,7 @@ class User_profile extends CI_Controller {
         $user_id = base64_decode($profileuser_id);
         $data['link_user_id'] = $user_id;
         $this->load->library('user_agent');
-        $this->load->library('user_agent');
+
         $data['userDetails'] = User_profile::getUserDetails($user_id);
         $data['prod_count'] = User_profile::getProductCountBy_userid($user_id);
         $data['products'] = User_profile::getPostedImagesBy_username($user_id);
