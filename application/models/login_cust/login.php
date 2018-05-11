@@ -94,7 +94,7 @@ class Login extends CI_Model {
     // -----------------------USER REGISTERATION MODEL by mobile ends----------------------//
     // ----------------------FORGET PASSWORD MODEL-------------------------------------//
     public function getPassword($forget_email) {
-        $query = "SELECT password FROM customer_tab WHERE email='$forget_email'";
+        $query = "SELECT password FROM user_tab WHERE email='$forget_email'";
         //echo $query;die();
         $result = $this->db->query($query);
         if ($result->num_rows() <= 0) {
@@ -194,7 +194,7 @@ class Login extends CI_Model {
                     'status_message' => 'Your Registration Request has been succesfully sent to JUMLA TEAM.Soon you will get Login Password on your email'
                 );
                 $admin_email = $this->settings_model->getAdminEmail();
-                //settings_model::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$user_role);
+                login::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$user_role);
                 //print_r($d);die();
             } else {
                 $response = array(

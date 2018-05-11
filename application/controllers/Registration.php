@@ -47,7 +47,7 @@ class Registration extends CI_controller{
             'register_mobile_no' => $mobile_code.'-'.$register_number,
             // 'register_address' => $address
         );
-        //print_r($data);die();
+        // print_r($data);die();
         $path = base_url();
         $url = $path . 'api/Login_api/registerCustomer';
         $ch = curl_init($url);

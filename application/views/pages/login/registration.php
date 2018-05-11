@@ -85,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <input type="text" name="mobile_code" id="mobile_code" value="965" class="w3-input w3-border w3-light-grey" pattern="[0-9]{3}" oninvalid="this.setCustomValidity('No whitespaces, Enter Only 3 Digit Country Code.')" oninput="setCustomValidity('')" placeholder="Code" required>
                                 </div>
                                 <div class="w3-col l8 s8">
-                                    <input type="text" name="register_number" id="register_number" maxlength="10" class="w3-input  w3-light-grey w3-padding w3-border" placeholder="Enter Your Number" required>
+                                    <input type="number" name="register_number" id="register_number" maxlength="10" class="w3-input  w3-light-grey w3-padding w3-border" placeholder="Enter Your Number" required>
                                 </div>
                             </div>
 
