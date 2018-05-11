@@ -194,41 +194,36 @@ public function regretProduct($prod_no, $order_id) {
         return $response;
     }
 
-    // -----------------------GET ALL ORDERS COUNT----------------------//
+    // -----------------------GET ALL STATISTICS COUNT----------------------//
     //-------------------------------------------------------------//
-    public function getOrderCount(){
+    public function getStatistics(){
 
-        // -------------get active order count----------------------
-        $activeCount=0;
-        $active_query = $this->db->get_where('order_tab', array(//making selection
-            'status' => '1'
-        ));
-        $activeCount=$active_query->num_rows();
+        // -------------get user count ----------------------
+        $userCount=0;
+        $user_query = $this->db->get('user_tab');
+        $userCount=$user_query->num_rows();
 
-        // -------------get open order count----------------------
-        $openCount=0;
-        $open_query = $this->db->get_where('order_tab', array(//making selection
-            'status' => '2'
-        ));
-        $openCount=$open_query->num_rows();
+        // -------------get products count----------------------
+        $prod_count=0;
+        $prod_query = $this->db->get('product_tab');
+        $prod_count=$prod_query->num_rows();
 
-        // -------------get close order count----------------------
-        $closeCount=0;
-        $close_query = $this->db->get_where('order_tab', array(//making selection
-            'status' => '0'
-        ));
-        $closeCount=$close_query->num_rows();
+        // // -------------get close order count----------------------
+        // $closeCount=0;
+        // $close_query = $this->db->get_where('order_tab', array(//making selection
+        //     'status' => '0'
+        // ));
+        // $closeCount=$close_query->num_rows();
 
         $response = array(
             'status' => 200,
-            'status_message' => 'Count for all available orders',
-            'activeOrders'  =>  $activeCount,
-            'openOrders'  =>  $openCount,
-            'closeOrders'  =>  $closeCount,
+            'status_message' => 'Count for all statistics',
+            'userCount'  =>  $userCount,
+            'prod_count'  =>  $prod_count,
         );
         return $response;
     }
-    // -----------------------GET ALL ORDERS COUNT MODEL----------------------//
+    // -----------------------GET ALL STATISTICS COUNT MODEL----------------------//
 
 
     // -----------------fucntion to get all timeline data- ---------------------//

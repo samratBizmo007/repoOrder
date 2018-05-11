@@ -53,14 +53,7 @@ error_reporting(E_ERROR | E_PARSE);
 	<div class="row">
 		<div class="col-lg-4 w3-hide-small"></div>
 		<div class="col-lg-4 ">
-			<!-- SKIP SIGNIN DIV -->
-			<div class="col-lg-12 w3-card-2 w3-padding-top w3-margin-bottom" style="height:50px;">
-				<p class="text-center text-muted w3-medium">
-					<a href="<?php echo base_url(); ?>user/feeds" class="w3-text-blue"> Skip Log In <i class="fa fa-chevron-circle-right"></i></a>
-				</p>
-			</div>
-			<!-- SKIP SIGN IN DIV ENDS -->
-
+			
 			<!-- LOGIN DIV -->
 			<div class="col-lg-12 w3-card-2 w3-margin-bottom"> 
 				<div class="w3-padding " style="margin-top: 30px">
@@ -115,12 +108,24 @@ error_reporting(E_ERROR | E_PARSE);
 			<!-- LOGIN DIV ENDS -->
 
 			<!-- REGISTER DIV -->
-			<div class="col-lg-12 w3-card-2 w3-padding-top w3-medium" style="height:50px;">
+			<div class="col-lg-12 w3-card-2 w3-padding-top w3-medium w3-margin-bottom" style="height:80px;">
 				<p class="text-center text-muted">
 					Don't Have an Account?<a href="<?php echo base_url(); ?>registration" class="w3-text-blue"> Sign In</a>
 				</p>
+				<p class="text-center text-muted w3-large">
+					<a href="<?php echo base_url(); ?>user/feeds" class="w3-text-blue"> Skip Log In <i class="fa fa-chevron-circle-right"></i></a>
+				</p>
 			</div>
 			<!-- REGISTER DIV ENDS -->
+
+			<!-- SKIP SIGNIN DIV -->
+			<!-- <div class="col-lg-12 w3-card-2 w3-padding-top " style="height:50px;">
+				<p class="text-center text-muted w3-medium">
+					<a href="<?php echo base_url(); ?>user/feeds" class="w3-text-blue"> Skip Log In <i class="fa fa-chevron-circle-right"></i></a>
+				</p>
+			</div> -->
+			<!-- SKIP SIGN IN DIV ENDS -->
+
 
 		</div>
 

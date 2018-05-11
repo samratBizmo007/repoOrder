@@ -36,7 +36,6 @@
               <tr class="">
                 <th class="text-center">Sr.No</th>
                 <th class="text-center">User Code</th>
-                <th class="text-center">Role</th>
                 <th class="text-center">Username</th>
                 <th class="text-center">Email-ID</th>
                 <th class="text-center">Mobile No.</th>
@@ -57,7 +56,6 @@
                   <tr class="w3-center <?php if($key['status']==0){echo 'w3-light-grey';} ?>">
                     <td><?php echo $count; ?></td>
                     <td><?php echo '#UID-0'.$key['user_id']; ?></td>
-                    <td><?php if($key['role']==2){echo '<label class="w3-yellow w3-text-black w3-padding-tiny">Wholesaler</label>';}elseif($key['role']==3){echo '<label class="w3-yellow w3-text-black w3-padding-tiny">Consumer</label>';}else{echo '<label class="w3-red w3-text-white">Not Defined</label>';} ?></td>
                     <td><?php echo $key['username']; ?></td>
                     <td><?php echo $key['email']; ?></td>
                     <td><?php echo $key['phone']; ?></td>

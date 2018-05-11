@@ -64,14 +64,14 @@ class Feeds_api extends REST_Controller {
     }
 
 
-    // -----------------------ALL ORDERS COUNT API----------------------//
+    // -----------------------ALL Statistics API----------------------//
     //-------------------------------------------------------------//
-    public function getOrderCount_get() {
+    public function getStatistics_get() {
         //extract($_GET);
-        $result = $this->feeds_model->getOrderCount();
+        $result = $this->feeds_model->getStatistics();
         return $this->response($result);
     }
-    //---------------------ALL ORDERS COUNT END------------------------------//
+    //---------------------ALL Statistics END------------------------------//
 
     // -----------------------GET TIMELINE DATA API----------------------//
     //-------------------------------------------------------------//

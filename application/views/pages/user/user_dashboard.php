@@ -117,6 +117,11 @@
                 <!-- Bottom section div ends -->
 
               </div>
+              <center>
+                <div class="pagination" style="margin:10px;padding: 10px;">
+                  <?php echo $links; ?>
+                </div>
+              </center>
               <?php
             }
           }
@@ -129,11 +134,7 @@
           } 
           ?>          
         </div>
-        <center>
-          <div class="pagination" style="margin:10px;padding: 10px;">
-            <?php echo $links; ?>
-          </div>
-        </center>
+        
       </div>
       <div class="col-lg-2"></div>
     </div>
