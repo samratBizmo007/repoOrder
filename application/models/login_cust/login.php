@@ -118,7 +118,7 @@ class Login extends CI_Model {
             //echo $password;die();
 
             $emailSend = Login::sendPassword($forget_email, $password);
-
+            //print_r($emailSend);die();
             if ($emailSend['status'] == 200) {
                 $response = array(
                     'status' => 200,
@@ -423,7 +423,7 @@ class Login extends CI_Model {
                 'status_message' => 'Email Sent Successfully.',
             );
         } else {
-            //print_r($this->email->print_debugger());die();
+           // print_r($this->email->print_debugger());die();
             $response = array(
                 'status' => 500, //---------email send failed
                 'status_message' => 'Email Sending Failed.'
