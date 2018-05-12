@@ -87,7 +87,6 @@ class Editprofile_model extends CI_Model {
         $curr_pass = base64_encode($curr_password);
 
         $sql = "SELECT * FROM user_tab WHERE user_id = '$user_id' AND password = '$curr_pass'";
-        //echo $sql;die();
         $result = $this->db->query($sql);
         if ($result->num_rows() <= 0) {
             return false;

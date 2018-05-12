@@ -148,7 +148,7 @@ class Edit_profile extends CI_Controller {
     $data = $_POST;
     $user_name = $this->session->userdata('user_name');
     $user_id = $this->session->userdata('user_id');
-
+//print_r($data);die();
     $data['username'] = $user_name;
     $data['user_id'] = $user_id;
     $path = base_url();
