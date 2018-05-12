@@ -60,9 +60,9 @@ class Editprofile_model extends CI_Model {
 
     //--------------fun for change password ends here------------------------//
     //----------fun for check current password exist -------------------------------//
-    public function checkCurrPassword_exist($curr_password, $username) {
+    public function checkCurrPassword_exist($curr_password, $user_id) {
         $curr_pass = base64_encode($curr_password);
-        $sql = "SELECT * FROM user_tab WHERE username = '$username' AND password = '$curr_pass'";
+        $sql = "SELECT * FROM user_tab WHERE user_id = '$user_id' AND password = '$curr_pass'";
         $result = $this->db->query($sql);
         if ($result->num_rows() <= 0) {
             return false;
