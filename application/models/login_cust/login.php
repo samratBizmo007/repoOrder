@@ -130,13 +130,60 @@ class Login extends CI_Model {
     public function registerCustomer($data) {
         extract($data);
         //print_r($data);die();
-        if ($register_password == '') {
+     if (!(is_numeric($user_role))) {
+            if ($user_role == '') {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'user role not found!');
+                return $response;
+                die();
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'User Role should be numeric!');
+                return $response;
+                die();
+            }
+        }
+          if ($register_username == '') {
             $response = array(
                 'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your password!!!'
+                'status_message' => 'Enter Your Username!!!'
             );
             return $response;
             die();
+        }
+        if ($register_password == '' || strlen($register_password) < 8) {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'Enter Your password and Password must be greater than 8!!!'
+            );
+            return $response;
+            die();
+        }
+           if ($register_email == '') {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'Enter Your Email!!!'
+            );
+            return $response;
+            die();
+        }
+        
+        if (!(is_numeric($register_mobile_no))) {
+            if ($register_mobile_no == '') {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'Mobile number not found!');
+                return $response;
+                die();
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'Mobile number should be numeric!');
+                return $response;
+                die();
+            }
         }
         $admin_email = '';
         $checkEmail = login::checkEmail_exist($register_email);
@@ -176,6 +223,52 @@ class Login extends CI_Model {
     public function registerSeller($data) {
         extract($data);
         //print_r($data);die();
+         if (!(is_numeric($user_role))) {
+            if ($user_role == '') {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'user role not found!');
+                return $response;
+                die();
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'User Role should be numeric!');
+                return $response;
+                die();
+            }
+        }
+          if ($register_username == '') {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'Enter Your Username!!!'
+            );
+            return $response;
+            die();
+        }
+          if ($register_email == '') {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'Enter Your Email!!!'
+            );
+            return $response;
+            die();
+        }
+        if (!(is_numeric($register_mobile_no))) {
+            if ($register_mobile_no == '') {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'Mobile number not found!');
+                return $response;
+                die();
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'Mobile number should be numeric!');
+                return $response;
+                die();
+            }
+        }
         $admin_email = '';
         $checkEmail = login::checkEmail_exist($register_email);
         $checkusername = login::checkUsername_exist($register_username);
@@ -565,10 +658,29 @@ class Login extends CI_Model {
     }
 
     //-------------------------------------------------------------//
-    public function loginCustomer($user_name, $password) {
+    public function loginCustomer($data) {
+        extract($data);
+        // print_r($data);die();
+        // echo base64_decode('ZGM1YzAwYzc=');die();
+        if ($login_username == '') {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'Enter Your Username!!!'
+            );
+            return $response;
+            die();
+        }
+        if ($login_password == '') {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'Enter Your password!!!'
+            );
+            return $response;
+            die();
+        }
         //sql query to check login credentials
-        $pass = base64_encode($password);
-        $query = "SELECT * FROM user_tab WHERE (email='$user_name' || username='$user_name') AND password='$pass'";
+        $pass = base64_encode($login_password);
+        $query = "SELECT * FROM user_tab WHERE (email='$login_username' || username='$login_username') AND password='$pass'";
         //echo $query;die();
         $result = $this->db->query($query);
         $user_id = '0';

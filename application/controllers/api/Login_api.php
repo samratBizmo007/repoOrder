@@ -41,7 +41,9 @@ class Login_api extends REST_Controller {
     //-------------------------------------------------------------//
     public function loginCustomer_post() {
         extract($_POST);
-        $result = $this->login->loginCustomer($login_username, $login_password);
+        $data=$_POST;
+
+        $result = $this->login->loginCustomer($data);
         return $this->response($result);
     }
 
