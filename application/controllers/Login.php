@@ -53,7 +53,7 @@ public function loginCustomer() {
     $response_json = curl_exec($ch);
     curl_close($ch);
     $response = json_decode($response_json, true);
-
+//print_r($response_json);die();
     if ($response['status'] == 500) {
         echo '<div class="alert alert-danger ">
         <strong>' . $response['status_message'] . '</strong> 

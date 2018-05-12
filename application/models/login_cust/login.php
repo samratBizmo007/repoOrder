@@ -701,6 +701,7 @@ class Login extends CI_Model {
         //echo $query;die();
         $result = $this->db->query($query);
         $user_id = '0';
+        $user_name = '';
         $role = '';
         $privilege = '';
         //if credentials are true, their is obviously only one record
