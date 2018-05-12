@@ -31,6 +31,7 @@ class Category extends CI_Controller {
   public function getCategorySalers($cat_id) {
     $path = base_url();
     $url = $path.'api/Category_api/getCategorySalers?cat_id='.$cat_id;
+    // print_r($url);die();
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HTTPGET, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

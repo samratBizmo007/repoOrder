@@ -94,6 +94,15 @@ class Login extends CI_Model {
     // -----------------------USER REGISTERATION MODEL by mobile ends----------------------//
     // ----------------------FORGET PASSWORD MODEL-------------------------------------//
     public function getPassword($forget_email) {
+         if ($forget_email == '') {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'Enter Your Email!!!'
+            );
+            return $response;
+            die();
+        }
+
         $query = "SELECT password FROM user_tab WHERE email='$forget_email'";
         //echo $query;die();
         $result = $this->db->query($query);
@@ -130,7 +139,7 @@ class Login extends CI_Model {
     public function registerCustomer($data) {
         extract($data);
         //print_r($data);die();
-     if (!(is_numeric($user_role))) {
+        if (!(is_numeric($user_role))) {
             if ($user_role == '') {
                 $response = array(
                     'status' => 500,
@@ -145,7 +154,7 @@ class Login extends CI_Model {
                 die();
             }
         }
-          if ($register_username == '') {
+        if ($register_username == '') {
             $response = array(
                 'status' => 500, //---------db error code 
                 'status_message' => 'Enter Your Username!!!'
@@ -161,7 +170,7 @@ class Login extends CI_Model {
             return $response;
             die();
         }
-           if ($register_email == '') {
+        if ($register_email == '') {
             $response = array(
                 'status' => 500, //---------db error code 
                 'status_message' => 'Enter Your Email!!!'
@@ -170,21 +179,24 @@ class Login extends CI_Model {
             die();
         }
         
-        if (!(is_numeric($register_mobile_no))) {
-            if ($register_mobile_no == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Mobile number not found!');
-                return $response;
-                die();
-            } else {
+        // ---------validate mobile no
+        if ($register_mobile_no != '') {
+            if (!(is_numeric($register_mobile_no))) {
                 $response = array(
                     'status' => 500,
                     'status_message' => 'Mobile number should be numeric!');
                 return $response;
                 die();
-            }
+            }            
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Mobile number not found!');
+            return $response;
+            die();
         }
+
+        
         $admin_email = '';
         $checkEmail = login::checkEmail_exist($register_email);
         $checkusername = login::checkUsername_exist($register_username);
@@ -223,7 +235,7 @@ class Login extends CI_Model {
     public function registerSeller($data) {
         extract($data);
         //print_r($data);die();
-         if (!(is_numeric($user_role))) {
+        if (!(is_numeric($user_role))) {
             if ($user_role == '') {
                 $response = array(
                     'status' => 500,
@@ -238,7 +250,7 @@ class Login extends CI_Model {
                 die();
             }
         }
-          if ($register_username == '') {
+        if ($register_username == '') {
             $response = array(
                 'status' => 500, //---------db error code 
                 'status_message' => 'Enter Your Username!!!'
@@ -246,7 +258,7 @@ class Login extends CI_Model {
             return $response;
             die();
         }
-          if ($register_email == '') {
+        if ($register_email == '') {
             $response = array(
                 'status' => 500, //---------db error code 
                 'status_message' => 'Enter Your Email!!!'
@@ -504,24 +516,24 @@ class Login extends CI_Model {
         //$this->email->message("Dear ".$username.",\nPlease click on below URL or paste into your browser to verify your Email Address\n\n <a href='".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."'>".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."</a>\n"."\n\nThanks\nAdmin Team");
 
         $this->email->message('<html>
-           <head>
-           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-           <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
-           <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
-           <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
-           </head>
-           <body>
-           <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-           <h2 style="color:#4CAF50; font-size:30px">Welcome To Joomla Business!!</h2>
-           <h3 style="font-size:15px;">Hello ' . $username . ',<br></h3>
-           <h3 style="font-size:15px;">Your OTP is ' . $otp . ',<br>Please Login with OTP</h3>
+         <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
+         <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
+         <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
+         </head>
+         <body>
+         <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+         <h2 style="color:#4CAF50; font-size:30px">Welcome To Joomla Business!!</h2>
+         <h3 style="font-size:15px;">Hello ' . $username . ',<br></h3>
+         <h3 style="font-size:15px;">Your OTP is ' . $otp . ',<br>Please Login with OTP</h3>
 
-           <div class="col-lg-12">
-           <div class="col-lg-4"></div>
-           <div class="col-lg-4">
+         <div class="col-lg-12">
+         <div class="col-lg-4"></div>
+         <div class="col-lg-4">
 
-           </div>
-           </body></html>');
+         </div>
+         </body></html>');
 
         if ($this->email->send()) {
             $response = array(

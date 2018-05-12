@@ -70,9 +70,25 @@ class Product_model extends CI_Model {
     //-------fun for remove product from product table--------------//
 
     public function removeProduct($prod_id) {
+
+         if (!(is_numeric($prod_id))) {
+            if ($prod_id == '') {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'data not found!');
+                return $response;
+                die();
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'product id should be numeric!');
+                return $response;
+                die();
+            }
+        }
         $sql = "DELETE FROM product_tab WHERE prod_id = '$prod_id'";
         $result = $this->db->query($sql);
-        if ($result) {
+        if ($this->db->affected_rows()>0) {
             $response = array(
                 'status' => 200,
                 'status_message' => 'Product removed Successfully..!');

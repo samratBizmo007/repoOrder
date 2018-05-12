@@ -44,7 +44,8 @@ class Registration extends CI_controller{
             'register_username' => $register_username,
             'register_password' => $register_password,
             'register_email' => $register_email,
-            'register_mobile_no' => $mobile_code.'-'.$register_number,
+            'register_countryCode' => $mobile_code,
+            'register_mobile_no' => $register_number,
             // 'register_address' => $address
         );
         // print_r($data);die();
