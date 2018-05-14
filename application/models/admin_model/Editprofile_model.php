@@ -38,8 +38,8 @@ class Editprofile_model extends CI_Model {
             die();
         }
         $sql = "UPDATE user_tab SET full_name='$fullname',"
-        . " website='$website', bio='$bio', address='$address',"
-        . " phone='$phone',user_image='$imagePath',company_name='$company_name' WHERE user_id = '$user_id'";
+        . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
+        . " phone='$phone',user_image='$imagePath',company_name='".addslashes($company_name)."' WHERE user_id = '$user_id'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
