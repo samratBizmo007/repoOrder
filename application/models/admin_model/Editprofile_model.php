@@ -59,7 +59,29 @@ class Editprofile_model extends CI_Model {
     public function changePassword($data) {
         extract($data);
         //print_r($data);die();
+           if ($user_id == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter User Id..!');
+            return $response;
+            die();
+        }
+          if ($curr_pass == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Current Password..!');
+            return $response;
+            die();
+        }
+          if ($new_pass == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter New Password..!');
+            return $response;
+            die();
+        }
         $checkCurrPassword = Editprofile_model::checkCurrPassword_exist($curr_pass, $user_id);
+
         if ($checkCurrPassword == 1) {
             $new_pass = base64_encode($new_password);
             $sql = "UPDATE user_tab SET password='$new_pass' WHERE user_id = '$user_id'";
