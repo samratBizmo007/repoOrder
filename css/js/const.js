@@ -1,1 +1,1 @@
-const BASE_URL = "http://ordertracker.bizmo-tech-admin.com/";
+const BASE_URL = "http://localhost/repoOrder/";

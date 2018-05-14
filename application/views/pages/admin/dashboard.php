@@ -94,6 +94,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                 <div class="w3-col l12 w3-padding-xxlarge">
                   <?php
+                  //print_r($timelineData);
                   if($timelineData['status']!=500){
                     foreach ($timelineData['status_message'] as $key) { ?>
                     <div class="w3-col l12 w3-card-2 w3-margin-bottom">
@@ -187,7 +188,7 @@ error_reporting(E_ERROR | E_PARSE);
           else{
             ?>
             <div class="alert alert-warning w3-center">
-              <b><?php echo $all_users['status_message']; ?></b>
+              <b><?php echo $timelineData['status_message']; ?></b>
             </div>               
             <?php 
           } 
