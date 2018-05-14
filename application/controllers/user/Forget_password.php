@@ -30,7 +30,7 @@ class Forget_password extends CI_Controller {
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-//print_r($response_json);die();
+print_r($response_json);die();
         //API processing end
         if ($response['status'] == 500) {
             echo '<div class="alert alert-danger">

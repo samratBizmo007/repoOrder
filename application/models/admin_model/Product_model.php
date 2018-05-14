@@ -32,6 +32,48 @@ class Product_model extends CI_Model {
     public function addProduct($data) {
         extract($data);
         //print_r($data);die();
+            if ($cat_id == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter category Id..!');
+            return $response;
+            die();
+        }
+          if ($user_id == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter User Id..!');
+            return $response;
+            die();
+        }
+         if ($product_name == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Product Name..!');
+            return $response;
+            die();
+        }
+         if ($product_description == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Product Description..!');
+            return $response;
+            die();
+        }
+          if ($prod_images == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Add Product Image..!');
+            return $response;
+            die();
+        }
+        if ($posted_by == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Posted Users name..!');
+            return $response;
+            die();
+        }
         $sql = "INSERT INTO product_tab(cat_id,user_id,product_name,prod_description,prod_image,posted_by,posted_date,posted_time,active) "
                 . "VALUES ('$cat_id','$user_id','$product_name','$product_description','$prod_images','$posted_by',NOW(),NOW(),'1')";
         //print_r($sql);die();
