@@ -19,7 +19,7 @@ class Login extends CI_Model {
             return $response;
             die();
         }
-
+        
         if ($email_id == '') {
             $response = array(
                 'status' => 500,
