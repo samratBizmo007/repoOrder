@@ -192,7 +192,7 @@ $user_id = $this->session->userdata('user_id');
                                         <!-- MAIN CONTENT STARTS -->
                                         <?php
                             //print_r($sliderInfo);die();
-                                        if (count($products['status_message']) != 0) {
+                                        if (($products['status']) != 500) {
                                             foreach ($products['status_message'] as $key) {
                                                 // print_r($key);die();
                                                 $prodimagesdata = json_decode($key['prod_image'], TRUE);
@@ -222,9 +222,7 @@ $user_id = $this->session->userdata('user_id');
                                                         <center><a data-dismiss="modal" title="Close Image" class="btn fa fa-close w3-xlarge w3-padding-small w3-text-white"></a></center>
                                                         <div class="modal-content">
                                                             <div class="modal-body ">
-                                                              <?php if ($link_user_id == $user_id) { ?>                                             
-                                                              
-                                                              <?php } ?>
+                                                             
                                                               <!-- Mid section div start -->
                                                               <?php
                                                               $imageArr = json_decode($key['prod_image'], TRUE);
@@ -232,7 +230,7 @@ $user_id = $this->session->userdata('user_id');
 
                                                                 ?>
                                                                 <!-- Image slider -->
-                                                                <div id="image_slider" class="carousel slide" data-ride="carousel" data-interval="false">
+                                                                <div id="image_slider_<?php echo $key['prod_id'];  ?>" class="carousel slide" data-wrap="false" data-ride="carousel" data-interval="false">
 
                                                                   <!-- Wrapper for slides -->
                                                                   <div class="carousel-inner">
@@ -251,11 +249,11 @@ $user_id = $this->session->userdata('user_id');
                                                               </div>
 
                                                               <!-- Left and right controls -->
-                                                              <a class="left carousel-control" href="#image_slider" data-slide="prev">
+                                                              <a class="left carousel-control" href="#image_slider_<?php echo $key['prod_id'];  ?>" data-slide="prev">
                                                                 <span class="glyphicon glyphicon-chevron-left"></span>
                                                                 <span class="sr-only">Previous</span>
                                                             </a>
-                                                            <a class="right carousel-control" href="#image_slider" data-slide="next">
+                                                            <a class="right carousel-control" href="#image_slider_<?php echo $key['prod_id'];  ?>" data-slide="next">
                                                                 <span class="glyphicon glyphicon-chevron-right"></span>
                                                                 <span class="sr-only">Next</span>
                                                             </a>
@@ -279,11 +277,13 @@ $user_id = $this->session->userdata('user_id');
                                                     ?>
                                                     <!-- Mid section div ends -->
 
+                                                     <?php if ($link_user_id == $user_id) { ?>
                                                     <!-- Delete product button -->
                                                     <div class="w3-col l12 w3-small w3-padding-top ">
                                                         <a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-left w3-button" style="padding: 3px;"><span>Delete Product</span></a>
-                                                         <i class="w3-small w3-right"> <?php echo $key['category_name']; ?></i>
+                                                         <a style="padding: 0" class="btn w3-right" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($key['cat_id']); ?>"><i class="w3-small"> <?php echo $key['category_name']; ?></i></a>
                                                     </div>
+                                                    <?php } ?>
                                                    
                                                     <!--<img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">-->
                                                     <label class="w3-margin-top w3-label">Product Name: </label><b> <?php echo $key['product_name']; ?></b><br>                                   
@@ -298,7 +298,7 @@ $user_id = $this->session->userdata('user_id');
                                     <?php
                                 }
                             } else {
-                                echo '<div class="w3-col l12 w3-center"><h4>Oops! You don\'t have any products available.</h4></div>';
+                                echo '<div class="w3-col l12 w3-center"><b>Oops! You don\'t have any products available.</b></div>';
                             }
                             ?>
                         </div>

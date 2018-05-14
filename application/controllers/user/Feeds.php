@@ -169,7 +169,7 @@ class Feeds extends CI_Controller {
                 <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a> 
-                <a class="btn w3-right" style="padding: 0">
+                <a class="btn w3-right" href="'.base_url().'user/category/'.base64_encode($key['cat_id']).'" style="padding: 0">
                 <span class="w3-margin-top w3-small"><i>'.$key['category_name'].'</i></span>
                 </a>
                 </div>
@@ -273,7 +273,7 @@ class Feeds extends CI_Controller {
                 <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>
-                <a class="btn w3-right" style="padding: 0">
+                <a class="btn w3-right" href="'.base_url().'user/category/'.base64_encode($key['cat_id']).'" style="padding: 0">
                 <span class="w3-margin-top w3-small"><i>'.$key['category_name'].'</i></span>
                 </a>                      
                 </div>

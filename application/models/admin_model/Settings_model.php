@@ -253,7 +253,7 @@ if($register_role=='2'){
     $role='Admin';
 }
 if($register_role=='3'){
-    $role='Wholesaler';
+    $role='Saler';
 }
 $config = Array(
     'protocol' => 'smtp',

@@ -50,7 +50,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Website: </label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-small" placeholder="website" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website">
+                            <input type="url" class="w3-input w3-small" placeholder="website" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website">
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">

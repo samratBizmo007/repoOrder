@@ -78,7 +78,7 @@ $user_id = $this->session->userdata('user_id');
             <?php // print_r($userDetails);
             ?>
             <!-- DIV FOR profile Description ends-->
-            <div class="w3-col l12 w3-padding-small">              
+            <div class="w3-col l12 w3-padding-small" >              
                 <div class="col-lg-2"></div>
                 <div class="w3-col l8 w3-margin-top w3-margin-bottom w3-padding-small">
 
@@ -177,7 +177,7 @@ $user_id = $this->session->userdata('user_id');
                                     <div class="col-lg-2"></div>
                                 </div>
                                 <!-- DIV FOR profile Description ends-->
-                                <div class="w3-col s12 w3-padding-small">
+                                <div class="w3-col s12 w3-padding-small" style="margin-bottom: 50px">
                                     <hr>                
                                     <div class="col-lg-2"></div>
                                     <div class="w3-col l8">
@@ -189,8 +189,8 @@ $user_id = $this->session->userdata('user_id');
                                         <div class="w3-col s12" style="" id="myProductDiv" >
                                             <div class="w3-col s12" id="sliderImages ">
                                                 <?php
-                            //print_r($sliderInfo);die();
-                                                if (count($products['status_message']) != 0) {
+                            //print_r($products['status_message']);die();
+                                                if (($products['status']) != 500) {
                                                     foreach ($products['status_message'] as $key) {
                                                         $prodimagesdata = json_decode($key['prod_image'], TRUE);
                                                         foreach ($prodimagesdata as $val) {
@@ -213,15 +213,14 @@ $user_id = $this->session->userdata('user_id');
                                                                 <center><a data-dismiss="modal" title="Close Image" class="btn fa fa-close w3-xlarge w3-padding-small w3-text-white"></a></center>
                                                                 <div class="modal-content">
                                                                     <div class="modal-body ">
-                                                                        <?php if ($link_user_id == $user_id) { ?>                          
-                                                                        <?php } ?>
+                                                                        
                                                                         <!-- Mid section div start -->
                                                                         <?php
                                                                         $imageArr = json_decode($key['prod_image'], TRUE);
                                                                         if (count($imageArr) > 1) {
                                                                             ?>
                                                                             <!-- Image slider  -->
-                                                                            <div id="image_slider" class="carousel slide" data-ride="carousel" data-interval="false">
+                                                                            <div id="image_slider_<?php echo $key['prod_id'];  ?>" class="carousel slide" data-wrap="false" data-ride="carousel" data-interval="false">
 
 
                                                                               <!-- Wrapper for slides -->
@@ -265,6 +264,7 @@ $user_id = $this->session->userdata('user_id');
                                                     <!-- Delete product button -->
                                                      <div class="w3-col l12  w3-small w3-padding-top ">
                                                         <a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-left w3-button" style="padding: 3px;"><span>Delete Product</span></a>
+                                                        <a style="padding: 0" class="btn w3-right" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($key['cat_id']); ?>"><i class="w3-small "> <?php echo $key['category_name']; ?></i></a>
                                                     </div>
 
                                                     <!--<img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">-->
@@ -295,7 +295,7 @@ $user_id = $this->session->userdata('user_id');
                                     <?php
                                 }
                             } else {
-                                echo '<div class="w3-col s12 w3-center"><h4>Oops! You don\'t have any products available.</h4></div>';
+                                echo '<div class="w3-col s12 w3-center w3-small"><b>Oops! You don\'t have any products available.</b></div>';
                             }
                             ?>
                         </div>

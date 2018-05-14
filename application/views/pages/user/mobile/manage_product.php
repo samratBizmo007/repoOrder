@@ -161,34 +161,13 @@ error_reporting(E_ERROR | E_PARSE);
                 }
             }
         </script>
-        <!--  script to update user dashboard image   -->
-        <script>
-            $(document).ready(function (e) {
-                $("#addOrder_formMobile").on('submit', (function (e) {
-                    e.preventDefault();
-                    $("#btnsubmit").html('<center><span class="w3-xxlarge fa fa-spinner fa-spin"></span></center>');
-                    $.ajax({
-                        url: BASE_URL + "orders/Manage_orders/addOrder",
-                        type: "POST",
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        success: function (data) {
-                            $.alert(data);
-                            $("#btnsubmit").html('<button  type="submit" title="Raise Order" class="w3-margin w3-medium w3-button  w3-red">Raise New Order</button>');
-                        },
-                        error: function () {}
-                    });
-                }));
-            });
-        </script>
-
-
+       
+<!-- add product  -->
         <script>
             $(function () {
                 $("#addProduct_form").submit(function () {
                     dataString = $("#addProduct_form").serialize();
+                    $('#btnsubmit').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Posting Product. Hang on...</b></span>');
                     $.ajax({
                         type: "POST",
                         url: "<?php echo base_url(); ?>user/manage_products/addProduct",
@@ -199,7 +178,7 @@ error_reporting(E_ERROR | E_PARSE);
                         success: function (data)
                         {
                             $.alert(data);
-                            $('#sliderImages').load(location.href + " #sliderImages>*", "");
+                            $('#btnsubmit').html('<button  type="submit" title="add Product" class="w3-margin-bottom w3-round w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Add Product</button>');
                         }
                     });
                     return false;  //stop the actual form post !important!

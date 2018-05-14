@@ -95,7 +95,7 @@ class Product_model extends CI_Model {
 
     public function getPostedImagesBy_username($user_id) {
         // $sql = "SELECT * FROM product_tab WHERE user_id = '$user_id'";
-        $sql = "SELECT * FROM  product_tab as p JOIN category_tab as c ON c.cat_id = p.cat_id";
+        $sql = "SELECT * FROM  product_tab as p JOIN category_tab as c ON c.cat_id = p.cat_id WHERE user_id='$user_id'";
         $result = $this->db->query($sql);
         if ($result->num_rows() <= 0) {
             $response = array(

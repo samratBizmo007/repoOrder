@@ -29,11 +29,15 @@ class Registration extends CI_controller{
     public function registerCustomer() {
     	extract($_POST);
     	// print_r($_POST);die();
+        if($user_role==0){
+             echo '<div class="alert alert-danger" style="margin-bottom:5px">
+            <strong>Please select appropriate role!</strong> 
+            </div>';die();
+        }
     	if($user_role==1)
     	{
     		if($register_password == '')
-    		{
-    		
+    		{   		
     			 echo '<div class="alert alert-danger" style="margin-bottom:5px">
             <strong>Please enter your password</strong> 
             </div>';die();

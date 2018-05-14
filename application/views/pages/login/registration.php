@@ -60,8 +60,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="w3-margin-bottom w3-col l12 s12"> 
                             <select name="user_role" id="user_role" class="w3-input w3-border w3-light-grey" required>
                                 <option class="w3-red" selected>Select your role</option>
-                                <option value="1">Consumer</option>
-                                <option value="2">WholeSaler</option>
+                                <option value="1">Customer</option>
+                                <option value="2">Saler</option>
                             </select>
                         </div>
                         <div id="2" class="jumla_role  w3-col l12 s12">
@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         </div>
                         <!-- hide this part for seller -->
-                        <div id="1" class="w3-margin-bottom " style="display: none;">
+                        <div id="1" class="w3-margin-bottom " >
                             <div class="w3-margin-bottom" style="">
                                 <input type="password" onkeyup="checkPassword();" name="register_password" id="register_password" class="w3-input w3-border w3-light-grey " placeholder="Password" minlength="8" >
                             </div>

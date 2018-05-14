@@ -19,7 +19,7 @@ class Login extends CI_Model {
             return $response;
             die();
         }
-        
+
         if ($email_id == '') {
             $response = array(
                 'status' => 500,
@@ -319,9 +319,9 @@ class Login extends CI_Model {
 
     // -----------------------USER REGISTERATION MODEL----------------------//
     public function sendUserIs_RegisteredEmail($user_name, $email_id, $admin_email,$user_role) {
-        $role='Consumer';
+        $role='Customer';
         if($user_role=='2'){
-            $role='Wholesaler';
+            $role='Saler';
         }
         $config = Array(
             'protocol' => 'smtp',
