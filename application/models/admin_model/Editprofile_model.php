@@ -15,22 +15,22 @@ class Editprofile_model extends CI_Model {
     public function updateProfile($data) {
         extract($data);
         //print_r($data);die();
-           if ($fullname == '') {
+        if ($fullname == '') {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Please Enter Your Name..!');
             return $response;
             die();
         }
-         
-            if ($address == '') {
+
+        if ($address == '') {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Please Enter Your Address..!');
             return $response;
             die();
         }
-           if ($phone == '') {
+        if ($phone == '') {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Please Enter Your phone no..!');
@@ -38,8 +38,8 @@ class Editprofile_model extends CI_Model {
             die();
         }
         $sql = "UPDATE user_tab SET full_name='$fullname',"
-                . " website='$website', bio='$bio', address='$address',"
-                . " phone='$phone',user_image='$imagePath',company_name='$company_name' WHERE user_id = '$user_id'";
+        . " website='$website', bio='$bio', address='$address',"
+        . " phone='$phone',user_image='$imagePath',company_name='$company_name' WHERE user_id = '$user_id'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
@@ -59,41 +59,49 @@ class Editprofile_model extends CI_Model {
     public function changePassword($data) {
         extract($data);
         //print_r($data);die();
-           if ($user_id == '') {
+        if ($user_id == '') {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Please Enter User Id..!');
             return $response;
             die();
         }
-          if ($curr_pass == '') {
+        if ($curr_password == '') {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Please Enter Current Password..!');
             return $response;
             die();
         }
-          if ($new_pass == '') {
+        if ($new_password == '') {
             $response = array(
                 'status' => 500,
                 'status_message' => 'Please Enter New Password..!');
             return $response;
             die();
         }
-        $checkCurrPassword = Editprofile_model::checkCurrPassword_exist($curr_pass, $user_id);
-
+        $checkCurrPassword = Editprofile_model::checkCurrPassword_exist($curr_password, $user_id);
+//print_r($checkCurrPassword);die();
         if ($checkCurrPassword == 1) {
             $new_pass = base64_encode($new_password);
             $sql = "UPDATE user_tab SET password='$new_pass' WHERE user_id = '$user_id'";
+            //echo $sql;die();
             $result = $this->db->query($sql);
             if ($this->db->affected_rows()>0) {
                 $response = array(
                     'status' => 200,
                     'status_message' => 'Password Updated Successfully..!');
             } else {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Password Not Updated Successfully...!');
+                if($new_password==$curr_password){
+                    $response = array(
+                        'status' => 500,
+                        'status_message' => 'Password was not updated! New Password and Current Password is same.');
+                }
+                else{
+                    $response = array(
+                        'status' => 500,
+                        'status_message' => 'Password Not Updated Successfully!');
+                }
             }
         } else {
             $response = array(
@@ -109,6 +117,7 @@ class Editprofile_model extends CI_Model {
         $curr_pass = base64_encode($curr_password);
 
         $sql = "SELECT * FROM user_tab WHERE user_id = '$user_id' AND password = '$curr_pass'";
+        //echo $sql;die();
         $result = $this->db->query($sql);
         if ($result->num_rows() <= 0) {
             return false;

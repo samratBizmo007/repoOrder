@@ -100,8 +100,9 @@ $user_id = $this->session->userdata('user_id');
                                     <textarea class="w3-input w3-border w3-small" name="address" id="address" placeholder="address" rows="5" cols="50" style="resize: none; text-align: left;" required><?php echo $userDetails['status_message'][0]['address']; ?></textarea>
                                 </div>
                             </div>
-                            <div class="w3-col l12 w3-center w3-padding-small w3-margin-top">
-                                <button  type="submit" title="submit profile" class="w3-margin w3-center w3-button w3-blue">Submit</button>                            
+                            <div class="w3-col l12 w3-center w3-padding" id="submitEditBtn">
+                                <button  type="submit" title="submit profile" class="w3-center w3-margin-bottom w3-button w3-blue">Update</button>  
+
                             </div>
                         </form>
                     </div>
@@ -142,8 +143,8 @@ $user_id = $this->session->userdata('user_id');
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-margin-left w3-padding-small" id="message"></div>
-                            <div class="w3-col l12 w3-center w3-padding-small w3-margin-top">
-                                <button  type="submit" id="changepass_submit" title="Change Password" class="w3-margin w3-center w3-button w3-blue" disabled>Submit</button>                            
+                            <div class="w3-col l12 w3-center w3-padding-small w3-margin-top" id="changePassBtn">
+                                <button  type="submit" id="changepass_submit" title="Change Password" class="w3-margin w3-center w3-button w3-blue" disabled>Update Password</button>                            
                             </div>
                         </form>
                     </div>
@@ -155,11 +156,12 @@ $user_id = $this->session->userdata('user_id');
         </div>       
     </body>
 </html>
-<!--  script to update user dashboard image   -->
+<!--  script to update user profile  -->
 <script>
     $(function () {
         $("#editProfileForm").submit(function () {
             dataString = $("#editProfileForm").serialize();
+            $('#submitEditBtn').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Updating profile. Please wait...</b></span>');
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>user/Edit_profile/updateProfile",
@@ -170,6 +172,7 @@ $user_id = $this->session->userdata('user_id');
                 success: function (data)
                 {
                     $.alert(data);
+                    $('#submitEditBtn').html('<button  type="submit" title="submit profile" class="w3-center w3-margin-bottom w3-button w3-blue">Update</button>');
                     //location.reload();
                 }
             });
@@ -177,6 +180,7 @@ $user_id = $this->session->userdata('user_id');
 
         });
     });
+
 //----------------change pills on click to edit profile------------------//
     $("#edit").click(function () {
         $("#edit").addClass("active");
@@ -211,7 +215,7 @@ $user_id = $this->session->userdata('user_id');
     $(function () {
         $("#changepass_Form").submit(function () {
             dataString = $("#changepass_Form").serialize();
-
+            $('#changePassBtn').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Updating password. Please wait...</b></span>');
             $.ajax({
                 type: "POST",
                 url: "<?php echo base_url(); ?>user/edit_profile/changePassword",
@@ -220,6 +224,7 @@ $user_id = $this->session->userdata('user_id');
                 success: function (data)
                 {
                     $.alert(data);
+                    $('#changePassBtn').html('<button  type="submit" id="changepass_submit" title="Change Password" class="w3-margin w3-center w3-button w3-blue">Update Password</button>');
                 }
             });
             return false;  //stop the actual form post !important!

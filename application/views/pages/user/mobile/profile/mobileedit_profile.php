@@ -86,7 +86,7 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding w3-center" id="btnsubmit">
-                        <button  type="submit" title="submit profile" class="w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Update</button>
+                        <button  type="submit" id="submitEditBtn" title="submit profile" class="w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Update</button>
                     </div>
                 </form>
             </div>
@@ -129,8 +129,8 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                     </div>
                     <div class="w3-col l12 w3-margin-left w3-padding-small" id="message"></div>
-                    <div class="w3-col l12 w3-center w3-padding-small w3-margin-bottom">
-                        <button  type="submit" id="changepass_submit" title="Change Password" class="w3-center w3-button w3-medium w3-blue" disabled>Change</button>                            
+                    <div class="w3-col l12 w3-center w3-padding-small w3-margin-bottom" id="changePassBtn">
+                        <button  type="submit" id="changepass_submit" title="Change Password" class="w3-center w3-button w3-medium w3-blue" disabled>Update Password</button>                            
                     </div>
                 </form>
 
@@ -145,6 +145,7 @@ error_reporting(E_ERROR | E_PARSE);
         $(function () {
             $("#editProfileForm").submit(function () {
                 dataString = $("#editProfileForm").serialize();
+                $('#submitEditBtn').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Updating profile. Please wait...</b></span>');
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url(); ?>user/Edit_profile/updateProfile",
@@ -155,6 +156,7 @@ error_reporting(E_ERROR | E_PARSE);
                     success: function (data)
                     {
                         $.alert(data);
+                        $('#submitEditBtn').html('<button  type="submit" title="submit profile" class="w3-center w3-margin-bottom w3-button w3-blue">Update</button>');
                         //location.reload();
                     }
                 });
@@ -178,7 +180,7 @@ error_reporting(E_ERROR | E_PARSE);
 $(function () {
     $("#changepass_Form").submit(function () {
         dataString = $("#changepass_Form").serialize();
-
+        $('#changePassBtn').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Updating password. Please wait...</b></span>');
         $.ajax({
             type: "POST",
             url: "<?php echo base_url(); ?>user/edit_profile/changePassword",
@@ -187,6 +189,7 @@ $(function () {
                     success: function (data)
                     {
                         $.alert(data);
+                        $('#changePassBtn').html('<button  type="submit" id="changepass_submit" title="Change Password" class="w3-center w3-button w3-medium w3-blue">Update Password</button> ');
                     }
                 });
                 return false;  //stop the actual form post !important!
