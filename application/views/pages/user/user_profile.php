@@ -44,6 +44,7 @@ $user_id = $this->session->userdata('user_id');
     /*background-size: contain;*/
     background-position: center;
     background-repeat: no-repeat;
+    background-size:contain;
 }
 
 /* all saved images div */
@@ -193,12 +194,13 @@ $user_id = $this->session->userdata('user_id');
                             //print_r($sliderInfo);die();
                                         if (count($products['status_message']) != 0) {
                                             foreach ($products['status_message'] as $key) {
+                                                //print_r($key);die();
                                                 $prodimagesdata = json_decode($key['prod_image'], TRUE);
                                                 foreach ($prodimagesdata as $val) {
                                                     ?>
                                                     <!-- Image Div -->
                                                     <div class="w3-col l4 w3-padding-small allImage-div ">
-                                                        <div class="allImage w3-card-2" style="background-position:center;background-repeat: no-repeat; background-image: url('<?php echo base_url() . $val['prod_image']; ?>');">
+                                                        <div class="allImage w3-card-2 w3-black" style="background-position:center;background-repeat: no-repeat; background-image: url('<?php echo base_url() . $val['prod_image']; ?>');">
                                                             <div class="w3-col l12">
                                                                 <!-- overlay for action div -->
                                                                 <div class="w3-col l12 saved-image">
@@ -221,7 +223,7 @@ $user_id = $this->session->userdata('user_id');
                                                         <div class="modal-content">
                                                             <div class="modal-body ">
                                                               <?php if ($link_user_id == $user_id) { ?>                                             
-                                                              <div class="w3-right w3-small w3-padding-bottom"><a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-button" style="padding: 3px;"><span>Delete</span></a></div>
+                                                              
                                                               <?php } ?>
                                                               <!-- Mid section div start -->
                                                               <?php
@@ -276,6 +278,11 @@ $user_id = $this->session->userdata('user_id');
                                                     } //----------------end of else count of images
                                                     ?>
                                                     <!-- Mid section div ends -->
+
+                                                    <!-- Delete product button -->
+                                                    <div class="w3-col l12 w3-small w3-padding-top ">
+                                                        <a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-left w3-button" style="padding: 3px;"><span>Delete Product</span></a>
+                                                    </div>
 
                                                     <!--<img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">-->
                                                     <label class="w3-margin-top w3-label">Product Name: </label><b> <?php echo $key['product_name']; ?></b><br>                                   
