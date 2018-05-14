@@ -109,7 +109,7 @@ class Login extends CI_Model {
         if ($result->num_rows() <= 0) {
             $response = array(
                 'status' => 500,
-                'status_message' => 'Email ID not found. New user can <a class="w3-medium" href="' . base_url() . 'login">Register Here!</a>');
+                'status_message' => 'Email ID not found. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
         } else {
             $password = '';
             foreach ($result->result_array() as $row) {
