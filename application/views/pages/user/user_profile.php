@@ -194,7 +194,7 @@ $user_id = $this->session->userdata('user_id');
                             //print_r($sliderInfo);die();
                                         if (count($products['status_message']) != 0) {
                                             foreach ($products['status_message'] as $key) {
-                                                //print_r($key);die();
+                                                // print_r($key);die();
                                                 $prodimagesdata = json_decode($key['prod_image'], TRUE);
                                                 foreach ($prodimagesdata as $val) {
                                                     ?>
@@ -282,8 +282,9 @@ $user_id = $this->session->userdata('user_id');
                                                     <!-- Delete product button -->
                                                     <div class="w3-col l12 w3-small w3-padding-top ">
                                                         <a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-left w3-button" style="padding: 3px;"><span>Delete Product</span></a>
+                                                         <i class="w3-small w3-right"> <?php echo $key['category_name']; ?></i>
                                                     </div>
-
+                                                   
                                                     <!--<img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">-->
                                                     <label class="w3-margin-top w3-label">Product Name: </label><b> <?php echo $key['product_name']; ?></b><br>                                   
                                                     <label class="w3-label">Product Description: </label><b class="w3-small"> <?php echo $key['prod_description']; ?></b>
