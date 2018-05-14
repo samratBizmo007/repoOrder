@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR | E_PARSE);
 class Login extends CI_Model {
 
     public function __construct() {
