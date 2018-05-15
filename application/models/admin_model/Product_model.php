@@ -32,13 +32,13 @@ class Product_model extends CI_Model {
     public function addProduct($data) {
         extract($data);
         //print_r($data);die();
-            if ($cat_id == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter category Id..!');
-            return $response;
-            die();
-        }
+        //     if ($cat_id == '') {
+        //     $response = array(
+        //         'status' => 500,
+        //         'status_message' => 'Please Enter category Id..!');
+        //     return $response;
+        //     die();
+        // }
           if ($user_id == '') {
             $response = array(
                 'status' => 500,
@@ -91,6 +91,24 @@ class Product_model extends CI_Model {
     }
 
     //-------ADD NEW product FUNCTION ends--------------//
+    //-------function to fetch user as per that particular category id----------------------//
+    // public function getsellercategory()
+    // {
+    //     $sql = "SELECT * FROM `user_tab` WHERE user_id = 13 AND cat_id =2";
+    //     $result = $this->db->query($sql);
+    //     if ($result->num_rows() <= 0) {
+    //         $response = array(
+    //             'status' => 500,
+    //             'status_message' => 'No data found.');
+    //     } else {
+    //         $response = array(
+    //             'status' => 200,
+    //             'status_message' => $result->result_array());
+    //     }
+    //     return $response;
+
+    // }
+    //---------function end------------//
     //-------get posted products and images from product--------------//
 
     public function getPostedImagesBy_username($user_id) {

@@ -87,7 +87,8 @@ error_reporting(E_ERROR | E_PARSE);
             <form id="addProduct_form" name="addProduct_form">
                 <div class="w3-col l12 s12 m12 w3-margin-top">
                     <div class="col-lg-6 w3-padding-small" id="deletecat">
-                        <div class="w3-col l12 s12 m12 w3-small w3-padding-bottom">
+                        
+                        <!-- <div class="w3-col l12 s12 m12 w3-small w3-padding-bottom">
                             <label class="w3-small">Business Field: <font color ="red"><span id ="pcategory_star">*</span></font></label><br>
                             <font color ="red"><span id ="cat_id_span"></span></font>							
                             <select class="w3-select w3-margin-bottom" name="cat_id" id="cat_id">
@@ -99,7 +100,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     <option value="<?php echo $result['cat_id']; ?>"><?php echo $result['category_name']; ?></option>
                                 <?php } ?>
                             </select>
-                        </div>
+                        </div> -->
                         <!-- kk -->
                         <div class="w3-col l12 s12 m12 w3-small w3-padding-bottom">
                             <label> Product Name: <font color ="red"><span id ="pname_star">*</span></font></label><br>

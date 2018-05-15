@@ -9,13 +9,14 @@ class Edit_profile extends CI_Controller {
 
     public function index() {
 
-        $user_name = $this->session->userdata('user_name');
-        $user_id = $this->session->userdata('user_id');
-        $user_role=$this->session->userdata('user_role');
+        $user_id=$this->session->userdata('user_id');
+        $user_name=$this->session->userdata('user_name');
+         $user_role = $this->session->userdata('user_role');
+        $cat_id = $this->session->userdata('cat_id');
         $this->load->library('user_agent');
 
         //check session variable set or not, otherwise logout
-        if (($user_name == '') || ($user_id == '') || ($user_role != '2')) {
+        if (($user_name == '') || ($user_id == '') || ($user_role != '2') || ($cat_id =='')) {
             redirect('login');
         }
         $data['userDetails'] = Edit_profile::getUserDetails();

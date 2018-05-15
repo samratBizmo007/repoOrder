@@ -20,7 +20,8 @@ class Login extends CI_Controller {
         $user_id = $this->session->userdata('user_id');
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
-        if (($user_id != '') || ($user_name != '') || ($user_role !='')) {
+         $cat_id = $this->session->userdata('cat_id');
+        if (($user_id != '') || ($user_name != '') || ($user_role !='') || ($cat_id !='')) {
             redirect('user/feeds');
         }
         $this->load->view('pages/login/login');
@@ -64,7 +65,8 @@ public function loginCustomer() {
         $session_data = array(
             'user_id' => $response['user_id'],
             'user_name' => $response['user_name'],
-            'user_role'=>$response['role']
+            'user_role'=>$response['role'],
+            'cat_id'=>$response['cat_id']
         );
             //start session of user if login success
         $this->session->set_userdata($session_data);

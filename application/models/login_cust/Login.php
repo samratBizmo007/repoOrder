@@ -305,7 +305,8 @@ class Login extends CI_Model {
                 'username' => $register_username,
                 'email' => $register_email,
                 'phone' => $register_mobile_no,
-                'role' => $user_role
+                'role' => $user_role,
+                'cat_id'=>$cat_id
             );
 
             // print_r($data);die();
@@ -720,6 +721,7 @@ class Login extends CI_Model {
         $user_name = '';
         $role = '';
         $privilege = '';
+        $cat_id ='';
         //if credentials are true, their is obviously only one record
         if ($result->num_rows() == 1) {
 
@@ -727,6 +729,8 @@ class Login extends CI_Model {
                 $user_name = $row['username'];
                 $user_id = $row['user_id'];
                 $role = $row['role'];
+                $cat_id = $row['cat_id'];
+
             }
 
             if ($result) {
@@ -736,6 +740,7 @@ class Login extends CI_Model {
                     'user_id' => $user_id,
                     'user_name' => $user_name,
                     'role' => $role,
+                    'cat_id'=>$cat_id,
                     'status_message' => 'Login Successfull'
                 );
             } else {
