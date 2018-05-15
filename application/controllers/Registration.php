@@ -19,7 +19,8 @@ class Registration extends CI_controller{
         $user_id = $this->session->userdata('user_id');
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
-        if (($user_id != '') || ($user_name != '') || ($user_role !='')) {
+        $cat_id = $this->session->userdata('cat_id');
+        if (($user_id != '') || ($user_name != '') || ($user_role !='') ||($cat_id =='')) {
             redirect('user/feeds');
         }
 
@@ -92,6 +93,7 @@ class Registration extends CI_controller{
 		// print_r($_POST);die();
         //Connection establishment, processing of data and response from REST API		
         $data = array(
+            'cat_id'=>$cat_id,
         	'user_role' =>$user_role,
             'register_username' => $register_username,
             // 'register_password' => $register_password,

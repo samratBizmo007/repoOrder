@@ -13,8 +13,11 @@ class Manage_products extends CI_Controller {
         $user_id = $this->session->userdata('user_id');
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
+         $cat_id = $this->session->userdata('cat_id');
+         // echo $cat_id;
+         // echo $user_name;die();
         $this->load->library('user_agent');
-        if (($user_id == '') || ($user_role != '2')) {
+        if (($user_id == '') || ($user_role != '2') || ($cat_id =='')) {
             redirect('login');
         }
         
@@ -88,11 +91,13 @@ class Manage_products extends CI_Controller {
     public function addProduct() {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
+         $cat_id = $this->session->userdata('cat_id');
         extract($_POST);
-        if ($cat_id == 0) {
-            echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-large"></i> Please Select Category First.</label>';
-            die();
-        }
+        // echo $cat_id;die();
+        // if ($cat_id == 0) {
+        //     echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-large"></i> Please Select Category First.</label>';
+        //     die();
+        // }
         $data = $_POST;
         $prod_Arr = array();
         //print_r($_FILES);die();
@@ -150,7 +155,7 @@ class Manage_products extends CI_Controller {
         //$data['imagePath'] = $uploadPath . $imagePath;
         $data['posted_by'] = $user_name;
         $data['user_id'] = $user_id;
-        //$data['role'] = $user_role;
+        $data['cat_id'] = $cat_id;
         $data['prod_images'] = json_encode($prod_Arr);
         //print_r($data);die();
         $path = base_url();

@@ -9,7 +9,8 @@ class Feeds extends CI_Controller {
         //start session   
 		$user_id=$this->session->userdata('user_id');
 		$user_name=$this->session->userdata('user_name');
-		
+         $user_role = $this->session->userdata('user_role');
+		$cat_id = $this->session->userdata('cat_id');
     //check session variable set or not, otherwise logout
 		// if(($user_id=='') || ($user_name=='')){
 		// 	redirect('login');
