@@ -43,8 +43,8 @@ class Manage_products extends CI_Controller {
         $response = json_decode($response_json, true);
         return $response;
     }
-
     //------------fun for get the all categories -----------------------//
+    
     //------------fun for get posted products  -----------------------//
     public function getPostedImagesBy_username() {
         $admin_name = $this->session->userdata('admin_name');
