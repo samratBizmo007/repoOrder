@@ -228,7 +228,10 @@ class Feeds extends CI_Controller {
     			<div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
     			</div>
     			<div class="w3-col s11 w3-padding">
-    			<a class="btn" style="padding: 0"><label class="w3-small">'.$key['username'].'</label></a>
+    			<a class="btn" style="padding: 0"><label class=" w3-small">'; if($key['full_name']==''){ echo $key['username']; }
+                else {
+                    echo $key['full_name'];
+                } echo'</label></a>
     			</div>
     			</div>
     			<!-- Top section div ends -->
