@@ -65,14 +65,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </select>
                         </div>
                         <div id="2" class="jumla_role  w3-col l12 s12">
+                            
                             <div class="w3-margin-bottom">
                                 <input type="text" name="register_username" id="register_username"  class="w3-input w3-border w3-light-grey " placeholder="Username " value="" required>
                             </div>
-
+                            
                             <div class="w3-margin-bottom">
                                 <input type="email" name="register_email" id="register_email" class="w3-input w3-border w3-light-grey" placeholder="Email address" required>
                             </div>
-
                             <div class="w3-col l12 w3-margin-bottom"  >
                                 <div class="w3-col l4 s4" style=" padding-right: 5px;">
                                     <input type="text" name="mobile_code" id="mobile_code" value="965" class="w3-input w3-border w3-light-grey" pattern="[0-9]{3}" oninvalid="this.setCustomValidity('No whitespaces, Enter Only 3 Digit Country Code.')" oninput="setCustomValidity('')" placeholder="Code" required>
