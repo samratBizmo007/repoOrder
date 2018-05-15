@@ -22,18 +22,42 @@ class Registration extends CI_controller{
         if (($user_id != '') || ($user_name != '') || ($user_role !='')) {
             redirect('user/feeds');
         }
-	  	 $this->load->view('pages/login/registration');
+
+        // get all categories from db
+        $data['categories'] = Registration::getAllCategories();
+
+	  	 $this->load->view('pages/login/registration',$data);
     }
+
+    //------------fun for get the all categories -----------------------//
+    public function getAllCategories() {
+        $path = base_url();
+        $url = $path . 'api/ManageProduct_api/getAllCategories';
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        return $response;
+    }
+    //------------fun for get the all categories -----------------------//
 
       // --------------register user fucntion starts----------------------//
     public function registerCustomer() {
     	extract($_POST);
-    	// print_r($_POST);die();
+    	//print_r($_POST);die();
         if($user_role==0){
              echo '<div class="alert alert-danger" style="margin-bottom:5px">
             <strong>Please select appropriate role!</strong> 
             </div>';die();
         }
+        if($user_role==2 && $cat_id==0){
+             echo '<div class="alert alert-danger" style="margin-bottom:5px">
+            <strong>Please select appropriate Business Type!</strong> 
+            </div>';die();
+        }
+        //die();
     	if($user_role==1)
     	{
     		if($register_password == '')
@@ -52,7 +76,7 @@ class Registration extends CI_controller{
             'register_mobile_no' => $register_number,
             // 'register_address' => $address
         );
-        // print_r($data);die();
+        //print_r($data);die();
         $path = base_url();
         $url = $path . 'api/Login_api/registerCustomer';
         $ch = curl_init($url);
