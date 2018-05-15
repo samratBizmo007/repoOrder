@@ -87,7 +87,7 @@ error_reporting(E_ERROR | E_PARSE);
 
 								<p class="w3-center"> OR </p>
 								<p class="text-center text-muted">
-									<button type="button" class="btn btn-block w3-blue"><i class=" w3-large fa fa-facebook-square" style="color:#ffffff;"></i> Log in with Facebook</button>
+									<a type="button" href="<?php echo base_url(); ?>user_authentication" class="btn btn-block w3-blue"><i class=" w3-large fa fa-facebook-square"></i> Log in with Facebook</a>
 								</p>
 								<div class="form-group">
 									<div class="row">
