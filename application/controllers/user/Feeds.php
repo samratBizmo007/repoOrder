@@ -107,6 +107,7 @@ class Feeds extends CI_Controller {
 
 		if($response['status']==200){
 			foreach ($response['status_message'] as $key) {
+                // print_r($key);die();
 				echo 
 				'<div class="w3-col l12 w3-card-2 w3-margin-bottom">
 
@@ -116,7 +117,10 @@ class Feeds extends CI_Controller {
 				<div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
 				</div>
 				<div class="w3-col l11 w3-padding-left w3-padding-top">
-				<label class="w3-margin-top w3-small">'.$key['username'].'</label>
+				<label class="w3-margin-top w3-small">'; if($key['full_name']==''){ echo $key['username']; }
+                else {
+                    echo $key['full_name'];
+                } echo'</label>
 				</div>
 				</div>
 				<!-- Top section div ends -->
