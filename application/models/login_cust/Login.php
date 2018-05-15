@@ -154,6 +154,14 @@ class Login extends CI_Model {
                 die();
             }
         }
+         if ($user_role != '1') {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'User Role is not valid!!!'
+            );
+            return $response;
+            die();
+        }
         if ($register_username == '') {
             $response = array(
                 'status' => 500, //---------db error code 
@@ -249,6 +257,14 @@ class Login extends CI_Model {
                 return $response;
                 die();
             }
+        }
+         if ($user_role != '2') {
+            $response = array(
+                'status' => 500, //---------db error code 
+                'status_message' => 'User Role is not valid!!!'
+            );
+            return $response;
+            die();
         }
         if ($register_username == '') {
             $response = array(
