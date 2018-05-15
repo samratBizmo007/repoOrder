@@ -20,7 +20,7 @@ class Registration extends CI_controller{
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
         $cat_id = $this->session->userdata('cat_id');
-        if (($user_id != '') || ($user_name != '') || ($user_role !='') ||($cat_id =='')) {
+        if (($user_id != '') || ($user_name != '') || ($user_role !='') ||($cat_id !='')) {
             redirect('user/feeds');
         }
 
