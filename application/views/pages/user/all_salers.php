@@ -59,12 +59,16 @@ error_reporting(E_ERROR | E_PARSE);
                   </div>
 
                   <div class="w3-col s12">
-                    <a class="w3-button w3-white w3-text-green w3-left w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="padding: 2px">
-                    <span class="fa fa-phone w3-medium"></span> <span class="w3-small">call on</span>
+                    <a class="w3-button w3-white w3-text-yellow w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>">
+                    <span class="fa fa-phone w3-large"></span> <span class="w3-small"></span>
                   </a>
 
-                  <a class="w3-button w3-white w3-right w3-text-green w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>" style="padding: 2px">
-                    <span class="fa fa-envelope-o w3-medium"></span> <span class="w3-small">mail on</span>
+                  <a class="w3-button w3-white w3-center w3-text-green w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=<?php echo $key['phone']; ?>" title="Whatsapp on: <?php echo $key['phone']; ?>">
+                    <span class="fa fa-whatsapp w3-large"></span> <span class="w3-small"></span>
+                  </a>
+
+                  <a class="w3-button w3-white w3-text-red w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>">
+                    <span class="fa fa-envelope-o w3-large"></span> <span class="w3-small"></span>
                   </a>
                   </div>
 

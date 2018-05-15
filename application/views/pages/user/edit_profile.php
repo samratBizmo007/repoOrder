@@ -81,24 +81,8 @@ $user_id = $this->session->userdata('user_id');
                             </div>
                             <div class="w3-col l10">
                                 <input type="text" class="w3-input w3-border w3-small" placeholder="phone" value="<?php echo $userDetails['status_message'][0]['phone']; ?>" name="phone" id="phone" required>
-                                <label class="w3-margin-top w3-small">Is This your Whatsapp Contact Number?<br> 
-                                    <span>
-                                        <input type="radio" name="whatsappCheck" value="yes" required> Yes<br>
-                                        <input type="radio" name="whatsappCheck" value="no" required> No<br>
-                                    </span>
-                                </label>
                             </div>
                         </div>
-                        <!-- whatsapp no div -->
-                        <div class="w3-col l12 w3-padding-small w3-margin-top">
-                            <div class="w3-col l2">
-                                <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no: <font color ="red"><span id ="pname_star">*</span></font></label>
-                            </div>
-                            <div class="w3-col l10">
-                                <input type="text" class="w3-input w3-border w3-small" placeholder="Enter Whatsapp No in this format: +96587456788" name="phone" id="phone" required>
-                            </div>
-                        </div>
-                        <!-- whatsapp no div ends -->
                         <div class="w3-col l12 w3-padding-small w3-margin-top">
                             <div class="w3-col l2">
                                 <label class="w3-label w3-small" style="color: #00B8D4;">company name: </label>

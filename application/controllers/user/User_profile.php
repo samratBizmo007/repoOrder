@@ -5,13 +5,7 @@ class User_profile extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $user_name = $this->session->userdata('user_name');
-        $user_id = $this->session->userdata('user_id');
-        $user_role=$this->session->userdata('user_role');
-        //check session variable set or not, otherwise logout
-        if (($user_name == '') || ($user_id == '') || ($user_role != '2')) {
-            redirect('login');
-        }
+        
     }
 
     public function index($profileuser_id='') {

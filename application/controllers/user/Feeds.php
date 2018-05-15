@@ -9,8 +9,7 @@ class Feeds extends CI_Controller {
         //start session   
 		$user_id=$this->session->userdata('user_id');
 		$user_name=$this->session->userdata('user_name');
-         $user_role = $this->session->userdata('user_role');
-		$cat_id = $this->session->userdata('cat_id');
+		
     //check session variable set or not, otherwise logout
 		// if(($user_id=='') || ($user_name=='')){
 		// 	redirect('login');
@@ -108,7 +107,6 @@ class Feeds extends CI_Controller {
 
 		if($response['status']==200){
 			foreach ($response['status_message'] as $key) {
-                // print_r($key);die();
 				echo 
 				'<div class="w3-col l12 w3-card-2 w3-margin-bottom">
 
@@ -118,10 +116,7 @@ class Feeds extends CI_Controller {
 				<div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
 				</div>
 				<div class="w3-col l11 w3-padding-left w3-padding-top">
-				<label class="w3-margin-top w3-small">'; if($key['full_name']==''){ echo $key['username']; }
-                else {
-                    echo $key['full_name'];
-                } echo'</label>
+				<label class="w3-margin-top w3-small">'.$key['username'].'</label>
 				</div>
 				</div>
 				<!-- Top section div ends -->
@@ -132,15 +127,12 @@ class Feeds extends CI_Controller {
 				if(count($imageArr)>1){
 					echo '
 					<!-- Image slider Swiper repo -->
-					<div class="swiper-container" style="height: 500px;width: 100%">
-					<div class="swiper-wrapper">';
+					<div class="swiper-container" style="height: auto;width: 100%">
+					<div class="swiper-wrapper" style="vertical-align:middle">';
 					
 					foreach ($imageArr as $image) {
-						echo '
-						<div class="w3-col l12 swiper-slide w3-border-bottom w3-black timeline_img" >
-						<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >
-						</div>';
-						
+						echo '						
+                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide" >';						
 					}
 					echo '
 					</div>
@@ -156,9 +148,7 @@ class Feeds extends CI_Controller {
                 	echo '<!-- Single image div -->';
                 	foreach ($imageArr as $image) {
                 		echo'
-                		<div class="w3-col l12 w3-border-bottom w3-black timeline_img">
-                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >
-                		</div>';
+                		<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >';
                 	}
                 } //----------------end of else count of images
 
@@ -175,6 +165,10 @@ class Feeds extends CI_Controller {
                 <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a> 
+
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['phone'].'" title="WhatsApp No: '.$key['phone'].'" style="padding-right: 0px;padding-left: 15px">
+                <span class="fa fa-whatsapp w3-xlarge"></span>
+                </a>
                 <a class="btn w3-right" href="'.base_url().'user/category/'.base64_encode($key['cat_id']).'" style="padding: 0">
                 <span class="w3-margin-top w3-small"><i>'.$key['category_name'].'</i></span>
                 </a>
@@ -230,10 +224,7 @@ class Feeds extends CI_Controller {
     			<div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
     			</div>
     			<div class="w3-col s11 w3-padding">
-    			<a class="btn" style="padding: 0"><label class=" w3-small">'; if($key['full_name']==''){ echo $key['username']; }
-                else {
-                    echo $key['full_name'];
-                } echo'</label></a>
+    			<a class="btn" style="padding: 0"><label class="w3-small">'.$key['username'].'</label></a>
     			</div>
     			</div>
     			<!-- Top section div ends -->
@@ -244,13 +235,11 @@ class Feeds extends CI_Controller {
     			if(count($imageArr)>1){
     				echo '
     				<!-- Image slider Swiper repo -->
-    				<div class="swiper-container" style="height: 250px;width: 100%">
-    				<div class="swiper-wrapper">';
+    				<div class="swiper-container" style="height: auto;width: 100%">
+                    <div class="swiper-wrapper" style="vertical-align:middle!important;">';
     				foreach ($imageArr as $image) {
     					echo '
-    					<div class="w3-col l12 swiper-slide w3-border-bottom w3-black timeline_imgMob">
-    					<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >
-    					</div>';
+    					<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide w3-border-bottom" >';
     				}
     				echo '
     				</div>
@@ -264,9 +253,7 @@ class Feeds extends CI_Controller {
                 	echo '<!-- Single image div -->';
                 	foreach ($imageArr as $image) {
                 		echo '
-                		<div class="w3-col l12 w3-border-bottom w3-black timeline_imgMob">
-                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >
-                		</div>';
+                		<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive w3-border-bottom" >';
                 	}
                 } //----------------end of else count of images
 
@@ -283,6 +270,11 @@ class Feeds extends CI_Controller {
                 <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>
+
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['phone'].'" title="'.$key['phone'].'" style="padding-right: 0px;padding-left: 15px">
+                <span class="fa fa-whatsapp w3-xlarge"></span>
+                </a>
+
                 <a class="btn w3-right" href="'.base_url().'user/category/'.base64_encode($key['cat_id']).'" style="padding: 0">
                 <span class="w3-margin-top w3-small"><i>'.$key['category_name'].'</i></span>
                 </a>                      

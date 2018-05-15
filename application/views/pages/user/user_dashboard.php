@@ -32,7 +32,7 @@ error_reporting(E_ERROR | E_PARSE);
     <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-container">
         <div class="col-lg-2"></div>
-        <div class="w3-col l8 ">
+        <div class="col-lg-8">
 
           <div class="w3-col l12 w3-padding-xxlarge" id="load_feeds"></div>
 
@@ -92,7 +92,7 @@ error_reporting(E_ERROR | E_PARSE);
        start = start + limit;
        setTimeout(function(){
         load_feeds_data(limit, start);
-      }, 1000);
+      }, 500);
      }
    });
 

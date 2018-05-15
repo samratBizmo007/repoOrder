@@ -12,7 +12,9 @@ $user_id = $this->session->userdata('user_id');
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
 
