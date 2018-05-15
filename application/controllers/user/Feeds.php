@@ -248,8 +248,8 @@ class Feeds extends CI_Controller {
     				<div class="swiper-wrapper">';
     				foreach ($imageArr as $image) {
     					echo '
-    					<div class="w3-col l12 swiper-slide w3-border-bottom w3-black timeline_imgMob" style="background-image: url(\''.base_url().$image['prod_image'].'\');">
-    					<!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
+    					<div class="w3-col l12 swiper-slide w3-border-bottom w3-black timeline_imgMob">
+    					<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >
     					</div>';
     				}
     				echo '
@@ -264,7 +264,8 @@ class Feeds extends CI_Controller {
                 	echo '<!-- Single image div -->';
                 	foreach ($imageArr as $image) {
                 		echo '
-                		<div class="w3-col l12 w3-border-bottom w3-black timeline_imgMob" style="background-image: url(\''.base_url().$image['prod_image'].'\');">
+                		<div class="w3-col l12 w3-border-bottom w3-black timeline_imgMob">
+                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >
                 		</div>';
                 	}
                 } //----------------end of else count of images
