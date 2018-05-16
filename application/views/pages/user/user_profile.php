@@ -302,7 +302,7 @@ $user_id = $this->session->userdata('user_id');
                                     <?php
                                 }
                             } else {
-                                echo '<div class="w3-col l12 w3-center"><b>Oops! You don\'t have any products available.</b></div>';
+                                echo '<div class="w3-col l12 w3-center"><b>Oops! No products available.</b></div>';
                             }
                             ?>
                         </div>
