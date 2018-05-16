@@ -67,7 +67,7 @@ $admin_role=$this->session->userdata('admin_role');
   
       <a href="<?php echo base_url(); ?>admin/all_users" class="w3-bar-item w3-hover-text-orange w3-padding w3-center">
         <div class="w3-col l12"><i class="w3-xlarge fa fa-users fa-fw"></i></div>
-        <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">All Users<br><br></div>      
+        <div class="w3-col l12 w3-wide w3-small" style="letter-spacing: 2px">All Sellers<br><br></div>      
         <div class="clear"></div>
       </a>
     
@@ -85,17 +85,15 @@ $admin_role=$this->session->userdata('admin_role');
     <!-- Top container -->
     <div class="w3-bar w3-white w3-card-2 w3-large w3-padding" style="z-index:0px;">
       <div class="w3-col l12">
-        <div class="w3-col l6 s6">
+        <div class="w3-col l6 s5">
          <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey w3-blue" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
        </div>
        <div class="w3-col l6 s6 w3-right">
         <div class="w3-col l10">
-          <span class="w3-button w3-right w3-medium w3-hover-none">Welcome, <strong><?php echo $admin_name; ?></strong></span>
+          <span class="w3-button w3-right w3-small w3-hover-none">Welcome, <strong><?php echo $admin_name; ?></strong></span>
         </div>
-        <div class="w3-col l2">
-          <div class="ui-group-buttons ">
-            <a href="<?php echo base_url(); ?>admin_login/logout" class="btn waves-effect waves-light  w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px">Logout <i class="fa fa-sign-out" ></i></a>
-          </div>
+        <div class="w3-col l1 s2">
+            <a href="<?php echo base_url(); ?>admin_login/logout" class="btn w3-small w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px;padding:0 5px 0 5px">Logout <i class="fa fa-sign-out" ></i></a>
           <!--      <div class="w3-right">        -->
             <!--        <a href="<?php echo base_url(); ?>admin_login/logout" title="Logout user" class="w3-button w3-padding-small"><strong>Logout</strong> <i class="fa  fa-sign-out"></i></a> -->
             <!--      </div>-->

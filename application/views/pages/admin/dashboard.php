@@ -83,12 +83,12 @@ error_reporting(E_ERROR | E_PARSE);
     </header>
 
     <!-- Product timeline div starts -->
-    <div class="w3-row w3-margin-bottom">
+    <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-container">
         <div class="col-lg-2"></div>
-        <div class="w3-col l8 ">
+        <div class="col-lg-8">
 
-          <div class="w3-col l12" id="load_feeds"></div>
+          <div class="w3-col l12 w3-padding-xxlarge" id="load_feeds"></div>
 
           <!-- loading spinner div -->
           <div class="w3-col l12 w3-padding" id="loading_msg"></div>

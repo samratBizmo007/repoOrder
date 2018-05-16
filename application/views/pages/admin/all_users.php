@@ -5,7 +5,7 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Users</title>
+  <title>All Sellers</title>
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
@@ -21,7 +21,7 @@
 
     <!-- Header -->
     <header class="w3-container" >
-      <h5><b><i class="fa fa-users"></i> All Registered Users</b></h5>
+      <h5><b><i class="fa fa-users"></i> All Registered Sellers</b></h5>
     </header>
     <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-col l12 w3-margin-top" style="overflow-x: scroll;">
@@ -58,15 +58,18 @@
                     <td><?php echo '#UID-0'.$key['user_id']; ?></td>
                     <td><?php echo $key['username']; ?></td>
                     <td><?php echo $key['email']; ?></td>
-                    <td><?php echo $key['phone']; ?></td>
+                    <td>+<?php echo $key['phone']; ?></td>
                     <td>
                       <?php 
                       $password=substr($auto_passwd, 12, -12);
                       switch ($key['status']) {
                         case '0':
                         echo '
+                        
                         <a class="btn w3-padding-small" onclick="apprUser(\''.$key['user_id'].'\',\''.$password.'\')" title="Approve request"><i class="w3-text-green w3-large fa fa-check-circle"></i></a>
                         <a class="btn w3-padding-small" onclick="rejectUser(\''.$key['user_id'].'\')" title="Reject request"><i class="w3-text-red w3-large fa fa-minus-circle"></i></a>
+                        <div id="sellerDiv">
+                        </div>
                         ';
                         break;
 
@@ -122,13 +125,14 @@
         content: '' +
         '<form action="" class="formName">' +
         '<div class="form-group">' +
-        '<input type="text" placeholder="Enter user password" value="'+password+'" id="auto_passwd" class="w3-border auto_passwd w3-input" required>' +
+        '<input type="text" minLength="8" placeholder="Enter user password" value="'+password+'" id="auto_passwd" class="w3-border auto_passwd w3-input" required>' +
         '<br><span class="w3-small w3-text-red"><b>[NOTE: You can modify this Auto-generated Password.]</b></span>' +
         '</div>' +
         '</form>',
         buttons: {
           submit: function () {
             var auto_passwd = this.$content.find('#auto_passwd').val();
+            $('#sellerDiv').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Processing. Please wait...</b></span>');
             $.ajax({
               type:'POST',
               url:"<?php echo base_url(); ?>admin/all_users/apprUser",
@@ -138,7 +142,8 @@
               },
             //cache: false,
             success:function(response) {
-              $.alert(response);              
+              $.alert(response);     
+              $('#sellerDiv').html('');         
               $('#All_users').load(location.href + " #All_users>*", "");
             }
           });
@@ -159,13 +164,15 @@
         content:'',
         buttons: {
           confirm: function () {
+            $('#sellerDiv').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Processing. Please wait...</b></span>');
             $.ajax({
               url:"<?php echo base_url(); ?>admin/all_users/rejectUser", 
               type: "POST", 
               data: 'user_id='+ user_id,
               cache: false,
               success:function(html){     
-                $.alert(html);              
+                $.alert(html); 
+                $('#sellerDiv').html('');                 
                 $('#All_users').load(location.href + " #All_users>*", ""); 
               }
             });

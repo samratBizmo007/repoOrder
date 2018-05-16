@@ -895,7 +895,7 @@ margin-top: 3px;
 
   .timeline_img{
     height:500px;
-    /*background-size: contain;*/
+    background-size: contain;
     object-fit: fill;
     background-position: center;
     background-repeat: no-repeat;

@@ -165,7 +165,7 @@ class Feeds extends CI_Controller {
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'?subject=Referred contact from Jumla Business." style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a> 
 
@@ -270,7 +270,7 @@ class Feeds extends CI_Controller {
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'?subject=Referred contact from Jumla Business." style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>
 

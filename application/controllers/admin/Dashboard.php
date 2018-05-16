@@ -67,51 +67,50 @@ public function getTimeline_web() {
     if($response['status']==200){
         foreach ($response['status_message'] as $key) {
             echo 
-            '<div class="w3-col l12 w3-card-2 w3-margin-bottom">
+                '<div class="w3-col l12 w3-card-2 w3-margin-bottom">
 
-            <!-- Top section div start -->
-            <div class="w3-col l12 w3-border-bottom">
-            <div class="w3-col l1 s4 w3-padding">
-            <div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
-            </div>
-            <div class="w3-col l11 s8 w3-padding-top">
-            <label class="w3-margin-top w3-small">'.$key['username'].'</label>
-            </div>
-            </div>
-            <!-- Top section div ends -->
-
-            <!-- Mid section div start -->';
-
-            $imageArr=json_decode($key['prod_image'],TRUE);
-            if(count($imageArr)>1){
-                echo '
-                <!-- Image slider Swiper repo -->
-                <div class="swiper-container" style="height: 500px;width: 100%">
-                <div class="swiper-wrapper">';
-
-                foreach ($imageArr as $image) {
-                    echo '
-                    <div class="w3-col l12 swiper-slide w3-border-bottom w3-black timeline_img" style="background-image: url(\''.base_url().$image['prod_image'].'\');">
-                    <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
-                    </div>';
-
-                }
-                echo '
+                <!-- Top section div start -->
+                <div class="w3-col l12 w3-border-bottom">
+                <div class="w3-col l1 w3-padding">
+                <div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
                 </div>
-                <!-- Add Arrows -->
-                <div class="swiper-button-next w3-white w3-opacity"></div>
-                <div class="swiper-button-prev w3-white w3-opacity"></div>
-                <!-- Add Pagination for multiple images-->
-                <!-- <div class="swiper-pagination w3-opacity"></div> -->
-                </div>';
+                <div class="w3-col l11 w3-padding-left w3-padding-top">
+                <label class="w3-margin-top w3-small">'; if($key['full_name']==''){ echo $key['username']; }
+                else {
+                    echo $key['full_name'];
+                } echo'</label>
+                </div>
+                </div>
+                <!-- Top section div ends -->
+
+                <!-- Mid section div start -->';
+
+                $imageArr=json_decode($key['prod_image'],TRUE);
+                if(count($imageArr)>1){
+                    echo '
+                    <!-- Image slider Swiper repo -->
+                    <div class="swiper-container" style="height: auto;width: 100%">
+                    <div class="swiper-wrapper" style="vertical-align:middle">';
+                    
+                    foreach ($imageArr as $image) {
+                        echo '                      
+                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide" >';                        
+                    }
+                    echo '
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-button-next w3-white w3-opacity"></div>
+                    <div class="swiper-button-prev w3-white w3-opacity"></div>
+                    <!-- Add Pagination for multiple images-->
+                    <!-- <div class="swiper-pagination w3-opacity"></div> -->
+                    </div>';
                 } //-------end of if count of images
                 else{ 
 
                     echo '<!-- Single image div -->';
                     foreach ($imageArr as $image) {
                         echo'
-                        <div class="w3-col l12 w3-border-bottom w3-black timeline_img" style="background-image: url(\''.base_url().$image['prod_image'].'\');">
-                        </div>';
+                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >';
                     }
                 } //----------------end of else count of images
 
@@ -125,9 +124,13 @@ public function getTimeline_web() {
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'?subject=Referred contact from Jumla Business." style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a> 
+
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['phone'].'" title="WhatsApp No: '.$key['phone'].'" style="padding-right: 0px;padding-left: 15px">
+                <span class="fa fa-whatsapp w3-xlarge"></span>
+                </a>
                 <a class="btn w3-right" style="padding: 0">
                 <span class="w3-margin-top w3-small"><i>'.$key['category_name'].'</i></span>
                 </a>
@@ -148,9 +151,9 @@ public function getTimeline_web() {
                     navigation: {
                         nextEl: ".swiper-button-next",
                         prevEl: ".swiper-button-prev",
-                        },
-                        });
-                        </script>';
+                    },
+                });
+                </script>';
                     }
                 }
 
@@ -195,13 +198,11 @@ public function getTimeline_web() {
                 if(count($imageArr)>1){
                     echo '
                     <!-- Image slider Swiper repo -->
-                    <div class="swiper-container" style="height: 250px;width: 100%">
-                    <div class="swiper-wrapper">';
+                    <div class="swiper-container" style="height: auto;width: 100%">
+                    <div class="swiper-wrapper" style="vertical-align:middle!important;">';
                     foreach ($imageArr as $image) {
                         echo '
-                        <div class="w3-col l12 swiper-slide w3-border-bottom w3-black timeline_imgMob" style="background-image: url(\''.base_url().$image['prod_image'].'\');">
-                        <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
-                        </div>';
+                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide w3-border-bottom" >';
                     }
                     echo '
                     </div>
@@ -215,8 +216,7 @@ public function getTimeline_web() {
                     echo '<!-- Single image div -->';
                     foreach ($imageArr as $image) {
                         echo '
-                        <div class="w3-col l12 w3-border-bottom w3-black timeline_imgMob" style="background-image: url(\''.base_url().$image['prod_image'].'\');">
-                        </div>';
+                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive w3-border-bottom" >';
                     }
                 } //----------------end of else count of images
 
@@ -230,9 +230,14 @@ public function getTimeline_web() {
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'?subject=Referred contact from Jumla Business." style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>
+
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['phone'].'" title="'.$key['phone'].'" style="padding-right: 0px;padding-left: 15px">
+                <span class="fa fa-whatsapp w3-xlarge"></span>
+                </a>
+
                 <a class="btn w3-right" style="padding: 0">
                 <span class="w3-margin-top w3-small"><i>'.$key['category_name'].'</i></span>
                 </a>                      

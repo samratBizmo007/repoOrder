@@ -72,7 +72,7 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                         <div id="2" class="jumla_role  w3-col l12 s12">
                             <div class="w3-margin-bottom">
-                                <input type="text" name="login_username" id="login_username" tabindex="2" class="w3-input w3-border w3-light-grey" placeholder="Username or Email Id" value="<?php echo $_COOKIE['jumla_uname']; ?>" required>
+                                <input type="text" name="login_username" id="login_username" class="w3-input w3-border w3-light-grey" placeholder="Username or Email Id" value="<?php echo $_COOKIE['jumla_uname']; ?>" required>
                             </div>
 
                             <div class="w3-margin-bottom">

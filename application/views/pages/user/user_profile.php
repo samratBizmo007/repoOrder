@@ -169,8 +169,8 @@ $user_id = $this->session->userdata('user_id');
                                             </div>
                                             <div class="w3-col l12">
                                                 <div class="w3-col l8">
-                                                    <i class="fa fa-phone" title="Contact"></i>
-                                                    <?php
+                                                    <i class="fa fa-phone" title="Contact"></i> 
+                                                    +<?php
                                                     if ($userDetails['status_message'][0]['phone'] != '') {
                                                         echo $userDetails['status_message'][0]['phone'];
                                                     } else {

@@ -15,7 +15,8 @@ class Category_model extends CI_Model {
     //-------------------------------------------------------------//
     public function getCategorySalers($cat_id) {
 
-        $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) AND c.cat_id='$cat_id'";
+        $query = "SELECT * FROM user_tab as u JOIN category_tab as c ON (u.cat_id= c.cat_id) AND c.cat_id='$cat_id'";
+        //echo $query;die();
         //$query = "SELECT * FROM product_tab,category_tab WHERE product_tab.cat_id=category_tab.cat_id AND product_tab.cat_id='$cat_id'";
 
         $result = $this->db->query($query);

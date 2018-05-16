@@ -6,7 +6,7 @@ error_reporting(E_ERROR | E_PARSE);
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Salers</title>
+  <title>All Sellers</title>
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
@@ -22,7 +22,7 @@ error_reporting(E_ERROR | E_PARSE);
 
     <!-- Header -->
     <header class="w3-container" >
-      <h5><b><i class="fa fa-user-secret"></i> All Salers</b></h5>
+      <h5><b><i class="fa fa-user-secret"></i> All Sellers</b></h5>
     </header>
     <div class="w3-row-padding w3-margin-bottom">
      <?php
@@ -67,7 +67,7 @@ error_reporting(E_ERROR | E_PARSE);
                     <span class="fa fa-whatsapp w3-large"></span> <span class="w3-small"></span>
                   </a>
 
-                  <a class="w3-button w3-white w3-text-red w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>" title="<?php echo $key['email']; ?>">
+                  <a class="w3-button w3-white w3-text-red w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>?subject=Referred contact from Jumla Business." title="<?php echo $key['email']; ?>">
                     <span class="fa fa-envelope-o w3-large"></span> <span class="w3-small"></span>
                   </a>
                   </div>
