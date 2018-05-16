@@ -45,8 +45,15 @@ class Editprofile_model extends CI_Model {
             return $response;
             die();
         }
+         if ($whatsapp_no == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Your Whatsapp no..!');
+            return $response;
+            die();
+        }
         $contactNo=$countryCode.$phone;
-
+        $whatsappNo = $countryCodeWhatsapp.$whatsapp_no;
         if (!is_numeric($contactNo)) {
             $response = array(
                 'status' => 500,
@@ -57,7 +64,7 @@ class Editprofile_model extends CI_Model {
 
         $sql = "UPDATE user_tab SET full_name='$fullname',"
         . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
-        . " phone='$contactNo',user_image='$imagePath',company_name='".addslashes($company_name)."' WHERE user_id = '$user_id'";
+        . " phone='$contactNo',user_image='$imagePath',whatsapp_no = '$whatsappNo',company_name='".addslashes($company_name)."' WHERE user_id = '$user_id'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {

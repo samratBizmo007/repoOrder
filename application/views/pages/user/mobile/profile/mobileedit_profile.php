@@ -64,6 +64,30 @@ error_reporting(E_ERROR | E_PARSE);
                     <div class="w3-col l12 w3-padding">
                         
                         <div class="w3-col l2">
+                            <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no:<font color ="red"><span id ="pname_star">*</span></font></label>
+                        </div>
+                        <div class="w3-col l10">
+                            <?php 
+                                $countryCodewhatsapp='';
+                                $whatsapp_no='';
+                                $countryCodewhatsapp = substr($userDetails['status_message'][0]['whatsapp_no'], 0, 3);
+                                $whatsapp_no = substr($userDetails['status_message'][0]['whatsapp_no'], 4);
+
+                                ?>
+                                <div class="w3-col l3 s3">
+                                    <select class="w3-input w3-small" name="countryCodeWhatsapp" id="countryCodeWhatsapp">
+                                        <option value="965" <?php if($countryCodewhatsapp=='965'){echo 'selected';} ?>>+965 (Kuwait)</option>
+                                        <option value="91" <?php if($countryCodewhatsapp=='91'){echo 'selected';} ?>>+91 (India)</option>
+                                    </select>
+                                </div>
+                                <div class="w3-col l9 s9 w3-padding-left">
+                                    <input type="text" class="w3-input w3-small" placeholder="whatsapp no" value="<?php echo $whatsapp_no; ?>" name="whatsapp_no" id="whatsapp_no" required>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="w3-col l12 w3-padding">
+                        
+                        <div class="w3-col l2">
                             <label class="w3-label w3-small" style="color: #00B8D4;">phone no: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
@@ -77,7 +101,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 <div class="w3-col l3 s3">
                                     <select class="w3-input w3-small" name="countryCode" id="countryCode">
                                         <option value="965" <?php if($countryCode=='965'){echo 'selected';} ?>>+965 (Kuwait)</option>
-                                        <option value="971" <?php if($countryCode=='971'){echo 'selected';} ?>>+971 (Dubai)</option>
+                                        <option value="91" <?php if($countryCode=='91'){echo 'selected';} ?>>+91 (India)</option>
                                     </select>
                                 </div>
                                 <div class="w3-col l9 s9 w3-padding-left">
