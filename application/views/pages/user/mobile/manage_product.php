@@ -48,7 +48,7 @@ error_reporting(E_ERROR | E_PARSE);
 
                             <!-- Product div start -->
                             <div class="w3-col l12 w3-margin-bottom">
-                                <div class="w3-col l12 s12 m12">
+                              <!--   <div class="w3-col l12 s12 m12">
                                     <div class="w3-col l12 s12 m12 w3-margin-top">
                                         <label class="w3-label w3-text-black">Business Type:</label>                      
                                         <select  name="cat_id" id="cat_id" tabindex="2" class="form-control" required>
@@ -61,7 +61,7 @@ error_reporting(E_ERROR | E_PARSE);
                                             <?php } ?>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <?php //echo $user_role; ?>
 
                                 <div class="w3-col l12 w3-margin-top">                 
