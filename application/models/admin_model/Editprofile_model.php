@@ -23,6 +23,14 @@ class Editprofile_model extends CI_Model {
             die();
         }
 
+        if ($countryCode == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please select Country Code eg.965!');
+            return $response;
+            die();
+        }
+
         if ($address == '') {
             $response = array(
                 'status' => 500,
@@ -37,9 +45,19 @@ class Editprofile_model extends CI_Model {
             return $response;
             die();
         }
+        $contactNo=$countryCode.$phone;
+
+        if (!is_numeric($contactNo)) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter numeric phone no!');
+            return $response;
+            die();
+        }
+
         $sql = "UPDATE user_tab SET full_name='$fullname',"
         . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
-        . " phone='$phone',user_image='$imagePath',company_name='".addslashes($company_name)."' WHERE user_id = '$user_id'";
+        . " phone='$contactNo',user_image='$imagePath',company_name='".addslashes($company_name)."' WHERE user_id = '$user_id'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {

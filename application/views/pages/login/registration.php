@@ -85,12 +85,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <input type="email" name="register_email" id="register_email" class="w3-input w3-border w3-light-grey" placeholder="Email address" required>
                             </div>
                             <div class="w3-col l12 w3-margin-bottom"  >
-                                <div class="w3-col l4 s4" style=" padding-right: 5px;">
+                                <div class="w3-col l4 s4">
+                                    <select class="w3-input w3-light-grey w3-border w3-small" name="mobile_code" id="mobile_code">
+                                        <option value="965" selected>+965 (Kuwait)</option>
+                                        <option value="971">+971 (Dubai)</option>
+                                    </select>
+                                </div>
+                                <div class="w3-col l8 s8 w3-padding-left">
+                                    <input type="text" class="w3-input w3-light-grey w3-border w3-small" placeholder="mobile no" name="register_number" id="register_number" required>
+                                </div>
+                                <!-- <div class="w3-col l4 s4" style=" padding-right: 5px;">
                                     <input type="text" name="mobile_code" id="mobile_code" value="965" class="w3-input w3-border w3-light-grey" pattern="[0-9]{3}" oninvalid="this.setCustomValidity('No whitespaces, Enter Only 3 Digit Country Code.')" oninput="setCustomValidity('')" placeholder="Code" required>
                                 </div>
                                 <div class="w3-col l8 s8">
                                     <input type="number" name="register_number" id="register_number" maxlength="10" class="w3-input  w3-light-grey w3-padding w3-border" placeholder="Enter Your Number" required>
-                                </div>
+                                </div> -->
                             </div>
 
                         </div>

@@ -58,15 +58,31 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Bio: </label>
                         </div>
                         <div class="w3-col l10">
-                            <textarea class="w3-input w3-small " placeholder="bio" name="bio" id="bio" rows="5" cols="50" style="resize: none;"><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
+                            <textarea class="w3-input w3-small " placeholder="Hey! Tell us something about yourself and your Business." name="bio" id="bio" rows="5" cols="50" style="resize: none;"><?php echo $userDetails['status_message'][0]['bio']; ?></textarea>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
+                        
                         <div class="w3-col l2">
                             <label class="w3-label w3-small" style="color: #00B8D4;">phone no: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="number" class="w3-input w3-small" placeholder="phone no" value="<?php echo $userDetails['status_message'][0]['phone']; ?>" name="phone" id="phone" required>
+                            <?php 
+                                $countryCode='';
+                                $phone='';
+                                $countryCode = substr($userDetails['status_message'][0]['phone'], 0, 3);
+                                $phone = substr($userDetails['status_message'][0]['phone'], 4);
+
+                                ?>
+                                <div class="w3-col l3 s3">
+                                    <select class="w3-input w3-small" name="countryCode" id="countryCode">
+                                        <option value="965" <?php if($countryCode=='965'){echo 'selected';} ?>>+965 (Kuwait)</option>
+                                        <option value="971" <?php if($countryCode=='971'){echo 'selected';} ?>>+971 (Dubai)</option>
+                                    </select>
+                                </div>
+                                <div class="w3-col l9 s9 w3-padding-left">
+                                    <input type="text" class="w3-input w3-small" placeholder="phone" value="<?php echo $phone; ?>" name="phone" id="phone" required>
+                                </div>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
