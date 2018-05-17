@@ -39,11 +39,11 @@ error_reporting(E_ERROR | E_PARSE);
                 <?php } ?>
 
                 <div class="w3-col l12 w3-center w3-padding-top">
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:<?php echo $key['phone']; ?>" title="<?php echo $key['phone']; ?>" style="margin-right: 6px;padding: 0">
+                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:+<?php echo $key['country_code'].$key['phone']; ?>" title="+<?php echo $key['country_code'].$key['phone']; ?>" style="margin-right: 6px;padding: 0">
                     <span class="fa fa-phone w3-large"></span>
                   </a>
 
-                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=<?php echo $key['phone']; ?>" title="Whatsapp on: <?php echo $key['phone']; ?>" style="margin-right: 6px;padding: 0">
+                  <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=<?php echo $key['country_code'].$key['whatsapp_no']; ?>" title="Whatsapp on: +<?php echo $key['country_code'].$key['whatsapp_no']; ?>" style="margin-right: 6px;padding: 0">
                     <span class="fa fa-whatsapp w3-large"></span>
                   </a>
 
