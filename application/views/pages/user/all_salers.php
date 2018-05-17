@@ -14,6 +14,12 @@ error_reporting(E_ERROR | E_PARSE);
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <style>
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+</style>
 </head>
 <body class="w3-light-grey">
 

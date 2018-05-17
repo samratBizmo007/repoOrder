@@ -28,7 +28,7 @@ $user_role=$this->session->userdata('user_role');
 <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-<style></style>
+
 </head>
 <body id="home" class="homepage">
 
