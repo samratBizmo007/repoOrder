@@ -17,7 +17,7 @@ class Manage_products extends CI_Controller {
          // echo $cat_id;
          // echo $user_name;die();
         $this->load->library('user_agent');
-        if (($user_id == '') || ($user_role != '2') || ($cat_id !='')) {
+        if (($user_id == '') || ($user_role != '2') || ($cat_id =='')) {
             redirect('login');
         }
         

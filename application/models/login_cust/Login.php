@@ -138,7 +138,7 @@ class Login extends CI_Model {
     // -----------------------USER REGISTERATION MODEL----------------------//
     public function registerCustomer($data) {
         extract($data);
-        //print_r($data);die();
+        print_r($data);die();
         if (!(is_numeric($user_role))) {
             if ($user_role == '') {
                 $response = array(
@@ -212,16 +212,16 @@ class Login extends CI_Model {
             return $response;
             die();
         }
-        $contactNo='';
-        $contactNo=$register_countryCode.$register_mobile_no;
+        //$contactNo='';
+        //$contactNo=$register_countryCode.$register_mobile_no;
 
-        if (!is_numeric($contactNo)) {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter numeric mobile no!');
-            return $response;
-            die();
-        }
+//        if (!is_numeric($contactNo)) {
+//            $response = array(
+//                'status' => 500,
+//                'status_message' => 'Please Enter numeric mobile no!');
+//            return $response;
+//            die();
+//        }
         
         $admin_email = '';
         $checkEmail = login::checkEmail_exist($register_email);
@@ -232,7 +232,8 @@ class Login extends CI_Model {
                 'username' => $register_username,
                 'password' => base64_encode($register_password),
                 'email' => $register_email,
-                'phone' => $contactNo
+                'phone' => $register_mobile_no,
+                'country_code' => $register_countryCode
             );
             if ($this->db->insert('user_tab', $data)) {
                 $response = array(
@@ -324,16 +325,16 @@ class Login extends CI_Model {
             return $response;
             die();
         }
-        $contactNo='';
-        $contactNo=$register_countryCode.$register_mobile_no;
+        //$contactNo='';
+        //$contactNo=$register_countryCode.$register_mobile_no;
 
-        if (!is_numeric($contactNo)) {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter numeric mobile no!');
-            return $response;
-            die();
-        }
+//        if (!is_numeric($contactNo)) {
+//            $response = array(
+//                'status' => 500,
+//                'status_message' => 'Please Enter numeric mobile no!');
+//            return $response;
+//            die();
+//        }
         $admin_email = '';
         $checkEmail = login::checkEmail_exist($register_email);
         $checkusername = login::checkUsername_exist($register_username);
@@ -341,7 +342,8 @@ class Login extends CI_Model {
             $data = array(
                 'username' => $register_username,
                 'email' => $register_email,
-                'phone' => $contactNo,
+                'phone' => $register_mobile_no,
+                'country_code' => $register_countryCode,
                 'role' => $user_role,
                 'cat_id'=>$cat_id
             );

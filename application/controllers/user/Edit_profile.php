@@ -16,7 +16,7 @@ class Edit_profile extends CI_Controller {
         $this->load->library('user_agent');
 
         //check session variable set or not, otherwise logout
-        if (($user_name == '') || ($user_id == '') || ($user_role != '2') || ($cat_id !='')) {
+        if (($user_name == '') || ($user_id == '') || ($user_role != '2') || ($cat_id =='')) {
             redirect('login');
         }
         $data['userDetails'] = Edit_profile::getUserDetails();

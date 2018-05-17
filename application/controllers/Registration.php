@@ -87,7 +87,7 @@ class Registration extends CI_controller{
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        print_r($response_json);die();
+        //print_r($response_json);die();
     }
     else{
     	// extract($_POST);

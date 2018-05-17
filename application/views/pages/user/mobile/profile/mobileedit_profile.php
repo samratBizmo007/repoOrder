@@ -4,29 +4,29 @@ error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
-    <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-</head>
-<body>
-    <!-- !PAGE CONTENT! -->
-    <div class="w3-main" style="margin-top: 40px;">
-        <div class="w3-col l9">
-            <form id="editProfileForm" name="editProfileForm">
-                <div class="w3-col l12 w3-right">
-                    <div class="col-sm-3 col-xs-3"></div>
-                    <div class="w3-col s6 w3-center w3-padding">
-                        <div class="text-center w3-padding profile_portfolio">
-                            <?php
-                            $default_image = 'images/default_male.png';
-                            if ($userDetails['status_message'][0]['user_image'] == '') {
-                                ?>
-                                <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">
-                               <!--  <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:80px;width:80px;"></div> -->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit Profile</title>
+        <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+    </head>
+    <body>
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main" style="margin-top: 40px;">
+            <div class="w3-col l9">
+                <form id="editProfileForm" name="editProfileForm">
+                    <div class="w3-col l12 w3-right">
+                        <div class="col-sm-3 col-xs-3"></div>
+                        <div class="w3-col s6 w3-center w3-padding">
+                            <div class="text-center w3-padding profile_portfolio">
+                                <?php
+                                $default_image = 'images/default_male.png';
+                                if ($userDetails['status_message'][0]['user_image'] == '') {
+                                    ?>
+                                    <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">
+                                   <!--  <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:80px;width:80px;"></div> -->
                                 <?php } else { ?>
-                                <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>" style="height: 80px; width: 80px;">
-                                <!-- <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:80px;width:80px;"></div> -->
+                                    <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>" style="height: 80px; width: 80px;">
+                                    <!-- <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:80px;width:80px;"></div> -->
                                 <?php } ?>
                                 <div class="w3-col l12 ">
                                     <h6 class="w3-small" style="color: #00B8D4;">Change photo</h6>
@@ -62,52 +62,47 @@ error_reporting(E_ERROR | E_PARSE);
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
-                        
                         <div class="w3-col l2">
-                            <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no:<font color ="red"><span id ="pname_star">*</span></font></label>
+                            <label class="w3-label w3-small" style="color: #00B8D4;">Country Code: </label>
                         </div>
                         <div class="w3-col l10">
-                            <?php 
-                                $countryCodewhatsapp='';
-                                $whatsapp_no='';
-                                $countryCodewhatsapp = substr($userDetails['status_message'][0]['whatsapp_no'], 0, 3);
-                                $whatsapp_no = substr($userDetails['status_message'][0]['whatsapp_no'], 4);
-
-                                ?>
-                                <div class="w3-col l3 s3">
-                                    <select class="w3-input w3-small" name="countryCodeWhatsapp" id="countryCodeWhatsapp">
-                                        <option value="965" <?php if($countryCodewhatsapp=='965'){echo 'selected';} ?>>+965 (Kuwait)</option>
-                                        <option value="91" <?php if($countryCodewhatsapp=='91'){echo 'selected';} ?>>+91 (India)</option>
-                                    </select>
-                                </div>
-                                <div class="w3-col l9 s9 w3-padding-left">
-                                    <input type="text" class="w3-input w3-small" placeholder="whatsapp no" value="<?php echo $whatsapp_no; ?>" name="whatsapp_no" id="whatsapp_no" required>
-                                </div>
+                            <?php
+                            $countryCode = '';
+                            $phone = '';
+                            $countryCode = $userDetails['status_message'][0]['country_code'];
+                            //echo $countryCode;
+                            ?>
+                            <div class="w3-col l3">
+                                <select class="w3-input w3-small" name="countryCode" id="countryCode" required>
+                                    <option value="965" <?php
+                                    if ($countryCode == '965') {
+                                        echo 'selected';
+                                    }
+                                    ?>>+965 (Kuwait)</option>
+                                    <option value="91" <?php
+                                    if ($countryCode == '91') {
+                                        echo 'selected';
+                                    }
+                                    ?>>+91 (India)</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
-                        
+                        <div class="w3-col l2">
+                            <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no:<font color ="red"><span id ="pname_star">*</span></font></label>
+                        </div>
+                        <div class="w3-col l10">                           
+                            <input type="text" class="w3-input w3-small" placeholder="whatsapp no" value="<?php echo $userDetails['status_message'][0]['whatsapp_no'];; ?>" name="whatsapp_no" id="whatsapp_no" required>
+                        </div>
+                    </div>
+                    <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small" style="color: #00B8D4;">phone no: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
-                            <?php 
-                                $countryCode='';
-                                $phone='';
-                                $countryCode = substr($userDetails['status_message'][0]['phone'], 0, 3);
-                                $phone = substr($userDetails['status_message'][0]['phone'], 4);
-
-                                ?>
-                                <div class="w3-col l3 s3">
-                                    <select class="w3-input w3-small" name="countryCode" id="countryCode">
-                                        <option value="965" <?php if($countryCode=='965'){echo 'selected';} ?>>+965 (Kuwait)</option>
-                                        <option value="91" <?php if($countryCode=='91'){echo 'selected';} ?>>+91 (India)</option>
-                                    </select>
-                                </div>
-                                <div class="w3-col l9 s9 w3-padding-left">
-                                    <input type="text" class="w3-input w3-small" placeholder="phone" value="<?php echo $phone; ?>" name="phone" id="phone" required>
-                                </div>
-                        </div>
+                            <input type="text" class="w3-input w3-small" placeholder="phone" value="<?php echo $userDetails['status_message'][0]['phone'];; ?>" name="phone" id="phone" required>
+                        </div>                
                     </div>
                     <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
@@ -153,11 +148,11 @@ error_reporting(E_ERROR | E_PARSE);
                         </div> -->
                         <div class="w3-col l10">
                             <div class="w3-col s10">
-                            <input class="w3-input" onkeyup="checkPassword();" placeholder="Enter Password" id="new_password" name="new_password" type="password" minlength="8"  required>
-                        </div>
-                        <div class="w3-col s2">
-                            <span class=""><a class="w3-button w3-border" onclick="show_pass();"><i id="pass_sym" class="fa fa-eye"></i></a></span>
-                        </div>
+                                <input class="w3-input" onkeyup="checkPassword();" placeholder="Enter Password" id="new_password" name="new_password" type="password" minlength="8"  required>
+                            </div>
+                            <div class="w3-col s2">
+                                <span class=""><a class="w3-button w3-border" onclick="show_pass();"><i id="pass_sym" class="fa fa-eye"></i></a></span>
+                            </div>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
@@ -214,17 +209,17 @@ error_reporting(E_ERROR | E_PARSE);
                 $('#changepass_submit').prop("disabled", true);
             }
         }
-//-----------function ends------------------------
+        //-----------function ends------------------------
 
-//  ------------------------Change Password -------------------------//
-$(function () {
-    $("#changepass_Form").submit(function () {
-        dataString = $("#changepass_Form").serialize();
-        $('#changePassBtn').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Updating password. Please wait...</b></span>');
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>user/edit_profile/changePassword",
-            data: dataString,
+        //  ------------------------Change Password -------------------------//
+        $(function () {
+            $("#changepass_Form").submit(function () {
+                dataString = $("#changepass_Form").serialize();
+                $('#changePassBtn').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Updating password. Please wait...</b></span>');
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>user/edit_profile/changePassword",
+                    data: dataString,
                     return: false, //stop the actual form post !important!
                     success: function (data)
                     {
@@ -234,37 +229,37 @@ $(function () {
                 });
                 return false;  //stop the actual form post !important!
             });
-});
-//  -------------------------END -------------------------------//
-</script>
-<script>
-    // ----function to preview selected image for profile------//
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#profile_imagePreview').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-// ------------function preview image end------------------//
-</script>
-<!-- show password script -->
+        });
+        //  -------------------------END -------------------------------//
+    </script>
     <script>
-        function show_pass(){
-            var item=$('#pass_sym');
-            if(item.hasClass('fa-eye')){
+        // ----function to preview selected image for profile------//
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#profile_imagePreview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        // ------------function preview image end------------------//
+    </script>
+    <!-- show password script -->
+    <script>
+        function show_pass() {
+            var item = $('#pass_sym');
+            if (item.hasClass('fa-eye')) {
                 item.removeClass('fa-eye');
                 item.addClass('fa-eye-slash');
-                document.getElementById('new_password').type="text"; 
-            }else{
+                document.getElementById('new_password').type = "text";
+            } else {
                 item.removeClass('fa-eye-slash');
                 item.addClass('fa-eye');
-                document.getElementById('new_password').type="password"; 
+                document.getElementById('new_password').type = "password";
             }
-        } 
+        }
     </script>
 
 </html>
