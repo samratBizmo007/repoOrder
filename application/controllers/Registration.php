@@ -7,6 +7,7 @@ class Registration extends CI_controller{
         parent::__construct();
         date_default_timezone_set('Asia/Kuwait');   //set Kuwait's timezone
         $this->load->helper('cookie');
+         $this->load->library('facebook');
     }
 
     public function index() {
@@ -26,6 +27,7 @@ class Registration extends CI_controller{
 
         // get all categories from db
         $data['categories'] = Registration::getAllCategories();
+        $data['authURL']=$this->facebook->login_url();
 
 	  	 $this->load->view('pages/login/registration',$data);
     }

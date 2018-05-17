@@ -5,7 +5,9 @@ $user_id=$this->session->userdata('user_id');
 $user_role=$this->session->userdata('user_role');
 
 // $profile_type=$this->session->userdata('profile_type');
-// /echo $profile_type;
+//echo $user_role;
+echo $user_id;
+echo $user_name;
 ?>
 <!DOCTYPE html>
 <html>

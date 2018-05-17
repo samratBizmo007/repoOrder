@@ -44,7 +44,7 @@ error_reporting(E_ERROR | E_PARSE);
                 </div>
 
                 <p class="text-center text-muted w3-padding-left w3-padding-right">
-                 <button type="button" class="btn btn-block w3-blue"><i class=" w3-large fa fa-facebook-square" style="color:#ffffff;"></i> Log in with Facebook</button>
+                <a href="<?php echo $authURL; ?>" class="btn form-control w3-blue"><i class=" w3-large fa fa-facebook-square"></i> Log in with Facebook</a>
              </p>
              <p class="w3-center"> OR </p>
 

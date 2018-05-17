@@ -44,7 +44,6 @@ error_reporting(E_ERROR | E_PARSE);
 </div>
 
 </div>
-
 <div class="w3-middle" id="spinnerDiv"></div>
 <div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
 	<div class="row">
@@ -65,7 +64,17 @@ error_reporting(E_ERROR | E_PARSE);
 					<div id="Login_RegisterDiv">
 
 						<form id="login_form" role="form" method='post' enctype='multipart/form-data' style="">
-							<div class="w3-col l12 " id="login_err"></div>
+							<div class="w3-col l12 " id="login_err">
+							    <?php 
+							        if(isset($err_msg)){
+							            echo '
+							            <div class="alert alert-danger ">
+        <strong>'. $err_msg.'</strong> 
+        </div>
+							            ';
+							        }
+							    ?>
+							</div>
 							<div id = "registerDiv">
 								<div class="w3-margin-bottom w3-col l12 s12"> 
 
@@ -87,7 +96,7 @@ error_reporting(E_ERROR | E_PARSE);
 
 								<p class="w3-center"> OR </p>
 								<p class="text-center text-muted">
-									<a type="button" href="<?php echo base_url(); ?>user_authentication" class="btn btn-block w3-blue"><i class=" w3-large fa fa-facebook-square"></i> Log in with Facebook</a>
+									<a href="<?php echo $authURL; ?>" class="btn form-control w3-blue"><i class=" w3-large fa fa-facebook-square"></i> Log in with Facebook</a>
 								</p>
 								<div class="form-group">
 									<div class="row">
@@ -132,14 +141,14 @@ error_reporting(E_ERROR | E_PARSE);
 	</div>
 
 </div>
-
+<!--
 </div>
 </div>
 </div>
 </div>				
 </div>			
 </div>
-</div>
+</div>-->
 <div class="w3-center">       
 <!--     <span class="w3-medium">© Copyright and All Rights reserved</span><br>
 -->    
