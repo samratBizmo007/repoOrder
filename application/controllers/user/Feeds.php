@@ -189,10 +189,10 @@ class Feeds extends CI_Controller {
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'?subject=Referred contact from Jumla Business." style="padding-right: 0px;padding-left: 15px">
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'?subject=Referred contact from Jumla Business." title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>'; 
-                if($key['whatsapp_no'] != ''){
+                if($key['whatsapp_no']!='0'){
                 echo'<a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['country_code'].$key['whatsapp_no'].'" title="WhatsApp No: '.$key['country_code'].$key['whatsapp_no'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-whatsapp w3-xlarge"></span>
                 </a>';
@@ -326,10 +326,10 @@ class Feeds extends CI_Controller {
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'" title="'.$key['email'].'?subject=Referred contact from Jumla Business." style="padding-right: 0px;padding-left: 15px">
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:'.$key['email'].'?subject=Referred contact from Jumla Business." title="'.$key['email'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>';
-                if($key['whatsapp_no'] != ''){
+                if($key['whatsapp_no'] != '0'){
                 echo'<a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['country_code'].$key['whatsapp_no'].'" title="'.$key['country_code'].$key['whatsapp_no'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-whatsapp w3-xlarge"></span>
                 </a>';

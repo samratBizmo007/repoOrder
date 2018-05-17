@@ -18,16 +18,13 @@ $user_id = $this->session->userdata('user_id');
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+
     <style>
     body {
-      font-family: 'Roboto', sans-serif;
-  }
+        font-family: 'Roboto', sans-serif;
+    }
 </style>
-
-<!-- <link rel="stylesheet" href="assets/css/alert/jquery-confirm.css"> -->
-
-
 </head>
 <style>
 /* saved images overlay opacity overlay */
@@ -116,10 +113,10 @@ $user_id = $this->session->userdata('user_id');
                     <div class="w3-col l8 w3-margin-top">
                         <label class="w3-large"><?php echo $userDetails['status_message'][0]['username']; ?></label>
                         <?php if ($link_user_id == $user_id) { ?>                          
-                            <a class="btn w3-right" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-small bluish-green "><b>Edit Profile </b><i class="w3-medium w3-text-black fa fa-gear"></i></span></a>
+                            <a class="btn w3-right" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-text-grey"><b>Edit Profile </b><i class="w3-medium w3-text-black fa fa-gear"></i></span></a>
                         <?php } ?>
                         <div class="w3-col l12 w3-margin-bottom">
-                            <div class="w3-col l8"><b><?php echo $prod_count; ?></b> Posts</div>
+                            <div class="w3-col l8"><b><?php echo $prod_count; ?></b> Post(s)</div>
                         </div>
                         <div class="w3-col l12">
                             <div class="w3-col l8"><b>
@@ -188,9 +185,9 @@ $user_id = $this->session->userdata('user_id');
                                                 <div class="w3-col l12">
                                                     <div class="w3-col l8">
                                                         <i class="fa fa-whatsapp w3-large" title="Whatsapp"></i> 
-                                                        +<?php
-                                                        if ($userDetails['status_message'][0]['whatsapp_no'] != '') {
-                                                            echo $userDetails['status_message'][0]['country_code'].$userDetails['status_message'][0]['whatsapp_no'];
+                                                        <?php
+                                                        if ($userDetails['status_message'][0]['whatsapp_no'] != '' && $userDetails['status_message'][0]['whatsapp_no'] != '0') {
+                                                            echo '+'.$userDetails['status_message'][0]['country_code'].$userDetails['status_message'][0]['whatsapp_no'];
                                                         } else {
                                                             echo '<span class="w3-text-red">Not Disclosed.</span>';
                                                         }
@@ -260,7 +257,7 @@ $user_id = $this->session->userdata('user_id');
                                                                                 foreach ($imageArr as $image) {
                                                                                     ?>
                                                                                     <div class="w3-col l12 item <?php echo $active; ?> w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
-                                                                                      <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
+                                                                                      
                                                                                   </div>
                                                                                   <?php
                                                                                   $active = '';
@@ -307,10 +304,8 @@ $user_id = $this->session->userdata('user_id');
                                                 <a style="padding: 0" class="btn w3-right" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($key['cat_id']); ?>"><i class="w3-small"> <?php echo $key['category_name']; ?></i></a>
                                             </div>
 
-
-                                            <!--<img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">-->
-                                            <label class="w3-margin-top w3-label">Product Name: </label><b> <?php echo $key['product_name']; ?></b><br>                                   
-                                            <label class="w3-label">Product Description: </label><b class="w3-small"> <?php echo $key['prod_description']; ?></b>
+                                            <label class="w3-margin-top w3-label">Product Name: </label><span class="w3-text-grey"> <?php echo $key['product_name']; ?></span><br>                                   
+                                            <label class="w3-label">Product Description: </label><span class="w3-small w3-text-grey"> <?php echo $key['prod_description']; ?></span>
 
                                             <script id="swip"></script>
                                         </div>							

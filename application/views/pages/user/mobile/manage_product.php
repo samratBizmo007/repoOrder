@@ -48,37 +48,23 @@ error_reporting(E_ERROR | E_PARSE);
 
                             <!-- Product div start -->
                             <div class="w3-col l12 w3-margin-bottom">
-                              <!--   <div class="w3-col l12 s12 m12">
-                                    <div class="w3-col l12 s12 m12 w3-margin-top">
-                                        <label class="w3-label w3-text-black">Business Type:</label>                      
-                                        <select  name="cat_id" id="cat_id" tabindex="2" class="form-control" required>
-                                            <option class="w3-light-grey" selected <?php if ($this->uri->segment(2) == '') echo 'selected'; ?> value="0">Select Business Field</option>
-                                            <?php
-                                            $default_image = 'images/default_male.png';
-                                            foreach ($categories['status_message'] as $result) {
-                                                ?>
-                                                <option value="<?php echo $result['cat_id']; ?>"><?php echo $result['category_name']; ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div> -->
-                                <?php //echo $user_role; ?>
-
+                                <?php $default_image = 'images/default_male.png'; ?>
+                              
                                 <div class="w3-col l12 w3-margin-top">                 
                                     <div class="w3-col l12 s12 m12" style="padding-right: 2px;">
-                                        <input type="text" name="product_name" id="product_name" value="" placeholder="Add Product Name" class="form-control" required>
+                                        <input type="text" name="product_name" id="product_name" value="" placeholder="Add Product Name" class="w3-input w3-border" required>
                                     </div>
                                 </div>
                                 <div class="w3-col l12 w3-margin-top">                 
                                     <div class="w3-col l12 s12 m12" style=" padding-right: 2px;">
-                                        <textarea class="form-control" name="product_description" id="product_description" placeholder="Add Product Description" rows="5" cols="50" style="resize: none;" required></textarea>
+                                        <textarea class="w3-input w3-border" name="product_description" id="product_description" placeholder="Add Product Description" rows="5" cols="50" style="resize: none;" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="w3-col l12 s12 m12 w3-margin-top w3-margin-bottom">
                                     <div class="w3-col s8">
                                         <label class="w3-label w3-text-black">Product Image:</label>
-                                        <input type="file" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURL(this);" required>
+                                        <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-border" onchange="readURL(this);" required>
                                     </div>
                                     <div class="w3-col s4 w3-padding-small w3-display-container">
                                         <img class="img img-circle" id="adminImagePreview" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">
@@ -118,7 +104,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="w3-col l12 s12 m12 w3-margin-top">\n\
         <div class="w3-col s8">\n\
         <label class="w3-label w3-text-black">Product Image:</label>\n\
-        <input type="file" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURLNEW(this,'+x+');" required>\n\
+        <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-border" onchange="readURLNEW(this,'+x+');" required>\n\
         </div>\n\
         <div class="w3-col s4 w3-padding-small w3-display-container">\n\
         <img class="img img-circle" id="adminImagePreview_'+x+'" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">\n\

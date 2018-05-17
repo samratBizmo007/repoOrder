@@ -14,6 +14,12 @@ error_reporting(E_ERROR | E_PARSE);
   <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
 
@@ -124,7 +130,7 @@ error_reporting(E_ERROR | E_PARSE);
    }
    else
    {
-     $('#loading_msg').html('<div class="w3-center w3-margin w3-xlarge w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
+     $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
      action = "inactive";
    }
  }

@@ -153,7 +153,7 @@ $this->load->library('image_autorotate', array('filepath' => $imagePath));
 
         //echo $imagePath;die();
         //validating image ends---------------------------//
-        print_r($prod_Arr);die();
+        //print_r($prod_Arr);die();
         //$data['imagePath'] = $uploadPath . $imagePath;
         $data['posted_by'] = $user_name;
         $data['user_id'] = $user_id;

@@ -15,6 +15,12 @@ error_reporting(E_ERROR | E_PARSE);
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>css/header/header_overlay.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
     <!-- Material Design Bootstrap -->
     <link href="<?php echo base_url() ?>css/home_page/css/style.css" rel="stylesheet">
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
@@ -61,7 +67,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <select name="user_role" id="user_role" class="w3-input w3-border w3-light-grey" required>
                                 <option class="w3-red" value="0" selected>Select your role</option>
                                 <option value="1">Customer</option>
-                                <option value="2">Saler</option>
+                                <option value="2">Seller</option>
                             </select>
                         </div>
                         <div class="w3-col l12 w3-margin-bottom" id="categoryDiv" style="display: none;">

@@ -1,7 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
 class User extends CI_Model{
     function __construct() {
-        $this->tableName = 'fb_users';
+        $this->tableName = 'fb_users';  //-------- facebook logged in users table
         $this->primaryKey = 'id';
     }
     
@@ -39,6 +40,7 @@ class User extends CI_Model{
                     $fb_id = $row['id'];
                 }
                 
+                //echo $fb_id;die();
                 $prevResult = $prevQuery->row_array();
                 
                 //update user data
@@ -78,7 +80,7 @@ class User extends CI_Model{
                     $insert = $this->db->insert($this->tableName,$userData);
                 //get user ID
                     $fb_ID = $this->db->insert_id();
-                    
+                    //echo $fb_ID;die();
                 //functionality for saving the user info from facebook to website user table
                     
                     $sqlInsert = "INSERT INTO user_tab (fb_id,role,username,email) values ('$fb_ID','1','$username','$email')"; 
@@ -96,7 +98,7 @@ class User extends CI_Model{
                 }else{
                     $response = array(
                         'status' => 500,
-                        'status_message' => 'Email ID already exist. Please try another email-ID OR login by the same.'
+                        'status_message' => 'Email ID already registered. Please try another email-ID OR login by the same.'
                     );
                 }
                 
@@ -107,7 +109,9 @@ class User extends CI_Model{
         return $response;
        // return $userID?$userID:FALSE;
     }
+    // --------------facebook login function ends here---------------------//
     
+    // ----------check email id registered or not------------------//
     public function checkEmail_exist($email){
         $query = null;
         $query = $this->db->get_where('user_tab', array('email' => $email));
@@ -118,4 +122,5 @@ class User extends CI_Model{
             return 1;
         }
     }
+    // ------------------fucntion ends--------------------//
 }

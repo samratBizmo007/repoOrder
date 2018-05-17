@@ -14,7 +14,8 @@ error_reporting(E_ERROR | E_PARSE);
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+
   <style>
   body {
     font-family: 'Roboto', sans-serif;
@@ -37,19 +38,19 @@ error_reporting(E_ERROR | E_PARSE);
       foreach ($all_salers['status_message'] as $key) { ?>
 
 
-      <!-- saler info div start -->
-      <div class="w3-col l3  w3-margin-bottom">
-        <div class="w3-col l12 w3-card w3-round">
-          <div class="w3-col s4 " style="padding:4px">
-            <?php 
-            if($key['user_image']!=''){
-              ?>
-              <div class="w3-circle w3-border" style="height: 80px;width: 80px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url().$key['user_image']; ?>');"></div>
+        <!-- saler info div start -->
+        <div class="w3-col l3  w3-margin-bottom">
+          <div class="w3-col l12 w3-card w3-round">
+            <div class="w3-col s4 " style="padding:4px">
               <?php 
-            }
-            else{
-              ?>
-              <div class="w3-circle w3-border" style="height: 60px;width: 60px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url(); ?>images/default_male.png');"></div>
+              if($key['user_image']!=''){
+                ?>
+                <div class="w3-circle w3-border" style="height: 80px;width: 80px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url().$key['user_image']; ?>');"></div>
+                <?php 
+              }
+              else{
+                ?>
+                <div class="w3-circle w3-border" style="height: 60px;width: 60px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url(); ?>images/default_male.png');"></div>
               <?php } ?>
 
             </div>
@@ -68,22 +69,24 @@ error_reporting(E_ERROR | E_PARSE);
                 </div>
 
                 <div class="w3-col s12">
-                  <a class="w3-button w3-white w3-text-yellow w3-hover-text-orange w3-hover-white" href="tel:+<?php echo $key['country_code'].$key['phone']; ?>" title="+<?php echo $key['country_code'].$key['phone']; ?>">
+                  <a class="w3-button w3-white w3-text-yellow w3-hover-text-orange w3-hover-white" href="tel:+<?php echo $key['country_code'].$key['phone']; ?>" title="+<?php echo $key['country_code'].$key['phone']; ?>" style="padding:0 15px 0 0">
                     <span class="fa fa-phone w3-large"></span> <span class="w3-small"></span>
                   </a>
 
-                  <a class="w3-button w3-white w3-center w3-text-green w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=<?php echo $key['country_code'].$key['whatsapp_no']; ?>" title="Whatsapp on: +<?php echo $key['country_code'].$key['whatsapp_no']; ?>">
-                    <span class="fa fa-whatsapp w3-large"></span> <span class="w3-small"></span>
-                  </a>
+                  <?php if($key['whatsapp_no']!='0'){ ?>
+                    <a class="w3-button w3-white w3-center w3-text-green w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=<?php echo $key['country_code'].$key['whatsapp_no']; ?>" title="Whatsapp on: +<?php echo $key['country_code'].$key['whatsapp_no']; ?>" style="padding:0 15px 0 0">
+                      <span class="fa fa-whatsapp w3-large"></span> <span class="w3-small"></span>
+                    </a>
+                  <?php } ?>
 
-                  <a class="w3-button w3-white w3-text-red w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>?subject=Referred contact from Jumla Business." title="<?php echo $key['email']; ?>">
+                  <a class="w3-button w3-white w3-text-red w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>?subject=Referred contact from Jumla Business." title="<?php echo $key['email']; ?>" style="padding:0 15px 0 0">
                     <span class="fa fa-envelope-o w3-large"></span> <span class="w3-small"></span>
                   </a>
                 </div>
 
-                <div class="w3-col s12 w3-margin-top w3-padding-bottom w3-padding-right">
+                <div class="w3-col s12 w3-padding-bottom w3-padding-right">
                   <a class="w3-button badge w3-right w3-hover-text-orange w3-hover-white" href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($key['user_id']); ?>" title="View <?php echo $key['username']; ?>" style="padding: 3px">
-                  <span class="w3-small">view</span> <span class="fa fa-chevron-circle-right w3-medium"></span>
+                    <span class="w3-small">view</span> <span class="fa fa-chevron-circle-right w3-medium"></span>
                   </a>
                 </div>
 

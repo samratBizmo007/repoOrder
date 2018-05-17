@@ -13,6 +13,12 @@ $admin_role=$this->session->userdata('admin_role');
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
 	<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
 	<script type="text/javascript" src="<?php echo base_url(); ?>css/js/admin/admin_settings.js"></script>

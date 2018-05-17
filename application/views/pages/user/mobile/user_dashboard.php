@@ -60,7 +60,7 @@ error_reporting(E_ERROR | E_PARSE);
    }
    else
    {
-     $('#loading_msg').html('<div class="w3-center w3-margin w3-xlarge w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
+     $('#loading_msg').html('<div class="w3-center w3-margin w3-small w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
      action = "inactive";
    }
  }

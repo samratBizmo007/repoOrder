@@ -16,7 +16,13 @@ $user_role=$this->session->userdata('user_role');
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/header/header_overlay.css">
-	<style></style>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+
+  <style>
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+</style>
 </head>
 <body>
 	<div class="w3-row w3-left w3-padding-left w3-top w3-border-bottom header_bg" style="position: fixed;z-index: 3">

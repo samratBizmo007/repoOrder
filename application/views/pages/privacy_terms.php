@@ -16,7 +16,14 @@ error_reporting(E_ERROR | E_PARSE);
 
     <!-- Material Design Bootstrap -->
        <!--   <link href="<?php echo base_url() ?>css/home_page/css/mdb.css" rel="stylesheet">
-   -->  <link href="<?php echo base_url() ?>css/home_page/css/style.css" rel="stylesheet">
+   -->  
+   <link href="<?php echo base_url() ?>css/home_page/css/style.css" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
    <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
    <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
 

@@ -14,7 +14,8 @@ error_reporting(E_ERROR | E_PARSE);
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+
   <style>
   body {
     font-family: 'Roboto', sans-serif;
@@ -45,24 +46,24 @@ error_reporting(E_ERROR | E_PARSE);
             <div class="w3-col l12 w3-center w3-padding-top">
               <a class="btn " href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($result['cat_id']); ?>">
                 <span>
-                <i class="fa fa-<?php echo $result['fa_symbol']; ?> w3-xxlarge  w3-center" style="padding-top:15px"></i>
-              </span>
-              <div class="w3-col l12">
-                <span class="w3-small "><?php echo $result['category_name']; ?></span>
-              </div>
-              
+                  <i class="fa fa-<?php echo $result['fa_symbol']; ?> w3-xxlarge  w3-center" style="padding-top:15px"></i>
+                </span>
+                <div class="w3-col l12">
+                  <span class="w3-small "><?php echo $result['category_name']; ?></span>
+                </div>
+                
               </a>              
             </div>            
           </div>
         </div>
-        <?php } ?>
-        <!-- category div block ends -->
+      <?php } ?>
+      <!-- category div block ends -->
 
-      </div>
-      <!-- All Categories end -->
     </div>
-    <!-- End page content -->
+    <!-- All Categories end -->
   </div>
+  <!-- End page content -->
+</div>
 
 
 </body>

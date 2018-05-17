@@ -23,7 +23,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 if ($userDetails['status_message'][0]['user_image'] == '') {
                                     ?>
                                     <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">
-                                   <!--  <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:80px;width:80px;"></div> -->
+                                  
                                 <?php } else { ?>
                                     <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>" style="height: 80px; width: 80px;">
                                     <!-- <div class="w3-circle w3-center" title="profile image" style="margin-left: 7px; background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:80px;width:80px;"></div> -->
@@ -42,7 +42,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Full Name: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-small" placeholder="full name" value="<?php echo $userDetails['status_message'][0]['full_name']; ?>" name="fullname" id="fullname" required>
+                            <input type="text" class="w3-input w3-small" placeholder="Enter your Full Name" value="<?php echo $userDetails['status_message'][0]['full_name']; ?>" name="fullname" id="fullname" required>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
@@ -50,7 +50,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Website: </label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="url" class="w3-input w3-small" placeholder="website" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website">
+                            <input type="url" class="w3-input w3-small" placeholder="(optional) eg.https://www.site.domain.com" value="<?php echo $userDetails['status_message'][0]['website']; ?>" name="website" id="website">
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
@@ -93,7 +93,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no:<font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">                           
-                            <input type="text" class="w3-input w3-small" placeholder="whatsapp no" value="<?php echo $userDetails['status_message'][0]['whatsapp_no'];
+                            <input type="text" class="w3-input w3-small" placeholder="Enter your Whatsapp Number" value="<?php echo $userDetails['status_message'][0]['whatsapp_no'];
                                             ; ?>" name="whatsapp_no" id="whatsapp_no" required>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Phone no: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-small" placeholder="phone" value="<?php echo $userDetails['status_message'][0]['phone'];
+                            <input type="text" class="w3-input w3-small" placeholder="Enter your Mobile Number" value="<?php echo $userDetails['status_message'][0]['phone'];
                                             ; ?>" name="phone" id="phone" required>
                         </div>                
                     </div>
@@ -111,7 +111,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Company name: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-small" placeholder="company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name" required>
+                            <input type="text" class="w3-input w3-small" placeholder="Enter your Company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name" required>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding ">
@@ -119,17 +119,17 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Address: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
-                            <textarea class="w3-input w3-small" placeholder="address" name="address" id="address" rows="5" cols="50" style="resize: none; text-align: left;" required><?php echo $userDetails['status_message'][0]['address']; ?></textarea>
+                            <textarea class="w3-input w3-small" placeholder="Enter your address" name="address" id="address" rows="5" cols="50" style="resize: none; text-align: left;" required><?php echo $userDetails['status_message'][0]['address']; ?></textarea>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding w3-center" id="btnsubmit">
-                        <button  type="submit" id="submitEditBtn" title="submit profile" class="w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Update</button>
+                        <button  type="submit" id="submitEditBtn" title="submit profile" class="w3-medium w3-text-white w3-button" style="background-color: #00B8D4;"><i class="fa fa-edit"></i> Update Profile</button>
                     </div>
                 </form>
             </div>
             <div class="w3-col l9 w3-margin-bottom">
                 <hr>
-                <div class="w3-col l12 w3-center">
+                <div class="w3-col l12 w3-center w3-margin-bottom">
                     <span class="w3-center w3-label w3-large" style="color: #00B8D4;">Change Password</span>
                 </div>
                 <form id="changepass_Form" name="changepass_Form">
@@ -138,19 +138,16 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Current password: </label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-small" placeholder="Current Password" value="" name="curr_password" id="curr_password" required>
+                            <input type="text" class="w3-input w3-small" placeholder="Enter Current Password" value="" name="curr_password" id="curr_password" required>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
                             <label class="w3-label w3-small" style="color: #00B8D4;">New Password: </label>
                         </div>
-                        <!-- <div class="w3-col l10">
-                            <input type="password" onkeyup="checkPassword();" placeholder="New Password" class="w3-input w3-small" value="" name="new_password" id="new_password" required>
-                        </div> -->
                         <div class="w3-col l10">
                             <div class="w3-col s10">
-                                <input class="w3-input" onkeyup="checkPassword();" placeholder="Enter Password" id="new_password" name="new_password" type="password" minlength="8"  required>
+                                <input class="w3-input" onkeyup="checkPassword();" placeholder="Enter New Password" id="new_password" name="new_password" type="password" minlength="8"  required>
                             </div>
                             <div class="w3-col s2">
                                 <span class=""><a class="w3-button w3-border" onclick="show_pass();"><i id="pass_sym" class="fa fa-eye"></i></a></span>
@@ -162,12 +159,12 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Confirm Password: </label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="password" onkeyup="checkPassword();" placeholder="Confirm Password" class="w3-input w3-small" value="" name="conf_password" id="conf_password" required>
+                            <input type="password" onkeyup="checkPassword();" placeholder="Re-enter New Password" class="w3-input w3-small" value="" name="conf_password" id="conf_password" required>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-margin-left w3-padding-small" id="message"></div>
                     <div class="w3-col l12 w3-center w3-padding-small w3-margin-bottom" id="changePassBtn">
-                        <button  type="submit" id="changepass_submit" title="Change Password" class="w3-center w3-button w3-medium w3-blue" disabled>Update Password</button>                            
+                        <button  type="submit" id="changepass_submit" title="Change Password" class="w3-center w3-button w3-medium w3-blue" disabled><i class="fa fa-edit"></i> Update Password</button>                            
                     </div>
                 </form>
 
@@ -182,7 +179,7 @@ error_reporting(E_ERROR | E_PARSE);
         $(function () {
             $("#editProfileForm").submit(function () {
                 dataString = $("#editProfileForm").serialize();
-                $('#submitEditBtn').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Updating profile. Please wait...</b></span>');
+                $('#btnsubmit').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Updating profile. Please wait...</b></span>');
                 $.ajax({
                     type: "POST",
                     url: "<?php echo base_url(); ?>user/Edit_profile/updateProfile",
@@ -193,7 +190,7 @@ error_reporting(E_ERROR | E_PARSE);
                     success: function (data)
                     {
                         $.alert(data);
-                        $('#submitEditBtn').html('<button  type="submit" title="submit profile" class="w3-center w3-margin-bottom w3-button w3-blue">Update</button>');
+                        $('#btnsubmit').html('<button type="submit" title="submit profile" class="w3-center w3-margin-bottom w3-button w3-blue">Update</button>');
                         //location.reload();
                     }
                 });

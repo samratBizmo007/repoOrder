@@ -15,19 +15,22 @@ error_reporting(E_ERROR | E_PARSE);
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/header/header_overlay.css">
-
-	<!-- Material Design Bootstrap -->
-	<link href="<?php echo base_url() ?>css/home_page/css/style.css" rel="stylesheet">
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/js/login/login.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay.min.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay_progress.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
 	<style>
-
+	body {
+		font-family: 'Roboto', sans-serif;
+	}
 </style>
+
+<!-- Material Design Bootstrap -->
+<link href="<?php echo base_url() ?>css/home_page/css/style.css" rel="stylesheet">
+<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/js/login/login.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay_progress.min.js"></script>
 
 </head>
 <body class="" >
@@ -65,15 +68,15 @@ error_reporting(E_ERROR | E_PARSE);
 
 						<form id="login_form" role="form" method='post' enctype='multipart/form-data' style="">
 							<div class="w3-col l12 " id="login_err">
-							    <?php 
-							        if(isset($err_msg)){
-							            echo '
-							            <div class="alert alert-danger ">
-        <strong>'. $err_msg.'</strong> 
-        </div>
-							            ';
-							        }
-							    ?>
+								<?php 
+								if(isset($err_msg)){
+									echo '
+									<div class="alert alert-danger ">
+									<strong>'. $err_msg.'</strong> 
+									</div>
+									';
+								}
+								?>
 							</div>
 							<div id = "registerDiv">
 								<div class="w3-margin-bottom w3-col l12 s12"> 

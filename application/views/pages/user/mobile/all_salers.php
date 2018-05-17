@@ -43,9 +43,11 @@ error_reporting(E_ERROR | E_PARSE);
                     <span class="fa fa-phone w3-large"></span>
                   </a>
 
+                  <?php if($key['whatsapp_no']!='0'){ ?>
                   <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=<?php echo $key['country_code'].$key['whatsapp_no']; ?>" title="Whatsapp on: +<?php echo $key['country_code'].$key['whatsapp_no']; ?>" style="margin-right: 6px;padding: 0">
                     <span class="fa fa-whatsapp w3-large"></span>
                   </a>
+                  <?php } ?>
 
                   <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:<?php echo $key['email']; ?>?subject=Referred contact from Jumla Business." title="<?php echo $key['email']; ?>" style="margin-right: 6px;padding: 0">
                     <span class="fa fa-envelope-o w3-large"></span>
@@ -66,7 +68,7 @@ error_reporting(E_ERROR | E_PARSE);
                   </div>
 
                   <div class="w3-col s12 w3-margin-top">
-                    <a class="w3-button w3-card w3-round-xlarge w3-white w3-right w3-hover-text-orange w3-hover-white" href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($key['user_id']); ?>" title="View <?php echo $key['username']; ?>" style="padding: 3px">
+                    <a class="w3-button w3-card w3-round-xlarge w3-white w3-margin-top w3-right w3-hover-text-orange w3-hover-white" href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($key['user_id']); ?>" title="View <?php echo $key['username']; ?>" style="padding: 0 3px 0 3px">
                     <span class="w3-small">view</span> <span class="fa fa-chevron-circle-right w3-medium"></span>
                   </a>
                   </div>
