@@ -33,7 +33,7 @@ error_reporting(E_ERROR | E_PARSE);
             <div class="w3-col l12 w3-center w3-padding-top " >
               <a class="btn w3-padding" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($result['cat_id']); ?>">
                 <span>
-                <i class="fa fa-<?php echo $result['fa_symbol']; ?> w3-xxlarge"></i>
+                <i class="fa fa-<?php echo $result['fa_symbol']; ?> w3-xxlarge" style="padding-top:20px"></i>
               </span>
               <div class="w3-col l12">
                 <span class="w3-small"><?php echo $result['category_name']; ?></span>

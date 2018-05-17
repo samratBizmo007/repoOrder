@@ -81,7 +81,6 @@ public function getTimeline_web() {
                 }
                 echo '
                 <div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$default_image.'\');"></div>
-                
                 </div>
                 <div class="col-lg-11 w3-padding-left w3-padding-top">
                 <p style="padding:0;margin:0">
