@@ -142,6 +142,8 @@ class Manage_products extends CI_Controller {
                 if ($this->upload->do_upload('userFile')) {
                     $fileData = $this->upload->data();
                     $imagePath = 'images/product_images/' . $fileData['file_name'];
+                    // check EXIF and autorotate if needed
+$this->load->library('image_autorotate', array('filepath' => $imagePath));
                 }
             }
             $prod_Arr[] = array(
@@ -151,7 +153,7 @@ class Manage_products extends CI_Controller {
 
         //echo $imagePath;die();
         //validating image ends---------------------------//
-        //print_r($prod_Arr);die();
+        print_r($prod_Arr);die();
         //$data['imagePath'] = $uploadPath . $imagePath;
         $data['posted_by'] = $user_name;
         $data['user_id'] = $user_id;
