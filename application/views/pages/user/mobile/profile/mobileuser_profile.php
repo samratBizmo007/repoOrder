@@ -32,10 +32,9 @@ $user_id = $this->session->userdata('user_id');
 .allImage{
     width: 100%;
     height: 100%;
-    /*background-size: contain;*/
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-size:contain;
 }
 
 /* all saved images div */
@@ -196,11 +195,12 @@ $user_id = $this->session->userdata('user_id');
                                                         foreach ($prodimagesdata as $val) {
                                                             ?>
                                                             <!-- Image Div -->
-                                                            <div class="w3-col s6 w3-padding-small allImage-div ">
-                                                                <a href="#" title="View Product" class="allImage w3-button w3-text-orange" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> " style="background-position:center;background-repeat: no-repeat; background-image: url('<?php echo base_url() . $val['prod_image']; ?>');">
+                                                             <div class="w3-col s6 w3-padding-small allImage-div">
+                                                                 <a href="#" title="View Product" class="allImage w3-button w3-text-orange" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?>" style="background-image: url('<?php echo base_url() . $val['prod_image']; ?>');">
+                                                                </a>                                                               
+                                                            </div> 
 
-                                                                </a>
-                                                            </div>
+                                                            <!-- <img src="'<?php echo base_url().$val['prod_image']; ?>" class="img img-responsive" style="width: 100%;height: auto;"> -->
                                                             <!-- Image Div ends -->
                                                             <?php
                                                             break;
