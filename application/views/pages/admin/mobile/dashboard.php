@@ -11,10 +11,10 @@ error_reporting(E_ERROR | E_PARSE);
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
-  <!-- <link rel="stylesheet" href="assets/css/alert/jquery-confirm.css"> -->
+  <link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css"> 
   <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
   <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">  
-  <!-- <script type="text/javascript" src="assets/css/alert/jquery-confirm.js"></script> -->
+   <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script> 
 </head>
 <body class="w3-light-grey">
 
@@ -131,7 +131,36 @@ error_reporting(E_ERROR | E_PARSE);
   });
 </script>
 <!-- script to load feeds on page scroll ends -->
+ <script>
+        //--------------fun for remove product from product table-------------------------------//
+        function RemoveProduct(prod_id) {
+            $.confirm({
+                title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are you sure you want to delete this product.!</h4>',
+                content: '',
+                type: 'red',
+                buttons: {
+                    confirm: function () {
+                        var dataS = 'prod_id=' + prod_id;
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>admin/dashboard/removeProduct",
+                            type: "POST",
+                            data: dataS,
+                            cache: false,
+                            success: function (html) {
+                                $.alert(html);
+                                $('#myProductDiv').load(location.href + " #myProductDiv>*", "");
+                                 location.reload();
+                            }
+                        });
+                    },
+                    cancel: function () {
+                    }
+                }
+            });
+        }
+        //------------fun ends here------------------------------------------------------//
 
+    </script>
 <!-- Swiper JS -->
 <script src="<?php echo base_url(); ?>css/posts/dist/js/swiper.min.js"></script>
 

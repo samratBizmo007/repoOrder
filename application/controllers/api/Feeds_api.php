@@ -115,4 +115,14 @@ class Feeds_api extends REST_Controller {
         return $this->response($result);
     }
 
+    //--------fun for delete feeds from admin side-----------------------//
+
+    public function removeProduct_get() {
+        extract($_GET);
+        $result = $this->feeds_model->removeProduct($prod_id);
+        return $this->response($result);
+    }
+
+//--------fun for delete feeds from admin side-----------------------//
+
 }

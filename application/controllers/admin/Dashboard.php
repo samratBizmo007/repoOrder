@@ -52,7 +52,7 @@ public function getStatistics() {
   // --------- this function gets all latest product feeds web---------------//
 public function getTimeline_web() {
     extract($_POST);
-        //print_r($_POST);die();
+        // print_r($_POST);die();
     $path = base_url();
     $url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start;
     $ch = curl_init($url);
@@ -61,28 +61,54 @@ public function getTimeline_web() {
     $response_json = curl_exec($ch);
     curl_close($ch);
     $response = json_decode($response_json, true);
-        //  print_r($response_json);die();
+         // print_r($response_json);die();
         //  return $response;
 
     if($response['status']==200){
         foreach ($response['status_message'] as $key) {
+            // echo $key['prod_id'];
             echo 
-                '<div class="w3-col l12 w3-card-2 w3-margin-bottom">
-
-                <!-- Top section div start -->
+                '
+                <div class="w3-col l12 w3-card-2 w3-margin-bottom">
+                <div class="w3-col l12 w3-right w3-padding"><a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class="w3-right  btn" style="padding: 0px;"><i class="fa fa-trash"></i></a></div>
+                 <!-- Top section div start -->
                 <div class="w3-col l12 w3-border-bottom">
-                <div class="w3-col l1 w3-padding">
-                <div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
+                 <div class="w3-col l1 w3-padding">';
+                // set default image for username if pofile image not available
+                $default_image = 'images/default_male.png';
+                if($key['user_image']!=''){
+                    $default_image=$key['user_image'];
+                }
+                echo '
+                <div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$default_image.'\');"></div>
+                
                 </div>
-                <div class="w3-col l11 w3-padding-left w3-padding-top">
-                <label class="w3-margin-top w3-small">'; if($key['full_name']==''){ echo $key['username']; }
+                <div class="col-lg-11 w3-padding-left w3-padding-top">
+                <p style="padding:0;margin:0">
+                <label class="w3-small" style="margin-bottom:0;padding-top:8px">
+                '; 
+                // show company name and address on post
+                if($key['company_name']=='')
+                { 
+                    echo '<span class="w3-text-red">Not Disclosed</span>'; 
+                }
                 else {
-                    echo $key['full_name'];
+                    echo $key['company_name'];
                 } echo'</label>
+                </p>
+                <p style="padding:0;margin:0" class="w3-small">                
+                '; 
+                if($key['address']=='')
+                { 
+                    echo '<span class="w3-text-red">Not Disclosed</span>'; 
+                }
+                else {
+                    echo $key['address'];
+                } echo'
+                </p>
                 </div>
                 </div>
                 <!-- Top section div ends -->
-
                 <!-- Mid section div start -->';
 
                 $imageArr=json_decode($key['prod_image'],TRUE);
@@ -177,7 +203,7 @@ public function getTimeline_web() {
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        //  print_r($response_json);die();
+         // print_r($response_json);die();
         //  return $response;
 
         if($response['status']==200){
@@ -186,12 +212,43 @@ public function getTimeline_web() {
                 <div class="w3-col l12 w3-margin-bottom">
 
                 <!-- Top section div start -->
+                <div class="w3-col s12 w3-border-bottom w3-padding-bottom">
+                <div class="w3-col s12 w3-right w3-padding"><a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class="w3-right  btn" style="padding: 0px;"><i class="fa fa-trash"></i></a></div>                
+                <!-- Top section div start -->
                 <div class="w3-col s12 w3-border-bottom w3-padding-bottom">                  
-                <div class="w3-col s1 w3-padding-small">
-                <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
+                <div class="w3-col s2 w3-padding-small w3-padding-top">';
+                $default_image = 'images/default_male.png';
+                if($key['user_image']!=''){
+                    $default_image=$key['user_image'];
+                }
+                echo '
+                <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$default_image.'\');"></div>
                 </div>
-                <div class="w3-col s11 w3-padding">
-                <a class="btn" style="padding: 0"><label class="w3-small">'.$key['username'].'</label></a>
+                <div class="w3-col s10 w3-padding-top">
+                <a class="btn" style="padding: 0;margin:0">
+                <label class="w3-small" style="padding:0;margin:0">';
+                if($key['company_name']==''){
+                    echo '<span class="w3-text-red">Not Disclosed</span>';
+                }
+                else{
+                    echo $key['company_name'];
+                }
+                echo '
+                </label>
+                </a>
+                <p style="padding:0;margin:0" class="w3-small">                
+                '; 
+                if($key['address']=='')
+                { 
+                    echo '<span class="w3-text-red">Not Disclosed</span>'; 
+                }
+                else {
+                    echo $key['address'];
+                } 
+                echo'
+                </p>
+                
+                
                 </div>
                 </div>
                 <!-- Top section div ends -->
@@ -271,5 +328,34 @@ public function getTimeline_web() {
         
     }
   // -----------------fucntion get timeline mobile ends here --------------------------------//
+    //------------fun for remove product-----------------------//
+    public function removeProduct() {
+        extract($_POST);
+         // print_r($_POST);die();
+        $path = base_url();
+        $url = $path . 'api/Feeds_api/removeProduct?prod_id='. $prod_id;
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response_json = curl_exec($ch);
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+        // print_r($response);die();
+        // return $response;
+        if ($response['status'] != 200) {
+            echo "check if";
+            echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
+            ';
+        } else {
+            echo "check else";
+            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
+            <script>
+            window.setTimeout(function() {
+            }, 1000);
+            </script>';
+        }
+    }
+
+    //------------fun for remove product-----------------------//
 
         }
