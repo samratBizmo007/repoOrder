@@ -8,6 +8,9 @@ class Login extends CI_Controller {
         parent::__construct();
         date_default_timezone_set('Asia/Kuwait');   //set Kuwait's timezone
         $this->load->helper('cookie');
+        
+        // ------load facebook library
+        $this->load->library('facebook');
     }
 
     public function index() {
@@ -24,7 +27,9 @@ class Login extends CI_Controller {
         if (($user_id != '') || ($user_name != '') || ($user_role !='') || ($cat_id !='')) {
             redirect('user/feeds');
         }
-        $this->load->view('pages/login/login');
+        
+        $data['authURL']=$this->facebook->login_url();
+        $this->load->view('pages/login/login',$data);
     }
 
     //----------------------function to login---------------------------//
@@ -111,15 +116,12 @@ public function loginCustomer() {
 public function logout() {
 
     $user_id = $this->session->userdata('user_id');
-        //if logout success then destroy session and unset session variables
-    // $path = base_url();
-    // $url = $path . 'api/Login_api/logout?user_id=' . $user_id;
-    // $ch = curl_init($url);
-    // curl_setopt($ch, CURLOPT_HTTPGET, true);
-    // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    // $response_json = curl_exec($ch);
-    // curl_close($ch);
-    // $response = json_decode($response_json, true);
+    
+    // Remove local Facebook session
+        $this->facebook->destroy_session();
+        // Remove user data from session
+        $this->session->unset_userdata('userData');
+        // Redirect to login page
 
         //if logout success then destroy session and unset session variables
     $this->session->unset_userdata(array("user_id" => "", "user_name" => ""));
@@ -131,8 +133,68 @@ public function logout() {
 
     redirect(base_url());
 }
-
 // ---------------------function ends----------------------------------//
+
+// ----------------facebook login code-------------------------//
+public function fblogin(){
+    $userData = array();
+        //echo $this->facebook->is_authenticated();
+        // Check if user is logged in
+       // $this->load->view('pages/login');
+
+        if($this->facebook->is_authenticated()){
+            // Get user facebook profile details
+            $fbUserProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,picture');
+            //print_r($fbUserProfile);die();
+            // Preparing data for database insertion
+            $userData['oauth_provider'] = 'facebook';
+            $userData['oauth_uid'] = $fbUserProfile['id'];
+            $userData['first_name'] = $fbUserProfile['first_name'];
+            $userData['last_name'] = $fbUserProfile['last_name'];
+            $userData['email'] = $fbUserProfile['email'];
+            //$userData['gender'] = $fbUserProfile['gender'];
+            //$userData['locale'] = $fbUserProfile['locale'];
+            //$userData['cover'] = $fbUserProfile['cover']['source'];
+            $userData['picture'] = $fbUserProfile['picture']['data']['url'];
+            //$userData['link'] = $fbUserProfile['link'];
+            //$userData['role'] = 1;
+            
+            // Insert or update user data
+            //$userID = $this->user->checkUser($userData);
+            
+            $path = base_url();
+            $url = $path.'api/FacebookUser_api/checkUser';
+            $ch = curl_init($url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $response_json = curl_exec($ch);
+            curl_close($ch);
+            $response = json_decode($response_json, true);
+            //print_r($response_json);die();
+            
+            // Check user data insert or update status
+            if ($response['status'] == 500) {
+                $data['err_msg']=$response['status_message'];
+                
+                $data['authURL']=$this->facebook->login_url();
+        $this->load->view('pages/login/login',$data);
+                
+            } else {
+            //----create session array--------//
+                $session_data = array(
+                    'user_id' => $response['userID'],
+                    'user_name' => $response['user_name'],
+                    'user_role'=>$response['role'],
+                    'cat_id'=>$response['cat_id']
+                );
+            //start session of user if login success
+                $this->session->set_userdata($session_data);
+                redirect('user/feeds');
+            }
+        }
+}
+// ------------------facebook login code ends -----------------//
 }
 
 ?>
