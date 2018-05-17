@@ -52,6 +52,20 @@ class Editprofile_model extends CI_Model {
             return $response;
             die();
         }
+         if ($company_name == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Your Company name..!');
+            return $response;
+            die();
+        }
+          if ($address == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Your Address..!');
+            return $response;
+            die();
+        }
 //        $contactNo=$countryCode.$phone;
 //        $whatsappNo = $countryCodeWhatsapp.$whatsapp_no;
 //        if (!is_numeric($contactNo)) {

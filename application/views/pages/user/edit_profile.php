@@ -141,8 +141,7 @@ $user_id = $this->session->userdata('user_id');
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
+                
             <!-- DIV FOR edit profile PASSWORD-->
             <!-- DIV FOR CHNGE PASSWORD-->
             <div class="w3-col l9 w3-border-left" id="changepassword" style="display: none;">
@@ -187,7 +186,6 @@ $user_id = $this->session->userdata('user_id');
             </div>
             <!-- DIV FOR CHNGE PASSWORD-->
         </div>
-
     </div>
     <div class="col-lg-2"></div>
 </div>       
