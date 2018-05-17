@@ -112,14 +112,38 @@ class Feeds extends CI_Controller {
 
 				<!-- Top section div start -->
 				<div class="w3-col l12 w3-border-bottom">
-				<div class="w3-col l1 w3-padding">
-				<div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
+				<div class="w3-col l1 w3-padding">';
+                // set default image for username if pofile image not available
+                $default_image = 'images/default_male.png';
+                if($key['user_image']!=''){
+                    $default_image=$key['user_image'];
+                }
+                echo '
+				<div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$default_image.'\');"></div>
 				</div>
-				<div class="w3-col l11 w3-padding-left w3-padding-top">
-				<label class="w3-margin-top w3-small">'; if($key['full_name']==''){ echo $key['username']; }
+				<div class="col-lg-11 w3-padding-left w3-padding-top">
+                <p style="padding:0;margin:0">
+				<label class="w3-small" style="margin-bottom:0;padding-top:8px">
+                '; 
+                // show company name and address on post
+                if($key['company_name']=='')
+                { 
+                    echo '<span class="w3-text-red">Not Disclosed</span>'; 
+                }
                 else {
-                    echo $key['full_name'];
+                    echo $key['company_name'];
                 } echo'</label>
+                </p>
+                <p style="padding:0;margin:0" class="w3-small">                
+                '; 
+                if($key['address']=='')
+                { 
+                    echo '<span class="w3-text-red">Not Disclosed</span>'; 
+                }
+                else {
+                    echo $key['address'];
+                } echo'
+                </p>
 				</div>
 				</div>
 				<!-- Top section div ends -->
@@ -227,11 +251,39 @@ class Feeds extends CI_Controller {
 
     			<!-- Top section div start -->
     			<div class="w3-col s12 w3-border-bottom w3-padding-bottom">                  
-    			<div class="w3-col s1 w3-padding-small">
-    			<div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$key['user_image'].'\');"></div>
+    			<div class="w3-col s2 w3-padding-small w3-padding-top">';
+                $default_image = 'images/default_male.png';
+                if($key['user_image']!=''){
+                    $default_image=$key['user_image'];
+                }
+                echo '
+                <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$default_image.'\');"></div>
     			</div>
-    			<div class="w3-col s11 w3-padding">
-    			<a class="btn" style="padding: 0"><label class="w3-small">'.$key['username'].'</label></a>
+    			<div class="w3-col s10 w3-padding-top">
+    			<a class="btn" style="padding: 0;margin:0">
+                <label class="w3-small" style="padding:0;margin:0">';
+                if($key['company_name']==''){
+                    echo '<span class="w3-text-red">Not Disclosed</span>';
+                }
+                else{
+                    echo $key['company_name'];
+                }
+                echo '
+                </label>
+                </a>
+                <p style="padding:0;margin:0" class="w3-small">                
+                '; 
+                if($key['address']=='')
+                { 
+                    echo '<span class="w3-text-red">Not Disclosed</span>'; 
+                }
+                else {
+                    echo $key['address'];
+                } 
+                echo'
+                </p>
+                
+                
     			</div>
     			</div>
     			<!-- Top section div ends -->
