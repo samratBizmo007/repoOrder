@@ -63,16 +63,16 @@ error_reporting(E_ERROR | E_PARSE);
                     </div>
                     <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
-                            <label class="w3-label w3-small" style="color: #00B8D4;">Country Code: </label>
+                            <label class="w3-label w3-small" style="color: #00B8D4;">Country code: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
-                        <div class="w3-col l10">
+                        <div class="w3-col l3">
                             <?php
                             $countryCode = '';
                             $phone = '';
                             $countryCode = $userDetails['status_message'][0]['country_code'];
                             //echo $countryCode;
                             ?>
-                            <div class="w3-col l3">
+                            <div class="w3-col s6">
                                 <select class="w3-input w3-small" name="countryCode" id="countryCode" required>
                                     <option value="965" <?php
                                     if ($countryCode == '965') {
@@ -93,23 +93,25 @@ error_reporting(E_ERROR | E_PARSE);
                             <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no:<font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">                           
-                            <input type="text" class="w3-input w3-small" placeholder="whatsapp no" value="<?php echo $userDetails['status_message'][0]['whatsapp_no'];; ?>" name="whatsapp_no" id="whatsapp_no" required>
+                            <input type="text" class="w3-input w3-small" placeholder="whatsapp no" value="<?php echo $userDetails['status_message'][0]['whatsapp_no'];
+                                            ; ?>" name="whatsapp_no" id="whatsapp_no" required>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
-                            <label class="w3-label w3-small" style="color: #00B8D4;">phone no: <font color ="red"><span id ="pname_star">*</span></font></label>
+                            <label class="w3-label w3-small" style="color: #00B8D4;">Phone no: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-small" placeholder="phone" value="<?php echo $userDetails['status_message'][0]['phone'];; ?>" name="phone" id="phone" required>
+                            <input type="text" class="w3-input w3-small" placeholder="phone" value="<?php echo $userDetails['status_message'][0]['phone'];
+                                            ; ?>" name="phone" id="phone" required>
                         </div>                
                     </div>
                     <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
-                            <label class="w3-label w3-small" style="color: #00B8D4;">Company Name: </label>
+                            <label class="w3-label w3-small" style="color: #00B8D4;">Company name: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
-                            <input type="text" class="w3-input w3-small" placeholder="company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name">
+                            <input type="text" class="w3-input w3-small" placeholder="company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name" required>
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding ">

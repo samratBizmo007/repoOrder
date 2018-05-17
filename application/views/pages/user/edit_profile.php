@@ -77,7 +77,7 @@ $user_id = $this->session->userdata('user_id');
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
                                 <div class="w3-col l2">
-                                    <label class="w3-label w3-small" style="color: #00B8D4;">Country Code: </label>
+                                    <label class="w3-label w3-small" style="color: #00B8D4;">Country code:<font color ="red"><span id ="pname_star">*</span></font></label>
                                 </div>
                                 <div class="w3-col l10">
                                     <?php
@@ -88,12 +88,16 @@ $user_id = $this->session->userdata('user_id');
                                     ?>
                                     <div class="w3-col l3">
                                         <select class="w3-input w3-border w3-small" name="countryCode" id="countryCode" required>
-                                            <option value="965" <?php if ($countryCode == '965') {
-                                        echo 'selected';
-                                    } ?>>+965 (Kuwait)</option>
-                                            <option value="91" <?php if ($countryCode == '91') {
-                                        echo 'selected';
-                                    } ?>>+91 (India)</option>
+                                            <option value="965" <?php
+                                            if ($countryCode == '965') {
+                                                echo 'selected';
+                                            }
+                                            ?>>+965 (Kuwait)</option>
+                                            <option value="91" <?php
+                                            if ($countryCode == '91') {
+                                                echo 'selected';
+                                            }
+                                            ?>>+91 (India)</option>
                                         </select>
                                     </div>
                                 </div>
@@ -102,35 +106,13 @@ $user_id = $this->session->userdata('user_id');
                                 <div class="w3-col l2">
                                     <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no:<font color ="red"><span id ="pname_star">*</span></font></label>
                                 </div>
-                                <div class="w3-col l10">
-                                    <?php
-//                                $countryCode='';
-//                                $phone='';
-//                                $countryCodewhatsapp = substr($userDetails['status_message'][0]['whatsapp_no'], 0, 3);
-//                                $whatsapp_no = substr($userDetails['status_message'][0]['whatsapp_no'], 4);
-//
-                                    ?>
-                                    <!--                                <div class="w3-col l3">
-                                                                        <select class="w3-input w3-border w3-small" name="countryCodeWhatsapp" id="countryCodeWhatsapp">
-                                                                            <option value="965" <?php
-                                    if ($countryCodewhatsapp == '965') {
-                                        echo 'selected';
-                                    }
-                                    ?>>+965 (Kuwait)</option>
-                                                                            <option value="91" <?php
-                                    if ($countryCodewhatsapp == '91') {
-                                        echo 'selected';
-                                    }
-                                    ?>>+91 (India)</option>
-                                                                        </select>
-                                                                    </div>-->
-                                    <!--                                <div class="w3-col l9 w3-padding-left">-->
+                                <div class="w3-col l10">                              
                                     <input type="text" class="w3-input w3-border w3-small" placeholder="whatsapp no" value="<?php echo $userDetails['status_message'][0]['whatsapp_no']; ?>" name="whatsapp_no" id="whatsapp_no" required>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
                                 <div class="w3-col l2">
-                                    <label class="w3-label w3-small" style="color: #00B8D4;">phone no: <font color ="red"><span id ="pname_star">*</span></font></label>
+                                    <label class="w3-label w3-small" style="color: #00B8D4;">Phone no: <font color ="red"><span id ="pname_star">*</span></font></label>
                                 </div>
                                 <div class="w3-col l10">                           
                                     <input type="text" class="w3-input w3-border w3-small" placeholder="phone" value="<?php echo $userDetails['status_message'][0]['phone']; ?>" name="phone" id="phone" required>
@@ -139,10 +121,10 @@ $user_id = $this->session->userdata('user_id');
 
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
                                 <div class="w3-col l2">
-                                    <label class="w3-label w3-small" style="color: #00B8D4;">company name: </label>
+                                    <label class="w3-label w3-small" style="color: #00B8D4;">Company name: <font color ="red"><span id ="pname_star">*</span></font></label>
                                 </div>
                                 <div class="w3-col l10">
-                                    <input type="text" class="w3-input w3-border w3-small" placeholder="company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name">
+                                    <input type="text" class="w3-input w3-border w3-small" placeholder="company name" value="<?php echo $userDetails['status_message'][0]['company_name']; ?>" name="company_name" id="company_name" required>
                                 </div>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-margin-top">
@@ -175,7 +157,7 @@ $user_id = $this->session->userdata('user_id');
                     </div>
                     <div class="w3-col l12 w3-padding-small w3-margin-top">
                         <div class="w3-col l2">
-                            <label class="w3-label w3-small" style="color: #00B8D4;">New Password: <font color ="red"><span id ="pname_star">*</span></font></label>
+                            <label class="w3-label w3-small" style="color: #00B8D4;">New password: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <!-- <div class="w3-col l10">
                             <input type="password" onkeyup="checkPassword();" placeholder="New Password" class="w3-input w3-border w3-small" value="" name="new_password" id="new_password" required>
@@ -191,7 +173,7 @@ $user_id = $this->session->userdata('user_id');
                     </div>
                     <div class="w3-col l12 w3-padding-small w3-margin-top">
                         <div class="w3-col l2">
-                            <label class="w3-label w3-small" style="color: #00B8D4;">Confirm Password: <font color ="red"><span id ="pname_star">*</span></font></label>
+                            <label class="w3-label w3-small" style="color: #00B8D4;">Confirm password: <font color ="red"><span id ="pname_star">*</span></font></label>
                         </div>
                         <div class="w3-col l10">
                             <input type="password" onkeyup="checkPassword();" placeholder="Confirm Password" class="w3-input w3-border w3-small" value="" name="conf_password" id="conf_password" minlength="8" required>

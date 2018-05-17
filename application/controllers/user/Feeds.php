@@ -185,7 +185,7 @@ class Feeds extends CI_Controller {
                 <!-- Bottom section div starts -->
                 <div class="w3-col l12">
                 <div class="w3-col l12 w3-padding-small w3-right">
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:'.$key['phone'].'" title="'.$key['phone'].'" style="padding-right: 0px;padding-left: 8px">
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:+'.$key['country_code'].$key['phone'].'" title="+'.$key['country_code'].$key['phone'].'" style="padding-right: 0px;padding-left: 8px">
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
@@ -193,7 +193,7 @@ class Feeds extends CI_Controller {
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>'; 
                 if($key['whatsapp_no'] != ''){
-                echo'<a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['whatsapp_no'].'" title="WhatsApp No: '.$key['whatsapp_no'].'" style="padding-right: 0px;padding-left: 15px">
+                echo'<a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['country_code'].$key['whatsapp_no'].'" title="WhatsApp No: '.$key['country_code'].$key['whatsapp_no'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-whatsapp w3-xlarge"></span>
                 </a>';
                 }else {
@@ -322,7 +322,7 @@ class Feeds extends CI_Controller {
                 <!-- Bottom section div starts -->
                 <div class="w3-col l12">
                 <div class="w3-col l12 w3-padding-small w3-right">
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:'.$key['phone'].'" title="'.$key['phone'].'" style="padding-right: 0px;padding-left: 8px">
+                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:+'.$key['country_code'].$key['phone'].'" title="+'.$key['country_code'].$key['whatsapp_no'].'" style="padding-right: 0px;padding-left: 8px">
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
@@ -330,7 +330,7 @@ class Feeds extends CI_Controller {
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>';
                 if($key['whatsapp_no'] != ''){
-                echo'<a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['whatsapp_no'].'" title="'.$key['whatsapp_no'].'" style="padding-right: 0px;padding-left: 15px">
+                echo'<a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone='.$key['country_code'].$key['whatsapp_no'].'" title="'.$key['country_code'].$key['whatsapp_no'].'" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-whatsapp w3-xlarge"></span>
                 </a>';
                 }else{
