@@ -90,11 +90,10 @@ error_reporting(E_ERROR | E_PARSE);
                     </div>
                     <div class="w3-col l12 w3-padding">
                         <div class="w3-col l2">
-                            <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no:<font color ="red"><span id ="pname_star">*</span></font></label>
+                            <label class="w3-label w3-small" style="color: #00B8D4;">Whatsapp no:</label>
                         </div>
                         <div class="w3-col l10">                           
-                            <input type="text" class="w3-input w3-small" placeholder="Enter your Whatsapp Number" value="<?php echo $userDetails['status_message'][0]['whatsapp_no'];
-                                            ; ?>" name="whatsapp_no" id="whatsapp_no" required>
+                            <input type="text" class="w3-input w3-small" placeholder="Enter your Whatsapp Number" value="<?php echo $userDetails['status_message'][0]['whatsapp_no']; ?>" name="whatsapp_no" id="whatsapp_no">
                         </div>
                     </div>
                     <div class="w3-col l12 w3-padding">

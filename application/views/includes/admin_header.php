@@ -95,11 +95,11 @@ $admin_role=$this->session->userdata('admin_role');
          <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey w3-blue" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
        </div>
        <div class="w3-col l6 s6 w3-right">
-        <div class="w3-col l10">
+        <div class="w3-col l11">
           <span class="w3-button w3-right w3-small w3-hover-none">Welcome, <strong><?php echo $admin_name; ?></strong></span>
         </div>
-        <div class="w3-col l1 s2">
-            <a href="<?php echo base_url(); ?>admin_login/logout" class="btn w3-small w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px;padding:0 5px 0 5px">Logout <i class="fa fa-sign-out" ></i></a>
+        <div class="w3-col l1 w3-padding-top">
+            <a href="<?php echo base_url(); ?>admin_login/logout" class="btn w3-small w3-right w3-black w3-round-xlarge w3-text-white" style="margin-left: 30px;padding:0 5px 0 5px">Logout <i class="fa fa-sign-out" ></i></a>
           <!--      <div class="w3-right">        -->
             <!--        <a href="<?php echo base_url(); ?>admin_login/logout" title="Logout user" class="w3-button w3-padding-small"><strong>Logout</strong> <i class="fa  fa-sign-out"></i></a> -->
             <!--      </div>-->

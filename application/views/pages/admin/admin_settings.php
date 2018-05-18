@@ -14,14 +14,14 @@ $admin_role=$this->session->userdata('admin_role');
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>css/alert/jquery-confirm.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
-    <style>
-    body {
-        font-family: 'Roboto', sans-serif;
-    }
+	<style>
+	body {
+		font-family: 'Roboto', sans-serif;
+	}
 </style>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-	<script type="text/javascript" src="<?php echo base_url(); ?>css/js/admin/admin_settings.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>css/js/admin/admin_settings.js"></script>
 </head>
 <body class="w3-light-grey">
 
@@ -32,16 +32,12 @@ $admin_role=$this->session->userdata('admin_role');
 		<header class="w3-container" >
 			<h5><b><i class="fa fa-cog"></i> Settings</b></h5>
 		</header>
-		<div class="w3-row-padding w3-margin-bottom">
+		<div class="w3-margin-bottom">
 			<div class="w3-col l12">
-
-					<!-- div for update email id -->
-					
-      				<div class="col-lg-6 w3-padding-small ">
-
-					<div class="w3-col l12 w3-small w3-margin-bottom">
+				<!-- div for update email id -->
+				<div class="col-lg-6 w3-padding-small ">
+					<div class="w3-col l12 w3-small w3-round w3-margin-bottom w3-border w3-padding-small">
 						<label><i class="fa fa-envelope"></i> SetUp Email-ID</label><br>
-
 						<form id="updateEmail">
 							<div class="w3-col l8 w3-padding-right w3-margin-bottom">
 								<input type="email" name="admin_email" value="<?php echo $adminDetails['status_message'][0]['admin_email']; ?>" placeholder="Enter Email-ID here..." id="admin_email" class="w3-input" required>
@@ -50,19 +46,32 @@ $admin_role=$this->session->userdata('admin_role');
 								<button type="submit" class="w3-button w3-red">Update Email-ID</button>
 							</div>
 						</form>
-
-					</div>
 					</div>
 
-					
-					<!-- div for update user name -->
+					<div class="w3-col l12 w3-round w3-margin-bottom w3-small w3-border w3-padding-small">
+						<label><i class="fa fa-key"></i> SetUp Private Key</label><br>
+						<form id="updateKey">
+							<div class="w3-col l8 w3-padding-right w3-margin-bottom">
+								<input type="text" name="admin_key" value="<?php echo $key['setting_value']; ?>" placeholder="Enter Private Key here..." id="admin_key" class="w3-input" required>
+							</div>
+							<div class="w3-col l4">
+								<button type="submit" class="w3-button w3-red">Update Private Key</button>
+							</div>
+							<div class="w3-col l12">
+								<p class="w3-small">
+									<b>
+										NOTE: This Private Key will be used to auto-generate Secure Password. Do not keep this field empty!
+									</b>
+								</p>
+							</div>
+						</form>
+					</div>
+				</div>
 
-					
-      					<div class="col-lg-6 w3-padding-small  ">
-
-					<div class="w3-col l12 w3-small w3-margin-bottom">
+				<!-- div for update user name -->
+				<div class="col-lg-6 w3-padding-small w3-small w3-margin-bottom">
+					<div class="w3-col l12 w3-small w3-round w3-margin-bottom w3-border w3-padding-small">
 						<label><i class="fa fa-users"></i> Update Username</label><br>
-
 						<form id="updateUname">
 							<div class="w3-col l8 w3-padding-right w3-margin-bottom">
 								<input type="text" name="admin_uname" value="<?php echo $adminDetails['status_message'][0]['username']; ?>" placeholder="Enter Username Here..." id="admin_uname" class="w3-input" required>
@@ -71,33 +80,9 @@ $admin_role=$this->session->userdata('admin_role');
 								<button type="submit" class="w3-button w3-red">Update Username</button>
 							</div>
 						</form>
-
 					</div>
-				</div>
-					
-				</div>
-					<!-- div for update password -->
-					<div class="w3-col l12">
 
-					
-					<div class="w3-col l6 w3-small w3-margin-bottom">
-						<label><i class="fa fa-key"></i> SetUp Private Key</label><br>
-
-						<form id="updateKey">
-							<div class="w3-col l8 w3-padding-right w3-margin-bottom">
-								<input type="text" name="admin_key" value="<?php echo $key['setting_value']; ?>" placeholder="Enter Private Key here..." id="admin_key" class="w3-input" required>
-							</div>
-							<div class="w3-col l4">
-								<button type="submit" class="w3-button w3-red">Update Private Key</button>
-							</div>
-						</form>
-
-						
-					</div>
-					
-					<!-- div for update password -->
-					
-					<div class="w3-col l6 w3-small w3-margin-bottom">
+					<div class="w3-col l12 w3-round w3-margin-bottom w3-border w3-padding-small">
 						<label><i class="fa fa-lock"></i> Update Password</label><br>
 
 						<form id="updatePass">
@@ -108,47 +93,26 @@ $admin_role=$this->session->userdata('admin_role');
 								<button type="submit" class="w3-button w3-red">Update Password</button>
 							</div>
 						</form>
-
-						
 					</div>
 				</div>
-				
-			<!-- 	<div class="col-lg-6 w3-padding-small ">
-					<div class="w3-col l12 w3-small w3-margin-bottom">
-						<hr class="w3-hide-large">
-						<label><i class="fa fa-image"></i> SetUp Dashboard Image</label><br>
 
-						<form id="updateDashboardImage">
-							<div class="w3-col l8 w3-padding-right w3-margin-bottom">
-								<input type="file" name="admin_image" id="admin_image" style="padding-bottom: 2px" class="w3-input" required onchange="readURL(this);">
-							</div>
-							<div class="w3-col l4">
-								<button type="submit" class="w3-button w3-red">Upload Image</button>
-							</div>
-							<div class="w3-col l12 w3-margin-top">
-								<label><i class="fa fa-arrow-down"></i> Uploaded Image</label><br>
-								<img src="<?php echo DASBOARDIMAGE_PATH.$dashImage['setting_value']; ?>" onerror="this.src='<?php echo base_url();?>images/default_image.png'" id="adminImagePreview" width="auto" height="250px" alt="User Dashboard Image will be displayed here once chosen." class="img img-thumbnail w3-centerimg ">
-							</div>
-						</form>
-
-					</div>
-				</div> -->
-				
 			</div>
+			
 		</div>
-		<!-- End page content -->
 	</div>
+	<!-- End page content -->
+</div>
 
-	<!--  script to update email id   -->
-	<script>
-		$(function(){
-			$("#updateEmail").submit(function(){
-				dataString = $("#updateEmail").serialize();
+<!--  script to update email id   -->
+<script>
+	$(function(){
+		$("#updateEmail").submit(function(){
+			dataString = $("#updateEmail").serialize();
 
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url(); ?>admin/admin_settings/updateEmail",
-					data: dataString,
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>admin/admin_settings/updateEmail",
+				data: dataString,
            return: false,  //stop the actual form post !important!
 
            success: function(data)
@@ -161,20 +125,20 @@ $admin_role=$this->session->userdata('admin_role');
          return false;  //stop the actual form post !important!
 
      });
-		});
-	</script>
-	<!-- script ends here -->
+	});
+</script>
+<!-- script ends here -->
 
-	<!--  script to update email id   -->
-	<script>
-		$(function(){
-			$("#updateUname").submit(function(){
-				dataString = $("#updateUname").serialize();
+<!--  script to update email id   -->
+<script>
+	$(function(){
+		$("#updateUname").submit(function(){
+			dataString = $("#updateUname").serialize();
 
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url(); ?>admin/admin_settings/updateUname",
-					data: dataString,
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>admin/admin_settings/updateUname",
+				data: dataString,
            return: false,  //stop the actual form post !important!
 
            success: function(data)
@@ -187,19 +151,19 @@ $admin_role=$this->session->userdata('admin_role');
          return false;  //stop the actual form post !important!
 
      });
-		});
-	</script>
-	<!-- script ends here -->
-		<!--  script to update email id   -->
-	<script>
-		$(function(){
-			$("#updatePass").submit(function(){
-				dataString = $("#updatePass").serialize();
+	});
+</script>
+<!-- script ends here -->
+<!--  script to update email id   -->
+<script>
+	$(function(){
+		$("#updatePass").submit(function(){
+			dataString = $("#updatePass").serialize();
 
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url(); ?>admin/admin_settings/updatePass",
-					data: dataString,
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>admin/admin_settings/updatePass",
+				data: dataString,
            return: false,  //stop the actual form post !important!
 
            success: function(data)
@@ -212,19 +176,19 @@ $admin_role=$this->session->userdata('admin_role');
          return false;  //stop the actual form post !important!
 
      });
-		});
-	</script>
-	<!-- script ends here -->
+	});
+</script>
+<!-- script ends here -->
 <!-- update private key -->
-	<script>
-		$(function(){
-			$("#updateKey").submit(function(){
-				dataString = $("#updateKey").serialize();
+<script>
+	$(function(){
+		$("#updateKey").submit(function(){
+			dataString = $("#updateKey").serialize();
 
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url(); ?>admin/admin_settings/updateKey",
-					data: dataString,
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>admin/admin_settings/updateKey",
+				data: dataString,
            return: false,  //stop the actual form post !important!
 
            success: function(data)
@@ -237,37 +201,37 @@ $admin_role=$this->session->userdata('admin_role');
          return false;  //stop the actual form post !important!
 
      });
-		});
-	</script>
+	});
+</script>
 
-	<!--  script to update user dashboard image   -->
-	<script>
-		$(function(){
-			$("#updateDashboardImage").submit(function(){
-				dataString = $("#updateDashboardImage").serialize();
+<!--  script to update user dashboard image   -->
+<script>
+	$(function(){
+		$("#updateDashboardImage").submit(function(){
+			dataString = $("#updateDashboardImage").serialize();
 
-				$.ajax({
-					type: "POST",
-					url: "<?php echo base_url(); ?>admin/admin_settings/updateDashboardImage",
-					data:  new FormData(this),
-					contentType: false,
-					cache: false,
-					processData:false,
-					success: function(data)
-					{
-						$.alert(data);                       
-					}
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>admin/admin_settings/updateDashboardImage",
+				data:  new FormData(this),
+				contentType: false,
+				cache: false,
+				processData:false,
+				success: function(data)
+				{
+					$.alert(data);                       
+				}
 
-				});
+			});
 
          return false;  //stop the actual form post !important!
 
      });
-		});
-	</script>
-	<!-- script ends here -->
+	});
+</script>
+<!-- script ends here -->
 
-	<script>
+<script>
 	// ----function to preview selected image for profile------//
 	function readURL(input) {
 		if (input.files && input.files[0]) {

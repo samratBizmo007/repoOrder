@@ -70,9 +70,7 @@ public function getTimeline_web() {
             echo 
                 '
                 <div class="w3-col l12 w3-card-2 w3-margin-bottom">
-                <div class="w3-col l12 w3-right w3-padding">
-                <a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class="w3-right w3-small w3-text-red btn" style="padding: 0px;" title="Delete Post"><i class="fa fa-trash"></i> delete</a>
-                </div>
+                
                  <!-- Top section div start -->
                 <div class="w3-col l12 w3-border-bottom">
                  <div class="w3-col l1 w3-padding">';
@@ -84,7 +82,7 @@ public function getTimeline_web() {
                 echo '
                 <div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$default_image.'\');"></div>
                 </div>
-                <div class="col-lg-11 w3-padding-left w3-padding-top">
+                <div class="col-lg-10 w3-padding-left w3-padding-top">
                 <p style="padding:0;margin:0">
                 <label class="w3-small" style="margin-bottom:0;padding-top:8px">
                 '; 
@@ -107,6 +105,9 @@ public function getTimeline_web() {
                     echo $key['address'];
                 } echo'
                 </p>
+                </div>
+                <div class="w3-col l1">
+                <a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class="w3-right w3-large w3-text-red btn" style="padding: 5px;" title="Delete Post"><i class="fa fa-trash"></i></a>
                 </div>
                 </div>
                 <!-- Top section div ends -->
@@ -214,9 +215,6 @@ public function getTimeline_web() {
 
                 <!-- Top section div start -->
                 <div class="w3-col s12 w3-border-bottom w3-padding-bottom">
-                <div class="w3-col s12 w3-right w3-padding">
-                <a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class="w3-right w3-large w3-text-red btn" style="padding: 0px;" title="Delete Post"><i class="fa fa-trash"></i></a>
-                </div>                
                 <!-- Top section div start -->
                 <div class="w3-col s12 w3-border-bottom w3-padding-bottom">                  
                 <div class="w3-col s2 w3-padding-small w3-padding-top">';
@@ -227,7 +225,7 @@ public function getTimeline_web() {
                 echo '
                 <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$default_image.'\');"></div>
                 </div>
-                <div class="w3-col s10 w3-padding-top">
+                <div class="w3-col s9 w3-padding-top">
                 <a class="btn" style="padding: 0;margin:0">
                 <label class="w3-small" style="padding:0;margin:0">';
                 if($key['company_name']==''){
@@ -252,6 +250,9 @@ public function getTimeline_web() {
                 </p>
                 
                 
+                </div>
+                <div class="w3-col s1">
+                <a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class="w3-right w3-large w3-text-red btn" style="padding: 0px;" title="Delete Post"><i class="fa fa-trash"></i></a>
                 </div>
                 </div>
                 <!-- Top section div ends -->

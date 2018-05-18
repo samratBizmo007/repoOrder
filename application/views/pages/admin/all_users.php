@@ -64,7 +64,7 @@
                     <td><?php echo '#UID-0'.$key['user_id']; ?></td>
                     <td><?php echo $key['username']; ?></td>
                     <td><?php echo $key['email']; ?></td>
-                    <td>+<?php echo $key['phone']; ?></td>
+                    <td>+<?php echo $key['country_code'].$key['phone']; ?></td>
                     <td>
                       <?php 
                       $password=substr($auto_passwd, 12, -12);

@@ -45,13 +45,7 @@ class Editprofile_model extends CI_Model {
             return $response;
             die();
         }
-         if ($whatsapp_no == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your Whatsapp no..!');
-            return $response;
-            die();
-        }
+        
          if ($company_name == '') {
             $response = array(
                 'status' => 500,
