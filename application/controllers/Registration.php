@@ -49,7 +49,6 @@ class Registration extends CI_controller{
       // --------------register user fucntion starts----------------------//
     public function registerCustomer() {
     	extract($_POST);
-    	//print_r($_POST);die();
         if($user_role==0){
              echo '<div class="alert alert-danger" style="margin-bottom:5px">
             <strong>Please select appropriate role!</strong> 
