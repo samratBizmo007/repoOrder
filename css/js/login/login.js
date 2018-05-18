@@ -167,13 +167,6 @@ $(function () {
     });
 });
 //  --------------------END --------------------------------- //
-
-
-
-
-
-
-
 //-------------------fucntion to check confirm password---------------
 function checkPassword() {
     if ($('#register_password').val() == $('#register_confirm_password').val()) {

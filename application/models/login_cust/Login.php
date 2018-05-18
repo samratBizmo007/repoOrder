@@ -219,33 +219,33 @@ public function sendUserIs_RegisteredEmail($user_name, $email_id, $admin_email,$
     $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
-    $this->load->library('email', $config);
-    $this->email->set_newline("\r\n");
-    $this->email->from('customercare@jumlakuwait.com', "Admin Team");
-    $this->email->to($admin_email);
-    $this->email->subject("New User - JUMLA BUSINESS");
-    $this->email->message('<html>
-        <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        </head>
-        <body>
-        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-        <h2 style="color:#4CAF50; font-size:30px">New User Registered on Jumla Business.</h2>
-        <h3 style="font-size:15px;">Hello Admin,<br></h3>
-        <h3 style="font-size:15px;">New user has been registered on Jumla Business.</h3>
-        <h3 style="font-size:15px;">Following are the user details-</h3>
-        <h3><b>Registered as:</b> ' . $role . '</h3>
-        <h3><b>Username:</b> ' . $user_name . '</h3>
-        <h3><b>Email:</b> ' . $email_id . '</h3>
-        <div class="col-lg-12">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+        $this->email->to($admin_email);
+        $this->email->subject("New User - JUMLA BUSINESS");
+        $this->email->message('<html>
+            <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            </head>
+            <body>
+            <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+            <h2 style="color:#4CAF50; font-size:30px">New User Registered on Jumla Business.</h2>
+            <h3 style="font-size:15px;">Hello Admin,<br></h3>
+            <h3 style="font-size:15px;">New user has been registered on Jumla Business.</h3>
+            <h3 style="font-size:15px;">Following are the user details-</h3>
+            <h3>Registered as: ' . $role . '</h3>
+            <h3>Username: ' . $user_name . '</h3>
+            <h3>Email: ' . $email_id . '</h3>
+            <div class="col-lg-12">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
 
-        </div>
-        </body></html>');
+            </div>
+            </body></html>');
 
-    if ($this->email->send()) {
-        $response = array(
+        if ($this->email->send()) {
+            $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
             );
@@ -275,33 +275,33 @@ public function sendPassword($email_id, $password) {
     $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
-    $this->load->library('email', $config);
-    $this->email->set_newline("\r\n");
-    $this->email->from('customercare@jumlakuwait.com', "Admin Team");
-    $this->email->to($email_id);
-    $this->email->subject("Password Request-JUMLA BUSINESS");
-    $this->email->message('<html>
-        <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        </head>
-        <body>
-        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-        <h2 style="color:#4CAF50; font-size:25px">Password for Jumla Business!</h2>
-        <h3 style="font-size:15px;">Hello Jumla User,<br></h3>
-        <h3 style="font-size:15px;">We have recieved a request to have your password for <u>Jumla Business</u>.</h3>
-        <h3 style="font-size:15px;">Following is the requested password for ' . $email_id . '</h3>
-        <h3><b>Password:</b> '.base64_decode($password).'</h3>
-        <br><br>
-        <h5>Note: If you did not make this request, then kindly ignore this message.</h5>
-        <div class="col-lg-12">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4">
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+        $this->email->to($email_id);
+        $this->email->subject("Password Request-JUMLA BUSINESS");
+        $this->email->message('<html>
+            <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            </head>
+            <body>
+            <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+            <h2 style="color:#4CAF50; font-size:25px">Password for Jumla Business!</h2>
+            <h3 style="font-size:15px;">Hello Jumla User,<br></h3>
+            <h3 style="font-size:15px;">We have recieved a request to have your password for <u>Jumla Business</u>.</h3>
+            <h3 style="font-size:15px;">Following is the requested password for ' . $email_id . '</h3>
+            <h3>Password: '.base64_decode($password).'</h3>
+            <br><br>
+            <h5>Note: If you did not make this request, then kindly ignore this message.</h5>
+            <div class="col-lg-12">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
 
-        </div>
-        </body></html>');
+            </div>
+            </body></html>');
 
-    if ($this->email->send()) {
-        $response = array(
+        if ($this->email->send()) {
+            $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
             );
