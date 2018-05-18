@@ -53,21 +53,32 @@ class Login extends CI_Controller {
 
         $path = base_url();
         $url = $path . 'api/Login_api/loginCustomer';
+
+        //create a new cURL resource
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
+            //curl_setopt($ch, CURLOPT_USERPWD, "$register_username:$register_password");
+        curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec($ch);
+//close cURL resource
         curl_close($ch);
         $response = json_decode($response_json, true);
+
 //print_r($response_json);die();
-        if ($response['status'] == 500) {
+        switch ($response['status']) {
+            case '412':
             echo '<div class="alert alert-danger ">
             <strong>' . $response['status_message'] . '</strong> 
-            </div>			
+            </div>          
             ';
-        } else {
-            //----create session array--------//
+            break;
+
+            case '200':
+                    //----create session array--------//
             $session_data = array(
                 'user_id' => $response['user_id'],
                 'user_name' => $response['user_name'],
@@ -109,7 +120,23 @@ class Login extends CI_Controller {
               }, 100);
               </script>
               ';
+              break;
+
+              case '500':
+              echo '<div class="alert alert-danger ">
+              <strong>' . $response['status_message'] . '</strong> 
+              </div>          
+              ';
+              break;
+
+              default:
+              echo '<div class="alert alert-danger ">
+              <strong>' . $response['status_message'] . '</strong> 
+              </div>          
+              ';                  
+              break;
           }
+
       }
 //-----------------------function ends-----------------------------//
 
@@ -147,7 +174,7 @@ class Login extends CI_Controller {
             // Get user facebook profile details
             $fbUserProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,picture');
             //print_r($fbUserProfile);die();
-            
+
             // Preparing data for database insertion
             $userData['oauth_provider'] = 'facebook';
             $userData['oauth_uid'] = $fbUserProfile['id'];

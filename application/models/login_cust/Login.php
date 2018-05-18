@@ -94,421 +94,248 @@ class Login extends CI_Model {
     // -----------------------USER REGISTERATION MODEL by mobile ends----------------------//
     // ----------------------FORGET PASSWORD MODEL-------------------------------------//
     public function getPassword($forget_email) {
-         if ($forget_email == '') {
-            $response = array(
+     if ($forget_email == '') {
+        $response = array(
                 'status' => 500, //---------db error code 
                 'status_message' => 'Enter Your Email!!!'
             );
-            return $response;
-            die();
-        }
+        return $response;
+        die();
+    }
 
-        $query = "SELECT password FROM user_tab WHERE email='$forget_email'";
+    $query = "SELECT password FROM user_tab WHERE email='$forget_email'";
         //echo $query;die();
-        $result = $this->db->query($query);
-        if ($result->num_rows() <= 0) {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Email ID not found. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
-        } else {
-            $password = '';
-            foreach ($result->result_array() as $row) {
-                $password = $row['password'];
-            }
+    $result = $this->db->query($query);
+    if ($result->num_rows() <= 0) {
+        $response = array(
+            'status' => 500,
+            'status_message' => 'Email ID not found. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
+    } else {
+        $password = '';
+        foreach ($result->result_array() as $row) {
+            $password = $row['password'];
+        }
             //echo $password;die();
 
-            $emailSend = Login::sendPassword($forget_email, $password);
+        $emailSend = Login::sendPassword($forget_email, $password);
             //print_r($emailSend);die();
-            if ($emailSend['status'] == 200) {
-                $response = array(
-                    'status' => 200,
-                    'status_message' => 'Password has been sent to your registered Email ID.'
-                );
-            } else {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Email Error. Password sending failed.'
-                );
-            }
+        if ($emailSend['status'] == 200) {
+            $response = array(
+                'status' => 200,
+                'status_message' => 'Password has been sent to your registered Email ID.'
+            );
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Email Error. Password sending failed.'
+            );
         }
-        return $response;
     }
+    return $response;
+}
 
     // ----------------------FORGET PASSWORD MODEL ENDS-------------------------------------//
     // -----------------------USER REGISTERATION MODEL----------------------//
-    public function registerCustomer($data) {
-        extract($data);
-        //print_r($data);die();
-        if (!(is_numeric($user_role))) {
-            if ($user_role == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'user role not found!');
-                return $response;
-                die();
-            } else {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'User Role should be numeric!');
-                return $response;
-                die();
-            }
-        }
-         if ($user_role != '1') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'User Role is not valid!!!'
-            );
-            return $response;
-            die();
-        }
-        if ($register_username == '') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your Username!!!'
-            );
-            return $response;
-            die();
-        }
-        if ($register_password == '' || strlen($register_password) < 8) {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your password and Password must be greater than 8!!!'
-            );
-            return $response;
-            die();
-        }
-        if ($register_email == '') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your Email!!!'
-            );
-            return $response;
-            die();
-        }
-        
-        // ---------validate mobile no
-        if ($register_mobile_no != '') {
-            if (!(is_numeric($register_mobile_no))) {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Mobile number should be numeric!');
-                return $response;
-                die();
-            }            
-        } else {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Mobile number not found!');
-            return $response;
-            die();
-        }
+public function registerCustomer($data) {
+    extract($data);
 
-        if ($register_countryCode == '') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Please select Country code'
-            );
-            return $response;
-            die();
-        }
-        //$contactNo='';
-        //$contactNo=$register_countryCode.$register_mobile_no;
+    $admin_email = '';
+    $checkEmail = login::checkEmail_exist($register_email);
+        //echo $checkEmail ; die();
+    $checkusername = login::checkUsername_exist($register_username);
 
-//        if (!is_numeric($contactNo)) {
-//            $response = array(
-//                'status' => 500,
-//                'status_message' => 'Please Enter numeric mobile no!');
-//            return $response;
-//            die();
-//        }
-        
-        $admin_email = '';
-        $checkEmail = login::checkEmail_exist($register_email);
-        $checkusername = login::checkUsername_exist($register_username);
-        if ($checkEmail == 0 && $checkusername == 0) {
-            $data = array(
-                'role' => $user_role,
-                'username' => $register_username,
-                'password' => base64_encode($register_password),
-                'email' => $register_email,
-                'phone' => $register_mobile_no,
-                'country_code' => $register_countryCode
-            );
-            if ($this->db->insert('user_tab', $data)) {
-                $response = array(
-                    'status' => 200, //---------insert db success code
-                    'status_message' => 'Registration Successfull. Please Login With Your Registered Email-ID.'
-                );
-                // $admin_email = $this->settings_model->getAdminEmail();
-                // Login::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email);
-            } else {
-                $response = array(
-                    'status' => 500, //---------db error code 
-                    'status_message' => 'Something went wrong... Registration Failed!!!'
-                );
-            }
+    if ($checkEmail == 0 && $checkusername == 0) {
+        $data = array(
+            'role' => $user_role,
+            'username' => $register_username,
+            'password' => base64_encode($register_password),
+            'email' => $register_email,
+            'phone' => $register_mobile_no,
+            'country_code' => $register_countryCode
+        );
+        if ($this->db->insert('user_tab', $data)) {
+            return TRUE;              
         } else {
+            return FALSE;
+        }
+    } else {
             //if email-Id already regiterd then show error
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'
-            );
-        }
-        return $response;
+        return 500;   
     }
+        //return $response;
+}
 
     //-----------FUNCTION FOR Seller REGISTRATION-------------------//
-    public function registerSeller($data) {
-        extract($data);
-        //print_r($data);die();
-        if (!(is_numeric($user_role))) {
-            if ($user_role == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'user role not found!');
-                return $response;
-                die();
-            } else {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'User Role should be numeric!');
-                return $response;
-                die();
-            }
-        }
-         if ($user_role != '2') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'User Role is not valid!!!'
-            );
-            return $response;
-            die();
-        }
-        if ($register_username == '') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your Username!!!'
-            );
-            return $response;
-            die();
-        }
-        if ($register_email == '') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your Email!!!'
-            );
-            return $response;
-            die();
-        }
-        if (!(is_numeric($register_mobile_no))) {
-            if ($register_mobile_no == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Mobile number not found!');
-                return $response;
-                die();
-            } else {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'Mobile number should be numeric!');
-                return $response;
-                die();
-            }
-        }
-
-        if ($register_countryCode == '') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Please select Country code'
-            );
-            return $response;
-            die();
-        }
-        //$contactNo='';
-        //$contactNo=$register_countryCode.$register_mobile_no;
-
-//        if (!is_numeric($contactNo)) {
-//            $response = array(
-//                'status' => 500,
-//                'status_message' => 'Please Enter numeric mobile no!');
-//            return $response;
-//            die();
-//        }
-        $admin_email = '';
-        $checkEmail = login::checkEmail_exist($register_email);
-        $checkusername = login::checkUsername_exist($register_username);
-        if ($checkEmail == 0 && $checkusername == 0) {
-            $data = array(
-                'username' => $register_username,
-                'email' => $register_email,
-                'phone' => $register_mobile_no,
-                'country_code' => $register_countryCode,
-                'role' => $user_role,
-                'cat_id'=>$cat_id
-            );
+public function registerSeller($data) {
+    extract($data);
+    
+    $admin_email = '';
+    $checkEmail = login::checkEmail_exist($register_email);
+    $checkusername = login::checkUsername_exist($register_username);
+    if ($checkEmail == 0 && $checkusername == 0) {
+        $data = array(
+            'username' => $register_username,
+            'email' => $register_email,
+            'phone' => $register_mobile_no,
+            'country_code' => $register_countryCode,
+            'role' => $user_role,
+            'cat_id'=>$cat_id
+        );
 
             // print_r($data);die();
-            if ($this->db->insert('user_tab', $data)) {
-                $response = array(
-                    'status' => 200, //---------insert db success code
-                    'status_message' => 'Your Registration Request has been succesfully sent to JUMLA TEAM.Soon you will get Login Password on your email'
-                );
-                $admin_email = $this->settings_model->getAdminEmail();
-                login::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$user_role);
+        if ($this->db->insert('user_tab', $data)) {
+            
+            $admin_email = $this->settings_model->getAdminEmail();
+            login::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$user_role);
                 //print_r($d);die();
-            } else {
-                $response = array(
-                    'status' => 500, //---------db error code 
-                    'status_message' => 'Something went wrong... Registration Failed!!!'
-                );
-            }
+            return TRUE;
         } else {
-            //if email-Id already regiterd then show error
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'
-            );
+
+            return FALSE;
         }
-        return $response;
+    } else {
+
+        return 500;
     }
+        //return $response;
+}
 
     // -----------------------USER REGISTERATION MODEL----------------------//
-    public function sendUserIs_RegisteredEmail($user_name, $email_id, $admin_email,$user_role) {
-        $role='Customer';
-        if($user_role=='2'){
-            $role='Saler';
-        }
-        $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'mx1.hostinger.in',
-            'smtp_port' => '587',
+public function sendUserIs_RegisteredEmail($user_name, $email_id, $admin_email,$user_role) {
+    $role='Customer';
+    if($user_role=='2'){
+        $role='Saler';
+    }
+    $config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'mx1.hostinger.in',
+        'smtp_port' => '587',
             'smtp_user' => 'customercare@jumlakuwait.com', // change it to yours
             'smtp_pass' => 'Descartes@1990', // change it to yours
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'wordwrap' => TRUE
         );
-        $config['smtp_crypto'] = 'tls';
+    $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
-        $this->email->to($admin_email);
-        $this->email->subject("New User - JUMLA BUSINESS");
-        $this->email->message('<html>
-            <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            </head>
-            <body>
-            <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-            <h2 style="color:#4CAF50; font-size:30px">New User Registered on Jumla Business.</h2>
-            <h3 style="font-size:15px;">Hello Admin,<br></h3>
-            <h3 style="font-size:15px;">New user has been registered on Jumla Business.</h3>
-            <h3 style="font-size:15px;">Following are the user details-</h3>
-            <h3><b>Registered as:</b> ' . $role . '</h3>
-            <h3><b>Username:</b> ' . $user_name . '</h3>
-            <h3><b>Email:</b> ' . $email_id . '</h3>
-            <div class="col-lg-12">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
+    $this->load->library('email', $config);
+    $this->email->set_newline("\r\n");
+    $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+    $this->email->to($admin_email);
+    $this->email->subject("New User - JUMLA BUSINESS");
+    $this->email->message('<html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body>
+        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+        <h2 style="color:#4CAF50; font-size:30px">New User Registered on Jumla Business.</h2>
+        <h3 style="font-size:15px;">Hello Admin,<br></h3>
+        <h3 style="font-size:15px;">New user has been registered on Jumla Business.</h3>
+        <h3 style="font-size:15px;">Following are the user details-</h3>
+        <h3><b>Registered as:</b> ' . $role . '</h3>
+        <h3><b>Username:</b> ' . $user_name . '</h3>
+        <h3><b>Email:</b> ' . $email_id . '</h3>
+        <div class="col-lg-12">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
 
-            </div>
-            </body></html>');
+        </div>
+        </body></html>');
 
-        if ($this->email->send()) {
-            $response = array(
+    if ($this->email->send()) {
+        $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
             );
-        } else {
+    } else {
             //print_r($this->email->print_debugger());die();
-            $response = array(
+        $response = array(
                 'status' => 500, //---------email send failed
                 'status_message' => 'Email Sending Failed.'
             );
-        }
-        return $response;
     }
+    return $response;
+}
     // -----------------------------------------------------------------------------//
-    
+
     // -----------------------PASSWORD EMAIL MODEL----------------------//
-    public function sendPassword($email_id, $password) {
-        $config = Array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'mx1.hostinger.in',
-            'smtp_port' => '587',
+public function sendPassword($email_id, $password) {
+    $config = Array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'mx1.hostinger.in',
+        'smtp_port' => '587',
             'smtp_user' => 'customercare@jumlakuwait.com', // change it to yours
             'smtp_pass' => 'Descartes@1990', // change it to yours
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'wordwrap' => TRUE
         );
-        $config['smtp_crypto'] = 'tls';
+    $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
-        $this->email->to($email_id);
-        $this->email->subject("Password Request-JUMLA BUSINESS");
-        $this->email->message('<html>
-            <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            </head>
-            <body>
-            <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-            <h2 style="color:#4CAF50; font-size:25px">Password for Jumla Business!</h2>
-            <h3 style="font-size:15px;">Hello Jumla User,<br></h3>
-            <h3 style="font-size:15px;">We have recieved a request to have your password for <u>Jumla Business</u>.</h3>
-            <h3 style="font-size:15px;">Following is the requested password for ' . $email_id . '</h3>
-            <h3><b>Password:</b> '.base64_decode($password).'</h3>
-            <br><br>
-            <h5>Note: If you did not make this request, then kindly ignore this message.</h5>
-            <div class="col-lg-12">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
+    $this->load->library('email', $config);
+    $this->email->set_newline("\r\n");
+    $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+    $this->email->to($email_id);
+    $this->email->subject("Password Request-JUMLA BUSINESS");
+    $this->email->message('<html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body>
+        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+        <h2 style="color:#4CAF50; font-size:25px">Password for Jumla Business!</h2>
+        <h3 style="font-size:15px;">Hello Jumla User,<br></h3>
+        <h3 style="font-size:15px;">We have recieved a request to have your password for <u>Jumla Business</u>.</h3>
+        <h3 style="font-size:15px;">Following is the requested password for ' . $email_id . '</h3>
+        <h3><b>Password:</b> '.base64_decode($password).'</h3>
+        <br><br>
+        <h5>Note: If you did not make this request, then kindly ignore this message.</h5>
+        <div class="col-lg-12">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
 
-            </div>
-            </body></html>');
+        </div>
+        </body></html>');
 
-        if ($this->email->send()) {
-            $response = array(
+    if ($this->email->send()) {
+        $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
             );
-        } else {
+    } else {
            // print_r($this->email->print_debugger());die();
-            $response = array(
+        $response = array(
                 'status' => 500, //---------email send failed
                 'status_message' => 'Email Sending Failed.'
             );
-        }
-        return $response;
     }
+    return $response;
+}
 
     // ---------------------PASSWORD EMAIL MODEL ENDS--------------------------//
     // -----------------------USER REGISTERATION MODEL----------------------//
-    public function getNextID($col_name, $table_name) {
+public function getNextID($col_name, $table_name) {
 
 
-        $sql = "SELECT MAX($col_name) as id FROM $table_name";
-        $resultnew = $this->db->query($sql);
+    $sql = "SELECT MAX($col_name) as id FROM $table_name";
+    $resultnew = $this->db->query($sql);
 
-        $id = "";
+    $id = "";
 
-        foreach ($resultnew->result_array() as $row) {
-            $id = $row['id'];
-        }
-        return $id;
+    foreach ($resultnew->result_array() as $row) {
+        $id = $row['id'];
     }
+    return $id;
+}
 
     //-------------------------------------------------------------//
     //-----------------------function to check whether username already exists------------------//
 
-    function checkEmail_exist($email_id) {
-        $query = null;
+function checkEmail_exist($email_id) {
+    $query = null;
         $query = $this->db->get_where('user_tab', array(//making selection
             'email' => $email_id
         ));
@@ -733,24 +560,7 @@ class Login extends CI_Model {
     //-------------------------------------------------------------//
     public function loginCustomer($data) {
         extract($data);
-        // print_r($data);die();
-        // echo base64_decode('ZGM1YzAwYzc=');die();
-        if ($login_username == '') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your Username!!!'
-            );
-            return $response;
-            die();
-        }
-        if ($login_password == '') {
-            $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your password!!!'
-            );
-            return $response;
-            die();
-        }
+        
         //sql query to check login credentials
         $pass = base64_encode($login_password);
         $query = "SELECT * FROM user_tab WHERE (email='$login_username' || username='$login_username') AND password='$pass'";
@@ -793,7 +603,7 @@ class Login extends CI_Model {
         } else {
             //login failed response
             $response = array(
-                'status' => 500,
+                'status' => 412,
                 'status_message' => 'Sorry..Login credentials are incorrect!!!',
                 'user_name' => $user_name
             );
