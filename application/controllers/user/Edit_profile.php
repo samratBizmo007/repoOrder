@@ -90,7 +90,7 @@ class Edit_profile extends CI_Controller {
         if (!empty(($_FILES['profile_image']['name']))) {
             $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
 
-            $_FILES['userFile']['name'] = $user_name . $image_name . '.' . $extension;
+            $_FILES['userFile']['name'] = $user_name.'_'.$user_id.'.'.$extension;
             $_FILES['userFile']['type'] = $_FILES['profile_image']['type'];
             $_FILES['userFile']['tmp_name'] = $_FILES['profile_image']['tmp_name'];
             $_FILES['userFile']['error'] = $_FILES['profile_image']['error'];

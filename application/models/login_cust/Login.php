@@ -138,7 +138,7 @@ class Login extends CI_Model {
     // -----------------------USER REGISTERATION MODEL----------------------//
     public function registerCustomer($data) {
         extract($data);
-        print_r($data);die();
+        //print_r($data);die();
         if (!(is_numeric($user_role))) {
             if ($user_role == '') {
                 $response = array(
