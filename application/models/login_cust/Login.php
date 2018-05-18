@@ -407,9 +407,9 @@ class Login extends CI_Model {
             <h3 style="font-size:15px;">Hello Admin,<br></h3>
             <h3 style="font-size:15px;">New user has been registered on Jumla Business.</h3>
             <h3 style="font-size:15px;">Following are the user details-</h3>
-            <h3><b>Registered as:</b> ' . $role . '</h3>
-            <h3><b>Username:</b> ' . $user_name . '</h3>
-            <h3><b>Email:</b> ' . $email_id . '</h3>
+            <h3>Registered as: ' . $role . '</h3>
+            <h3>Username: ' . $user_name . '</h3>
+            <h3>Email: ' . $email_id . '</h3>
             <div class="col-lg-12">
             <div class="col-lg-4"></div>
             <div class="col-lg-4">
@@ -463,7 +463,7 @@ class Login extends CI_Model {
             <h3 style="font-size:15px;">Hello Jumla User,<br></h3>
             <h3 style="font-size:15px;">We have recieved a request to have your password for <u>Jumla Business</u>.</h3>
             <h3 style="font-size:15px;">Following is the requested password for ' . $email_id . '</h3>
-            <h3><b>Password:</b> '.base64_decode($password).'</h3>
+            <h3>Password: '.base64_decode($password).'</h3>
             <br><br>
             <h5>Note: If you did not make this request, then kindly ignore this message.</h5>
             <div class="col-lg-12">
