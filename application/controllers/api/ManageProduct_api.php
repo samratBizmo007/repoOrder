@@ -16,7 +16,28 @@ class ManageProduct_api extends REST_Controller {
     public function getAllCategories_get() {
         extract($_GET);
         $result = $this->Product_model->getAllCategories();
-        return $this->response($result);
+
+        switch ($result['status']) {
+        case '200': //-----------------if response is 200 it returns login successful
+        $this->response([
+            'status' => 200,
+            'status_message' => $result['status_message']], REST_Controller::HTTP_OK);
+        break;
+
+        case '500': //-----------------if response is 500 it returns error message
+        $this->response([
+            'status' => 500,     
+            'status_message' => 'No Records Found.'],REST_Controller::HTTP_PRECONDITION_FAILED);              
+        break;       
+        
+        default:
+        $this->response([
+            'status' => 500,
+            'status_message' => "Something went wrong. Request was not send...!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
+        break;
+    }
+
+        //return $this->response($result);
     }
 
 //--------fun for get all categories from category tab-----------------------//
