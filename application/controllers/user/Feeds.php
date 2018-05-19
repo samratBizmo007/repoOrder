@@ -118,6 +118,7 @@ class Feeds extends CI_Controller {
         //close cURL resource
         curl_close($ch);
         $response = json_decode($response_json, true);
+        //print_r($response_json);die();
 //-----------------fun ends here---------------------------------------------//
 
 		if($response['status']==200){
