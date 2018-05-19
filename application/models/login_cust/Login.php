@@ -141,10 +141,14 @@ public function registerCustomer($data) {
 
     $admin_email = '';
     $checkEmail = login::checkEmail_exist($register_email);
+     //-----------checking the email id is already registered in db
         //echo $checkEmail ; die();
-    $checkusername = login::checkUsername_exist($register_username);
+    $checkusername = login::checkUsername_exist($register_username); 
+    //-----------checking the username id is already registered in db
 
-    if ($checkEmail == 0 && $checkusername == 0) {
+    if ($checkEmail == 0 && $checkusername == 0) { 
+    //------------checking email and username is registerd true then goes to the else statement
+        //--------------if it returns the false then goes to the insert data in db 
         $data = array(
             'role' => $user_role,
             'username' => $register_username,
@@ -153,10 +157,10 @@ public function registerCustomer($data) {
             'phone' => $register_mobile_no,
             'country_code' => $register_countryCode
         );
-        if ($this->db->insert('user_tab', $data)) {
-            return TRUE;              
+        if ($this->db->insert('user_tab', $data)) { //-----insert query for register customer
+            return TRUE;            //------if insert returns true  
         } else {
-            return FALSE;
+            return FALSE;           //-------if not insert returns false
         }
     } else {
             //if email-Id already regiterd then show error
@@ -171,8 +175,14 @@ public function registerSeller($data) {
     
     $admin_email = '';
     $checkEmail = login::checkEmail_exist($register_email);
+     //-----------checking the email id is already registered in db
     $checkusername = login::checkUsername_exist($register_username);
+        //-----------checking the username id is already registered in db
+
     if ($checkEmail == 0 && $checkusername == 0) {
+            //------------checking email and username is registerd true then goes to the else statement
+        //--------------if it returns the false then goes to the insert data in db 
+
         $data = array(
             'username' => $register_username,
             'email' => $register_email,
@@ -183,18 +193,20 @@ public function registerSeller($data) {
         );
 
             // print_r($data);die();
-        if ($this->db->insert('user_tab', $data)) {
+        if ($this->db->insert('user_tab', $data)) {  //-----insert query for register customer
             
             $admin_email = $this->settings_model->getAdminEmail();
+            //------------getting the admin email id from admin table
             login::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$user_role);
+            //-----------sending email to the admin for user is registred to jumla business
                 //print_r($d);die();
-            return TRUE;
+            return TRUE; //------if insert returns true  
         } else {
 
-            return FALSE;
+            return FALSE; //------if not insert returns false  
         }
     } else {
-
+            //if email-Id already regiterd then show error
         return 500;
     }
         //return $response;
@@ -562,8 +574,9 @@ function checkEmail_exist($email_id) {
         extract($data);
         
         //sql query to check login credentials
-        $pass = base64_encode($login_password);
+        $pass = base64_encode($login_password); //---------set tne login password value in base 64 encode format to pass variable
         $query = "SELECT * FROM user_tab WHERE (email='$login_username' || username='$login_username') AND password='$pass'";
+        //---------getting the info from user tab  against the email username and password
         //echo $query;die();
         $result = $this->db->query($query);
         $user_id = '0';
@@ -574,7 +587,7 @@ function checkEmail_exist($email_id) {
         //if credentials are true, their is obviously only one record
         if ($result->num_rows() == 1) {
 
-            foreach ($result->result_array() as $row) {
+            foreach ($result->result_array() as $row) { //------getting the username, userid, role and catid from user_tab
                 $user_name = $row['username'];
                 $user_id = $row['user_id'];
                 $role = $row['role'];
@@ -583,6 +596,7 @@ function checkEmail_exist($email_id) {
             }
 
             if ($result) {
+                //-----------if query is successfully executed the following condiion is true
                 //response with values to be stored in sessions if update session_bool true
                 $response = array(
                     'status' => 200,
@@ -592,7 +606,8 @@ function checkEmail_exist($email_id) {
                     'cat_id'=>$cat_id,
                     'status_message' => 'Login Successfull'
                 );
-            } else {
+            } else { 
+                //-----------if query is not executed it retuns the error message as below.
                 $response = array(
                     'status' => 500,
                     'user_id' => $user_id,
@@ -601,6 +616,7 @@ function checkEmail_exist($email_id) {
                 );
             }
         } else {
+            //---------if the passing parameters are not correct the following message is retuns.
             //login failed response
             $response = array(
                 'status' => 412,

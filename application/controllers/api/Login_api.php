@@ -18,14 +18,26 @@ class Login_api extends REST_Controller {
         $data=$_POST;
         extract($data);
         //print_r($data);die();
-
-        if(empty($user_role) ){
+//------------checking the user role is not empty------------//
+        if(empty($user_role)){
          //set the response and exit
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Select User your role.'
             ], REST_Controller::HTTP_PRECONDITION_FAILED);       
         }
+       ////------------checking the user role is not empty------------//
+ //------------checking the user role is not equal to 1------------//
+
+        if($user_role != 1){
+            $this->response([
+                'status' => 500,
+                'status_message' => 'Please Select Valid User your role.'
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);   
+        }
+        //------------ends ------------//
+ //------------checking the user name is empty------------//
+
         if(empty($register_username) ){     
             $this->response([
                 'status' => 500,
@@ -33,6 +45,9 @@ class Login_api extends REST_Controller {
             ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
+         //-------------------ends------------//
+ //------------checking the user password is empty------------//
+
         if(empty($register_password) ){
 
             $this->response([
@@ -41,6 +56,9 @@ class Login_api extends REST_Controller {
             ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
+         //--------------------------ends -----------------------//
+ //------------checking the register email is empty------------//
+
         if(empty($register_email) ){
 
             $this->response([
@@ -49,6 +67,9 @@ class Login_api extends REST_Controller {
             ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
+         //------------ ----------ends ------------//
+ //------------checking the Country Code is empty------------//
+
         if(empty($register_countryCode) ){
             
             $this->response([
@@ -57,6 +78,9 @@ class Login_api extends REST_Controller {
             ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
+         //-------------------ends -------------------------------//
+ //------------checking the mobile no is empty or numeric------------//
+
         if (!(is_numeric($register_mobile_no))) {
            if (empty($register_mobile_no)) {
                $this->response([
@@ -69,24 +93,25 @@ class Login_api extends REST_Controller {
            }
        }
 
+ //--------------------ends---------------------------------//
 
        $result = $this->login->registerCustomer($data);
            // echo $result;
             //check if the user data inserted
        switch ($result) {
-        case '1':
+        case '1': //--------------------------if result response is 1
         $this->response([
             'status' => 200,
             'status_message' => 'Registration Successfull. Please Login With Your Registered Email-ID..'
         ], REST_Controller::HTTP_OK);
         break;
 
-        case '0':
+        case '0': //--------------------------if result response is 0
         $this->response([
             'status' => 500,
             'status_message' => "Something went wrong... Registration Failed!!!"], REST_Controller::HTTP_BAD_REQUEST);
         break;
-        case '500':
+        case '500': //--------------------------if result response is 500
         $this->response([
             'status' => 500,
             'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'
@@ -110,6 +135,7 @@ class Login_api extends REST_Controller {
 public function registerSeller_post() {
     $data=$_POST;
     extract($data);
+//------------checking the user role is not empty------------//
 
     if(empty($user_role) ){
          //set the response and exit
@@ -118,12 +144,20 @@ public function registerSeller_post() {
             'status_message' => 'Please Select User your role.'
         ], REST_Controller::HTTP_PRECONDITION_FAILED);       
     }
+     //--------------------ends---------------------------------//
+
+     //------------checking the user role is not equal to 2------------//
+
     if ($user_role != '2') {
        $this->response([
                  'status' => 500, //---------db error code 
                  'status_message' => 'User Role is not valid!!!'
              ],REST_Controller::HTTP_PRECONDITION_FAILED);           
    }
+    //--------------------ends---------------------------------//
+
+    //------------checking the user name is empty------------//
+
    if(empty($register_username) ){     
     $this->response([
         'status' => 500,
@@ -131,6 +165,10 @@ public function registerSeller_post() {
     ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
+ //--------------------ends---------------------------------//
+
+ //------------checking the cat id is empty------------//
+
 if(empty($cat_id)){
     $this->response([
         'status' => 500,
@@ -138,6 +176,10 @@ if(empty($cat_id)){
     ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
+ //--------------------ends---------------------------------//
+
+ //------------checking the register email is empty------------//
+
 if(empty($register_email) ){
 
     $this->response([
@@ -146,6 +188,10 @@ if(empty($register_email) ){
     ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
+ //--------------------ends---------------------------------//
+
+ //------------checking the Country Code is empty------------//
+
 if(empty($register_countryCode) ){
     
     $this->response([
@@ -154,6 +200,9 @@ if(empty($register_countryCode) ){
     ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
+ //--------------------ends---------------------------------//
+
+ //------------checking the mobile no is empty or numeric------------//
 
 if (!(is_numeric($register_mobile_no))) {
    if (empty($register_mobile_no)) {
@@ -166,23 +215,24 @@ if (!(is_numeric($register_mobile_no))) {
            'status_message' => 'Mobile number should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
    }
 }
+ //--------------------ends---------------------------------//
 
 $result = $this->login->registerSeller($data);
         //return $this->response($result);
 
 switch ($result) {
-    case '1':
+    case '1': //--------------------------if result response is 1
     $this->response([
         'status' => 200,
         'status_message' => 'Your Registration Request has been succesfully sent to JUMLA TEAM.Soon you will get Login Password on your email.'], REST_Controller::HTTP_OK);
     break;
 
-    case '0':
+    case '0': //--------------------------if result response is 0
     $this->response([
         'status' => 500,
         'status_message' => "Something went wrong... Registration Failed!!!"], REST_Controller::HTTP_BAD_REQUEST);
     break;
-    case '500':
+    case '500': //--------------------------if result response is 500
     $this->response([
         'status' => 500,
         'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'], REST_Controller::HTTP_BAD_REQUEST);
@@ -214,6 +264,7 @@ public function loginCustomer_post() {
     $data=$_POST;
         //print_r($data);die();
     extract($data);
+ //------------checking the login user name is empty------------//
 
     if(empty($login_username) ){     
         $this->response([
@@ -222,6 +273,10 @@ public function loginCustomer_post() {
         ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
     }
+     //------------ends------------//
+
+     //------------checking the login user password is empty------------//
+
     if(empty($login_password) ){
 
         $this->response([
@@ -230,12 +285,13 @@ public function loginCustomer_post() {
         ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
     }
+     //------------ends------------//
 
     $result = $this->login->loginCustomer($data);
         //print_r($result['status']);die();
 
     switch ($result['status']) {
-        case '200':
+        case '200': //-----------------if response is 200 it returns login successful
         $this->response([
             'status' => 200,
             'user_id' => $result['user_id'],
@@ -243,29 +299,20 @@ public function loginCustomer_post() {
             'role' => $result['role'],
             'cat_id'=>$result['cat_id'],
             'status_message' => 'Login Successfull'], REST_Controller::HTTP_OK);
-                // $this->response([
-                //     'status' => 200,
-                //     'status_message' => 'Your Registration Request has been succesfully sent to JUMLA TEAM.Soon you will get Login Password on your email.'], REST_Controller::HTTP_OK);
         break;
 
-        case '500':
+        case '500': //-----------------if response is 500 it returns error message
         $this->response([
             'status' => 500,
             'user_id' => $result['user_id'],
             'user_name' => $result['user_name'],
-            'status_message' => 'Error to start session for ' . $user_name . ' !!!'],REST_Controller::HTTP_BAD_REQUEST);
-                // $this->response([
-                //     'status' => 500,
-                //     'status_message' => "Something went wrong... Registration Failed!!!"], REST_Controller::HTTP_BAD_REQUEST);
+            'status_message' => 'Error to start session for ' . $user_name . ' !!!'],REST_Controller::HTTP_BAD_REQUEST);              
         break;
-        case '412':
+        case '412': //-----------------if response is 412 it returns login credentials are incorrect.
         $this->response([
             'status' => 412,
             'status_message' => 'Sorry..Login credentials are incorrect!!!',
-            'user_name' => $user_name], REST_Controller::HTTP_PRECONDITION_FAILED);
-                // $this->response([
-                //     'status' => 500,
-                //     'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'], REST_Controller::HTTP_BAD_REQUEST);
+            'user_name' => $user_name], REST_Controller::HTTP_PRECONDITION_FAILED);             
         break;
         
         default:

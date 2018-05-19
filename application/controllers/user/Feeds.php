@@ -94,16 +94,31 @@ class Feeds extends CI_Controller {
 	public function getTimeline_web() {
 		extract($_POST);
 		//print_r($_POST);die();
+        //-----------------------api for get the feeds which are posetd by all users-----------//
+        $apiKey = 'jaumla@1234';
 		$path = base_url();
 		$url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start;
-		$ch = curl_init($url);
-		curl_setopt($ch, CURLOPT_HTTPGET, true);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		$response_json = curl_exec($ch);
-		curl_close($ch);
-		$response = json_decode($response_json, true);
+		// $ch = curl_init($url);
+		// curl_setopt($ch, CURLOPT_HTTPGET, true);
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// $response_json = curl_exec($ch);
+		// curl_close($ch);
+		// $response = json_decode($response_json, true);
 		//	print_r($response_json);die();
 		//	return $response;
+
+        //create a new cURL resource
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
+        //curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+        $response_json = curl_exec($ch);
+        //close cURL resource
+        curl_close($ch);
+        $response = json_decode($response_json, true);
+//-----------------fun ends here---------------------------------------------//
 
 		if($response['status']==200){
 			foreach ($response['status_message'] as $key) {

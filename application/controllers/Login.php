@@ -50,10 +50,9 @@ class Login extends CI_Controller {
             );
 
         }
-
+//-----------api for login customer--------------------------------//
         $path = base_url();
         $url = $path . 'api/Login_api/loginCustomer';
-
         //create a new cURL resource
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
@@ -64,21 +63,11 @@ class Login extends CI_Controller {
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $response_json = curl_exec($ch);
-//close cURL resource
         curl_close($ch);
         $response = json_decode($response_json, true);
+//-----------api for login customer ends here--------------------------------//
 
-//print_r($response_json);die();
-        switch ($response['status']) {
-            case '412':
-            echo '<div class="alert alert-danger ">
-            <strong>' . $response['status_message'] . '</strong> 
-            </div>          
-            ';
-            break;
-
-            case '200':
-                    //----create session array--------//
+        if($response['status'] == 200){ //-------if response status is 200 it returns the login successfull
             $session_data = array(
                 'user_id' => $response['user_id'],
                 'user_name' => $response['user_name'],
@@ -86,7 +75,7 @@ class Login extends CI_Controller {
                 'cat_id'=>$response['cat_id']
             );
             //start session of user if login success
-            $this->session->set_userdata($session_data);
+            $this->session->set_userdata($session_data);//-----------session starts here----------------------//
 
             if(isset($login_remember)){
 
@@ -96,134 +85,122 @@ class Login extends CI_Controller {
                     'expire' => '86400' 
                 );
             //print_r($cookie);die();
-                $this->input->set_cookie($cookie_username);
+                $this->input->set_cookie($cookie_username); //-------set username to coockies-------------//
 
                 $cookie_password= array(
-                   'name' => 'jumla_pass',
-                   'value' => $login_password,
-                   'expire' => '86400'
+                 'name' => 'jumla_pass',
+                 'value' => $login_password,
+                 'expire' => '86400'
 
-               );
+             );
             //print_r($cookie_password);die();
-                $this->input->set_cookie($cookie_password);            
+                $this->input->set_cookie($cookie_password);     //-------set username to coockies-------------//       
             }
-
             echo '<div class="alert alert-success" style="margin-bottom:5px">
             <strong>' . $response['status_message'] . '</strong> 
             </div>
             <script>
             window.setTimeout(function() {
-             $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
-              $(this).remove(); 
-              });
-              window.location.href="' . base_url() . 'user/feeds";
-              }, 100);
-              </script>
-              ';
-              break;
-
-              case '500':
-              echo '<div class="alert alert-danger ">
-              <strong>' . $response['status_message'] . '</strong> 
-              </div>          
-              ';
-              break;
-
-              default:
-              echo '<div class="alert alert-danger ">
-              <strong>' . $response['status_message'] . '</strong> 
-              </div>          
-              ';                  
-              break;
-          }
-
-      }
+               $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+                  $(this).remove(); 
+                  });
+                  window.location.href="' . base_url() . 'user/feeds";
+                  }, 100);
+                  </script>
+                  ';
+              }else{
+                echo '<div class="alert alert-danger ">
+                <strong>' . $response['status_message'] . '</strong> 
+                </div>          
+                ';
+            }        
+        }
 //-----------------------function ends-----------------------------//
 
 // ---------------function to logout------------------------//
-      public function logout() {
+        public function logout() {
 
-        $user_id = $this->session->userdata('user_id');
+            $user_id = $this->session->userdata('user_id');
 
         // Remove local Facebook session
-        $this->facebook->destroy_session();
+            $this->facebook->destroy_session();
         // Remove user data from session
-        $this->session->unset_userdata('userData');
+            $this->session->unset_userdata('userData');
         // Redirect to login page
 
         //if logout success then destroy session and unset session variables
-        $this->session->unset_userdata(array("user_id" => "", "user_name" => "","user_role" => "","cat_id" => ""));
-        $this->session->sess_destroy();
+            $this->session->unset_userdata(array("user_id" => "", "user_name" => "","user_role" => "","cat_id" => ""));
+            $this->session->sess_destroy();
 
      // ----------delete cookie---------------------
-        delete_cookie("jumla_uname");
-        delete_cookie("jumla_pass");    
+            delete_cookie("jumla_uname");
+            delete_cookie("jumla_pass");    
 
-        redirect(base_url());
-    }
+            redirect(base_url());
+        }
 // ---------------------function ends----------------------------------//
 
 // ----------------facebook login code-------------------------//
-    public function fblogin(){
-        $userData = array();
+        public function fblogin(){
+            $userData = array();
         //echo $this->facebook->is_authenticated();
         // Check if user is logged in
        // $this->load->view('pages/login');
 
-        if($this->facebook->is_authenticated()){
+            if($this->facebook->is_authenticated()){
             // Get user facebook profile details
-            $fbUserProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,picture');
+                $fbUserProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,picture');
             //print_r($fbUserProfile);die();
 
             // Preparing data for database insertion
-            $userData['oauth_provider'] = 'facebook';
-            $userData['oauth_uid'] = $fbUserProfile['id'];
-            $userData['first_name'] = $fbUserProfile['first_name'];
-            $userData['last_name'] = $fbUserProfile['last_name'];
-            $userData['email'] = $fbUserProfile['email'];
+                $userData['oauth_provider'] = 'facebook';
+                $userData['oauth_uid'] = $fbUserProfile['id'];
+                $userData['first_name'] = $fbUserProfile['first_name'];
+                $userData['last_name'] = $fbUserProfile['last_name'];
+                $userData['email'] = $fbUserProfile['email'];
             //$userData['gender'] = $fbUserProfile['gender'];
             //$userData['locale'] = $fbUserProfile['locale'];
             //$userData['cover'] = $fbUserProfile['cover']['source'];
-            $userData['picture'] = $fbUserProfile['picture']['data']['url'];
+                $userData['picture'] = $fbUserProfile['picture']['data']['url'];
             //$userData['link'] = $fbUserProfile['link'];
             //$userData['role'] = 1;
 
             // Insert or update user data
             //$userID = $this->user->checkUser($userData);
 
-            $path = base_url();
-            $url = $path.'api/FacebookUser_api/checkUser';
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $response_json = curl_exec($ch);
-            curl_close($ch);
-            $response = json_decode($response_json, true);
+                $path = base_url();
+                $url = $path.'api/FacebookUser_api/checkUser';
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $userData);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                $response_json = curl_exec($ch);
+                curl_close($ch);
+                $response = json_decode($response_json, true);
             //print_r($response_json);die();
 
             // Check user data insert or update status
-            if ($response['status'] == 500) {
-                $data['err_msg']=$response['status_message'];
+                if ($response['status'] == 500) {
+                    $data['err_msg']=$response['status_message'];
 
-                $data['authURL']=$this->facebook->login_url();
-                $this->load->view('pages/login/login',$data);
+                    $data['authURL']=$this->facebook->login_url();
+                    $this->load->view('pages/login/login',$data);
 
-            } else {
+                } else {
             //----create session array--------//
-                $session_data = array(
-                    'user_id' => $response['userID'],
-                    'user_name' => $response['user_name'],
-                    'user_role'=>$response['role'],
-                    'cat_id'=>$response['cat_id']
-                );
+                    $session_data = array(
+                        'user_id' => $response['userID'],
+                        'user_name' => $response['user_name'],
+                        'user_role'=>$response['role'],
+                        'cat_id'=>$response['cat_id']
+                    );
             //start session of user if login success
-                $this->session->set_userdata($session_data);
-                redirect('user/feeds');
+                    $this->session->set_userdata($session_data);
+                    redirect('user/feeds');
+                }
             }
         }
-    }
 // ------------------facebook login code ends -----------------//
-}
+    }
 
-?>
+    ?>

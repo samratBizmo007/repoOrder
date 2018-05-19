@@ -249,38 +249,6 @@ public function regretProduct($prod_no, $order_id) {
 // -----------------fucntion to get all timeline data scroll- ---------------------//
     public function getTimelineScroll($limit,$start) {
 
-        if (!(is_numeric($start))) {
-            if ($start == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'data not found!');
-                return $response;
-                die();
-            } else {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'start value should be numeric!');
-                return $response;
-                die();
-            }
-        }
-        
-         if (!(is_numeric($limit))) {
-            if ($limit == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'data not found!');
-                return $response;
-                die();
-            } else {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'limit value should be numeric!');
-                return $response;
-                die();
-            }
-        }
-
     $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $start,$limit";
 
     $result = $this->db->query($query);

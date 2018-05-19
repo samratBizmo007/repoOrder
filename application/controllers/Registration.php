@@ -83,7 +83,8 @@ class Registration extends CI_controller {
                     // 'register_address' => $address
             );
             //print_r($data);die();
-            //create a new cURL resource
+            //create a new cURL resource 
+            //--------api for register customer--using api key-------------------------//
             $path = base_url();
             $apiKey = 'jaumla@1234';
             $url = $path . 'api/Login_api/registerCustomer';
@@ -92,14 +93,12 @@ class Registration extends CI_controller {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
-            //curl_setopt($ch, CURLOPT_USERPWD, "$register_username:$register_password");
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             $response_json = curl_exec($ch);
-//close cURL resource
             curl_close($ch);
             $response = json_decode($response_json, true);
-
+            //------------api ends here-----------------------------------------------//
         } else {
             // extract($_POST);
             // print_r($_POST);die();
@@ -115,6 +114,7 @@ class Registration extends CI_controller {
                     // 'register_address' => $address
             );
             //print_r($data);die();
+            //------------api for register seller -------------------------------------//
             $apiKey = 'jaumla@1234';
             $path = base_url();
             $url = $path . 'api/Login_api/registerSeller';
@@ -123,14 +123,12 @@ class Registration extends CI_controller {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
-            //curl_setopt($ch, CURLOPT_USERPWD, "$register_username:$register_password");
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             $response_json = curl_exec($ch);
-//close cURL resource
             curl_close($ch);
             $response = json_decode($response_json, true);
-
+//-------------------------api ends here---------------------------------------------//
         }
          //print_r($response_json);die();
         // echo $this->curl->error_code;
