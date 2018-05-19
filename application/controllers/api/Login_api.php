@@ -109,19 +109,19 @@ class Login_api extends REST_Controller {
         case '0': //--------------------------if result response is 0
         $this->response([
             'status' => 500,
-            'status_message' => "Something went wrong... Registration Failed!!!"], REST_Controller::HTTP_BAD_REQUEST);
+            'status_message' => "Something went wrong... Registration Failed!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
         break;
         case '500': //--------------------------if result response is 500
         $this->response([
             'status' => 500,
             'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'
-        ], REST_Controller::HTTP_BAD_REQUEST);
+        ], REST_Controller::HTTP_PRECONDITION_FAILED);
         break;
         
         default:
         $this->response([
             'status' => 500,
-            'status_message' => "Something went wrong. Request was not send... Registration Failed!!!"], REST_Controller::HTTP_BAD_REQUEST);
+            'status_message' => "Something went wrong. Request was not send... Registration Failed!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
         break;
     }
     
@@ -230,18 +230,18 @@ switch ($result) {
     case '0': //--------------------------if result response is 0
     $this->response([
         'status' => 500,
-        'status_message' => "Something went wrong... Registration Failed!!!"], REST_Controller::HTTP_BAD_REQUEST);
+        'status_message' => "Something went wrong... Registration Failed!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
     break;
     case '500': //--------------------------if result response is 500
     $this->response([
         'status' => 500,
-        'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'], REST_Controller::HTTP_BAD_REQUEST);
+        'status_message' => 'Email-ID OR Username already registered. Login by same or try another Email-ID OR Username!!!'], REST_Controller::HTTP_PRECONDITION_FAILED);
     break;
     
     default:
     $this->response([
         'status' => 500,
-        'status_message' => "Something went wrong. Request was not send... Registration Failed!!!"], REST_Controller::HTTP_BAD_REQUEST);
+        'status_message' => "Something went wrong. Request was not send... Registration Failed!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
     break;
 }
 
@@ -306,7 +306,7 @@ public function loginCustomer_post() {
             'status' => 500,
             'user_id' => $result['user_id'],
             'user_name' => $result['user_name'],
-            'status_message' => 'Error to start session for ' . $user_name . ' !!!'],REST_Controller::HTTP_BAD_REQUEST);              
+            'status_message' => 'Error to start session for ' . $user_name . ' !!!'],REST_Controller::HTTP_PRECONDITION_FAILED);              
         break;
         case '412': //-----------------if response is 412 it returns login credentials are incorrect.
         $this->response([
@@ -318,7 +318,7 @@ public function loginCustomer_post() {
         default:
         $this->response([
             'status' => 500,
-            'status_message' => "Something went wrong. Request was not send... Registration Failed!!!"], REST_Controller::HTTP_BAD_REQUEST);
+            'status_message' => "Something went wrong. Request was not send... Registration Failed!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
         break;
     }
 

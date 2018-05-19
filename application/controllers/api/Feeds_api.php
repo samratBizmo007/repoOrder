@@ -126,13 +126,13 @@ class Feeds_api extends REST_Controller {
         case '500': //-----------------if response is 500 it returns error message
         $this->response([
             'status' => 500,     
-            'status_message' => 'Oops! No more Feeds available.'],REST_Controller::HTTP_BAD_REQUEST);              
+            'status_message' => 'Oops! No more Feeds available.'],REST_Controller::HTTP_PRECONDITION_FAILED);              
         break;       
         
         default:
         $this->response([
             'status' => 500,
-            'status_message' => "Something went wrong. Request was not send...!!!"], REST_Controller::HTTP_BAD_REQUEST);
+            'status_message' => "Something went wrong. Request was not send...!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
         break;
     }
 
