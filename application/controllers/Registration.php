@@ -86,7 +86,7 @@ class Registration extends CI_controller {
             //create a new cURL resource 
             //--------api for register customer--using api key-------------------------//
             $path = base_url();
-            $apiKey = 'jaumla@1234';
+            $apiKey = 'jumla@1234';
             $url = $path . 'api/Login_api/registerCustomer';
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_TIMEOUT, 30);
@@ -115,7 +115,7 @@ class Registration extends CI_controller {
             );
             //print_r($data);die();
             //------------api for register seller -------------------------------------//
-            $apiKey = 'jaumla@1234';
+            $apiKey = 'jumla@1234';
             $path = base_url();
             $url = $path . 'api/Login_api/registerSeller';
             $ch = curl_init($url);

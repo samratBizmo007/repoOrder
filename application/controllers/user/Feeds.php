@@ -95,7 +95,7 @@ class Feeds extends CI_Controller {
 		extract($_POST);
 		//print_r($_POST);die();
         //-----------------------api for get the feeds which are posetd by all users-----------//
-        $apiKey = 'jaumla@1234';
+        $apiKey = 'jumla@1234';
 		$path = base_url();
 		$url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start;
 		// $ch = curl_init($url);
@@ -249,7 +249,7 @@ class Feeds extends CI_Controller {
     public function getTimeline_mob() {
     	extract($_POST);
 		//print_r($_POST);die();
-        $apiKey = 'jaumla@1234';
+        $apiKey = 'jumla@1234';
     	$path = base_url();
     	$url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start;
     	// $ch = curl_init($url);

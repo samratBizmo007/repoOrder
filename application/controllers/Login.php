@@ -51,6 +51,7 @@ class Login extends CI_Controller {
 
         }
 //-----------api for login customer--------------------------------//
+        $apiKey = 'jumla@1234';
         $path = base_url();
         $url = $path . 'api/Login_api/loginCustomer';
         //create a new cURL resource
