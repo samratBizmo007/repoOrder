@@ -111,11 +111,11 @@ error_reporting(E_ERROR | E_PARSE);
                     <!-- ---div for images -->
                     <div class="col-lg-6 w3-padding-tiny" id="deletecat">
                         <div class="w3-col l12 s12 m12 w3-small">
-                            <div class="w3-col l6 w3-padding-small">
+                            <div class="w3-col l6 ">
                                 <label>Product Image:</label>
                                 <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-border" onchange="readURL(this);" required>
                             </div>
-                            <div class="w3-col l6 w3-padding-small">
+                            <div class="w3-col l6 w3-padding-small w3-margin-top">
                                 <img src="" width="auto" id="adminImagePreview" height="150px" alt="Product Image will be displayed here once chosen." class=" w3-centerimg img-thumbnail">
                             </div>
                             <div class="w3-col l12" id="addedmore_imageDiv"></div>
