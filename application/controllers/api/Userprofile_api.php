@@ -13,8 +13,31 @@ class Userprofile_api extends REST_Controller {
     }
 
     public function getUserDetails_get() {
-        extract($_GET);
+        extract(getallheaders());
+
+        // ------if user_id not found-------------
+        if ($user_id=='') {
+            $this->response([
+                'status' => 500,
+                'status_message' => 'User ID field is empty. All parameters are required!'
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
+            die();
+        }
+
         $result = $this->Userprofile_model->getUserDetails($user_id);
+
+        if(!empty($result)){
+            $this->response([
+                'status' => 200,
+                'status_message' => $result['status_message']
+            ], REST_Controller::HTTP_OK);
+        }
+        else{
+            $this->response([
+                'status' => 500,
+                'status_message' => 'No data found for this user'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        }
         return $this->response($result);
     }
 

@@ -31,10 +31,11 @@ class User_profile extends CI_Controller {
 //        $admin_name = $this->session->userdata('admin_name');
         //$user_id = $this->session->userdata('user_id');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getUserDetails?user_id=' . $user_id;
+        $url = $path.'api/Userprofile_api/getUserDetails';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("user_id: ".$user_id));
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
