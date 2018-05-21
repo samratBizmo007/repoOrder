@@ -365,6 +365,7 @@ public function verify_otpForRegisterCustomer_post() {
 public function getPassword_post(){
     extract($_POST);
 
+    // -------if email id is not passed--------
     if ($forget_email=='') {
         $this->response([
             'status' => 500,
@@ -372,6 +373,7 @@ public function getPassword_post(){
         ], REST_Controller::HTTP_PRECONDITION_FAILED);
         die();
     }
+    
     //returns data of particular email,
     $result = $this->login->getPassword($forget_email);
 
