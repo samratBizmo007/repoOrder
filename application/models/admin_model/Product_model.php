@@ -71,19 +71,15 @@ class Product_model extends CI_Model {
     //---------function end------------//
     //-------get posted products and images from product--------------//
 
-    public function getPostedImagesBy_username($user_id) {
+    public function getUserProducts($user_id) {
         // $sql = "SELECT * FROM product_tab WHERE user_id = '$user_id'";
         $sql = "SELECT * FROM  product_tab as p JOIN category_tab as c ON c.cat_id = p.cat_id WHERE user_id='$user_id'";
         $result = $this->db->query($sql);
-        if ($result->num_rows() <= 0) {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'No data found.');
-        } else {
-            $response = array(
+        if ($result->num_rows() > 0) {
+             $response = array(
                 'status' => 200,
                 'status_message' => $result->result_array());
-        }
+        } 
         return $response;
     }
 

@@ -43,10 +43,30 @@ class ManageProduct_api extends REST_Controller {
 //--------fun for get all categories from category tab-----------------------//
 //--------fun for get all posted images and products by role from products tab-----------------------//
 
-    public function getPostedImagesBy_username_get() {
-        extract($_GET);
-        $result = $this->Product_model->getPostedImagesBy_username($user_id);
-        return $this->response($result);
+    public function getUserProducts_get() {
+        extract(getallheaders());
+
+        // ------if user_id not found-------------
+        if ($user_id=='') {
+            $this->response([
+                'status' => 500,
+                'status_message' => 'User ID field is empty. All parameters are required!'
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
+            die();
+        }
+        $result = $this->Product_model->getUserProducts($user_id);
+        if(!empty($result)){
+            $this->response([
+                'status' => 200,
+                'status_message' => $result['status_message']
+            ], REST_Controller::HTTP_OK);
+        }
+        else{
+            $this->response([
+                'status' => 500,
+                'status_message' => 'No products available for this user!'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        }
     }
 
 //--------fun for get all posted images and products by role from products tab-----------------------//

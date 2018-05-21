@@ -38,7 +38,6 @@ class Userprofile_api extends REST_Controller {
                 'status_message' => 'No data found for this user'
             ], REST_Controller::HTTP_NOT_FOUND);
         }
-        return $this->response($result);
     }
 
     public function getProductCountBy_userid_get() {
