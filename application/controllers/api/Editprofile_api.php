@@ -24,7 +24,7 @@ class Editprofile_api extends REST_Controller {
       $this->response([
         'status' => 500,
         'status_message' => 'Please Enter Full Name.'
-      ], REST_Controller::HTTP_NOT_FOUND);       
+      ], REST_Controller::HTTP_PRECONDITION_FAILED);       
     }
         //---------------ends------------------------
         //--------------------------checking for user id is empty---------------//
@@ -33,7 +33,7 @@ class Editprofile_api extends REST_Controller {
       $this->response([
         'status' => 500,
         'status_message' => 'User Id Not Found.'
-      ], REST_Controller::HTTP_NOT_FOUND);       
+      ], REST_Controller::HTTP_PRECONDITION_FAILED);       
     }
         //-------------------ends -------------------------------------------//
         //-----------------checking country code empty---------------------------//
@@ -41,7 +41,7 @@ class Editprofile_api extends REST_Controller {
       $this->response([
         'status' => 500,
         'status_message' => 'Please Select Country Code.'
-      ], REST_Controller::HTTP_NOT_FOUND);
+      ], REST_Controller::HTTP_PRECONDITION_FAILED);
     }
 //-------------------ends -------------------------------------------//
         //-----------------checking address empty---------------------------//
@@ -49,7 +49,7 @@ class Editprofile_api extends REST_Controller {
      $this->response([
       'status' => 500,
       'status_message' => 'Please Enter Your Address.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
    }       
         //-------------------ends -------------------------------------------//
         //-----------------checking phone empty and numeric---------------------------//
@@ -63,7 +63,7 @@ class Editprofile_api extends REST_Controller {
    else{
      $this->response([
        'status' => 500,
-       'status_message' => 'Please enter phone no!'], REST_Controller::HTTP_NOT_FOUND); 
+       'status_message' => 'Please enter phone no!'], REST_Controller::HTTP_PRECONDITION_FAILED); 
    }
        //-------------------ends -------------------------------------------//
         //-----------------checking company name empty---------------------------//
@@ -71,7 +71,7 @@ class Editprofile_api extends REST_Controller {
     $this->response([
       'status' => 500,
       'status_message' => 'Please Enter Your Phone No.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
   }
         //-------------------ends -------------------------------------------//
         //-----------------checking image path empty---------------------------//
@@ -79,7 +79,7 @@ class Editprofile_api extends REST_Controller {
     $this->response([
       'status' => 500,
       'status_message' => 'Please Select Profile Image.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
   }
         //-------------------ends -------------------------------------------//
 
@@ -105,19 +105,19 @@ public function changePassword_post() {
     $this->response([
       'status' => 500,
       'status_message' => 'User Id Not Found.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
   }
   if (empty($curr_password)) {
    $this->response([
     'status' => 500,
     'status_message' => 'current password Not Found.'
-  ], REST_Controller::HTTP_NOT_FOUND);
+  ], REST_Controller::HTTP_PRECONDITION_FAILED);
  }
  if (empty($new_password)) {
    $this->response([
     'status' => 500,
     'status_message' => 'New Password Not Found.'
-  ], REST_Controller::HTTP_NOT_FOUND);
+  ], REST_Controller::HTTP_PRECONDITION_FAILED);
  }
  $result = $this->Editprofile_model->changePassword($data);
  if($result['status'] == 200){
@@ -146,7 +146,7 @@ public function updateProfileMob_post() {
     $this->response([
       'status' => 500,
       'status_message' => 'Please Enter Full Name.'
-    ], REST_Controller::HTTP_NOT_FOUND);       
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);       
   }
         //---------------ends------------------------
         //--------------------------checking for user id is empty---------------//
@@ -155,7 +155,7 @@ public function updateProfileMob_post() {
     $this->response([
       'status' => 500,
       'status_message' => 'User Id Not Found.'
-    ], REST_Controller::HTTP_NOT_FOUND);       
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);       
   }
         //-------------------ends -------------------------------------------//
         //-----------------checking country code empty---------------------------//
@@ -163,7 +163,7 @@ public function updateProfileMob_post() {
     $this->response([
       'status' => 500,
       'status_message' => 'Please Select Country Code.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
   }
 //-------------------ends -------------------------------------------//
         //-----------------checking address empty---------------------------//
@@ -171,7 +171,7 @@ public function updateProfileMob_post() {
    $this->response([
     'status' => 500,
     'status_message' => 'Please Enter Your Address.'
-  ], REST_Controller::HTTP_NOT_FOUND);
+  ], REST_Controller::HTTP_PRECONDITION_FAILED);
  }       
         //-------------------ends -------------------------------------------//
         //-----------------checking phone empty and numeric---------------------------//
@@ -185,7 +185,7 @@ public function updateProfileMob_post() {
    else{
      $this->response([
        'status' => 500,
-       'status_message' => 'Please enter phone no!'], REST_Controller::HTTP_NOT_FOUND); 
+       'status_message' => 'Please enter phone no!'], REST_Controller::HTTP_PRECONDITION_FAILED); 
    }
        //-------------------ends -------------------------------------------//
         //-----------------checking company name empty---------------------------//
@@ -193,7 +193,7 @@ public function updateProfileMob_post() {
   $this->response([
     'status' => 500,
     'status_message' => 'Please Enter Your Company Name'
-  ], REST_Controller::HTTP_NOT_FOUND);
+  ], REST_Controller::HTTP_PRECONDITION_FAILED);
 }
         //-------------------ends -------------------------------------------//
 
@@ -222,7 +222,7 @@ public function updateImage_post() {
     $this->response([
       'status' => 500,
       'status_message' => 'User Id Not Found.'
-    ], REST_Controller::HTTP_NOT_FOUND);       
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);       
   }
         //-------------------ends -------------------------------------------//
             //-----------------checking image path empty---------------------------//
@@ -230,7 +230,7 @@ public function updateImage_post() {
     $this->response([
       'status' => 500,
       'status_message' => 'Please Enter Profile Images.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
   }
         //-------------------ends -------------------------------------------//
 

@@ -24,7 +24,7 @@ class Login_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Select User your role.'
-            ], REST_Controller::HTTP_NOT_FOUND);       
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);       
         }
        ////------------checking the user role is not empty------------//
  //------------checking the user role is not equal to 1------------//
@@ -33,7 +33,7 @@ class Login_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Select Valid User your role.'
-            ], REST_Controller::HTTP_NOT_FOUND);   
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);   
         }
         //------------ends ------------//
  //------------checking the user name is empty------------//
@@ -42,7 +42,7 @@ class Login_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Enter your Username.'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //-------------------ends------------//
@@ -53,7 +53,7 @@ class Login_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Enter your Password.'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //--------------------------ends -----------------------//
@@ -64,7 +64,7 @@ class Login_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Enter your Email.'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //------------ ----------ends ------------//
@@ -74,7 +74,7 @@ class Login_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Select Country Code.'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //-------------------ends -------------------------------//
@@ -84,7 +84,7 @@ class Login_api extends REST_Controller {
          if (empty($register_mobile_no)) {
              $this->response([
                  'status' => 500,
-                 'status_message' => 'Please Enter Mobile No.!'], REST_Controller::HTTP_NOT_FOUND);                 
+                 'status_message' => 'Please Enter Mobile No.!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
          } else {
              $this->response([
                  'status' => 500,
@@ -141,7 +141,7 @@ public function registerSeller_post() {
         $this->response([
             'status' => 500,
             'status_message' => 'Please Select User your role.'
-        ], REST_Controller::HTTP_NOT_FOUND);       
+        ], REST_Controller::HTTP_PRECONDITION_FAILED);       
     }
      //--------------------ends---------------------------------//
 
@@ -151,7 +151,7 @@ public function registerSeller_post() {
      $this->response([
                  'status' => 500, //---------db error code 
                  'status_message' => 'User Role is not valid!!!'
-             ],REST_Controller::HTTP_NOT_FOUND);           
+             ],REST_Controller::HTTP_PRECONDITION_FAILED);           
  }
     //--------------------ends---------------------------------//
 
@@ -161,7 +161,7 @@ public function registerSeller_post() {
     $this->response([
         'status' => 500,
         'status_message' => 'Please Enter User your Username.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
  //--------------------ends---------------------------------//
@@ -172,7 +172,7 @@ if(empty($cat_id)){
     $this->response([
         'status' => 500,
         'status_message' => 'Please Select Category.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
  //--------------------ends---------------------------------//
@@ -184,7 +184,7 @@ if(empty($register_email) ){
     $this->response([
         'status' => 500,
         'status_message' => 'Please Enter your Email.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
  //--------------------ends---------------------------------//
@@ -196,7 +196,7 @@ if(empty($register_countryCode) ){
     $this->response([
         'status' => 500,
         'status_message' => 'Please Select Country Code.'
-    ], REST_Controller::HTTP_NOT_FOUND);
+    ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
  //--------------------ends---------------------------------//
@@ -207,7 +207,7 @@ if (!(is_numeric($register_mobile_no))) {
  if (empty($register_mobile_no)) {
      $this->response([
          'status' => 500,
-         'status_message' => 'Please Enter Mobile No.!'], REST_Controller::HTTP_NOT_FOUND);                 
+         'status_message' => 'Please Enter Mobile No.!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
  } else {
      $this->response([
          'status' => 500,
@@ -269,7 +269,7 @@ public function loginCustomer_post() {
         $this->response([
             'status' => 500,
             'status_message' => 'Please Enter User your Username.'
-        ], REST_Controller::HTTP_NOT_FOUND);
+        ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
     }
      //------------ends------------//
@@ -281,7 +281,7 @@ public function loginCustomer_post() {
         $this->response([
             'status' => 500,
             'status_message' => 'Please Enter your Password.'
-        ], REST_Controller::HTTP_NOT_FOUND);
+        ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
     }
      //------------ends------------//
@@ -389,7 +389,7 @@ public function getPassword_post(){
         $this->response([
             'status' => 500,
             'status_message' => $result['status_message']
-        ], REST_Controller::HTTP_NOT_FOUND);
+        ], REST_Controller::HTTP_PRECONDITION_FAILED);
         break;
 
         case '500':

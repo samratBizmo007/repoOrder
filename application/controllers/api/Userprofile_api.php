@@ -36,7 +36,7 @@ class Userprofile_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'No data found for this user'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         }
     }
 
