@@ -82,23 +82,23 @@ class Login_api extends REST_Controller {
  //------------checking the mobile no is empty or numeric------------//
 
         if (!(is_numeric($register_mobile_no))) {
-           if (empty($register_mobile_no)) {
-               $this->response([
-                   'status' => 500,
-                   'status_message' => 'Please Enter Mobile No.!'], REST_Controller::HTTP_NOT_FOUND);                 
-           } else {
-               $this->response([
-                   'status' => 500,
-                   'status_message' => 'Mobile number should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
-           }
-       }
+         if (empty($register_mobile_no)) {
+             $this->response([
+                 'status' => 500,
+                 'status_message' => 'Please Enter Mobile No.!'], REST_Controller::HTTP_NOT_FOUND);                 
+         } else {
+             $this->response([
+                 'status' => 500,
+                 'status_message' => 'Mobile number should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+         }
+     }
 
  //--------------------ends---------------------------------//
 
-       $result = $this->login->registerCustomer($data);
+     $result = $this->login->registerCustomer($data);
            // echo $result;
             //check if the user data inserted
-       switch ($result) {
+     switch ($result) {
         case '1': //--------------------------if result response is 1
         $this->response([
             'status' => 200,
@@ -149,16 +149,16 @@ public function registerSeller_post() {
      //------------checking the user role is not equal to 2------------//
 
     if ($user_role != '2') {
-       $this->response([
+     $this->response([
                  'status' => 500, //---------db error code 
                  'status_message' => 'User Role is not valid!!!'
              ],REST_Controller::HTTP_NOT_FOUND);           
-   }
+ }
     //--------------------ends---------------------------------//
 
     //------------checking the user name is empty------------//
 
-   if(empty($register_username) ){     
+ if(empty($register_username) ){     
     $this->response([
         'status' => 500,
         'status_message' => 'Please Enter User your Username.'
@@ -205,15 +205,15 @@ if(empty($register_countryCode) ){
  //------------checking the mobile no is empty or numeric------------//
 
 if (!(is_numeric($register_mobile_no))) {
-   if (empty($register_mobile_no)) {
-       $this->response([
-           'status' => 500,
-           'status_message' => 'Please Enter Mobile No.!'], REST_Controller::HTTP_NOT_FOUND);                 
-   } else {
-       $this->response([
-           'status' => 500,
-           'status_message' => 'Mobile number should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
-   }
+ if (empty($register_mobile_no)) {
+     $this->response([
+         'status' => 500,
+         'status_message' => 'Please Enter Mobile No.!'], REST_Controller::HTTP_NOT_FOUND);                 
+ } else {
+     $this->response([
+         'status' => 500,
+         'status_message' => 'Mobile number should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+ }
 }
  //--------------------ends---------------------------------//
 
@@ -364,8 +364,39 @@ public function verify_otpForRegisterCustomer_post() {
     //-------------------------------------------------------------//
 public function getPassword_post(){
     extract($_POST);
+    //returns data of particular email,
     $result = $this->login->getPassword($forget_email);
-    return $this->response($result);            
+
+    switch ($result['status']) {
+        case '200':
+        $this->response([
+            'status' => 200,
+            'status_message' => $result['status_message']
+        ], REST_Controller::HTTP_OK);
+        
+        break;
+
+        case '404':
+        $this->response([
+            'status' => 500,
+            'status_message' => $result['status_message']
+        ], REST_Controller::HTTP_NOT_FOUND);
+        break;
+
+        case '500':
+        $this->response([
+            'status' => 500,
+            'status_message' => $result['status_message']
+        ], REST_Controller::HTTP_PRECONDITION_FAILED);
+        break;
+        
+        default:
+        $this->response([
+            'status' => 500,
+            'status_message' => $result['status_message']
+        ], REST_Controller::HTTP_PRECONDITION_FAILED);
+        break;
+    }                    
 }
     //---------------------GET USER PASSWORD BY EMAIL END------------------------------//
 }

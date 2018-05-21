@@ -94,22 +94,14 @@ class Login extends CI_Model {
     // -----------------------USER REGISTERATION MODEL by mobile ends----------------------//
     // ----------------------FORGET PASSWORD MODEL-------------------------------------//
     public function getPassword($forget_email) {
-     if ($forget_email == '') {
-        $response = array(
-                'status' => 500, //---------db error code 
-                'status_message' => 'Enter Your Email!!!'
-            );
-        return $response;
-        die();
-    }
-
-    $query = "SELECT password FROM user_tab WHERE email='$forget_email'";
+     
+    $query = "SELECT password FROM user_tab WHERE email='$forget_email' AND fb_id=0";
         //echo $query;die();
     $result = $this->db->query($query);
     if ($result->num_rows() <= 0) {
         $response = array(
-            'status' => 500,
-            'status_message' => 'Email ID not found. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
+            'status' => 404,
+            'status_message' => 'Email ID not registered. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
     } else {
         $password = '';
         foreach ($result->result_array() as $row) {
