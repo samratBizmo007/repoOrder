@@ -343,7 +343,7 @@ $user_id = $this->session->userdata('user_id');
                 confirm: function () {
                     var dataS = 'prod_id=' + prod_id;
                     $.ajax({
-                        url: "<?php echo base_url(); ?>admin/manage_products/removeProduct",
+                        url: "<?php echo base_url(); ?>user/manage_products/removeProduct",
                         type: "POST",
                         data: dataS,
                         cache: false,
