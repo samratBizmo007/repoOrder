@@ -127,7 +127,7 @@ class Manage_products extends CI_Controller {
         }
         $apiKey = 'jumla@1234';
         $data['posted_by'] = $user_name;
-        //$data['user_id'] = $user_id;
+        $data['user_id'] = $user_id;
         $data['cat_id'] = $cat_id;
         $data['prod_images'] = json_encode($prod_Arr);
         //print_r($data);die();
