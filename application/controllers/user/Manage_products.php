@@ -13,7 +13,7 @@ class Manage_products extends CI_Controller {
         $user_id = $this->session->userdata('user_id');
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
-         $cat_id = $this->session->userdata('cat_id');
+        $cat_id = $this->session->userdata('cat_id');
          // echo $cat_id;
          // echo $user_name;die();
         $this->load->library('user_agent');
@@ -36,7 +36,7 @@ class Manage_products extends CI_Controller {
 
     //------------fun for get the all categories -----------------------//
     public function getAllCategories() {
-    
+        
         $apiKey = 'jumla@1234';
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/getAllCategories';
@@ -87,27 +87,27 @@ class Manage_products extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-            }, 1000);
-            </script>';
+                }, 1000);
+                </script>';
+            }
         }
-    }
 
     //------------fun for remove product-----------------------//
 //------------fun for add new product to product table---------------------------//
-    public function addProduct() {
-        $user_name = $this->session->userdata('user_name');
-        $user_id = $this->session->userdata('user_id');
-         $cat_id = $this->session->userdata('cat_id');
-        extract($_POST);
+        public function addProduct() {
+            $user_name = $this->session->userdata('user_name');
+            $user_id = $this->session->userdata('user_id');
+            $cat_id = $this->session->userdata('cat_id');
+            extract($_POST);
         // echo $cat_id;die();
         // if ($cat_id == 0) {
         //     echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-large"></i> Please Select Category First.</label>';
         //     die();
         // }
-        $data = $_POST;
-        $prod_Arr = array();
+            $data = $_POST;
+            $prod_Arr = array();
         //print_r($_FILES);die();
-        $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
+            $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
         // for($i = 0; $i < count($_FILES['prod_image']['name']); $i++){
         // if (!empty(($_FILES['prod_image']['name'][$i]))) {
         //     $extension_img = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION); //get prod image file extension 
@@ -125,17 +125,17 @@ class Manage_products extends CI_Controller {
         // }
         // }
         //$imagePath = '';
-        for ($i = 0; $i < count($_FILES['prod_image']['name']); $i++) {
-            $imagePath = '';
-            $product_image = $_FILES['prod_image']['name'][$i];
-            if (!empty(($_FILES['prod_image']['name'][$i]))) {
-                $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
+            for ($i = 0; $i < count($_FILES['prod_image']['name']); $i++) {
+                $imagePath = '';
+                $product_image = $_FILES['prod_image']['name'][$i];
+                if (!empty(($_FILES['prod_image']['name'][$i]))) {
+                    $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
 
-                $_FILES['userFile']['name'] = $product_name . '-' . $user_name . '-' . $product_image . $user_id . '.' . $extension;
-                $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
-                $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
-                $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];
-                $_FILES['userFile']['size'] = $_FILES['prod_image']['size'][$i];
+                    $_FILES['userFile']['name'] = $product_name . '-' . $user_name . '-' . $product_image . $user_id . '.' . $extension;
+                    $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
+                    $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
+                    $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];
+                    $_FILES['userFile']['size'] = $_FILES['prod_image']['size'][$i];
 
                 $uploadPath = 'images/product_images/';  //upload images in images/desktop/ folder
                 $config['upload_path'] = $uploadPath;
@@ -149,7 +149,7 @@ class Manage_products extends CI_Controller {
                     $fileData = $this->upload->data();
                     $imagePath = 'images/product_images/' . $fileData['file_name'];
                     // check EXIF and autorotate if needed
-$this->load->library('image_autorotate', array('filepath' => $imagePath));
+                    $this->load->library('image_autorotate', array('filepath' => $imagePath));
                 }
             }
             $prod_Arr[] = array(
@@ -185,15 +185,15 @@ $this->load->library('image_autorotate', array('filepath' => $imagePath));
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-             location.reload();
-         }, 1000);
-         </script>';
-        }
-    }
+               location.reload();
+               }, 1000);
+               </script>';
+           }
+       }
 
 //------------fun for add new product to product table---------------------------//
     //-----------fun for get the product category by cat id -------------------------//
-    public function getProductCategory() {
+       public function getProductCategory() {
         extract($_POST);
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/getProductCategory?cat_id=' . $cat_id;

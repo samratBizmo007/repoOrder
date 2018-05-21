@@ -60,15 +60,6 @@ class Editprofile_model extends CI_Model {
             return $response;
             die();
         }
-//        $contactNo=$countryCode.$phone;
-//        $whatsappNo = $countryCodeWhatsapp.$whatsapp_no;
-//        if (!is_numeric($contactNo)) {
-//            $response = array(
-//                'status' => 500,
-//                'status_message' => 'Please Enter numeric phone no!');
-//            return $response;
-//            die();
-//        }
 
         $sql = "UPDATE user_tab SET full_name='$fullname',"
         . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
@@ -88,6 +79,92 @@ class Editprofile_model extends CI_Model {
     }
 
     //-------UPDATE PROFILE FUNCTION ends--------------//
+
+    //-------UPDATE PROFILE FUNCTION--------------//
+    public function updateProfileMob($data) {
+        extract($data);
+        //print_r($data);die();
+        if ($fullname == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Your Name..!');
+            return $response;
+            die();
+        }
+
+        if ($countryCode == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please select Country Code eg.965!');
+            return $response;
+            die();
+        }
+
+        if ($address == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Your Address..!');
+            return $response;
+            die();
+        }
+        if ($phone == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Your phone no..!');
+            return $response;
+            die();
+        }
+        
+         if ($company_name == '') {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Please Enter Your Company name..!');
+            return $response;
+            die();
+        }
+        
+        $sql = "UPDATE user_tab SET full_name='$fullname',"
+        . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
+        . " phone='$phone',country_code = '$countryCode',whatsapp_no = '$whatsapp_no',company_name='".addslashes($company_name)."' WHERE user_id = '$user_id'";
+        //print_r($sql);die();
+        $result = $this->db->query($sql);
+        if ($result) {
+            $response = array(
+                'status' => 200,
+                'status_message' => 'Profile Updated Successfully..!');
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Profile Not Updated Successfully...!');
+        }
+        return $response;
+    }
+
+    //-------UPDATE PROFILE FUNCTION ends--------------//
+
+     //-------UPDATE PROFILE FUNCTION--------------//
+    public function updateImage($data) {
+        extract($data);
+        //print_r($data);die();
+        
+        $sql = "UPDATE user_tab SET user_image='$imagePath' WHERE user_id = '$user_id'";
+        //print_r($sql);die();
+        $result = $this->db->query($sql);
+        if ($result) {
+            $response = array(
+                'status' => 200,
+                'status_message' => 'Photo Updated Successfully..!');
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Photo Not Updated Successfully...!');
+        }
+        return $response;
+    }
+
+    //-------UPDATE PROFILE FUNCTION ends--------------//
+
+
     //--------------fun for change password------------------------//
     public function changePassword($data) {
         extract($data);

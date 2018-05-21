@@ -1,10 +1,11 @@
 <?php
 
 //Admin Settings controller
-class Edit_profile extends CI_Controller {
+class Edit_profile1 extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('admin_model/Editprofile_model');
     }
 
     public function index() {
@@ -13,22 +14,18 @@ class Edit_profile extends CI_Controller {
         $user_name=$this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
         $cat_id = $this->session->userdata('cat_id');
-        $this->load->library('user_agent');
 
         //check session variable set or not, otherwise logout
         if (($user_name == '') || ($user_id == '') || ($user_role != '2') || ($cat_id =='')) {
             redirect('login');
         }
-        $data['userDetails'] = Edit_profile::getUserDetails();
+        $data['userDetails'] = Edit_profile1::getUserDetails();
         //$data['products'] = Edit_profile::getPostedImagesBy_username();
-        if ($this->agent->is_mobile()) {
+        
             $this->load->view('includes/mobile/header');
-            $this->load->view('pages/user/mobile/profile/mobileedit_profile', $data);
+            $this->load->view('pages/user/mobile/profile/mobileedit_profile1', $data);
             $this->load->view('includes/mobile/footer');
-        } else {
-            $this->load->view('includes/header.php');
-            $this->load->view('pages/user/edit_profile', $data);
-        }        
+        
     }
 
     //------------fun for get user details -----------------------//
@@ -48,7 +45,7 @@ class Edit_profile extends CI_Controller {
     }
     //------------fun for get user details -----------------------//
 
-//--------this fun is used to update the profile---------------------//
+    //--------this fun is used to update the profile---------------------//
     public function updateProfile() {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
@@ -59,7 +56,6 @@ class Edit_profile extends CI_Controller {
         //print_r($_FILES);
         //die();
         $imagePath = '';
-        $imagepath = '';
 //        if ($profile_image_edit == '') {
 //            $image_path = '';
 //        } else {
@@ -117,16 +113,8 @@ class Edit_profile extends CI_Controller {
         $data['imagePath'] = $imagepath;
         $data['username'] = $user_name;
         $data['user_id'] = $user_id;
-        $path = base_url();
-        $url = $path . 'api/Editprofile_api/updateProfile';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        //print_r($response_json);die();
+        
+        $response = $this->Editprofile_model->updateProfile($data);
 
         if ($response['status'] != 200) {
             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
@@ -143,7 +131,7 @@ class Edit_profile extends CI_Controller {
     //------------function ends------------------------------------------//
 
  //--------this fun is used to update the profile---------------------//
-    public function updateProfileMob() {
+    public function updateProfileNew() {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
         extract($_POST);
@@ -154,7 +142,7 @@ class Edit_profile extends CI_Controller {
         $data['username'] = $user_name;
         $data['user_id'] = $user_id;
         $path = base_url();
-        $url = $path . 'api/Editprofile_api/updateProfileMob';
+        $url = $path . 'api/Editprofile_api/updateProfileNew';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -162,7 +150,7 @@ class Edit_profile extends CI_Controller {
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        //print_r($response_json);die();
+        print_r($response_json);die();
 
         if ($response['status'] != 200) {
             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
@@ -172,45 +160,45 @@ class Edit_profile extends CI_Controller {
             <script>
             window.setTimeout(function() {
              location.reload();
-             }, 1000);
-             </script>';
-         }
+         }, 1000);
+         </script>';
      }
+ }
     //------------function ends------------------------------------------//
 
-     public function changePassword() {
-        extract($_POST);
-        $data = $_POST;
-        $user_name = $this->session->userdata('user_name');
-        $user_id = $this->session->userdata('user_id');
+ public function changePassword() {
+    extract($_POST);
+    $data = $_POST;
+    $user_name = $this->session->userdata('user_name');
+    $user_id = $this->session->userdata('user_id');
 //print_r($data);die();
-        $data['username'] = $user_name;
-        $data['user_id'] = $user_id;
-        $path = base_url();
-        $url = $path . 'api/Editprofile_api/changePassword';
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
+    $data['username'] = $user_name;
+    $data['user_id'] = $user_id;
+    $path = base_url();
+    $url = $path . 'api/Editprofile_api/changePassword';
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response_json = curl_exec($ch);
+    curl_close($ch);
+    $response = json_decode($response_json, true);
         //print_r($response_json);die();
-        if ($response['status'] != 200) {
-            echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
-            ';
-        } else {
-            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
-            <script>
-            window.setTimeout(function() {
-             location.reload();
-             }, 1000);
-             </script>';
-         }
-     }
+    if ($response['status'] != 200) {
+        echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
+        ';
+    } else {
+        echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
+        <script>
+        window.setTimeout(function() {
+         location.reload();
+     }, 1000);
+     </script>';
+ }
+}
 
 //--------this fun is used to update the profile---------------------//
-     public function updateImage() {
+    public function updateImage() {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
         //extract($_POST);
@@ -258,8 +246,6 @@ class Edit_profile extends CI_Controller {
             if ($this->upload->do_upload('userFile')) {
                 $fileData = $this->upload->data();
                 $imagepath = 'images/users/'.$fileData['file_name'];
-                // check EXIF and autorotate if needed
-                $this->load->library('image_autorotate', array('filepath' => $imagePath));
             }
         }
 
@@ -277,7 +263,7 @@ class Edit_profile extends CI_Controller {
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        //print_r($response_json);die();
+        print_r($response_json);die();
 
         if ($response['status'] != 200) {
             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
@@ -287,10 +273,10 @@ class Edit_profile extends CI_Controller {
             <script>
             window.setTimeout(function() {
              location.reload();
-             }, 1000);
-             </script>';
-         }
+         }, 1000);
+         </script>';
      }
+ }
     //------------function ends------------------------------------------//
 
- }
+}

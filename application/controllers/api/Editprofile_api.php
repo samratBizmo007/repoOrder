@@ -13,14 +13,13 @@ class Editprofile_api extends REST_Controller {
     }
 
 //--------fun for update profile-----------------------//
-
     public function updateProfile_post() {
         $data = ($_POST);
         $result = $this->Editprofile_model->updateProfile($data);
         return $this->response($result);
     }
-
 //--------fun for update profile ends here-----------------------//
+
     //----------fun for change password------------------------//
     public function changePassword_post() {
         $data = ($_POST);
@@ -29,4 +28,22 @@ class Editprofile_api extends REST_Controller {
     }
 
     //--------------fun ends here-----------------------------//
+
+    //--------fun for update profile-----------------------//
+
+    public function updateProfileMob_post() {
+        $data = ($_POST);
+        $result = $this->Editprofile_model->updateProfileMob($data);
+        return $this->response($result);
+    }
+
+//--------fun for update profile ends here-----------------------//
+
+    //--------fun for update profile-----------------------//
+    public function updateImage_post() {
+        $data = ($_POST);
+        $result = $this->Editprofile_model->updateImage($data);
+        return $this->response($result);
+    }
+//--------fun for update profile ends here-----------------------//
 }
