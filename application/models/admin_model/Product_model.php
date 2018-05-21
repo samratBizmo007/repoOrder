@@ -31,63 +31,23 @@ class Product_model extends CI_Model {
     //-------ADD NEW product FUNCTION--------------//
     public function addProduct($data) {
         extract($data);
-        //print_r($data);die();
-        //     if ($cat_id == '') {
-        //     $response = array(
-        //         'status' => 500,
-        //         'status_message' => 'Please Enter category Id..!');
-        //     return $response;
-        //     die();
-        // }
-          if ($user_id == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter User Id..!');
-            return $response;
-            die();
-        }
-         if ($product_name == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Product Name..!');
-            return $response;
-            die();
-        }
-         if ($product_description == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Product Description..!');
-            return $response;
-            die();
-        }
-          if ($prod_images == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Add Product Image..!');
-            return $response;
-            die();
-        }
-        if ($posted_by == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Posted Users name..!');
-            return $response;
-            die();
-        }
+        
         $sql = "INSERT INTO product_tab(cat_id,user_id,product_name,prod_description,prod_image,posted_by,posted_date,posted_time,active) "
                 . "VALUES ('$cat_id','$user_id','".addslashes($product_name)."','".addslashes($product_description)."','$prod_images','$posted_by',NOW(),NOW(),'1')";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
-            $response = array(
-                'status' => 200,
-                'status_message' => 'Product Added Successfully..!');
+            return TRUE;
+            // $response = array(
+            //     'status' => 200,
+            //     'status_message' => 'Product Added Successfully..!');
         } else {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Product Not Added Successfully...!');
+            return FALSE;
+            // $response = array(
+            //     'status' => 500,
+            //     'status_message' => 'Product Not Added Successfully...!');
         }
-        return $response;
+        //return $response;
     }
 
     //-------ADD NEW product FUNCTION ends--------------//
@@ -132,33 +92,13 @@ class Product_model extends CI_Model {
 
     public function removeProduct($prod_id) {
 
-         if (!(is_numeric($prod_id))) {
-            if ($prod_id == '') {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'data not found!');
-                return $response;
-                die();
-            } else {
-                $response = array(
-                    'status' => 500,
-                    'status_message' => 'product id should be numeric!');
-                return $response;
-                die();
-            }
-        }
         $sql = "DELETE FROM product_tab WHERE prod_id = '$prod_id'";
         $result = $this->db->query($sql);
         if ($this->db->affected_rows()>0) {
-            $response = array(
-                'status' => 200,
-                'status_message' => 'Product removed Successfully..!');
+            return TRUE;
         } else {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Product Not removed Successfully...!');
+            return FALSE;   
         }
-        return $response;
     }
 
     //-------fun for remove product from product table--------------//

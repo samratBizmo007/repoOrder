@@ -22,7 +22,6 @@ class Manage_products extends CI_Controller {
         }
         
         $data['categories'] = Manage_products::getAllCategories();
-        $data['products'] = Manage_products::getPostedImagesBy_username();
 
         if ($this->agent->is_mobile()) {
             $this->load->view('includes/mobile/header');
@@ -36,7 +35,7 @@ class Manage_products extends CI_Controller {
 
     //------------fun for get the all categories -----------------------//
     public function getAllCategories() {
-        
+
         $apiKey = 'jumla@1234';
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/getAllCategories';
@@ -53,33 +52,24 @@ class Manage_products extends CI_Controller {
         return $response;
     }
     //------------fun for get the all categories -----------------------//
-    
-    //------------fun for get posted products  -----------------------//
-    public function getPostedImagesBy_username() {
-        $admin_name = $this->session->userdata('admin_name');
-        $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getPostedImagesBy_username?username=' . $admin_name;
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        return $response;
-    }
 
-    //------------fun for get posted products  -----------------------//
     //------------fun for remove product-----------------------//
     public function removeProduct() {
         extract($_POST);
+        $apiKey = 'jumla@1234';        
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/removeProduct?prod_id=' . $prod_id;
+          //create a new cURL resource
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
         $response_json = curl_exec($ch);
+        //close cURL resource
         curl_close($ch);
         $response = json_decode($response_json, true);
+
         if ($response['status'] != 200) {
             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
             ';
@@ -99,32 +89,10 @@ class Manage_products extends CI_Controller {
             $user_id = $this->session->userdata('user_id');
             $cat_id = $this->session->userdata('cat_id');
             extract($_POST);
-        // echo $cat_id;die();
-        // if ($cat_id == 0) {
-        //     echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-large"></i> Please Select Category First.</label>';
-        //     die();
-        // }
             $data = $_POST;
             $prod_Arr = array();
         //print_r($_FILES);die();
             $allowed_types = ['gif', 'jpg', 'png', 'jpeg', 'JPG', 'GIF', 'JPEG', 'PNG'];
-        // for($i = 0; $i < count($_FILES['prod_image']['name']); $i++){
-        // if (!empty(($_FILES['prod_image']['name'][$i]))) {
-        //     $extension_img = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION); //get prod image file extension 
-        //     //image validating---------------------------//
-        //     //check whether image size is less than 2 mb or not
-        //     if ($_FILES['prod_image']['size'][$i] > 10485760) {  //for prod images
-        //         echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-large"></i> Image size exceeds size limit of 10MB. Upload image having size less than 10MB</label>';
-        //         die();
-        //     }
-        //     //check file is an image or not by checking extensions
-        //     if (!in_array($extension_img, $allowed_types)) {  //for prod images
-        //         echo '<label class="w3-small w3-label w3-text-red"><i class="fa fa-warning w3-large"></i> File is not an image file. Upload image having type gif, jpg, jpeg OR png</label>';
-        //         die();
-        //     }
-        // }
-        // }
-        //$imagePath = '';
             for ($i = 0; $i < count($_FILES['prod_image']['name']); $i++) {
                 $imagePath = '';
                 $product_image = $_FILES['prod_image']['name'][$i];
@@ -156,11 +124,7 @@ class Manage_products extends CI_Controller {
                 'prod_image' => $imagePath
             );
         }
-
-        //echo $imagePath;die();
-        //validating image ends---------------------------//
-        //print_r($prod_Arr);die();
-        //$data['imagePath'] = $uploadPath . $imagePath;
+        $apiKey = 'jumla@1234';
         $data['posted_by'] = $user_name;
         $data['user_id'] = $user_id;
         $data['cat_id'] = $cat_id;
@@ -169,9 +133,12 @@ class Manage_products extends CI_Controller {
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/addProduct';
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
+        curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
@@ -185,26 +152,26 @@ class Manage_products extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-               location.reload();
-               }, 1000);
-               </script>';
-           }
-       }
+             location.reload();
+             }, 1000);
+             </script>';
+         }
+     }
 
 //------------fun for add new product to product table---------------------------//
     //-----------fun for get the product category by cat id -------------------------//
-       public function getProductCategory() {
-        extract($_POST);
-        $path = base_url();
-        $url = $path . 'api/ManageProduct_api/getProductCategory?cat_id=' . $cat_id;
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        print_r($response);
-    }
+    //  public function getProductCategory() {
+    //     extract($_POST);
+    //     $path = base_url();
+    //     $url = $path . 'api/ManageProduct_api/getProductCategory?cat_id=' . $cat_id;
+    //     $ch = curl_init($url);
+    //     curl_setopt($ch, CURLOPT_HTTPGET, true);
+    //     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    //     $response_json = curl_exec($ch);
+    //     curl_close($ch);
+    //     $response = json_decode($response_json, true);
+    //     print_r($response);
+    // }
 
     //-----------fun for get the product category by cat id -------------------------//
 }

@@ -131,63 +131,7 @@ error_reporting(E_ERROR | E_PARSE);
                     <button  type="submit" title="add Product" class="w3-margin w3-medium w3-button w3-red">Add Product</button>
                 </div>
             </form>
-        </div> 
-        <!-- DIV FOR THE ALL PRODUCT ARE TO BE ADDED BY CURRENT USER-->
-        <!-- MAIN CONTENT STARTS -->
-<!--            <div class="w3-col l12 w3-border yellow-border" style="height: 400px;padding:20px;overflow: hidden;overflow-y: scroll;" id="myProductDiv" >
-                <div class="w3-col l12" id="sliderImages">
-                    <div class="w3-col l12">
-                        <label><i class="fa fa-dropbox w3-large"></i> My Products</label>
-                    </div>
-                    <?php
-                    //print_r($sliderInfo);die();
-//                    if (count($products['status_message']) != 0) {
-//                        foreach ($products['status_message'] as $key) {
-                            ?>
-                             Image Div 
-                            <div class="w3-col l2 w3-padding-small allImage-div ">
-                                <div class="allImage w3-card-2" style="background-position:center; background-size:contain; background-image: url('<?php echo base_url() . $key['prod_image']; ?>');">
-                                    <div class="w3-col l12">
-                                         overlay for action div 
-                                        <div class="w3-col l12 saved-image">
-                                            <div class="w3-col l12 w3-center" style="margin-top: 30px">
-                                                <a href="#" title="View Product" class="btn w3-xlarge w3-text-orange allImage-btn" onclick="getProductCategory(<?php echo $key['cat_id']; ?>,<?php echo $key['prod_id']; ?>)"><span class="fa fa-search-plus" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?> "></span></a>									
-                                                <a id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" title="Remove product" class="btn w3-xlarge w3-text-orange allImage-btn"><span class="fa fa-minus-circle"></span></a>
-                                            </div>
-                                            <div class="w3-text-white" style="padding: 0 4px 0 4px">
-                                                <label class="w3-tiny"><?php //echo $key['cat_name'];        ?></label>
-                                            </div>
-                                        </div>
-                                         overlay for action div ends 
-                                    </div>
-                                </div>
-                            </div>
-                             Image Div ends 	
-                             Modal for show images 	
-                            <div id="productModal_<?php echo $key['prod_id']; ?>" class="modal fade" role="dialog">
-                                <div class="modal-dialog modal-md">
-                                     Modal content
-                                    <center><a data-dismiss="modal" title="Close Image" class="btn fa fa-close w3-xlarge w3-padding-small w3-text-white"></a></center>
-                                    <div class="modal-content">
-                                        <div class="modal-body ">
-                                            <img class="img w3-center" src="<?php echo base_url() . $key['prod_image']; ?>" style="height: 100%; width: 100%;">
-                                            <label class="w3-margin-top w3-label">Product Category: </label><span id="prod_category_<?php echo $key['prod_id']; ?>"><b></b></span><br>                                   
-                                            <label class="w3-margin-top w3-label">Product Name: </label><span><b> <?php echo $key['product_name']; ?></b></span><br>                                   
-                                            <label class="w3-margin-top w3-label">Product Description: </label><span><b class="w3-small"> <?php echo $key['prod_description']; ?></b></span>
-                                        </div>							
-                                    </div>
-                                </div>
-                            </div>
-                             modal for show image 
-                            <?php
-//                        }
-//                    } else {
-//                        echo '<div class="w3-col l12 w3-center"><h4>Oops! You don\'t have any products available.</h4></div>';
-//                    }
-                    ?>
-                </div>
-
-            </div>-->
+        </div>         
         </div>
     </body>
     <script>

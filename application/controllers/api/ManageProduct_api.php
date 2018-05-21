@@ -54,8 +54,88 @@ class ManageProduct_api extends REST_Controller {
 
     public function addProduct_post() {
         $data = ($_POST);
+        extract($data);
+        //print_r($data);die();
+//------------checking the product name is not empty------------//
+        if(empty($product_name)){
+         //set the response and exit
+            $this->response([
+                'status' => 500,
+                'status_message' => 'Please Enter Product Name.'
+            ], REST_Controller::HTTP_NOT_FOUND);       
+        }
+       ////------------checking the product name is not empty------------//
+
+ //------------checking the product description is empty------------//
+
+        if(empty($product_description) ){     
+            $this->response([
+                'status' => 500,
+                'status_message' => 'Please Enter your Product Description.'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        //die();        
+        }
+         //-------------------ends------------//
+ //------------checking the user id is empty------------//
+
+        if(empty($user_id) ){
+
+            $this->response([
+                'status' => 500,
+                'status_message' => 'User Id Is Not Found.'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        //die();        
+        }
+         //--------------------------ends -----------------------//
+ //------------checking the product category id is empty------------//
+
+        if(empty($cat_id) ){
+
+            $this->response([
+                'status' => 500,
+                'status_message' => 'Product Category Not Found.'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        //die();        
+        }
+         //------------ ----------ends ------------//
+ //------------checking the product is posted by value is empty------------//
+
+        if(empty($posted_by) ){
+            
+            $this->response([
+                'status' => 500,
+                'status_message' => 'Please Enter The User Name For Product Posted By .'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        //die();        
+        }
+         //-------------------ends -------------------------------//
+
+        //------------checking the product images is empty------------//
+
+        if(empty($prod_images) ){
+            
+            $this->response([
+                'status' => 500,
+                'status_message' => 'Product Image Is not Found .'
+            ], REST_Controller::HTTP_NOT_FOUND);
+        //die();        
+        }
+         //-------------------ends -------------------------------//
+
+
         $result = $this->Product_model->addProduct($data);
-        return $this->response($result);
+
+        if($result == TRUE){
+            $this->response([
+            'status' => 200,
+             'status_message' => 'Product Added Successfully.'], REST_Controller::HTTP_OK);
+
+        }else{
+            $this->response([
+            'status' => 500,
+             'status_message' => 'Something Went Wrong..! Product Not Added Successfully.'], REST_Controller::HTTP_PRECONDITION_FAILED);
+        }
+        //return $this->response($result);
     }
 
 //--------fun for save or add product to product table-----------------------//
@@ -63,8 +143,33 @@ class ManageProduct_api extends REST_Controller {
 
     public function removeProduct_get() {
         extract($_GET);
+     //------------checking the Product ID is empty or numeric------------//
+
+        if (!(is_numeric($prod_id))) {
+           if (empty($prod_id)) {
+               $this->response([
+                   'status' => 500,
+                   'status_message' => 'Product Id Is Not Found.!'], REST_Controller::HTTP_NOT_FOUND);                 
+           } else {
+               $this->response([
+                   'status' => 500,
+                   'status_message' => 'Product ID should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+           }
+       }
+
+ //--------------------ends---------------------------------//
         $result = $this->Product_model->removeProduct($prod_id);
-        return $this->response($result);
+
+        if($result == TRUE){
+             $this->response([
+            'status' => 200,
+             'status_message' => 'Product Removed Successfully.'], REST_Controller::HTTP_OK);
+        }else{
+            $this->response([
+            'status' => 500,
+             'status_message' => 'Something Went Wrong..! Product Not Removed Successfully.'], REST_Controller::HTTP_PRECONDITION_FAILED);
+        }
+
     }
 
 //--------fun for delete or remove product to product table-----------------------//
