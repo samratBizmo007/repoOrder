@@ -17,9 +17,9 @@ class User_profile extends CI_Controller {
         $data['link_user_id'] = $user_id;
         $this->load->library('user_agent');
 
-        $data['userDetails'] = User_profile::getUserDetails($user_id);
-        $data['prod_count'] = User_profile::getProductCountBy_userid($user_id);
-        $data['products'] = User_profile::getUserProducts($user_id);
+        $data['userDetails'] = User_profile::getUserDetails(base64_decode($profileuser_id));
+        $data['prod_count'] = User_profile::getProductCountBy_userid();
+        $data['products'] = User_profile::getUserProducts(base64_decode($profileuser_id));
         //print_r($data['userDetails']);die();
         if ($this->agent->is_mobile()) {
             $this->load->view('includes/mobile/header');
