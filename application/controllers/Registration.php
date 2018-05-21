@@ -85,7 +85,6 @@ class Registration extends CI_controller {
                 'register_email' => $register_email,
                 'register_countryCode' => $mobile_code,
                 'register_mobile_no' => $register_number,
-                    // 'register_address' => $address
             );
             //print_r($data);die();
             //create a new cURL resource 
@@ -99,6 +98,7 @@ class Registration extends CI_controller {
             $response_json = curl_exec($ch);
             curl_close($ch);
             $response = json_decode($response_json, true);
+            //print_r($response_json);die();
             //------------api ends here-----------------------------------------------//
         } else {
             // extract($_POST);

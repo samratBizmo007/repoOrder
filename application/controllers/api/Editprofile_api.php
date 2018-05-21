@@ -137,7 +137,7 @@ public function changePassword_post() {
     //--------fun for update profile-----------------------//
 
 public function updateProfileMob_post() {
-  print_r($_POST);die();
+  //print_r($_POST);die();
   $data = ($_POST);
   extract($data);
 
@@ -215,7 +215,7 @@ if($result == TRUE){
 public function updateImage_post() {
   $data = ($_POST);
   extract($data);
-  print_r($data);die();
+  //print_r($data);die();
       //--------------------------checking for user id is empty---------------//
   if(empty($user_id)){
          //set the response and exit

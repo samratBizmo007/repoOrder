@@ -92,12 +92,13 @@ class Feeds extends CI_Controller {
 	
 // --------- this function gets all latest product feeds web---------------//
 	public function getTimeline_web() {
+        $user_id = $this->session->userdata('user_id');
 		extract($_POST);
 		//print_r($_POST);die();
         //-----------------------api for get the feeds which are posetd by all users-----------//
         $apiKey = 'jumla@1234';
 		$path = base_url();
-		$url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start;
+		$url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start.'&user_id='.$user_id;
 		// $ch = curl_init($url);
 		// curl_setopt($ch, CURLOPT_HTTPGET, true);
 		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -247,11 +248,12 @@ class Feeds extends CI_Controller {
 
     // --------- this function gets all latest product feeds for mobile---------------//
     public function getTimeline_mob() {
+        $user_id = $this->session->userdata('user_id');
     	extract($_POST);
 		//print_r($_POST);die();
         $apiKey = 'jumla@1234';
     	$path = base_url();
-    	$url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start;
+    	$url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start.'&user_id='.$user_id;
     	// $ch = curl_init($url);
     	// curl_setopt($ch, CURLOPT_HTTPGET, true);
     	// curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
