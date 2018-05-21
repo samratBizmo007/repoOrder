@@ -98,7 +98,7 @@ error_reporting(E_ERROR | E_PARSE);
                                     </select>
                                 </div>
                                 <div class="w3-col l8 s8 w3-padding-left">
-                                    <input type="text" class="w3-input w3-light-grey w3-border w3-small" placeholder="mobile no" name="register_number" id="register_number" required>
+                                    <input type="number" class="w3-input w3-light-grey w3-border w3-small" placeholder="mobile no" name="register_number" id="register_number" required>
                                 </div>
                                 <!-- <div class="w3-col l4 s4" style=" padding-right: 5px;">
                                     <input type="text" name="mobile_code" id="mobile_code" value="965" class="w3-input w3-border w3-light-grey" pattern="[0-9]{3}" oninvalid="this.setCustomValidity('No whitespaces, Enter Only 3 Digit Country Code.')" oninput="setCustomValidity('')" placeholder="Code" required>
