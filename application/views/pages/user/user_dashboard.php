@@ -75,7 +75,7 @@ error_reporting(E_ERROR | E_PARSE);
     $('#load_feeds').append(data);
     if(data == '')
     {
-     $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> Oops! No more Feeds available. </b></div>');
+     $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
      action = 'active';
    }
    else
