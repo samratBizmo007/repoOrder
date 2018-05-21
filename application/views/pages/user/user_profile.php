@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(E_ERROR | E_PARSE);
 $user_id = $this->session->userdata('user_id');
+$id_Arr=explode('|', base64_decode($user_id));
+$id=$id_Arr[1];
 ?>
 <!DOCTYPE html>
 <html>
@@ -112,11 +114,17 @@ $user_id = $this->session->userdata('user_id');
                     </div>
                     <div class="w3-col l8 w3-margin-top">
                         <label class="w3-large"><?php echo $userDetails['status_message'][0]['username']; ?></label>
-                        <?php if ($link_user_id == $user_id) { ?>                          
+                        <?php if ($link_user_id == $id) { ?>                          
                             <a class="btn w3-right" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-text-grey"><b>Edit Profile </b><i class="w3-medium w3-text-black fa fa-gear"></i></span></a>
                         <?php } ?>
                         <div class="w3-col l12 w3-margin-bottom">
-                            <div class="w3-col l8"><b><?php echo $prod_count; ?></b> Post(s)</div>
+                            <?php 
+                            $userPost='0';
+                            if($products['status']!=500){
+                                $userPost=count($products['status_message']);
+                            }
+                            ?>
+                            <div class="w3-col l8"><b><?php echo $userPost; ?></b> Post(s)</div>
                         </div>
                         <div class="w3-col l12">
                             <div class="w3-col l8"><b>
@@ -257,25 +265,25 @@ $user_id = $this->session->userdata('user_id');
                                                                                 foreach ($imageArr as $image) {
                                                                                     ?>
                                                                                     <div class="w3-col l12 item <?php echo $active; ?> w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
-                                                                                      
-                                                                                  </div>
-                                                                                  <?php
-                                                                                  $active = '';
-                                                                              }
-                                                                              ?>
-                                                                          </div>
 
-                                                                          <!-- Left and right controls -->
-                                                                          <a class="left carousel-control" href="#image_slider_<?php echo $key['prod_id']; ?>" data-slide="prev">
-                                                                            <span class="glyphicon glyphicon-chevron-left"></span>
-                                                                            <span class="sr-only">Previous</span>
-                                                                        </a>
-                                                                        <a class="right carousel-control" href="#image_slider_<?php echo $key['prod_id']; ?>" data-slide="next">
-                                                                            <span class="glyphicon glyphicon-chevron-right"></span>
-                                                                            <span class="sr-only">Next</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <?php
+                                                                                    </div>
+                                                                                    <?php
+                                                                                    $active = '';
+                                                                                }
+                                                                                ?>
+                                                                            </div>
+
+                                                                            <!-- Left and right controls -->
+                                                                            <a class="left carousel-control" href="#image_slider_<?php echo $key['prod_id']; ?>" data-slide="prev">
+                                                                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                                                                <span class="sr-only">Previous</span>
+                                                                            </a>
+                                                                            <a class="right carousel-control" href="#image_slider_<?php echo $key['prod_id']; ?>" data-slide="next">
+                                                                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                                                                <span class="sr-only">Next</span>
+                                                                            </a>
+                                                                        </div>
+                                                                        <?php
                                             } //-------end of if count of images
                                             else {
                                                 ?>

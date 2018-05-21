@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(E_ERROR | E_PARSE);
 $user_id = $this->session->userdata('user_id');
+
+$id_Arr=explode('|', base64_decode($user_id));
+$id=$id_Arr[1];
 ?>
 <!DOCTYPE html>
 <html>
@@ -95,9 +98,15 @@ $user_id = $this->session->userdata('user_id');
                         </div>
                         <div class="w3-col s8">
                             <div class="w3-col s12">
-                                <label class="w3-small"><b><?php echo $prod_count; ?></b> Post(s)</label> 
+                                <?php 
+                                $userPost='0';
+                                if($products['status']!=500){
+                                    $userPost=count($products['status_message']);
+                                }
+                                ?>
+                                <label class="w3-small"><b><?php echo $userPost; ?></b> Post(s)</label> 
                             </div>
-                            <?php if ($link_user_id == $user_id) { ?>                          
+                            <?php if ($link_user_id == $id) { ?>                          
                                 <div class="w3-col s12 w3-margin-bottom">
                                     <a class="btn btn-block w3-padding-tiny w3-border w3-center w3-small" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-small bluish-green "><b>Edit Profile </b></span></a>
                                 </div>

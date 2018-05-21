@@ -9,7 +9,11 @@ class User_profile extends CI_Controller {
     }
 
     public function index($profileuser_id='') {
-        $user_id = base64_decode($profileuser_id);
+        // decrypting userID
+        $id = base64_decode(base64_decode($profileuser_id));
+        $id_Arr=explode('|', $id);
+        $user_id=$id_Arr[1];
+
         $data['link_user_id'] = $user_id;
         $this->load->library('user_agent');
 
