@@ -467,7 +467,7 @@ function checkEmail_exist($email_id) {
 //  function ends
     //--------------Logout User-----------------------------//
     function logout_user($user_id) {
-        $sql = "UPDATE customer_tab SET active='0' WHERE user_id='$user_id'";
+        $sql = "UPDATE customer_tab SET active='0' WHERE unique_id='$user_id'";
         //echo $sql;die();
         $this->db->query($sql);
         return $this->db->affected_rows();

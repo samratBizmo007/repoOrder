@@ -236,7 +236,7 @@ public function regretProduct($prod_no, $order_id) {
     if ($result->num_rows() <= 0) {
         $response = array(
             'status' => 500,
-            'status_message' => 'Oops! No recent Feed available.');
+            'status_message' => 'No recent Feed available.');
     } else {
         $response = array(
             'status' => 200,
@@ -256,7 +256,7 @@ public function regretProduct($prod_no, $order_id) {
     if ($result->num_rows() <= 0) {
         $response = array(
             'status' => 500,
-            'status_message' => 'Oops! No more Feeds available.');
+            'status_message' => 'No more Feeds available.');
     } else {
         $response = array(
             'status' => 200,

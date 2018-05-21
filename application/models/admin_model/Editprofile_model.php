@@ -19,7 +19,7 @@ class Editprofile_model extends CI_Model {
 
         $sql = "UPDATE user_tab SET full_name='$fullname',"
         . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
-        . " phone='$phone',country_code = '$countryCode',user_image='$imagePath',whatsapp_no = '$whatsapp_no',company_name='".addslashes($company_name)."' WHERE user_id = '$user_id'";
+        . " phone='$phone',country_code = '$countryCode',user_image='$imagePath',whatsapp_no = '$whatsapp_no',company_name='".addslashes($company_name)."' WHERE unique_id = '$user_id'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
@@ -45,7 +45,7 @@ class Editprofile_model extends CI_Model {
         
         $sql = "UPDATE user_tab SET full_name='$fullname',"
         . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
-        . " phone='$phone',country_code = '$countryCode',whatsapp_no = '$whatsapp_no',company_name='".addslashes($company_name)."' WHERE user_id = '$user_id'";
+        . " phone='$phone',country_code = '$countryCode',whatsapp_no = '$whatsapp_no',company_name='".addslashes($company_name)."' WHERE unique_id = '$user_id'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
@@ -63,7 +63,7 @@ class Editprofile_model extends CI_Model {
         extract($data);
         //print_r($data);die();
         
-        $sql = "UPDATE user_tab SET user_image='$imagePath' WHERE user_id = '$user_id'";
+        $sql = "UPDATE user_tab SET user_image='$imagePath' WHERE unique_id = '$user_id'";
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
@@ -86,7 +86,7 @@ class Editprofile_model extends CI_Model {
 //print_r($checkCurrPassword);die();
         if ($checkCurrPassword == 1) {
             $new_pass = base64_encode($new_password);
-            $sql = "UPDATE user_tab SET password='$new_pass' WHERE user_id = '$user_id'";
+            $sql = "UPDATE user_tab SET password='$new_pass' WHERE unique_id = '$user_id'";
             //echo $sql;die();
             $result = $this->db->query($sql);
             if ($this->db->affected_rows()>0) {
@@ -118,7 +118,7 @@ class Editprofile_model extends CI_Model {
     public function checkCurrPassword_exist($curr_password, $user_id) {
         $curr_pass = base64_encode($curr_password);
 
-        $sql = "SELECT * FROM user_tab WHERE user_id = '$user_id' AND password = '$curr_pass'";
+        $sql = "SELECT * FROM user_tab WHERE unique_id = '$user_id' AND password = '$curr_pass'";
         //echo $sql;die();
         $result = $this->db->query($sql);
         if ($result->num_rows() <= 0) {

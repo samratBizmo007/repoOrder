@@ -13,7 +13,7 @@ class Userprofile_model extends CI_Model {
 
 //-------------fun for get user details from usertab----------------------------------//    
     public function getUserDetails($user_id) {
-        $sql = "SELECT * FROM user_tab WHERE user_id = '$user_id'";
+        $sql = "SELECT * FROM user_tab WHERE unique_id = '$user_id'";
         $result = $this->db->query($sql);
         if ($result->num_rows() > 0) {
              $response = array(
