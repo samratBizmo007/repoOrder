@@ -277,7 +277,7 @@ $id=$id_Arr[1];
 
                                                     <!-- Delete product button -->
                                                     <div class="w3-col l12  w3-small w3-padding-top ">
-                                                        <?php if ($link_user_id == $user_id) { ?>
+                                                        <?php if ($link_user_id == $id) { ?>
                                                             <a href="#" id="Removebtn_<?php echo $key['prod_id']; ?>" onclick="RemoveProduct(<?php echo $key['prod_id']; ?>);" class="w3-red w3-left w3-button" style="padding: 3px;"><span>Delete Product</span></a>
                                                         <?php } ?>
                                                         <a style="padding: 0" class="btn w3-right" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($key['cat_id']); ?>"><i class="w3-small "> <?php echo $key['category_name']; ?></i></a>
