@@ -56,21 +56,22 @@ class Manage_products extends CI_Controller {
     //------------fun for remove product-----------------------//
     public function removeProduct() {
         extract($_POST);
-        //$apiKey = 'jumla@1234';        
+        //$apiKey = 'jumla@1234'; 
+        //print_r($)       
         $path = base_url();
-        $header = array('prod_id' =>  $prod_id);
+        //$header = array('prod_id' =>  $prod_id);
         $url = $path . 'api/ManageProduct_api/removeProduct';
           //create a new cURL resource
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array("prod_id:". $prod_id));
         $response_json = curl_exec($ch);
         //close cURL resource
         curl_close($ch);
         $response = json_decode($response_json, true);
-
+        //print_r($response_json);die();
         if ($response['status'] != 200) {
             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
             ';

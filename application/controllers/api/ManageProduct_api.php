@@ -147,7 +147,7 @@ class ManageProduct_api extends REST_Controller {
     public function removeProduct_get() {
         //extract($_GET);
         extract(getallheaders());
-        //print_r(getallheaders());die();
+        //print_r($prod_id);die();
      //------------checking the Product ID is empty or numeric------------//
 
         if (!(is_numeric($prod_id))) {
