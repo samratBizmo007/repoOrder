@@ -75,8 +75,7 @@ class ManageProduct_api extends REST_Controller {
     public function addProduct_post() {
         $data = ($_POST);
         extract($data);
-        extract(getallheaders());
-        $data['user_id'] = $user_id;
+      
         //echo $user_id;die();
         //print_r(getallheaders());die();
         //print_r($data);die();
@@ -102,7 +101,7 @@ class ManageProduct_api extends REST_Controller {
          //-------------------ends------------//
  //------------checking the user id is empty------------//
 
-        if(empty($data['user_id']) ){
+        if(empty($user_id)){
             $this->response([
                 'status' => 500,
                 'status_message' => 'User Id Is Not Found.'

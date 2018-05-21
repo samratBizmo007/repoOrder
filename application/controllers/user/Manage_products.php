@@ -132,17 +132,14 @@ class Manage_products extends CI_Controller {
         $data['cat_id'] = $cat_id;
         $data['prod_images'] = json_encode($prod_Arr);
         //print_r($data);die();
-        $header = array('user_id' =>  $user_id);
+        //$header = array('user_id' =>  $user_id);
 
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/addProduct';
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);

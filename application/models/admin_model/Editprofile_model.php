@@ -15,51 +15,7 @@ class Editprofile_model extends CI_Model {
     public function updateProfile($data) {
         extract($data);
         //print_r($data);die();
-        if ($fullname == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your Name..!');
-            return $response;
-            die();
-        }
-
-        if ($countryCode == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please select Country Code eg.965!');
-            return $response;
-            die();
-        }
-
-        if ($address == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your Address..!');
-            return $response;
-            die();
-        }
-        if ($phone == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your phone no..!');
-            return $response;
-            die();
-        }
         
-         if ($company_name == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your Company name..!');
-            return $response;
-            die();
-        }
-          if ($address == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your Address..!');
-            return $response;
-            die();
-        }
 
         $sql = "UPDATE user_tab SET full_name='$fullname',"
         . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
@@ -67,15 +23,17 @@ class Editprofile_model extends CI_Model {
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
-            $response = array(
-                'status' => 200,
-                'status_message' => 'Profile Updated Successfully..!');
+            return true;
+            // $response = array(
+            //     'status' => 200,
+            //     'status_message' => 'Profile Updated Successfully..!');
         } else {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Profile Not Updated Successfully...!');
+            return false;
+            // $response = array(
+            //     'status' => 500,
+            //     'status_message' => 'Profile Not Updated Successfully...!');
         }
-        return $response;
+       // return $response;
     }
 
     //-------UPDATE PROFILE FUNCTION ends--------------//
@@ -83,45 +41,7 @@ class Editprofile_model extends CI_Model {
     //-------UPDATE PROFILE FUNCTION--------------//
     public function updateProfileMob($data) {
         extract($data);
-        //print_r($data);die();
-        if ($fullname == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your Name..!');
-            return $response;
-            die();
-        }
-
-        if ($countryCode == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please select Country Code eg.965!');
-            return $response;
-            die();
-        }
-
-        if ($address == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your Address..!');
-            return $response;
-            die();
-        }
-        if ($phone == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your phone no..!');
-            return $response;
-            die();
-        }
-        
-         if ($company_name == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Your Company name..!');
-            return $response;
-            die();
-        }
+        //print_r($data);die();        
         
         $sql = "UPDATE user_tab SET full_name='$fullname',"
         . " website='$website', bio='".addslashes($bio)."', address='".addslashes($address)."',"
@@ -129,13 +49,9 @@ class Editprofile_model extends CI_Model {
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
-            $response = array(
-                'status' => 200,
-                'status_message' => 'Profile Updated Successfully..!');
+            return TRUE;           
         } else {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Profile Not Updated Successfully...!');
+            return FALSE;            
         }
         return $response;
     }
@@ -151,13 +67,9 @@ class Editprofile_model extends CI_Model {
         //print_r($sql);die();
         $result = $this->db->query($sql);
         if ($result) {
-            $response = array(
-                'status' => 200,
-                'status_message' => 'Photo Updated Successfully..!');
+            return TRUE;            
         } else {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Photo Not Updated Successfully...!');
+            return FALSE;
         }
         return $response;
     }
@@ -169,27 +81,7 @@ class Editprofile_model extends CI_Model {
     public function changePassword($data) {
         extract($data);
         //print_r($data);die();
-        if ($user_id == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter User Id..!');
-            return $response;
-            die();
-        }
-        if ($curr_password == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter Current Password..!');
-            return $response;
-            die();
-        }
-        if ($new_password == '') {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Please Enter New Password..!');
-            return $response;
-            die();
-        }
+     
         $checkCurrPassword = Editprofile_model::checkCurrPassword_exist($curr_password, $user_id);
 //print_r($checkCurrPassword);die();
         if ($checkCurrPassword == 1) {

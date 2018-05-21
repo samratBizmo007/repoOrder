@@ -41,7 +41,7 @@ class Login_api extends REST_Controller {
         if(empty($register_username) ){     
             $this->response([
                 'status' => 500,
-                'status_message' => 'Please Enter User your Username.'
+                'status_message' => 'Please Enter your Username.'
             ], REST_Controller::HTTP_NOT_FOUND);
         //die();        
         }
@@ -70,8 +70,7 @@ class Login_api extends REST_Controller {
          //------------ ----------ends ------------//
  //------------checking the Country Code is empty------------//
 
-        if(empty($register_countryCode) ){
-            
+        if(empty($register_countryCode)){            
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Select Country Code.'

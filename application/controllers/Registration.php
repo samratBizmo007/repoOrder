@@ -91,15 +91,11 @@ class Registration extends CI_controller {
             //create a new cURL resource 
             //--------api for register customer--using api key-------------------------//
             $path = base_url();
-            $apiKey = 'jumla@1234';
             $url = $path . 'api/Login_api/registerCustomer';
             $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);            
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             $response_json = curl_exec($ch);
             curl_close($ch);
             $response = json_decode($response_json, true);
@@ -120,16 +116,12 @@ class Registration extends CI_controller {
             );
             //print_r($data);die();
             //------------api for register seller -------------------------------------//
-            $apiKey = 'jumla@1234';
             $path = base_url();
             $url = $path . 'api/Login_api/registerSeller';
             $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
             curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);            
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             $response_json = curl_exec($ch);
             curl_close($ch);
             $response = json_decode($response_json, true);
