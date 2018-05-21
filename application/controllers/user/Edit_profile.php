@@ -36,7 +36,7 @@ class Edit_profile extends CI_Controller {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getUserDetails';
+        $url = $path.'api/Userprofile_api/getUserDetails';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -268,7 +268,7 @@ class Edit_profile extends CI_Controller {
         $data['imagePath'] = $imagepath;
         $data['user_id'] = $user_id;
         $path = base_url();
-        $url = $path . 'api/Editprofile_api/updateImage';
+        $url = $path.'api/Editprofile_api/updateImage';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
@@ -276,7 +276,7 @@ class Edit_profile extends CI_Controller {
         $response_json = curl_exec($ch);
         curl_close($ch);
         $response = json_decode($response_json, true);
-        //print_r($response_json);die();
+        print_r($response_json);die();
 
         if ($response['status'] != 200) {
             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
