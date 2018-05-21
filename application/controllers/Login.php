@@ -89,11 +89,11 @@ class Login extends CI_Controller {
                 $this->input->set_cookie($cookie_username); //-------set username to coockies-------------//
 
                 $cookie_password= array(
-                 'name' => 'jumla_pass',
-                 'value' => $login_password,
-                 'expire' => '86400'
+                   'name' => 'jumla_pass',
+                   'value' => $login_password,
+                   'expire' => '86400'
 
-             );
+               );
             //print_r($cookie_password);die();
                 $this->input->set_cookie($cookie_password);     //-------set username to coockies-------------//       
             }
@@ -102,73 +102,69 @@ class Login extends CI_Controller {
             </div>
             <script>
             window.setTimeout(function() {
-               $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
-                  $(this).remove(); 
-                  });
-                  window.location.href="' . base_url() . 'user/feeds";
-                  }, 100);
-                  </script>
-                  ';
-              }else{
-                echo '<div class="alert alert-danger ">
-                <strong>' . $response['status_message'] . '</strong> 
-                </div>          
-                ';
-            }        
-        }
+             $(".alert").fadeTo(1000, 0).slideUp(1000, function(){
+              $(this).remove(); 
+              });
+              window.location.href="' . base_url() . 'user/feeds";
+              }, 100);
+              </script>
+              ';
+          }else{
+            echo '<div class="alert alert-danger ">
+            <strong>' . $response['status_message'] . '</strong> 
+            </div>          
+            ';
+        }        
+    }
 //-----------------------function ends-----------------------------//
 
 // ---------------function to logout------------------------//
-        public function logout() {
+    public function logout() {
 
-            $user_id = $this->session->userdata('user_id');
+        $user_id = $this->session->userdata('user_id');
 
         // Remove local Facebook session
-            $this->facebook->destroy_session();
+        $this->facebook->destroy_session();
+        FB.logout;
         // Remove user data from session
-            $this->session->unset_userdata('userData');
+        $this->session->unset_userdata('userData');
         // Redirect to login page
 
         //if logout success then destroy session and unset session variables
-            $this->session->unset_userdata(array("user_id" => "", "user_name" => "","user_role" => "","cat_id" => ""));
-            $this->session->sess_destroy();
+        $this->session->unset_userdata(array("user_id" => "", "user_name" => "","user_role" => "","cat_id" => ""));
+        $this->session->sess_destroy();
 
      // ----------delete cookie---------------------
-            delete_cookie("jumla_uname");
-            delete_cookie("jumla_pass");    
+        delete_cookie("jumla_uname");
+        delete_cookie("jumla_pass");    
 
-            redirect(base_url());
-        }
+        redirect(base_url());
+    }
 // ---------------------function ends----------------------------------//
 
 // ----------------facebook login code-------------------------//
-        public function fblogin(){
-            $userData = array();
+    public function fblogin(){
+        $userData = array();
         //echo $this->facebook->is_authenticated();
         // Check if user is logged in
        // $this->load->view('pages/login');
 
-            if($this->facebook->is_authenticated()){
+        if($this->facebook->is_authenticated()){
             // Get user facebook profile details
-                $fbUserProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,picture');
-            //print_r($fbUserProfile);die();
+            $fbUserProfile = $this->facebook->request('get', '/me?fields=id,first_name,last_name,email,picture');
+            //print_r($fbUserProfile['error']);die();
 
+                // -----------if on login facebook page, pressed NOT NOW link-----------
+            if(!isset($fbUserProfile['error'])){
             // Preparing data for database insertion
                 $userData['oauth_provider'] = 'facebook';
                 $userData['oauth_uid'] = $fbUserProfile['id'];
                 $userData['first_name'] = $fbUserProfile['first_name'];
                 $userData['last_name'] = $fbUserProfile['last_name'];
                 $userData['email'] = $fbUserProfile['email'];
-            //$userData['gender'] = $fbUserProfile['gender'];
-            //$userData['locale'] = $fbUserProfile['locale'];
-            //$userData['cover'] = $fbUserProfile['cover']['source'];
                 $userData['picture'] = $fbUserProfile['picture']['data']['url'];
-            //$userData['link'] = $fbUserProfile['link'];
-            //$userData['role'] = 1;
-
+                //print_r($userData);die();
             // Insert or update user data
-            //$userID = $this->user->checkUser($userData);
-
                 $path = base_url();
                 $url = $path.'api/FacebookUser_api/checkUser';
                 $ch = curl_init($url);
@@ -200,8 +196,12 @@ class Login extends CI_Controller {
                     redirect('user/feeds');
                 }
             }
+            else{
+                redirect(base_url());
+            }
         }
-// ------------------facebook login code ends -----------------//
     }
+// ------------------facebook login code ends -----------------//
+}
 
-    ?>
+?>
