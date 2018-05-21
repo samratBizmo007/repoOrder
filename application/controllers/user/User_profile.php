@@ -18,7 +18,6 @@ class User_profile extends CI_Controller {
         $this->load->library('user_agent');
 
         $data['userDetails'] = User_profile::getUserDetails(base64_decode($profileuser_id));
-        $data['prod_count'] = User_profile::getProductCountBy_userid();
         $data['products'] = User_profile::getUserProducts(base64_decode($profileuser_id));
         //print_r($data['userDetails']);die();
         if ($this->agent->is_mobile()) {
@@ -66,21 +65,5 @@ class User_profile extends CI_Controller {
     }
 
     //------------fun for get posted products  -----------------------//
-    //------------fun for get the count of posted products---------------------//
 
-    public function getProductCountBy_userid($user_id) {
-        //$user_id = $this->session->userdata('user_id');
-        $path = base_url();
-        $url = $path . 'api/Userprofile_api/getProductCountBy_userid?user_id=' . $user_id;
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPGET, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response_json = curl_exec($ch);
-        curl_close($ch);
-        $response = json_decode($response_json, true);
-        //print_r($response_json);die();
-        return $response;
-    }
-
-    //------------fun for get the count of posted products ends---------------------//
 }
