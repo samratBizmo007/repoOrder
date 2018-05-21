@@ -56,15 +56,16 @@ class Manage_products extends CI_Controller {
     //------------fun for remove product-----------------------//
     public function removeProduct() {
         extract($_POST);
-        $apiKey = 'jumla@1234';        
+        //$apiKey = 'jumla@1234';        
         $path = base_url();
-        $url = $path . 'api/ManageProduct_api/removeProduct?prod_id=' . $prod_id;
+        $header = array('prod_id' =>  $prod_id);
+        $url = $path . 'api/ManageProduct_api/removeProduct';
           //create a new cURL resource
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         $response_json = curl_exec($ch);
         //close cURL resource
         curl_close($ch);
@@ -126,17 +127,19 @@ class Manage_products extends CI_Controller {
         }
         $apiKey = 'jumla@1234';
         $data['posted_by'] = $user_name;
-        $data['user_id'] = $user_id;
+        //$data['user_id'] = $user_id;
         $data['cat_id'] = $cat_id;
         $data['prod_images'] = json_encode($prod_Arr);
         //print_r($data);die();
+        $header = array('user_id' =>  $user_id);
+
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/addProduct';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $response_json = curl_exec($ch);

@@ -55,6 +55,10 @@ class ManageProduct_api extends REST_Controller {
     public function addProduct_post() {
         $data = ($_POST);
         extract($data);
+        extract(getallheaders());
+        $data['user_id'] = $user_id;
+        //echo $user_id;die();
+        //print_r(getallheaders());die();
         //print_r($data);die();
 //------------checking the product name is not empty------------//
         if(empty($product_name)){
@@ -78,8 +82,7 @@ class ManageProduct_api extends REST_Controller {
          //-------------------ends------------//
  //------------checking the user id is empty------------//
 
-        if(empty($user_id) ){
-
+        if(empty($data['user_id']) ){
             $this->response([
                 'status' => 500,
                 'status_message' => 'User Id Is Not Found.'
@@ -142,7 +145,9 @@ class ManageProduct_api extends REST_Controller {
 //--------fun for delete or remove product to product table-----------------------//
 
     public function removeProduct_get() {
-        extract($_GET);
+        //extract($_GET);
+        extract(getallheaders());
+        //print_r(getallheaders());die();
      //------------checking the Product ID is empty or numeric------------//
 
         if (!(is_numeric($prod_id))) {
