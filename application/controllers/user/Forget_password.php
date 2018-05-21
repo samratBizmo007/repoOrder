@@ -15,7 +15,6 @@ class Forget_password extends CI_Controller {
     public function getPassword() {
         extract($_POST);
         //print_r($_POST);die();
-        
         //Connection establishment, processing of data and response from REST API		
         $data = array(
             'forget_email' => $forget_email

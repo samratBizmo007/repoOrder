@@ -364,6 +364,14 @@ public function verify_otpForRegisterCustomer_post() {
     //-------------------------------------------------------------//
 public function getPassword_post(){
     extract($_POST);
+
+    if ($forget_email=='') {
+        $this->response([
+            'status' => 500,
+            'status_message' => 'Email ID field is empty. All parameters are required!'
+        ], REST_Controller::HTTP_PRECONDITION_FAILED);
+        die();
+    }
     //returns data of particular email,
     $result = $this->login->getPassword($forget_email);
 
