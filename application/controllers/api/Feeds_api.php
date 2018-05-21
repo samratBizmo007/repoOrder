@@ -92,7 +92,7 @@ class Feeds_api extends REST_Controller {
            if (empty($limit)) {
                $this->response([
                    'status' => 500,
-                   'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_NOT_FOUND);                 
+                   'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
            } else {
                $this->response([
                    'status' => 500,
@@ -106,7 +106,7 @@ class Feeds_api extends REST_Controller {
            if (empty($start)) {
                $this->response([
                    'status' => 500,
-                   'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_NOT_FOUND);                 
+                   'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
            } else {
                $this->response([
                    'status' => 500,
@@ -126,7 +126,7 @@ class Feeds_api extends REST_Controller {
         case '500': //-----------------if response is 500 it returns error message
         $this->response([
             'status' => 500,     
-            'status_message' => 'Oops! No more Feeds available.'],REST_Controller::HTTP_NOT_FOUND);              
+            'status_message' => 'Oops! No more Feeds available.'],REST_Controller::HTTP_PRECONDITION_FAILED);              
         break;       
         
         default:

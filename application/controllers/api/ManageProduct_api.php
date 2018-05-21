@@ -65,7 +65,7 @@ class ManageProduct_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'No products available for this user!'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         }
     }
 
@@ -85,7 +85,7 @@ class ManageProduct_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Enter Product Name.'
-            ], REST_Controller::HTTP_NOT_FOUND);       
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);       
         }
        ////------------checking the product name is not empty------------//
 
@@ -95,7 +95,7 @@ class ManageProduct_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Enter your Product Description.'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //-------------------ends------------//
@@ -105,7 +105,7 @@ class ManageProduct_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'User Id Is Not Found.'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //--------------------------ends -----------------------//
@@ -116,7 +116,7 @@ class ManageProduct_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Product Category Not Found.'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //------------ ----------ends ------------//
@@ -127,7 +127,7 @@ class ManageProduct_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Enter The User Name For Product Posted By .'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //-------------------ends -------------------------------//
@@ -139,7 +139,7 @@ class ManageProduct_api extends REST_Controller {
             $this->response([
                 'status' => 500,
                 'status_message' => 'Product Image Is not Found .'
-            ], REST_Controller::HTTP_NOT_FOUND);
+            ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
         }
          //-------------------ends -------------------------------//
@@ -173,7 +173,7 @@ class ManageProduct_api extends REST_Controller {
            if (empty($prod_id)) {
                $this->response([
                    'status' => 500,
-                   'status_message' => 'Product Id Is Not Found.!'], REST_Controller::HTTP_NOT_FOUND);                 
+                   'status_message' => 'Product Id Is Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
            } else {
                $this->response([
                    'status' => 500,
