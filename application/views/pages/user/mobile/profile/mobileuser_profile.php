@@ -100,8 +100,6 @@ $user_id = $this->session->userdata('user_id');
                             <?php if ($link_user_id == $user_id) { ?>                          
                                 <div class="w3-col s12 w3-margin-bottom">
                                     <a class="btn btn-block w3-padding-tiny w3-border w3-center w3-small" href="<?php echo base_url(); ?>user/edit_profile"><span class="w3-small bluish-green "><b>Edit Profile </b></span></a>
-                                    <a class="btn btn-block w3-padding-tiny w3-border w3-center w3-small" href="<?php echo base_url(); ?>user/edit_profile1"><span class="w3-small bluish-green "><b>Edit Profile 1 </b></span></a>
-                                    <a class="btn btn-block w3-padding-tiny w3-border w3-center w3-small" href="<?php echo base_url(); ?>user/edit_profile2"><span class="w3-small bluish-green "><b>Edit Profile 2 </b></span></a>
                                 </div>
                             <?php } ?>
                         </div>
