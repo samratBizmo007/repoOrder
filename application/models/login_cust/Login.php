@@ -94,61 +94,61 @@ class Login extends CI_Model {
     // -----------------------USER REGISTERATION MODEL by mobile ends----------------------//
     // ----------------------FORGET PASSWORD MODEL-------------------------------------//
     public function getPassword($forget_email) {
-     
-    $query = "SELECT password FROM user_tab WHERE email='$forget_email' AND fb_id=0";
+        
+        $query = "SELECT password FROM user_tab WHERE email='$forget_email' AND fb_id=0";
         //echo $query;die();
-    $result = $this->db->query($query);
-    if ($result->num_rows() <= 0) {
-        $response = array(
-            'status' => 404,
-            'status_message' => 'Email ID not registered. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
-    } else {
-        $password = '';
-        foreach ($result->result_array() as $row) {
-            $password = $row['password'];
-        }
+        $result = $this->db->query($query);
+        if ($result->num_rows() <= 0) {
+            $response = array(
+                'status' => 404,
+                'status_message' => 'Email ID not registered. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
+        } else {
+            $password = '';
+            foreach ($result->result_array() as $row) {
+                $password = $row['password'];
+            }
             //echo $password;die();
 
-        $emailSend = Login::sendPassword($forget_email, $password);
+            $emailSend = Login::sendPassword($forget_email, $password);
             //print_r($emailSend);die();
-        if ($emailSend['status'] == 200) {
-            $response = array(
-                'status' => 200,
-                'status_message' => 'Password has been sent to your registered Email ID.'
-            );
-        } else {
-            $response = array(
-                'status' => 500,
-                'status_message' => 'Email Error. Password sending failed.'
-            );
+            if ($emailSend['status'] == 200) {
+                $response = array(
+                    'status' => 200,
+                    'status_message' => 'Password has been sent to your registered Email ID.'
+                );
+            } else {
+                $response = array(
+                    'status' => 500,
+                    'status_message' => 'Email Error. Password sending failed.'
+                );
+            }
         }
+        return $response;
     }
-    return $response;
-}
 
     // ----------------------FORGET PASSWORD MODEL ENDS-------------------------------------//
     // -----------------------USER REGISTERATION MODEL----------------------//
-public function registerCustomer($data) {
-    extract($data);
+    public function registerCustomer($data) {
+        extract($data);
 
-    $admin_email = '';
-    $checkEmail = login::checkEmail_exist($register_email);
+        $admin_email = '';
+        $checkEmail = login::checkEmail_exist($register_email);
      //-----------checking the email id is already registered in db
         //echo $checkEmail ; die();
-    $checkusername = login::checkUsername_exist($register_username); 
+        $checkusername = login::checkUsername_exist($register_username); 
     //-----------checking the username id is already registered in db
 
-    if ($checkEmail == 0 && $checkusername == 0) { 
+        if ($checkEmail == 0 && $checkusername == 0) { 
     //------------checking email and username is registerd true then goes to the else statement
         //--------------if it returns the false then goes to the insert data in db 
-        $data = array(
-            'role' => $user_role,
-            'username' => $register_username,
-            'password' => base64_encode($register_password),
-            'email' => $register_email,
-            'phone' => $register_mobile_no,
-            'country_code' => $register_countryCode
-        );
+            $data = array(
+                'role' => $user_role,
+                'username' => $register_username,
+                'password' => base64_encode($register_password),
+                'email' => $register_email,
+                'phone' => $register_mobile_no,
+                'country_code' => $register_countryCode
+            );
         if ($this->db->insert('user_tab', $data)) { //-----insert query for register customer
             return TRUE;            //------if insert returns true  
         } else {
@@ -223,33 +223,33 @@ public function sendUserIs_RegisteredEmail($user_name, $email_id, $admin_email,$
     $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
-        $this->email->to($admin_email);
-        $this->email->subject("New User - JUMLA BUSINESS");
-        $this->email->message('<html>
-            <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            </head>
-            <body>
-            <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-            <h2 style="color:#4CAF50; font-size:30px">New User Registered on Jumla Business.</h2>
-            <h3 style="font-size:15px;">Hello Admin,<br></h3>
-            <h3 style="font-size:15px;">New user has been registered on Jumla Business.</h3>
-            <h3 style="font-size:15px;">Following are the user details-</h3>
-            <h3>Registered as: ' . $role . '</h3>
-            <h3>Username: ' . $user_name . '</h3>
-            <h3>Email: ' . $email_id . '</h3>
-            <div class="col-lg-12">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
+    $this->load->library('email', $config);
+    $this->email->set_newline("\r\n");
+    $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+    $this->email->to($admin_email);
+    $this->email->subject("New User - JUMLA BUSINESS");
+    $this->email->message('<html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body>
+        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+        <h2 style="color:#4CAF50; font-size:30px">New User Registered on Jumla Business.</h2>
+        <h3 style="font-size:15px;">Hello Admin,<br></h3>
+        <h3 style="font-size:15px;">New user has been registered on Jumla Business.</h3>
+        <h3 style="font-size:15px;">Following are the user details-</h3>
+        <h3>Registered as: ' . $role . '</h3>
+        <h3>Username: ' . $user_name . '</h3>
+        <h3>Email: ' . $email_id . '</h3>
+        <div class="col-lg-12">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
 
-            </div>
-            </body></html>');
+        </div>
+        </body></html>');
 
-        if ($this->email->send()) {
-            $response = array(
+    if ($this->email->send()) {
+        $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
             );
@@ -279,33 +279,33 @@ public function sendPassword($email_id, $password) {
     $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
-        $this->load->library('email', $config);
-        $this->email->set_newline("\r\n");
-        $this->email->from('customercare@jumlakuwait.com', "Admin Team");
-        $this->email->to($email_id);
-        $this->email->subject("Password Request-JUMLA BUSINESS");
-        $this->email->message('<html>
-            <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            </head>
-            <body>
-            <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-            <h2 style="color:#4CAF50; font-size:25px">Password for Jumla Business!</h2>
-            <h3 style="font-size:15px;">Hello Jumla User,<br></h3>
-            <h3 style="font-size:15px;">We have recieved a request to have your password for <u>Jumla Business</u>.</h3>
-            <h3 style="font-size:15px;">Following is the requested password for ' . $email_id . '</h3>
-            <h3>Password: '.base64_decode($password).'</h3>
-            <br><br>
-            <h5>Note: If you did not make this request, then kindly ignore this message.</h5>
-            <div class="col-lg-12">
-            <div class="col-lg-4"></div>
-            <div class="col-lg-4">
+    $this->load->library('email', $config);
+    $this->email->set_newline("\r\n");
+    $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+    $this->email->to($email_id);
+    $this->email->subject("Password Request-JUMLA BUSINESS");
+    $this->email->message('<html>
+        <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </head>
+        <body>
+        <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+        <h2 style="color:#4CAF50; font-size:25px">Password for Jumla Business!</h2>
+        <h3 style="font-size:15px;">Hello Jumla User,<br></h3>
+        <h3 style="font-size:15px;">We have recieved a request to have your password for <u>Jumla Business</u>.</h3>
+        <h3 style="font-size:15px;">Following is the requested password for ' . $email_id . '</h3>
+        <h3>Password: '.base64_decode($password).'</h3>
+        <br><br>
+        <h5>Note: If you did not make this request, then kindly ignore this message.</h5>
+        <div class="col-lg-12">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
 
-            </div>
-            </body></html>');
+        </div>
+        </body></html>');
 
-        if ($this->email->send()) {
-            $response = array(
+    if ($this->email->send()) {
+        $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
             );
@@ -403,24 +403,24 @@ function checkEmail_exist($email_id) {
         //$this->email->message("Dear ".$username.",\nPlease click on below URL or paste into your browser to verify your Email Address\n\n <a href='".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."'>".base_url()."auth/login/verify_email/".base64_encode($email)."?profile=".$profile_type."</a>\n"."\n\nThanks\nAdmin Team");
 
         $this->email->message('<html>
-         <head>
-         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
-         <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
-         <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
-         </head>
-         <body>
-         <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-         <h2 style="color:#4CAF50; font-size:30px">Welcome To Joomla Business!!</h2>
-         <h3 style="font-size:15px;">Hello ' . $username . ',<br></h3>
-         <h3 style="font-size:15px;">Your OTP is ' . $otp . ',<br>Please Login with OTP</h3>
+           <head>
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+           <link rel="stylesheet" href="http://jobmandi.in/css/bootstrap/bootstrap.min.css">
+           <script src="http://jobmandi.in/css/bootstrap/jquery.min.js"></script>
+           <script src="http://jobmandi.in/css/bootstrap/bootstrap.min.js"></script>
+           </head>
+           <body>
+           <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+           <h2 style="color:#4CAF50; font-size:30px">Welcome To Joomla Business!!</h2>
+           <h3 style="font-size:15px;">Hello ' . $username . ',<br></h3>
+           <h3 style="font-size:15px;">Your OTP is ' . $otp . ',<br>Please Login with OTP</h3>
 
-         <div class="col-lg-12">
-         <div class="col-lg-4"></div>
-         <div class="col-lg-4">
+           <div class="col-lg-12">
+           <div class="col-lg-4"></div>
+           <div class="col-lg-4">
 
-         </div>
-         </body></html>');
+           </div>
+           </body></html>');
 
         if ($this->email->send()) {
             $response = array(
