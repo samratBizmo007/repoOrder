@@ -120,7 +120,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <div id="message"></div>
                         </div>
                         <div class="w3-margin-bottom" style="">
-                           <input type="submit" name="register_register_submit" id="register_register_submit" class="form-control btn btn-register w3-blue" value="Sign In">
+                           <input type="submit" name="register_register_submit" id="register_register_submit" class="form-control btn btn-register w3-blue" value="Sign Up">
                        </div>
 
                    </div>
