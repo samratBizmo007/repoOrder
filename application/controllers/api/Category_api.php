@@ -15,9 +15,23 @@ class Category_api extends REST_Controller {
     // get salers as per category api
     public function getCategorySalers_get() {
         extract($_GET);
-        $result = $this->category_model->getCategorySalers($cat_id);
-        return $this->response($result);
-    }
+        extract(getallheaders());
+                //-----------------checking whatsapp no empty and numeric---------------------------//
+
+        if (!(is_numeric($cat_id))) {
+         if (empty($cat_id)) {
+             $this->response([
+                 'status' => 500,
+                 'status_message' => 'Category Id Not Found!'], REST_Controller::HTTP_NOT_FOUND);                 
+         } else {
+             $this->response([
+                 'status' => 500,
+                 'status_message' => 'Category Id should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+         }
+     }
+     $result = $this->category_model->getCategorySalers($cat_id);
+     return $this->response($result);
+ }
     // get salers as per category api ends
 
 }

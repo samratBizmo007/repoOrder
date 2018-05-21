@@ -27,15 +27,12 @@ class All_categories extends CI_Controller {
 
   //------------fun for get the all categories -----------------------//
   public function getAllCategories() {
-        $apiKey = 'jumla@1234';
         $path = base_url();
         $url = $path . 'api/ManageProduct_api/getAllCategories';
         //create a new cURL resource
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array("X-API-KEY: " . $apiKey));
         $response_json = curl_exec($ch);
         //close cURL resource
         curl_close($ch);
