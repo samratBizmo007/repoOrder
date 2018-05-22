@@ -54,7 +54,7 @@ class User extends CI_Model{
                 $user_id=0;
             // ---------get usertab user_ID-----------//
                 foreach ($user_query->result_array() as $key) {
-                    $user_id = $key['user_id'];
+                    $user_id = $key['unique_id'];
                 }
 
                 if ($user_query->num_rows() > 0) {
@@ -93,10 +93,12 @@ class User extends CI_Model{
                     $sqlInsert = "INSERT INTO user_tab (fb_id,role,username,email) values ('$fb_ID','1','$username','$email')"; 
                     $resinsert = $this->db->query($sqlInsert);
                     $user_id = $this->db->insert_id();
+
+                    $unique_id=$email.'|'.$user_id.'|'.$username;
                     
                     $response = array(
                         'status' => 200,
-                        'userID' => $user_id,
+                        'userID' => $unique_id,
                         'user_name' => $username,
                         'role' => '1',
                         'cat_id'=>'',
