@@ -49,7 +49,7 @@ $user_id = $this->session->userdata('user_id');
                         <div class="w3-col l12 w3-right">
                             <div class="w3-col l4 w3-right w3-padding">
                                 <div class="text-center w3-small profile_portfolio ">
-                                    <img class="img img-thumbnail" alt="Profile Image not found" style="height: 100%; width: 100%; object-fit:contain; " align="right" src="<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>" id="profile_imagePreview" onerror="this.src='<?php echo base_url() ?>css/logos/default_noimage.jpg'">
+                                    <img class="img img-thumbnail" alt="Profile Image not found" style="height: 100%; width: 100%; object-fit:contain; " align="right" src="<?php echo PROFILEIMAGE_PATH.$userDetails['status_message'][0]['user_image']; ?>" id="profile_imagePreview" onerror="this.src='<?php echo base_url() ?>css/logos/default_noimage.jpg'">
                                     <div class="w3-col l12">
                                         <h6>Upload a profile photo</h6>
                                         <input type="file" class="w3-input" name="profile_image" id="profile_image" onchange="readURL(this);">

@@ -42,8 +42,9 @@ define('TABLE_USERS', 'jm_user_tab');
 define('TABLE_PM', 'privmsgs');
 define('TABLE_PMTO', 'privmsgs_to');
 
-define('IMAGE_PATH', 'http://localhost/repoOrder/images/order_images/');
-define('DASBOARDIMAGE_PATH', 'http://localhost/repoOrder/images/admin/');
+define('PROFILEIMAGE_PATH', 'http://localhost/repoOrder/images/users/');
+define('PRODUCTIMAGE_PATH', 'http://localhost/repoOrder/images/product_images/');
+define('DASBOARDIMAGE_PATH', 'http://localhost/repoOrder/images/product_images/');
 
 /*
 |--------------------------------------------------------------------------

@@ -101,7 +101,7 @@ class Manage_products extends CI_Controller {
                 if (!empty(($_FILES['prod_image']['name'][$i]))) {
                     $extension = pathinfo($_FILES['prod_image']['name'][$i], PATHINFO_EXTENSION);
 
-                    $_FILES['userFile']['name'] = $product_name . '-' . $user_name . '-' . $product_image . $user_id . '.' . $extension;
+                    $_FILES['userFile']['name'] = $product_name.'_'.$user_name.'_'.$i.'.' . $extension;
                     $_FILES['userFile']['type'] = $_FILES['prod_image']['type'][$i];
                     $_FILES['userFile']['tmp_name'] = $_FILES['prod_image']['tmp_name'][$i];
                     $_FILES['userFile']['error'] = $_FILES['prod_image']['error'][$i];
@@ -117,7 +117,7 @@ class Manage_products extends CI_Controller {
 
                 if ($this->upload->do_upload('userFile')) {
                     $fileData = $this->upload->data();
-                    $imagePath = 'images/product_images/' . $fileData['file_name'];
+                    $imagePath = $fileData['file_name'];
                     // check EXIF and autorotate if needed
                     $this->load->library('image_autorotate', array('filepath' => $imagePath));
                 }

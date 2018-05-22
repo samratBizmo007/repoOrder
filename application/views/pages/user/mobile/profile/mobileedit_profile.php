@@ -27,7 +27,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 ?>
                                 <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url().$default_image; ?>" style="height: 80px; width: 80px;background-position:center; background-repeat: no-repeat; background-size:contain;">                                  
                             <?php } else { ?>
-                                <img class="img img-circle" id="profile_imagePreview" src="<?php echo base_url().$userDetails['status_message'][0]['user_image']; ?>" style="height: 80px; width: 80px;background-position:center; background-repeat: no-repeat; background-size:contain;">
+                                <img class="img img-circle" id="profile_imagePreview" src="<?php echo PROFILEIMAGE_PATH.$userDetails['status_message'][0]['user_image']; ?>" style="height: 80px; width: 80px;background-position:center; background-repeat: no-repeat; background-size:contain;">
                             <?php } ?>
                             <div class="w3-col l12">
                                 <br>

@@ -92,7 +92,7 @@ $id=$id_Arr[1];
                                 ?>
                                 <div class="w3-padding w3-border w3-circle w3-center w3-large" title="profile image" style="background-position:center; background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:80px;width:80px;"></div>
                             <?php } else { ?>
-                                <div class="w3-padding w3-border w3-black w3-circle w3-center w3-large" title="profile image" style="background-position:center; background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:80px;width:80px;">
+                                <div class="w3-padding w3-border w3-black w3-circle w3-center w3-large" title="profile image" style="background-position:center; background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo PROFILEIMAGE_PATH.$userDetails['status_message'][0]['user_image']; ?>'); height:80px;width:80px;">
                                 </div>
                             <?php } ?>
                         </div>
@@ -215,7 +215,7 @@ $id=$id_Arr[1];
                                                             ?>
                                                             <!-- Image Div -->
                                                             <div class="w3-col s6 w3-padding-small allImage-div">
-                                                                <a href="#" title="View Product" class="allImage w3-button w3-text-orange" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?>" style="background-image: url('<?php echo base_url() . $val['prod_image']; ?>');">
+                                                                <a href="#" title="View Product" class="allImage w3-button w3-text-orange" data-toggle="modal" data-target="#productModal_<?php echo $key['prod_id']; ?>" style="background-image: url('<?php echo PRODUCTIMAGE_PATH. $val['prod_image']; ?>');">
                                                                 </a>                                                               
                                                             </div> 
                                                             <?php
@@ -247,7 +247,7 @@ $id=$id_Arr[1];
                                                                                     foreach ($imageArr as $image) {
                                                                                         ?>
 
-                                                                                        <div class="w3-col l12 item <?php echo $active; ?> w3-border-bottom w3-black timeline_imgMob" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
+                                                                                        <div class="w3-col l12 item <?php echo $active; ?> w3-border-bottom w3-black timeline_imgMob" style="background-image: url('<?php echo PRODUCTIMAGE_PATH; ?><?php echo $image['prod_image']; ?>');">
                                                                                           <!-- <img src="<?php echo base_url(); ?>images/users/4.jpg" style="width: 100%;height: auto;" class="img img-responsive" > -->
                                                                                       </div>
                                                                                       <?php
@@ -265,7 +265,7 @@ $id=$id_Arr[1];
                                                         <?php
                                                         foreach ($imageArr as $image) {
                                                             ?>
-                                                            <div class="w3-col l12 w3-border-bottom w3-black timeline_imgMob" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
+                                                            <div class="w3-col l12 w3-border-bottom w3-black timeline_imgMob" style="background-image: url('<?php echo PRODUCTIMAGE_PATH; ?><?php echo $image['prod_image']; ?>');">
                                                             </div>
                                                             <?php
                                                         }

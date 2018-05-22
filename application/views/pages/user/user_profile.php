@@ -108,7 +108,7 @@ $id=$id_Arr[1];
                             ?>
                             <div class="w3-padding w3-border w3-circle w3-center w3-large" title="profile image" style="background-position:center; background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url() . $default_image; ?>'); height:150px;width:150px;"></div>
                         <?php } else { ?>
-                            <div class="w3-padding w3-border w3-black w3-circle w3-center w3-large" title="profile image" style="background-position:center; background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url() . $userDetails['status_message'][0]['user_image']; ?>'); height:150px;width:150px;">
+                            <div class="w3-padding w3-border w3-black w3-circle w3-center w3-large" title="profile image" style="background-position:center; background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo PROFILEIMAGE_PATH . $userDetails['status_message'][0]['user_image']; ?>'); height:150px;width:150px;">
                             </div>
                         <?php } ?>
                     </div>
@@ -225,7 +225,7 @@ $id=$id_Arr[1];
                                                         ?>
                                                         <!-- Image Div -->
                                                         <div class="w3-col l4 w3-padding-small allImage-div ">
-                                                            <div class="allImage w3-card-2 w3-black" style="background-position:center;background-repeat: no-repeat; background-image: url('<?php echo base_url() . $val['prod_image']; ?>');">
+                                                            <div class="allImage w3-card-2 w3-black" style="background-position:center;background-repeat: no-repeat; background-image: url('<?php echo PRODUCTIMAGE_PATH . $val['prod_image']; ?>');">
                                                                 <div class="w3-col l12">
                                                                     <!-- overlay for action div -->
                                                                     <div class="w3-col l12 saved-image">
@@ -264,7 +264,7 @@ $id=$id_Arr[1];
                                                                                 $active = 'active';
                                                                                 foreach ($imageArr as $image) {
                                                                                     ?>
-                                                                                    <div class="w3-col l12 item <?php echo $active; ?> w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
+                                                                                    <div class="w3-col l12 item <?php echo $active; ?> w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo PRODUCTIMAGE_PATH ; ?><?php echo $image['prod_image']; ?>');">
 
                                                                                     </div>
                                                                                     <?php
@@ -292,7 +292,7 @@ $id=$id_Arr[1];
                                                 <?php
                                                 foreach ($imageArr as $image) {
                                                     ?>
-                                                    <div class="w3-col l12 w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo base_url(); ?><?php echo $image['prod_image']; ?>');">
+                                                    <div class="w3-col l12 w3-border-bottom w3-black timeline_img" style="background-image: url('<?php echo PRODUCTIMAGE_PATH; ?><?php echo $image['prod_image']; ?>');">
                                                     </div>
                                                     <?php
                                                 }

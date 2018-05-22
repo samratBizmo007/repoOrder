@@ -75,12 +75,12 @@ public function getTimeline_web() {
                 <div class="w3-col l12 w3-border-bottom">
                  <div class="w3-col l1 w3-padding">';
                 // set default image for username if pofile image not available
-                $default_image = 'images/default_male.png';
+                $default_image = base_url().'images/default_male.png';
                 if($key['user_image']!=''){
-                    $default_image=$key['user_image'];
+                    $default_image=PROFILEIMAGE_PATH.$key['user_image'];
                 }
                 echo '
-                <div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$default_image.'\');"></div>
+                <div class="w3-circle w3-border user_img" style="background-image: url(\''.$default_image.'\');"></div>
                 </div>
                 <div class="col-lg-10 w3-padding-left w3-padding-top">
                 <p style="padding:0;margin:0">
@@ -122,7 +122,7 @@ public function getTimeline_web() {
                     
                     foreach ($imageArr as $image) {
                         echo '                      
-                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide" >';                        
+                        <img src="'.PRODUCTIMAGE_PATH.$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide" >';                        
                     }
                     echo '
                     </div>
@@ -138,7 +138,7 @@ public function getTimeline_web() {
                     echo '<!-- Single image div -->';
                     foreach ($imageArr as $image) {
                         echo'
-                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >';
+                        <img src="'.PRODUCTIMAGE_PATH.$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >';
                     }
                 } //----------------end of else count of images
 

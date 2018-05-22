@@ -131,12 +131,12 @@ class Feeds extends CI_Controller {
 				<div class="w3-col l12 w3-border-bottom">
 				<div class="w3-col l1 w3-padding">';
                 // set default image for username if pofile image not available
-                $default_image = 'images/default_male.png';
+                $default_image = base_url().'images/default_male.png';
                 if($key['user_image']!=''){
-                    $default_image=$key['user_image'];
+                    $default_image=PROFILEIMAGE_PATH.$key['user_image'];
                 }
                 echo '
-				<div class="w3-circle w3-border user_img" style="background-image: url(\''.base_url().$default_image.'\');"></div>
+				<div class="w3-circle w3-border user_img" style="background-image: url(\''.$default_image.'\');"></div>
 				</div>
 				<div class="col-lg-11 w3-padding-left w3-padding-top">
                 <p style="padding:0;margin:0">
@@ -176,7 +176,7 @@ class Feeds extends CI_Controller {
 					
 					foreach ($imageArr as $image) {
 						echo '						
-                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide" >';						
+                        <img src="'.PRODUCTIMAGE_PATH.$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide" >';						
 					}
 					echo '
 					</div>
@@ -192,7 +192,7 @@ class Feeds extends CI_Controller {
                 	echo '<!-- Single image div -->';
                 	foreach ($imageArr as $image) {
                 		echo'
-                		<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >';
+                		<img src="'.PRODUCTIMAGE_PATH.$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive" >';
                 	}
                 } //----------------end of else count of images
 
@@ -284,12 +284,12 @@ class Feeds extends CI_Controller {
     			<!-- Top section div start -->
     			<div class="w3-col s12 w3-border-bottom w3-padding-bottom">                  
     			<div class="w3-col s2 w3-padding-small w3-padding-top">';
-                $default_image = 'images/default_male.png';
+                $default_image = base_url().'images/default_male.png';
                 if($key['user_image']!=''){
-                    $default_image=$key['user_image'];
+                    $default_image=PROFILEIMAGE_PATH.$key['user_image'];
                 }
                 echo '
-                <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$default_image.'\');"></div>
+                <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.$default_image.'\');"></div>
     			</div>
     			<div class="w3-col s10 w3-padding-top">
     			<a class="btn" style="padding: 0;margin:0">
@@ -330,7 +330,7 @@ class Feeds extends CI_Controller {
                     <div class="swiper-wrapper" style="vertical-align:middle!important;">';
     				foreach ($imageArr as $image) {
     					echo '
-    					<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide w3-border-bottom" >';
+    					<img src="'.PRODUCTIMAGE_PATH.$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide w3-border-bottom" >';
     				}
     				echo '
     				</div>
@@ -344,7 +344,7 @@ class Feeds extends CI_Controller {
                 	echo '<!-- Single image div -->';
                 	foreach ($imageArr as $image) {
                 		echo '
-                		<img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive w3-border-bottom" >';
+                		<img src="'.PRODUCTIMAGE_PATH.$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive w3-border-bottom" >';
                 	}
                 } //----------------end of else count of images
 

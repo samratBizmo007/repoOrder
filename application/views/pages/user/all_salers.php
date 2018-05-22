@@ -45,7 +45,7 @@ error_reporting(E_ERROR | E_PARSE);
               <?php 
               if($key['user_image']!=''){
                 ?>
-                <div class="w3-circle w3-border" style="height: 80px;width: 80px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo base_url().$key['user_image']; ?>');"></div>
+                <div class="w3-circle w3-border" style="height: 80px;width: 80px;background-position:center;background-repeat: no-repeat; background-size:contain; background-image: url('<?php echo PROFILEIMAGE_PATH.$key['user_image']; ?>');"></div>
                 <?php 
               }
               else{

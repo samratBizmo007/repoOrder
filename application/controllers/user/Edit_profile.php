@@ -53,12 +53,16 @@ class Edit_profile extends CI_Controller {
     public function updateProfile() {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
+        $id_Arr=explode('|', base64_decode($user_id));
+        $id=$id_Arr[1];
         extract($_POST);
         extract($_FILES);
         $data = $_POST;
         //print_r($_POST);die();
         //print_r($_FILES);
         //die();
+
+
         $imagePath = '';
 //        if ($profile_image_edit == '') {
 //            $image_path = '';
@@ -90,7 +94,7 @@ class Edit_profile extends CI_Controller {
         if (!empty(($_FILES['profile_image']['name']))) {
             $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
 
-            $_FILES['userFile']['name'] = $user_name.'_'.$user_id.'.'.$extension;
+            $_FILES['userFile']['name'] = $user_name.'_'.$id.'.'.$extension;
             $_FILES['userFile']['type'] = $_FILES['profile_image']['type'];
             $_FILES['userFile']['tmp_name'] = $_FILES['profile_image']['tmp_name'];
             $_FILES['userFile']['error'] = $_FILES['profile_image']['error'];
@@ -107,7 +111,7 @@ class Edit_profile extends CI_Controller {
 
             if ($this->upload->do_upload('userFile')) {
                 $fileData = $this->upload->data();
-                $imagepath = 'images/users/'.$fileData['file_name'];
+                $imagepath = $fileData['file_name'];
             }
         }
 
@@ -184,6 +188,7 @@ class Edit_profile extends CI_Controller {
         $data = $_POST;
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
+
 //print_r($data);die();
         $data['username'] = $user_name;
         $data['user_id'] = $user_id;
@@ -215,6 +220,8 @@ class Edit_profile extends CI_Controller {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
         //extract($_POST);
+        $id_Arr=explode('|', base64_decode($user_id));
+        $id=$id_Arr[1];
         extract($_FILES);
         //print_r($_POST);die();
         //print_r($_FILES);die();
@@ -241,7 +248,7 @@ class Edit_profile extends CI_Controller {
         if (!empty(($_FILES['profile_image']['name']))) {
             $extension = pathinfo($_FILES['profile_image']['name'], PATHINFO_EXTENSION);
 
-            $_FILES['userFile']['name'] = $user_name.'_'.$user_id.'.'.$extension;
+            $_FILES['userFile']['name'] = $user_name.'_'.$id.'.'.$extension;
             $_FILES['userFile']['type'] = $_FILES['profile_image']['type'];
             $_FILES['userFile']['tmp_name'] = $_FILES['profile_image']['tmp_name'];
             $_FILES['userFile']['error'] = $_FILES['profile_image']['error'];
@@ -258,7 +265,7 @@ class Edit_profile extends CI_Controller {
 
             if ($this->upload->do_upload('userFile')) {
                 $fileData = $this->upload->data();
-                $imagepath = 'images/users/'.$fileData['file_name'];
+                $imagepath = $fileData['file_name'];
                 // check EXIF and autorotate if needed
                 $this->load->library('image_autorotate', array('filepath' => $imagePath));
             }
@@ -266,9 +273,9 @@ class Edit_profile extends CI_Controller {
 
         //echo $_FILES['profile_image']['name'];die();
         //validating image ends---------------------------//
-        //print_r($data);die();
         $data['imagePath'] = $imagepath;
         $data['user_id'] = $user_id;
+        //print_r($data);die();
         $path = base_url();
         $url = $path . 'api/Editprofile_api/updateImage';
         $ch = curl_init($url);
