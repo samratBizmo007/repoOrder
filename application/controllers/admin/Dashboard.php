@@ -218,12 +218,12 @@ public function getTimeline_web() {
                 <!-- Top section div start -->
                 <div class="w3-col s12 w3-border-bottom w3-padding-bottom">                  
                 <div class="w3-col s2 w3-padding-small w3-padding-top">';
-                $default_image = 'images/default_male.png';
+                $default_image = base_url().'images/default_male.png';
                 if($key['user_image']!=''){
-                    $default_image=$key['user_image'];
+                    $default_image=PROFILEIMAGE_PATH.$key['user_image'];
                 }
                 echo '
-                <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.base_url().$default_image.'\');"></div>
+                <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.$default_image.'\');"></div>
                 </div>
                 <div class="w3-col s9 w3-padding-top">
                 <a class="btn" style="padding: 0;margin:0">
@@ -267,7 +267,7 @@ public function getTimeline_web() {
                     <div class="swiper-wrapper" style="vertical-align:middle!important;">';
                     foreach ($imageArr as $image) {
                         echo '
-                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide w3-border-bottom" >';
+                        <img src="'.PRODUCTIMAGE_PATH.$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide w3-border-bottom" >';
                     }
                     echo '
                     </div>
@@ -281,7 +281,7 @@ public function getTimeline_web() {
                     echo '<!-- Single image div -->';
                     foreach ($imageArr as $image) {
                         echo '
-                        <img src="'.base_url().$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive w3-border-bottom" >';
+                        <img src="'.PRODUCTIMAGE_PATH.$image['prod_image'].'" style="width: 100%;height: 100%;" class="img img-responsive w3-border-bottom" >';
                     }
                 } //----------------end of else count of images
 
