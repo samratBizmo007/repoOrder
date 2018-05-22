@@ -29,6 +29,8 @@ class Userprofile_api extends REST_Controller {
         if(!empty($result)){
             $this->response([
                 'status' => 200,
+                'PRODUCTIMAGE_PATH' => PRODUCTIMAGE_PATH,
+                'PROFILEIMAGEPATH' => PROFILEIMAGE_PATH,
                 'status_message' => $result['status_message']
             ], REST_Controller::HTTP_OK);
         }

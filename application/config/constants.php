@@ -11,6 +11,7 @@ define('THEME_COLOR', '1fbea9');
 |
 */
 define('USER_KEY', '|kuwaitJobmandi');
+define('BASE_URL', 'http://localhost/repoOrder');
 
 /*
 |--------------------------------------------------------------------------
@@ -42,9 +43,8 @@ define('TABLE_USERS', 'jm_user_tab');
 define('TABLE_PM', 'privmsgs');
 define('TABLE_PMTO', 'privmsgs_to');
 
-define('PROFILEIMAGE_PATH', 'http://localhost/repoOrder/images/users/');
-define('PRODUCTIMAGE_PATH', 'http://localhost/repoOrder/images/product_images/');
-define('DASBOARDIMAGE_PATH', 'http://localhost/repoOrder/images/product_images/');
+define('PROFILEIMAGE_PATH', BASE_URL.'/images/users/');
+define('PRODUCTIMAGE_PATH', BASE_URL.'/images/product_images/');
 
 /*
 |--------------------------------------------------------------------------

@@ -120,6 +120,8 @@ class Feeds_api extends REST_Controller {
         case '200': //-----------------if response is 200 it returns login successful
         $this->response([
             'status' => 200,
+            'PRODUCTIMAGE_PATH' => PRODUCTIMAGE_PATH,
+            'PROFILEIMAGEPATH' => PROFILEIMAGE_PATH,
             'status_message' => $result['status_message']], REST_Controller::HTTP_OK);
         break;
 
