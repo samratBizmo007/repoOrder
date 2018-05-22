@@ -52,7 +52,6 @@ class ManageProduct_api extends REST_Controller {
                 'status' => 500,
                 'status_message' => 'User ID field is empty. All parameters are required!'
             ], REST_Controller::HTTP_PRECONDITION_FAILED);
-            die();
         }
         $result = $this->Product_model->getUserProducts($user_id);
         if(!empty($result)){
