@@ -36,7 +36,7 @@ class Edit_profile extends CI_Controller {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
         $path = base_url();
-        $url = $path . 'api/Userprofile_api/getUserDetails';
+        $url = $path . 'api/Userprofile_api/getUserDetails?user_id='.$user_id;
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPGET, true);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

@@ -60,7 +60,7 @@ class Manage_products extends CI_Controller {
         //print_r($)       
         $path = base_url();
         //$header = array('prod_id' =>  $prod_id);
-        $url = $path . 'api/ManageProduct_api/removeProduct';
+        $url = $path . 'api/ManageProduct_api/removeProduct?prod_id='.$prod_id;
           //create a new cURL resource
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);

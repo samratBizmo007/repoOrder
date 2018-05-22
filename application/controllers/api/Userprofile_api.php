@@ -14,7 +14,7 @@ class Userprofile_api extends REST_Controller {
 
     public function getUserDetails_get() {
         extract(getallheaders());
-
+        extract($_GET);
         // ------if user_id not found-------------
         if ($user_id=='') {
             $this->response([

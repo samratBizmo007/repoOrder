@@ -45,7 +45,7 @@ class ManageProduct_api extends REST_Controller {
 
     public function getUserProducts_get() {
         extract(getallheaders());
-
+        extract($_GET);
         // ------if user_id not found-------------
         if ($user_id=='') {
             $this->response([
@@ -164,7 +164,7 @@ class ManageProduct_api extends REST_Controller {
 //--------fun for delete or remove product to product table-----------------------//
 
     public function removeProduct_get() {
-        //extract($_GET);
+        extract($_GET);
         extract(getallheaders());
         //print_r($prod_id);die();
      //------------checking the Product ID is empty or numeric------------//
