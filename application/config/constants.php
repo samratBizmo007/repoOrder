@@ -45,6 +45,7 @@ define('TABLE_PMTO', 'privmsgs_to');
 
 define('PROFILEIMAGE_PATH', BASE_URL.'/images/users/');
 define('PRODUCTIMAGE_PATH', BASE_URL.'/images/product_images/');
+define('CATEGORYIMAGE_PATH', BASE_URL.'/images/category_imgs/');
 
 /*
 |--------------------------------------------------------------------------
