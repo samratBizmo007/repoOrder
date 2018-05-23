@@ -19,7 +19,7 @@ class Login_api extends REST_Controller {
         extract($data);
         //print_r($data);die();
 //------------checking the user role is not empty------------//
-        if(empty($user_role)){
+        if($user_role==''){
          //set the response and exit
             $this->response([
                 'status' => 500,
@@ -38,7 +38,7 @@ class Login_api extends REST_Controller {
         //------------ends ------------//
  //------------checking the user name is empty------------//
 
-        if(empty($register_username) ){     
+        if($register_username==''){     
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Enter your Username.'
@@ -48,7 +48,7 @@ class Login_api extends REST_Controller {
          //-------------------ends------------//
  //------------checking the user password is empty------------//
 
-        if(empty($register_password) ){
+        if($register_password==''){
 
             $this->response([
                 'status' => 500,
@@ -59,7 +59,7 @@ class Login_api extends REST_Controller {
          //--------------------------ends -----------------------//
  //------------checking the register email is empty------------//
 
-        if(empty($register_email) ){
+        if($register_email==''){
 
             $this->response([
                 'status' => 500,
@@ -70,7 +70,7 @@ class Login_api extends REST_Controller {
          //------------ ----------ends ------------//
  //------------checking the Country Code is empty------------//
 
-        if(empty($register_countryCode)){            
+        if($register_countryCode==''){            
             $this->response([
                 'status' => 500,
                 'status_message' => 'Please Select Country Code.'
@@ -136,7 +136,7 @@ public function registerSeller_post() {
     extract($data);
 //------------checking the user role is not empty------------//
 
-    if(empty($user_role) ){
+    if($user_role==''){
          //set the response and exit
         $this->response([
             'status' => 500,
@@ -157,7 +157,7 @@ public function registerSeller_post() {
 
     //------------checking the user name is empty------------//
 
- if(empty($register_username) ){     
+ if($register_username==''){     
     $this->response([
         'status' => 500,
         'status_message' => 'Please Enter User Username.'
@@ -168,7 +168,7 @@ public function registerSeller_post() {
 
  //------------checking the cat id is empty------------//
 
-if(empty($cat_id)){
+if($cat_id==''){
     $this->response([
         'status' => 500,
         'status_message' => 'Please Select Category.'
@@ -179,7 +179,7 @@ if(empty($cat_id)){
 
  //------------checking the register email is empty------------//
 
-if(empty($register_email) ){
+if($register_email==''){
 
     $this->response([
         'status' => 500,
@@ -191,7 +191,7 @@ if(empty($register_email) ){
 
  //------------checking the Country Code is empty------------//
 
-if(empty($register_countryCode) ){
+if($register_countryCode==''){
     
     $this->response([
         'status' => 500,
