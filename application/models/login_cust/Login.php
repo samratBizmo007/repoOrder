@@ -12,19 +12,51 @@ class Login extends CI_Model {
     // ----------------------FORGET PASSWORD MODEL-------------------------------------//
     public function getPassword($forget_email) {
 
-        $query = "SELECT password FROM user_tab WHERE email='$forget_email' AND fb_id=0";
-        //echo $query;die();
+        $query = "SELECT * FROM user_tab WHERE email='$forget_email'";
         $result = $this->db->query($query);
+
         if ($result->num_rows() <= 0) {
             $response = array(
-                'status' => 404,
+                'status' => 412,
                 'status_message' => 'Email ID not registered. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
         } else {
             $password = '';
+            $role = '';
+            $fb_id = '';
+            $status = '';
             foreach ($result->result_array() as $row) {
                 $password = $row['password'];
+                $role = $row['role'];
+                $fb_id = $row['fb_id'];
+                $status = $row['status'];
             }
             //echo $password;die();
+        // if user is fb user
+            if($fb_id!=0){
+                $response = array(
+                    'status' => 412,
+                    'status_message' => 'You have registered to Jumla Business via Facebook. So try logging in by Facebook.');
+                return $response;
+                die();
+            }
+
+            // if registration request pending
+            if($role==2 && $status==0){
+                $response = array(
+                    'status' => 412,
+                    'status_message' => 'Your registration request is pending from Jumla Business Admin.');
+                return $response;
+                die();
+            }
+
+            // if registration request rejected
+            if($role==2 && $status==2){
+                $response = array(
+                    'status' => 412,
+                    'status_message' => 'Your registration request has been rejected by Jumla Business Admin.');
+                return $response;
+                die();
+            }
 
             $emailSend = Login::sendPassword($forget_email, $password);
             //print_r($emailSend);die();
@@ -101,14 +133,14 @@ public function registerSeller($data) {
     if ($checkEmail == 0 && $checkusername == 0) {
             //------------checking email and username is registerd true then goes to the else statement
         // get userID by auto increent query--------------//
-            $autoIncr_sql="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'repoorder' AND TABLE_NAME='user_tab'";
-            $autoIncr_sqlQuery = $this->db->query($autoIncr_sql);
-            $user_id='';
-            foreach ($autoIncr_sqlQuery->result_array() as $row) {
-                $user_id = $row['AUTO_INCREMENT'];
-            }
+        $autoIncr_sql="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'repoorder' AND TABLE_NAME='user_tab'";
+        $autoIncr_sqlQuery = $this->db->query($autoIncr_sql);
+        $user_id='';
+        foreach ($autoIncr_sqlQuery->result_array() as $row) {
+            $user_id = $row['AUTO_INCREMENT'];
+        }
             // -------------------function ends here-------------------//
-            $unique_id=$register_email.'|'.$user_id.'|'.$register_username;
+        $unique_id=$register_email.'|'.$user_id.'|'.$register_username;
 
         //--------------if it returns the false then goes to the insert data in db 
         $data = array(
@@ -123,12 +155,12 @@ public function registerSeller($data) {
 
             // print_r($data);die();
         if ($this->db->insert('user_tab', $data)) {  //-----insert query for register customer
-
-            $admin_email = $this->settings_model->getAdminEmail();
             //------------getting the admin email id from admin table
-            login::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$user_role);
+            $admin_email = $this->settings_model->getAdminEmail();
+            
             //-----------sending email to the admin for user is registred to jumla business
-                //print_r($d);die();
+            login::sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$user_role);
+            
             return TRUE; //------if insert returns true  
         } else {
 
@@ -277,6 +309,7 @@ public function getNextID($col_name, $table_name) {
 
 function checkEmail_exist($email_id) {
     $query = null;
+        // ------------ check email exist 
         $query = $this->db->get_where('user_tab', array(//making selection
             'email' => $email_id
         ));
@@ -316,7 +349,7 @@ function checkEmail_exist($email_id) {
     }
 
 //-----------------------function to check whether email-ID or username already exists------------------//
- 
+
 
     //-------------------------------------------------------------//
     public function loginCustomer($data) {

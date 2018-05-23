@@ -385,7 +385,7 @@ public function getPassword_post(){
         
         break;
 
-        case '404':
+        case '412':
         $this->response([
             'status' => 500,
             'status_message' => $result['status_message']
