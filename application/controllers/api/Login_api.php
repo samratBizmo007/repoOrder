@@ -23,7 +23,7 @@ class Login_api extends REST_Controller {
          //set the response and exit
             $this->response([
                 'status' => 500,
-                'status_message' => 'Please Select User your role.'
+                'status_message' => 'Please Select User role.'
             ], REST_Controller::HTTP_PRECONDITION_FAILED);       
         }
        ////------------checking the user role is not empty------------//
@@ -32,7 +32,7 @@ class Login_api extends REST_Controller {
         if($user_role != 1){
             $this->response([
                 'status' => 500,
-                'status_message' => 'Please Select Valid User your role.'
+                'status_message' => 'Please Select Valid User role.'
             ], REST_Controller::HTTP_PRECONDITION_FAILED);   
         }
         //------------ends ------------//
@@ -140,7 +140,7 @@ public function registerSeller_post() {
          //set the response and exit
         $this->response([
             'status' => 500,
-            'status_message' => 'Please Select User your role.'
+            'status_message' => 'Please Select User role.'
         ], REST_Controller::HTTP_PRECONDITION_FAILED);       
     }
      //--------------------ends---------------------------------//
@@ -160,7 +160,7 @@ public function registerSeller_post() {
  if(empty($register_username) ){     
     $this->response([
         'status' => 500,
-        'status_message' => 'Please Enter User your Username.'
+        'status_message' => 'Please Enter User Username.'
     ], REST_Controller::HTTP_PRECONDITION_FAILED);
         //die();        
 }
