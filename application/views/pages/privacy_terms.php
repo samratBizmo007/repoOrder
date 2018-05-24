@@ -66,8 +66,8 @@ error_reporting(E_ERROR | E_PARSE);
                                 <label class="w3-medium">Click Photo!</label>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-text-grey">
-                                <label class="">Send your order with Image. We need to open your system's camera to get live image of your desired order.</label>
-                                <p><b>Personal Data:</b> Access Permission of Mobile's Camera.</p>
+                                <label class="">Add your products with Images as a post. We need to open your system's camera to get live image of your product or if you want to get image from your Gallery or Files, if may access your File Explorer and Gallery.</label>
+                                <p><b>Personal Data:</b> Access Permission of Mobile's Camera. Read Permission for File Explorer and Gallery.</p>
                             </div>
 
                         </div>
@@ -75,15 +75,15 @@ error_reporting(E_ERROR | E_PARSE);
 
                     <div class="w3-col l12">
                         <div class="w3-col l2 s2">
-                            <span class="w3-xxlarge fa fa-inbox"></span>
+                            <span class="w3-xxlarge fa fa-facebook-square"></span>
                         </div>
                         <div class="w3-col l10 s10 w3-left">
                             <div class="w3-col l12 w3-padding-small">
-                                <label class="w3-medium">Authenticate yourself.</label>
+                                <label class="w3-medium">Authenticate via Facebook.</label>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-text-grey">
-                                <label class="">Verify your Email-Id registered. We verify your Email-Id by sending an OTP code over it and then you can get verified by using that code.</label>
-                                <p><b>Personal Data:</b> Email Id.</p>
+                                <label class="">When you want to get registered as a Customer, you can use "Login with Facebook" feature. We may access your Facebook application and Facebook cached personal data for Registeration and Login</label>
+                                <p><b>Personal Data:</b> Facebook Application.</p>
                             </div>
 
                         </div>
@@ -91,15 +91,15 @@ error_reporting(E_ERROR | E_PARSE);
 
                     <div class="w3-col l12">
                         <div class="w3-col l2 s2">
-                            <span class="w3-xxlarge fa fa-map-marker"></span>
+                            <span class="w3-xxlarge fa fa-phone-square"></span>
                         </div>
                         <div class="w3-col l10 s10 w3-left">
                             <div class="w3-col l12 w3-padding-small">
-                                <label class="w3-medium">We will reach you at...</label>
+                                <label class="w3-medium">We will reach you by...</label>
                             </div>
                             <div class="w3-col l12 w3-padding-small w3-text-grey">
-                                <label class="">Your Order delivery and Contact details will be needed by us to reach you with your Orders and our Services.</label>
-                                <p><b>Personal Data:</b> Contact number, Delivery Address.</p>
+                                <label class="">We may display your Contact number, Email-Id and Whatsapp number publicly. To reach the Saler, we may access your Phone dialer, Email Application and Whatsapp Application.</label>
+                                <p><b>Personal Data:</b> Contact number, Email-ID, Whatsapp Number.</p>
                             </div>
 
                         </div>
