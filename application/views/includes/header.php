@@ -111,7 +111,7 @@ $user_role=$this->session->userdata('user_role');
       <!-- After login div ends -->
 
       <!-- Before login div -->
-      <?php if($user_role=='' || $user_id=='' || $user_name==''){ ?>
+      <?php if($user_role=='' && $user_id=='' && $user_name==''){ ?>
       <div class="w3-col l12 w3-right">
         <div class="w3-right">
           <label class="w3-small">For better experience, Please </label>

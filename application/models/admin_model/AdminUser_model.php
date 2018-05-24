@@ -21,7 +21,7 @@ class AdminUser_model extends CI_Model {
          die();
      }
 
-     $sql = "UPDATE user_tab SET status='2' WHERE user_id='$user_id'";
+     $sql = "UPDATE user_tab SET status='2',password='' WHERE user_id='$user_id'";
 
      if ($this->db->query($sql)) {
         $response = array(

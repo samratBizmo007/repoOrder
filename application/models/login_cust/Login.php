@@ -18,7 +18,7 @@ class Login extends CI_Model {
         if ($result->num_rows() <= 0) {
             $response = array(
                 'status' => 412,
-                'status_message' => 'Email ID not registered. New user can <a class="w3-medium" href="' . base_url() . 'registration">Register Here!</a>');
+                'status_message' => 'Email ID not registered. New user can <a class="w3-medium" href="'.base_url().'registration">Register Here!</a>');
         } else {
             $password = '';
             $role = '';
