@@ -229,7 +229,7 @@ public function regretProduct($prod_no, $order_id) {
     // -----------------fucntion to get all timeline data- ---------------------//
     public function getTimeline($per_page,$offset) {
 
-    $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $offset,$per_page";
+    $query = "SELECT u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.prod_image,c.category_name,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_description FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $offset,$per_page";
 
     $result = $this->db->query($query);
 
@@ -249,7 +249,7 @@ public function regretProduct($prod_no, $order_id) {
 // -----------------fucntion to get all timeline data scroll- ---------------------//
     public function getTimelineScroll($limit,$start) {
 
-    $query = "SELECT * FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $start,$limit";
+    $query = "SELECT u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.prod_image,c.category_name,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_description FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.username= p.posted_by AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $start,$limit";
 
     $result = $this->db->query($query);
 

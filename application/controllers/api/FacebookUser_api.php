@@ -16,6 +16,7 @@ class FacebookUser_api extends REST_Controller
 	public function checkUser_post(){
 		extract($_POST);
 		//print_r($_POST);die();
+		$oauth_provider='facebook';
 		// ------if facebook oauth provider not found-------------
 		if ($oauth_provider=='') {
 			$this->response([
@@ -61,14 +62,14 @@ class FacebookUser_api extends REST_Controller
 			die();
 		}
 
-        // ------if facebook picture not found-------------
-		if ($picture=='') {
-			$this->response([
-				'status' => 500,
-				'status_message' => 'Facebook picture field is empty. All parameters are required!'
-			], REST_Controller::HTTP_PRECONDITION_FAILED);
-			die();
-		}
+  //       // ------if facebook picture not found-------------
+		// if ($picture=='') {
+		// 	$this->response([
+		// 		'status' => 500,
+		// 		'status_message' => 'Facebook picture field is empty. All parameters are required!'
+		// 	], REST_Controller::HTTP_PRECONDITION_FAILED);
+		// 	die();
+		// }
 		$userData = $_POST;
 		$result = $this->User->checkUser($userData);
 
