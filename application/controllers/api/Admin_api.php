@@ -114,6 +114,14 @@ class Admin_api extends REST_Controller
 		return $this->response($result);			
 	}
 	//---------------------REJECT USER REQUEST END------------------------------//
+	// -----------------------Delete Seller API----------------------//
+	//-------------------------------------------------------------//
+	public function deleteUser_post(){
+		extract($_POST);
+		$result = $this->adminUser_model->deleteUser($user_id);
+		return $this->response($result);			
+	}
+	//---------------------Delete seller END------------------------------//
 
 	// -----------------------APPROVE USER REQUEST API----------------------//
 	//-------------------------------------------------------------//
