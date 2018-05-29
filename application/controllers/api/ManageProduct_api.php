@@ -121,14 +121,14 @@ class ManageProduct_api extends REST_Controller {
          //------------ ----------ends ------------//
  //------------checking the product is posted by value is empty------------//
 
-        if(empty($posted_by) ){
+        // if(empty($posted_by) ){
             
-            $this->response([
-                'status' => 500,
-                'status_message' => 'Please Enter The User Name For Product Posted By .'
-            ], REST_Controller::HTTP_PRECONDITION_FAILED);
-        //die();        
-        }
+        //     $this->response([
+        //         'status' => 500,
+        //         'status_message' => 'Please Enter The User Name For Product Posted By .'
+        //     ], REST_Controller::HTTP_PRECONDITION_FAILED);
+        // //die();        
+        // }
          //-------------------ends -------------------------------//
 
         //------------checking the product images is empty------------//

@@ -12,6 +12,8 @@ define('THEME_COLOR', '1fbea9');
 */
 define('USER_KEY', '|kuwaitJobmandi');
 define('BASE_URL', 'http://localhost/repoOrder');
+define('DB_NAME','repoorder');
+
 
 /*
 |--------------------------------------------------------------------------

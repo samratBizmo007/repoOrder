@@ -90,7 +90,7 @@ class Login extends CI_Model {
     //------------checking email and username is registerd true then goes to the else statement
 
             // get userID by auto increent query--------------//
-            $autoIncr_sql="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'repoorder' AND TABLE_NAME='user_tab'";
+            $autoIncr_sql="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '".DB_NAME."' AND TABLE_NAME='user_tab'";
             $autoIncr_sqlQuery = $this->db->query($autoIncr_sql);
             $user_id='';
             foreach ($autoIncr_sqlQuery->result_array() as $row) {
@@ -133,7 +133,7 @@ public function registerSeller($data) {
     if ($checkEmail == 0 && $checkusername == 0) {
             //------------checking email and username is registerd true then goes to the else statement
         // get userID by auto increent query--------------//
-        $autoIncr_sql="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'repoorder' AND TABLE_NAME='user_tab'";
+        $autoIncr_sql="SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '".DB_NAME."' AND TABLE_NAME='user_tab'";
         $autoIncr_sqlQuery = $this->db->query($autoIncr_sql);
         $user_id='';
         foreach ($autoIncr_sqlQuery->result_array() as $row) {
