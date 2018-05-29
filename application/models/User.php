@@ -94,7 +94,7 @@ class User extends CI_Model{
                     $resinsert = $this->db->query($sqlInsert);
                     $user_id = $this->db->insert_id();
 
-                    $unique_id=$email.'|'.$user_id.'|'.$username;
+                    $unique_id=base64_encode($email.'|'.$user_id.'|'.$username);
                     
                     $response = array(
                         'status' => 200,
