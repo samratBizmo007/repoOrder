@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-//error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         echo'<a class="btn w3-padding-small" onclick="apprUser(\'' . $key['user_id'] . '\',\'' . $password . '\')" title="Approve request"><i class="w3-text-green w3-large fa fa-check-circle"></i></a>
                                                         <a class="btn w3-padding-small" onclick="rejectUser(\'' . $key['user_id'] . '\')" title="Reject request"><i class="w3-text-red w3-large fa fa-minus-circle"></i></a>
                                                         <a class="btn w3-padding-small" onclick="deleteUser(\'' . $key['user_id'] . '\')" title="Delete Seller"><i class="w3-text-red w3-large fa fa-times-circle"></i></a>
-                                                        <div id="sellerDiv">
+                                                        <div id="sellerDiv_'.$key['user_id'].'">
                                                         </div>';
                                                         break;
 
@@ -160,7 +160,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     buttons: {
                         submit: function () {
                             var auto_passwd = this.$content.find('#auto_passwd').val();
-                            $('#sellerDiv').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Processing. Please wait...</b></span>');
+                            $('#sellerDiv_'+user_id).html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Processing. Please wait...</b></span>');
                             $.ajax({
                                 type: 'POST',
                                 url: "<?php echo base_url(); ?>admin/all_users/apprUser",
@@ -171,7 +171,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 //cache: false,
                                 success: function (response) {
                                     $.alert(response);
-                                    $('#sellerDiv').html('');
+                                    $('#sellerDiv_'+user_id).html('');
                                     $('#All_users').load(location.href + " #All_users>*", "");
                                 }
                             });
@@ -192,7 +192,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     content: '',
                     buttons: {
                         confirm: function () {
-                            $('#sellerDiv').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Processing. Please wait...</b></span>');
+                            $('#sellerDiv_'+user_id).html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Processing. Please wait...</b></span>');
                             $.ajax({
                                 url: "<?php echo base_url(); ?>admin/all_users/rejectUser",
                                 type: "POST",
@@ -200,7 +200,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 cache: false,
                                 success: function (html) {
                                     $.alert(html);
-                                    $('#sellerDiv').html('');
+                                    $('#sellerDiv_'+user_id).html('');
                                     $('#All_users').load(location.href + " #All_users>*", "");
                                 }
                             });
@@ -222,7 +222,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     content: '',
                     buttons: {
                         confirm: function () {
-                            //$('#sellerDiv').html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Processing. Please wait...</b></span>');
+                            $('#sellerDiv_'+user_id).html('<span class="w3-card w3-padding-small w3-margin-bottom w3-round"><i class="fa fa-spinner fa-spin w3-large"></i> <b>Processing. Please wait...</b></span>');
                             $.ajax({
                                 url: "<?php echo base_url(); ?>admin/all_users/deleteUser",
                                 type: "POST",
@@ -230,7 +230,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 cache: false,
                                 success: function (html) {
                                     $.alert(html);
-                                    //$('#sellerDiv').html('');
+                                    $('#sellerDiv_'+user_id).html('');
                                     $('#All_users').load(location.href + " #All_users>*", "");
                                 }
                             });
