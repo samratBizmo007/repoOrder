@@ -117,6 +117,20 @@ class Manage_products extends CI_Controller {
 
                 if ($this->upload->do_upload('userFile')) {
                     $fileData = $this->upload->data();
+
+                    // image compression code begins
+                    $config['image_library'] = 'gd2';  
+                    $config['source_image'] = 'images/product_images/'.$fileData["file_name"];  
+                    $config['create_thumb'] = FALSE;
+                    $config['maintain_ratio'] = TRUE;
+                    // $config['width']         = 75;
+                    // $config['height']       = 50;  
+                    $config['quality'] = '100%';  
+                    $config['new_image'] = 'images/product_images/'.$fileData["file_name"];  
+                    $this->load->library('image_lib', $config);  
+                    $this->image_lib->resize();
+                    // image compression code ends
+
                     $imagePath = $fileData['file_name'];
                     // check EXIF and autorotate if needed
                     $this->load->library('image_autorotate', array('filepath' => $imagePath));
@@ -158,8 +172,9 @@ class Manage_products extends CI_Controller {
              </script>';
          }
      }
-
 //------------fun for add new product to product table---------------------------//
+
+
     //-----------fun for get the product category by cat id -------------------------//
     //  public function getProductCategory() {
     //     extract($_POST);
@@ -173,6 +188,9 @@ class Manage_products extends CI_Controller {
     //     $response = json_decode($response_json, true);
     //     print_r($response);
     // }
-
     //-----------fun for get the product category by cat id -------------------------//
-}
+
+
+
+
+ }

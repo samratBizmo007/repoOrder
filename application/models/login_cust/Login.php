@@ -13,12 +13,13 @@ class Login extends CI_Model {
     public function getPassword($forget_email) {
 
         $query = "SELECT * FROM user_tab WHERE email='$forget_email'";
+        echo $query;die();
         $result = $this->db->query($query);
 
         if ($result->num_rows() <= 0) {
             $response = array(
                 'status' => 412,
-                'status_message' => 'Email ID not registered. New user can <a class="w3-medium" href="'.base_url().'registration">Register Here!</a>');
+                'status_message' => 'Email ID not registered. New user can register your account through Registration page!');
         } else {
             $password = '';
             $role = '';
@@ -509,3 +510,6 @@ function checkEmail_exist($email_id) {
     //-------End Logout user--------------------------------//
     //----------------------------LOGIN END------------------------------//
 }
+
+
+

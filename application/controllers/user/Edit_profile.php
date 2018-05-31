@@ -140,15 +140,15 @@ class Edit_profile extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-             location.reload();
-         }, 1000);
-         </script>';
-     }
- }
+               location.reload();
+               }, 1000);
+               </script>';
+           }
+       }
     //------------function ends------------------------------------------//
 
  //--------this fun is used to update the profile---------------------//
-    public function updateProfileMob() {
+       public function updateProfileMob() {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
         extract($_POST);
@@ -176,14 +176,14 @@ class Edit_profile extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-             location.reload();
-             }, 1000);
-             </script>';
-         }
-     }
+               location.reload();
+               }, 1000);
+               </script>';
+           }
+       }
     //------------function ends------------------------------------------//
 
-     public function changePassword() {
+       public function changePassword() {
         extract($_POST);
         $data = $_POST;
         $user_name = $this->session->userdata('user_name');
@@ -209,14 +209,14 @@ class Edit_profile extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-             location.reload();
-             }, 1000);
-             </script>';
-         }
-     }
+               location.reload();
+               }, 1000);
+               </script>';
+           }
+       }
 
 //--------this fun is used to update the profile---------------------//
-     public function updateImage() {
+       public function updateImage() {
         $user_name = $this->session->userdata('user_name');
         $user_id = $this->session->userdata('user_id');
         //extract($_POST);
@@ -265,6 +265,18 @@ class Edit_profile extends CI_Controller {
 
             if ($this->upload->do_upload('userFile')) {
                 $fileData = $this->upload->data();
+                // image compression code begins
+                $config['image_library'] = 'gd2';  
+                $config['source_image'] = 'images/users/'.$fileData["file_name"];  
+                $config['create_thumb'] = FALSE;
+                $config['maintain_ratio'] = TRUE;
+                    // $config['width']         = 75;
+                    // $config['height']       = 50;  
+                $config['quality'] = '100%';  
+                $config['new_image'] = 'images/users/'.$fileData["file_name"];  
+                $this->load->library('image_lib', $config);  
+                $this->image_lib->resize();
+                    // image compression code ends
                 $imagepath = $fileData['file_name'];
                 // check EXIF and autorotate if needed
                 $this->load->library('image_autorotate', array('filepath' => $imagePath));
@@ -294,11 +306,11 @@ class Edit_profile extends CI_Controller {
             echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
             <script>
             window.setTimeout(function() {
-             location.reload();
-             }, 1000);
-             </script>';
-         }
-     }
+               location.reload();
+               }, 1000);
+               </script>';
+           }
+       }
     //------------function ends------------------------------------------//
 
- }
+   }
