@@ -1,5 +1,4 @@
    <?php
-
 //print_r($_FILES);die();
    if (is_uploaded_file($_FILES['bill']['tmp_name'])) {
     $uploads_dir = '../images/product_images/';
@@ -14,15 +13,15 @@
         'file_name'    =>  $pic_name,
         'status_message'    =>  'File '.$pic_name.' uploaded successfully'
       );
-echo json_encode($response);
-}else{
+      echo json_encode($response);
+    }else{
      $response=array(
       'status'    =>  '400',
       'file_name'    =>  $pic_name,
       'status_message'    =>  'File '.$pic_name.' not uploaded successfully'
     );
-echo json_encode($response);
-}
+     echo json_encode($response);
+   }
  }
  else{
    $response=array(
@@ -30,7 +29,7 @@ echo json_encode($response);
     'file_name'    =>  $pic_name,
     'status_message'    =>  'File '.$pic_name.' not uploaded successfully'
   );
-echo json_encode($response);
-}
+   echo json_encode($response);
+ }
 
  ?>

@@ -86,8 +86,8 @@ class Settings_model extends CI_Model {
     }
     //---------UPDATE USER DASHBOARD IMAGE ENDS------------------//
     //-------update private security key-----------------//
-       public function updateKey($admin_key){        
-    $sql = "UPDATE admin_settings SET setting_value='$admin_key' WHERE setting_name='pass_privateKey'";
+    public function updateKey($admin_key){        
+        $sql = "UPDATE admin_settings SET setting_value='$admin_key' WHERE setting_name='pass_privateKey'";
 
         if ($this->db->query($sql)) {
             $response = array(
@@ -173,13 +173,13 @@ class Settings_model extends CI_Model {
     // -----------------------GET ADMIN EMAIL----------------------//
 
     //-----------FUNCTION FOR ADMIN REGISTRATION-------------------//
-   public function registerCustomer($register_username, $register_email, $register_mobile_no,$user_role)
+    public function registerCustomer($register_username, $register_email, $register_mobile_no,$user_role)
     {
 
-          $admin_email = '';
-    $checkEmail = Settings_model::checkEmail_exist($register_email);
-    $checkusername = Settings_model::checkUsername_exist($register_username);
-    if ($checkEmail == 0 && $checkusername == 0) {
+      $admin_email = '';
+      $checkEmail = Settings_model::checkEmail_exist($register_email);
+      $checkusername = Settings_model::checkUsername_exist($register_username);
+      if ($checkEmail == 0 && $checkusername == 0) {
         $data = array(
             'username' => $register_username,
             'email' => $register_email,
@@ -210,13 +210,13 @@ class Settings_model extends CI_Model {
         );
     }
     return $response;
-    }
+}
 
 
       //-----------------------function to check whether email-ID or username already exists------------------//
 
-    public function checkUsername_exist($register_username) {
-        $query = null;
+public function checkUsername_exist($register_username) {
+    $query = null;
         $query = $this->db->get_where('user_tab', array(//making selection
             'username' => $register_username
         ));
@@ -227,10 +227,10 @@ class Settings_model extends CI_Model {
             return 1;
         }
     }
-  
+    
 
-  public function checkEmail_exist($register_email) {
-    $query = null;
+    public function checkEmail_exist($register_email) {
+        $query = null;
         $query = $this->db->get_where('user_tab', array(//making selection
             'email' => $register_email
         ));
@@ -246,67 +246,67 @@ class Settings_model extends CI_Model {
 //-----------------------function to check whether email-ID or username already exists------------------//
 
 
-public function sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$register_role){
+    public function sendUserIs_RegisteredEmail($register_username,$register_email,$admin_email,$register_role){
 
-$role='';
-if($register_role=='2'){
-    $role='Admin';
-}
-if($register_role=='3'){
-    $role='Saler';
-}
-$config = Array(
-    'protocol' => 'smtp',
-    'smtp_host' => 'mx1.hostinger.in',
-    'smtp_port' => '587',
+        $role='';
+        if($register_role=='2'){
+            $role='Admin';
+        }
+        if($register_role=='3'){
+            $role='Saler';
+        }
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'mx1.hostinger.in',
+            'smtp_port' => '587',
             'smtp_user' => 'support@jumlakuwait.com', // change it to yours
             'smtp_pass' => 'Descartes@1990', // change it to yours
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'wordwrap' => TRUE
         );
- $config['smtp_crypto'] = 'tls';
+        $config['smtp_crypto'] = 'tls';
         //return ($config);die();
 
- $this->load->library('email', $config);
- $this->email->set_newline("\r\n");
- $this->email->from('support@jumlakuwait.com', "Admin Team");
- $this->email->to($admin_email);
- $this->email->subject("New User Registered - JUMLA BUSINESS");
- $this->email->message('<html>
-    <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-    <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
-    <h2 style="color:#4CAF50; font-size:30px">New Request to Jumla Business!!</h2>
-    <h3 style="font-size:15px;">Hello Admin,<br></h3>
-    <h3 style="font-size:15px;">We have a new request for '.$role.' User Registration for Jumla Business.</h3>
-    <h3 style="font-size:15px;">Following are the user details-</h3>
-    <h3><b>User Name:</b> '.$register_username.'</h3>
-    <h3><b>User Email:</b> '.$register_email.'</h3>
-    <div class="col-lg-12">
-    <div class="col-lg-4"></div>
-    <div class="col-lg-4">
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('support@jumlakuwait.com', "Admin Team");
+        $this->email->to($admin_email);
+        $this->email->subject("New User Registered - JUMLA BUSINESS");
+        $this->email->message('<html>
+            <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            </head>
+            <body>
+            <div class="container col-lg-8" style="box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12)!important;margin:10px; font-family:Candara;">
+            <h2 style="color:#4CAF50; font-size:30px">New Request to Jumla Business!!</h2>
+            <h3 style="font-size:15px;">Hello Admin,<br></h3>
+            <h3 style="font-size:15px;">We have a new request for '.$role.' User Registration for Jumla Business.</h3>
+            <h3 style="font-size:15px;">Following are the user details-</h3>
+            <h3><b>User Name:</b> '.$register_username.'</h3>
+            <h3><b>User Email:</b> '.$register_email.'</h3>
+            <div class="col-lg-12">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
 
-    </div>
-    </body></html>');
+            </div>
+            </body></html>');
 
- if ($this->email->send()) {
-    $response = array(
+        if ($this->email->send()) {
+            $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
             );
-} else {
+        } else {
         //print_r($this->email->print_debugger());die();
-    $response = array(
+            $response = array(
                 'status' => 500, //---------email send failed
                 'status_message' => 'Email Sending Failed.'
             );
-}
-return $response;
+        }
+        return $response;
 
-}
+    }
 
 
 }

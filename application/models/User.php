@@ -52,10 +52,17 @@ class User extends CI_Model{
                 $user_sql = "SELECT * FROM user_tab WHERE fb_id ='$fb_id'";                
                 $user_query = $this->db->query($user_sql);
                 $user_id=0;
+                $unique_id=0;
+                $user_email='';
+                $username='';
             // ---------get usertab user_ID-----------//
                 foreach ($user_query->result_array() as $key) {
-                    $user_id = $key['unique_id'];
+                    $user_id = $key['user_id'];
+                    $user_email = $key['email'];
+                    $username = $key['username'];
                 }
+
+                $unique_id=$user_email.'|'.$user_id.'|'.$username;
 
                 if ($user_query->num_rows() > 0) {
                     $response = array(

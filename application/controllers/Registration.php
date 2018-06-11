@@ -1,6 +1,6 @@
 <?php
 
-//error_reporting(E_ERROR | E_PARSE);
+error_reporting(E_ERROR | E_PARSE);
 
 class Registration extends CI_controller {
 
@@ -17,7 +17,7 @@ class Registration extends CI_controller {
             Login::loginCustomer();
         }
 
-        //start session		
+        //start session     
         $user_id = $this->session->userdata('user_id');
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');
@@ -54,7 +54,7 @@ class Registration extends CI_controller {
     //------------fun for get the all categories -----------------------//
     // --------------register user fucntion starts----------------------//
     public function registerCustomer() {
-    	extract($_POST);
+        extract($_POST);
         if($user_role==0){
              echo '<div class="alert alert-danger" style="margin-bottom:5px">
             <strong>Please select appropriate role!</strong> 
@@ -75,9 +75,9 @@ class Registration extends CI_controller {
                 </div>';
                 die();
             }
-            //Connection establishment, processing of data and response from REST API	
+            //Connection establishment, processing of data and response from REST API   
             //$username = $register_username;
-            //$password = $register_password;	
+            //$password = $register_password;   
             $data = array(
                 'user_role' => $user_role,
                 'register_username' => $register_username,
@@ -103,7 +103,7 @@ class Registration extends CI_controller {
         } else {
             // extract($_POST);
             // print_r($_POST);die();
-            //Connection establishment, processing of data and response from REST API		
+            //Connection establishment, processing of data and response from REST API       
             $data = array(
                 'cat_id' => $cat_id,
                 'user_role' => $user_role,
@@ -145,5 +145,5 @@ class Registration extends CI_controller {
         //echo $response_json;
     }
 
-    //	------------------function ends here-----------------------------//
+    //  ------------------function ends here-----------------------------//
 }

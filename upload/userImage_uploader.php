@@ -25,8 +25,8 @@ if (is_uploaded_file($_FILES['bill']['tmp_name'])) {
       'file_name'    =>  $pic_name,
       'status_message'    =>  'File '.$pic_name.' not uploaded successfully'
     );
-echo json_encode($response);
-}
+    echo json_encode($response);
+  }
 }
 else{
  $response=array(
@@ -34,8 +34,8 @@ else{
   'file_name'    =>  $pic_name,
   'status_message'    =>  'File '.$pic_name.' not uploaded successfully'
 );
-echo json_encode($response);
-    
+ echo json_encode($response);
+ 
 }
 
 ?>

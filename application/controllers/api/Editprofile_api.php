@@ -176,17 +176,17 @@ public function updateProfileMob_post() {
         //-------------------ends -------------------------------------------//
         //-----------------checking phone empty and numeric---------------------------//
  if (!(empty($phone))) {
-     if (!is_numeric($phone)) {
-       $this->response([
-         'status' => 500,
-         'status_message' => 'Phone no should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
-     }
-   }
-   else{
+   if (!is_numeric($phone)) {
      $this->response([
        'status' => 500,
-       'status_message' => 'Please enter phone no!'], REST_Controller::HTTP_PRECONDITION_FAILED); 
+       'status_message' => 'Phone no should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
    }
+ }
+ else{
+   $this->response([
+     'status' => 500,
+     'status_message' => 'Please enter phone no!'], REST_Controller::HTTP_PRECONDITION_FAILED); 
+ }
        //-------------------ends -------------------------------------------//
         //-----------------checking company name empty---------------------------//
  if (empty($company_name)) {

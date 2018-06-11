@@ -13,7 +13,6 @@ class Login extends CI_Model {
     public function getPassword($forget_email) {
 
         $query = "SELECT * FROM user_tab WHERE email='$forget_email'";
-        echo $query;die();
         $result = $this->db->query($query);
 
         if ($result->num_rows() <= 0) {
@@ -280,7 +279,7 @@ public function sendPassword($email_id, $password) {
                 'status_message' => 'Email Sent Successfully.',
             );
     } else {
-           // print_r($this->email->print_debugger());die();
+        print_r($this->email->print_debugger());die();
         $response = array(
                 'status' => 500, //---------email send failed
                 'status_message' => 'Email Sending Failed.'
@@ -510,6 +509,3 @@ function checkEmail_exist($email_id) {
     //-------End Logout user--------------------------------//
     //----------------------------LOGIN END------------------------------//
 }
-
-
-

@@ -19,7 +19,7 @@ class Login extends CI_Controller {
             Login::loginCustomer();
         }
 
-        //start session		
+        //start session     
         $user_id = $this->session->userdata('user_id');
         $user_name = $this->session->userdata('user_name');
         $user_role = $this->session->userdata('user_role');

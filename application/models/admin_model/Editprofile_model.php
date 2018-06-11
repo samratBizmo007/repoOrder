@@ -81,7 +81,7 @@ class Editprofile_model extends CI_Model {
     public function changePassword($data) {
         extract($data);
         //print_r($data);die();
-     
+        
         $checkCurrPassword = Editprofile_model::checkCurrPassword_exist($curr_password, $user_id);
 //print_r($checkCurrPassword);die();
         if ($checkCurrPassword == 1) {
