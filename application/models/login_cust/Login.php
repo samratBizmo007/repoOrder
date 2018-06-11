@@ -177,7 +177,7 @@ public function registerSeller($data) {
 public function sendUserIs_RegisteredEmail($user_name, $email_id, $admin_email,$user_role) {
     $role='Customer';
     if($user_role=='2'){
-        $role='Saler';
+        $role='Seller';
     }
     $config = Array(
         'protocol' => 'smtp',
@@ -262,24 +262,23 @@ public function sendPassword($email_id, $password) {
         <h2 style="color:#4CAF50; font-size:25px">Password for Jumla Business!</h2>
         <h3 style="font-size:15px;">Hello Jumla User,<br></h3>
         <h3 style="font-size:15px;">We have recieved a request to have your password for <u>Jumla Business</u>.</h3>
-        <h3 style="font-size:15px;">Following is the requested password for ' . $email_id . '</h3>
+        <h3 style="font-size:15px;">Following is the requested password for '.$email_id.'</h3>
         <h3>Password: '.base64_decode($password).'</h3>
         <br><br>
         <h5>Note: If you did not make this request, then kindly ignore this message.</h5>
         <div class="col-lg-12">
         <div class="col-lg-4"></div>
         <div class="col-lg-4">
-
         </div>
         </body></html>');
-
+//print_r($this->email->print_debugger());die();
     if ($this->email->send()) {
         $response = array(
                 'status' => 200, //---------email sending succesfully 
                 'status_message' => 'Email Sent Successfully.',
             );
     } else {
-        print_r($this->email->print_debugger());die();
+        //print_r($this->email->print_debugger());die();
         $response = array(
                 'status' => 500, //---------email send failed
                 'status_message' => 'Email Sending Failed.'
