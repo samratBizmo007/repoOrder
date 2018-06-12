@@ -176,4 +176,24 @@ class Feeds_api extends REST_Controller {
 
 //--------fun for delete feeds from admin side-----------------------//
 
+    //--------fun to  mark post as featured-----------------------//
+
+    public function markFeatured_get() {
+        extract($_GET);
+        $result = $this->feeds_model->markFeatured($prod_id);
+        return $this->response($result);
+    }
+
+//--------fun to  mark post as featured-----------------------//
+
+    //--------fun to  mark post as unfeatured-----------------------//
+
+    public function markUnfeatured_get() {
+        extract($_GET);
+        $result = $this->feeds_model->markUnfeatured($prod_id);
+        return $this->response($result);
+    }
+
+//--------fun to  mark post as unfeatured-----------------------//
+
 }

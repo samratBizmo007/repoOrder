@@ -46,7 +46,7 @@ class Feeds_model extends CI_Model {
     // -----------------fucntion to get all timeline data- ---------------------//
     public function getTimeline($per_page,$offset) {
 
-        $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_description,p.prod_image FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $offset,$per_page";
+        $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_description,p.prod_image,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $offset,$per_page";
 
         $result = $this->db->query($query);
 
@@ -66,7 +66,7 @@ class Feeds_model extends CI_Model {
 // -----------------fucntion to get all timeline data scroll- ---------------------//
     public function getTimelineScroll($limit,$start) {
 
-        $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $start,$limit";
+        $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ORDER BY p.isFeatured DESC LIMIT $start,$limit";
 
         $result = $this->db->query($query);
 
@@ -111,6 +111,50 @@ class Feeds_model extends CI_Model {
     }
 
     //-------fun for delete feeds from admin side --------------//
+
+
+    //-------fun to  mark post as featured--------------//
+
+    public function markFeatured($prod_id) {
+
+        $sql = "UPDATE product_tab SET isFeatured='1' WHERE prod_id = '$prod_id'";
+        //echo $sql;die();
+        $result = $this->db->query($sql);
+        if ($this->db->affected_rows()>0) {
+            $response = array(
+                'status' => 200,
+                'status_message' => 'Marked as Featured successfully!');
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Something went wrong! Try reloading page.');
+        }
+        return $response;
+    }
+
+    //-------fun to  mark post as featured--------------//
+
+
+    //-------fun to  mark post as unfeatured--------------//
+
+    public function markUnfeatured($prod_id) {
+
+        $sql = "UPDATE product_tab SET isFeatured='0' WHERE prod_id = '$prod_id'";
+        //echo $sql;die();
+        $result = $this->db->query($sql);
+        if ($this->db->affected_rows()>0) {
+            $response = array(
+                'status' => 200,
+                'status_message' => 'Marked as Unfeatured successfully!');
+        } else {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'Something went wrong! Try reloading page.');
+        }
+        return $response;
+    }
+
+    //-------fun to  mark post as unfeatured --------------//
 
 
 }

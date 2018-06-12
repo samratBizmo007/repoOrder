@@ -173,8 +173,61 @@ error_reporting(E_ERROR | E_PARSE);
                             cache: false,
                             success: function (html) {
                                 $.alert(html);
-                                $('#myProductDiv').load(location.href + " #myProductDiv>*", "");
                                  location.reload();
+                            }
+                        });
+                    },
+                    cancel: function () {
+                    }
+                }
+            });
+        }
+        //------------fun ends here------------------------------------------------------//
+
+        //--------------fun to mark featured for post-------------------------------//
+        function MarkFeatured(prod_id) {
+            $.confirm({
+                title: '<h4 class="w3-text-green"><i class="fa fa-warning"></i> Are you sure you want to mark post as Featured?</h4>',
+                content: '',
+                type: 'green',
+                buttons: {
+                    confirm: function () {
+                        var dataS = 'prod_id=' + prod_id;
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>admin/dashboard/markFeatured",
+                            type: "POST",
+                            data: dataS,
+                            cache: false,
+                            success: function (html) {
+                                $.alert(html);
+                                location.reload();
+                            }
+                        });
+                    },
+                    cancel: function () {
+                    }
+                }
+            });
+        }
+        //------------fun ends here------------------------------------------------------//
+
+        //--------------fun to mark unfeatured for post-------------------------------//
+        function MarkUnFeatured(prod_id) {
+            $.confirm({
+                title: '<h4 class="w3-text-red"><i class="fa fa-warning"></i> Are you sure you want to mark post as Unfeatured?</h4>',
+                content: '',
+                type: 'red',
+                buttons: {
+                    confirm: function () {
+                        var dataS = 'prod_id=' + prod_id;
+                        $.ajax({
+                            url: "<?php echo base_url(); ?>admin/dashboard/markUnfeatured",
+                            type: "POST",
+                            data: dataS,
+                            cache: false,
+                            success: function (html) {
+                                $.alert(html);
+                                location.reload();
                             }
                         });
                     },
