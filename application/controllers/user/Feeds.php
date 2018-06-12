@@ -161,6 +161,7 @@ class Feeds extends CI_Controller {
                     echo $key['address'];
                 } echo'
                 </p>
+                                <div class=""><i><span class="w3-round-large w3-white w3-border w3-small" style="padding-right:4px; padding-left:4px;">Sponsored</span></i></div>
 				</div>
 				</div>
 				<!-- Top section div ends -->
@@ -313,9 +314,8 @@ class Feeds extends CI_Controller {
                     echo $key['address'];
                 } 
                 echo'
-                </p>
-                
-                
+                </p>                
+                        <div class=""><i><span class="w3-round-large w3-white w3-border w3-small" style="padding-right:4px; padding-left:4px;">Sponsored</span></i></div>
     			</div>
     			</div>
     			<!-- Top section div ends -->
