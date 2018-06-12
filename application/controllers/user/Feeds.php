@@ -160,8 +160,11 @@ class Feeds extends CI_Controller {
                 else {
                     echo $key['address'];
                 } echo'
-                </p>
-				</div>
+                </p>';
+                if($key['isFeatured'] == 1){
+                echo'<div class=""><i><span class="w3-round-large w3-white w3-border w3-small" style="padding-right:4px; padding-left:4px;">Sponsored</span></i></div>';
+                }
+		echo'</div>
 				</div>
 				<!-- Top section div ends -->
 
@@ -313,10 +316,11 @@ class Feeds extends CI_Controller {
                     echo $key['address'];
                 } 
                 echo'
-                </p>
-                
-                
-    			</div>
+                </p>';
+                if($key['isFeatured'] == 1){
+                echo'<div class=""><i><span class="w3-round-large w3-white w3-border w3-small" style="padding-right:4px; padding-left:4px;">Sponsored</span></i></div>';
+                }
+		echo'</div>
     			</div>
     			<!-- Top section div ends -->
 
