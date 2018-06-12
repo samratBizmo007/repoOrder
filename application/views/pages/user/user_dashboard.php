@@ -32,7 +32,7 @@ error_reporting(E_ERROR | E_PARSE);
 
     <!-- Header -->
     <header class="w3-container" >
-      <h5><b><i class="fa fa-rss-square"></i> Latest Feeds</b></h5>
+      <h5><b><i class="fa fa-rss-square"></i> Kuwait</b></h5>
     </header>
 
     <!-- Product timeline div starts -->

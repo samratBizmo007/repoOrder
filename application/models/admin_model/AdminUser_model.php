@@ -108,7 +108,7 @@ public function sendPass_saler($user_name, $email_id, $password) {
         'protocol' => 'smtp',
         'smtp_host' => 'mx1.hostinger.in',
         'smtp_port' => '587',
-            'smtp_user' => 'customercare@jumlakuwait.com', // change it to yours
+            'smtp_user' => 'support@jumlakuwait.com', // change it to yours
             'smtp_pass' => 'Descartes@1990', // change it to yours
             'mailtype' => 'html',
             'charset' => 'utf-8',
@@ -119,7 +119,7 @@ public function sendPass_saler($user_name, $email_id, $password) {
 
     $this->load->library('email', $config);
     $this->email->set_newline("\r\n");
-    $this->email->from('customercare@jumlakuwait.com', "Admin Team");
+    $this->email->from('support@jumlakuwait.com', "Admin Team");
     $this->email->to($email_id,$user_name);
     $this->email->subject("Password - JUMLA BUSINESS");
     $this->email->message('<html>

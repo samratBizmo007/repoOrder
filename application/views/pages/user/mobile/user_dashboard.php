@@ -17,7 +17,7 @@ error_reporting(E_ERROR | E_PARSE);
 
     <!-- Header -->
     <header class="w3-col l12 w3-padding-small" >
-      <h5><b><i class="fa fa-rss-square"></i> Feeds</b></h5>
+      <h5><b><i class="fa fa-rss-square"></i> Kuwait</b></h5>
     </header>
 
     <!-- Product timeline div starts -->
