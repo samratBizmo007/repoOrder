@@ -32,9 +32,12 @@ error_reporting(E_ERROR | E_PARSE);
           <div class="w3-col s12 w3-border w3-round-large w3-card-2" style="height: 120px">
             <div class="w3-col l12 w3-center w3-padding-top " >
               <a class="btn w3-padding" href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($result['cat_id']); ?>">
-            <center><img src="<?php echo CATEGORYIMAGE_PATH.$result['category_img']; ?>" style="width: 60px;height: 60px;" class="img img-responsive w3-padding-small">   </center>        
-              <div class="w3-col l12">
-                <span class="w3-small"><?php echo $result['category_name']; ?></span>
+                <div class="w3-col l12">
+                  <center><img src="<?php echo CATEGORYIMAGE_PATH.$result['category_img']; ?>" style="width: 60px;height: 60px;" class="img img-responsive w3-padding-small">   </center> 
+                </div>
+                   
+              <div class="w3-col l12" style="overflow-x: scroll;width: 96px">
+                <span style=""><?php echo $result['category_name']; ?></span>
               </div>
               
               </a>              
