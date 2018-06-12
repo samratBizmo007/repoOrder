@@ -1,6 +1,4 @@
 <?php
-
-
 class Admin_login extends CI_Controller {
 
   public function __construct() {
