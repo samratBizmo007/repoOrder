@@ -76,12 +76,12 @@ error_reporting(E_ERROR | E_PARSE);
     <div class="w3-row w3-margin-bottom">
       <div class="">
         <div class="w3-col l8 ">
-          <div class="col-sm-12 w3-margin-bottom">
-            <label>Sort By:</label>
+          <div class="col-sm-12 w3-margin-bottom w3-small">
+            <label class="w3-text-grey ">Sort By:</label>
               <select class="w3-input w3-border" name="sortFeeds" id="sortFeeds">
-                <option value="0">All</option>
-                <option value="1">Featured</option>
-                <option value="2">Unfeatured</option>
+                <option value="0">All Posts</option>
+                <option value="1">Featured Posts</option>
+                <option value="2">Unfeatured Posts</option>
               </select>
           </div>
           <div class="w3-col l12" id="load_feeds"></div>
