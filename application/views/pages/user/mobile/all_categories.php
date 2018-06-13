@@ -36,9 +36,11 @@ error_reporting(E_ERROR | E_PARSE);
                   <center><img src="<?php echo CATEGORYIMAGE_PATH.$result['category_img']; ?>" style="width: 60px;height: 60px;" class="img img-responsive w3-padding-small">   </center> 
                 </div>
                    
+              <center>
               <div class="w3-col l12" style="overflow-x: scroll;width: 96px">
                 <span style=""><?php echo $result['category_name']; ?></span>
               </div>
+            </center>
               
               </a>              
             </div>            
