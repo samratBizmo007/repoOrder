@@ -82,6 +82,15 @@ class Feeds_api extends REST_Controller {
     }
     //---------------------GET TIMELINE DATA END------------------------------//
 
+    // -----------------------GET TIMELINE DATA FOR ADMIN API----------------------//
+    //-------------------------------------------------------------//
+    public function getAdminTimelineScroll_get() {
+        extract($_GET);
+        $result = $this->feeds_model->getTimelineAdmin($limit,$start,$sortBy);
+        return $this->response($result);
+    }
+    //---------------------GET TIMELINE DATA FOR ADMIN END------------------------------//
+
     // -----------------------GET TIMELINE DATA SCROLL API----------------------//
     //-------------------------------------------------------------//
     public function getTimelineScroll_get() {

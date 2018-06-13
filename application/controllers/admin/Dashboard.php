@@ -52,22 +52,22 @@ public function getStatistics() {
   // --------- this function gets all latest product feeds web---------------//
 public function getTimeline_web() {
     extract($_POST);
-        // print_r($_POST);die();
+    //print_r($_POST);die();
     $path = base_url();
-    $url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start;
+    $url = $path.'api/Feeds_api/getAdminTimelineScroll?limit='.$limit.'&start='.$start.'&sortBy='.$sortBy;
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HTTPGET, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response_json = curl_exec($ch);
     curl_close($ch);
     $response = json_decode($response_json, true);
-         // print_r($response_json);die();
-        //  return $response;
+    //print_r($response_json);die();
+    //  return $response;
 
     if($response['status']==200){
 
         foreach ($response['status_message'] as $key) {
-            $feature_sym='w3-text-red';
+            $feature_sym='w3-text-grey';
             $feature_title='Mark as featured.';
             $feature_function='MarkFeatured';
             // print_r($key);
@@ -118,7 +118,7 @@ public function getTimeline_web() {
                     <div class="w3-col l2">
                     <span class="w3-right">
                     <a id="Featurebtn_'.$key['prod_id'].'" onclick="'.$feature_function.'('.$key['prod_id'].');" class="w3-large '.$feature_sym.' btn" style="padding: 5px;" title="'.$feature_title.'"><i class="fa fa-star"></i></a>
-                    <a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class=" w3-large w3-text-red btn" style="padding: 5px;" title="Delete Post"><i class="fa fa-trash"></i></a>
+                    <a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class=" w3-large w3-text-grey btn" style="padding: 5px;" title="Delete Post"><i class="fa fa-trash"></i></a>
                     </span>
                     </div>
                     </div>
@@ -202,6 +202,7 @@ public function getTimeline_web() {
                 }
 
             }
+
   // -----------------fucntion get timeline data web ends here --------------------------------//
 
 
@@ -210,7 +211,7 @@ public function getTimeline_web() {
                 extract($_POST);
         //print_r($_POST);die();
                 $path = base_url();
-                $url = $path.'api/Feeds_api/getTimelineScroll?limit='.$limit.'&start='.$start;
+                $url = $path.'api/Feeds_api/getAdminTimelineScroll?limit='.$limit.'&start='.$start.'&sortBy='.$sortBy;
                 $ch = curl_init($url);
                 curl_setopt($ch, CURLOPT_HTTPGET, true);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -223,7 +224,7 @@ public function getTimeline_web() {
                 if($response['status']==200){
 
                     foreach ($response['status_message'] as $key) {
-                        $feature_sym='w3-text-red';
+                        $feature_sym='w3-text-grey';
                         $feature_title='Mark as featured.';
                         $feature_function='MarkFeatured';
             // print_r($key);
@@ -233,7 +234,7 @@ public function getTimeline_web() {
                             $feature_function='MarkUnFeatured';
                         }
                         echo '
-                        <div class="w3-col l12 w3-margin-bottom">
+                        <div class="w3-col l12 w3-margin-bottom w3-margin-top">
 
                         <!-- Top section div start -->
                         <div class="w3-col s12 w3-border-bottom w3-padding-bottom">
@@ -276,7 +277,7 @@ public function getTimeline_web() {
                         <div class="w3-col s2">
                         <span class="w3-right">
                         <a id="Featurebtn_'.$key['prod_id'].'" onclick="'.$feature_function.'('.$key['prod_id'].');" class="w3-large '.$feature_sym.' btn" style="padding: 0px;padding-right:3px" title="'.$feature_title.'"><i class="fa fa-star"></i></a>
-                        <a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class="w3-large w3-text-red btn" style="padding: 0px;" title="Delete Post"><i class="fa fa-trash"></i></a>
+                        <a id="Removebtn_'.$key['prod_id'].'" onclick="RemoveProduct('.$key['prod_id'].');" class="w3-large w3-text-grey btn" style="padding: 0px;" title="Delete Post"><i class="fa fa-trash"></i></a>
                         </span>
                         </div>
                         </div>
@@ -375,7 +376,7 @@ public function getTimeline_web() {
                     echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
                     ';
                 } else {
-                    echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
+                    echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> ' . $response['status_message'] . '</h4>
                     <script>
                     window.setTimeout(function() {
                         }, 1000);
@@ -403,7 +404,7 @@ public function getTimeline_web() {
                         echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
                         ';
                     } else {
-                        echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
+                        echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> ' . $response['status_message'] . '</h4>
                         <script>
                         window.setTimeout(function() {
                             }, 1000);
@@ -431,7 +432,7 @@ public function getTimeline_web() {
                             echo '<h4 class="w3-text-red w3-margin"><i class="fa fa-warning"></i> ' . $response['status_message'] . '</h4>
                             ';
                         } else {
-                            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-image"></i> ' . $response['status_message'] . '</h4>
+                            echo '<h4 class="w3-text-green w3-margin"><i class="fa fa-check"></i> ' . $response['status_message'] . '</h4>
                             <script>
                             window.setTimeout(function() {
                                 }, 1000);

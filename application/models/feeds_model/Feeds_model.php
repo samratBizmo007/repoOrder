@@ -83,6 +83,37 @@ class Feeds_model extends CI_Model {
     }
     // ----------------------fcuntion  ends here --------------------------//
 
+    // -----------------fucntion to get all timeline data scroll for ADMIN- ---------------------//
+    public function getTimelineAdmin($limit,$start,$sortBy) {
+
+        if($sortBy=='0'){
+            $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ORDER BY p.isFeatured DESC, p.prod_id DESC LIMIT $start,$limit";
+        }
+        else{
+            if($sortBy=='2'){
+                $sortBy=0;
+            }
+            $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) WHERE p.isFeatured='$sortBy' ORDER BY p.isFeatured DESC, p.prod_id DESC LIMIT $start,$limit";
+        }
+        //echo $query;die();
+
+        
+
+        $result = $this->db->query($query);
+
+        if ($result->num_rows() <= 0) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'No more Feeds available.');
+        } else {
+            $response = array(
+                'status' => 200,
+                'status_message' => $result->result_array());
+        }
+        return $response;
+    }
+    // ----------------------fcuntion  ends here --------------------------//
+
 // ----------------get all timeline dta rows count------------//
     public function numRows() {
         $query = $this->db->select('*')

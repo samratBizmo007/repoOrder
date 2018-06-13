@@ -76,6 +76,14 @@ error_reporting(E_ERROR | E_PARSE);
     <div class="w3-row w3-margin-bottom">
       <div class="">
         <div class="w3-col l8 ">
+          <div class="col-sm-12 w3-margin-bottom">
+            <label>Sort By:</label>
+              <select class="w3-input w3-border" name="sortFeeds" id="sortFeeds">
+                <option value="0">All</option>
+                <option value="1">Featured</option>
+                <option value="2">Unfeatured</option>
+              </select>
+          </div>
           <div class="w3-col l12" id="load_feeds"></div>
 
           <!-- loading spinner div -->
@@ -89,16 +97,73 @@ error_reporting(E_ERROR | E_PARSE);
   </div>
   <!-- script to load more feeds data on page scroll -->
   <script>
+     // -------fucntion to load 2 feeds on dropdown sort by chnage-------------------//
+    $('#sortFeeds').change(function(){
+      var limit = 2;
+  var start = 0;
+  var action = 'inactive';
+function sortFeeds(limit,start){
+  
+  var sortBy = $('#sortFeeds').val();
+  $.ajax({
+   url:"<?php echo base_url(); ?>admin/dashboard/getTimeline_mob",
+   method:"POST",
+   data:{limit:limit, start:start, sortBy:sortBy},
+   cache:false,
+   success:function(data)
+   {
+    //alert(data);
+    if(start==0){
+      $('#load_feeds').html(data);
+    }
+    else{
+      $('#load_feeds').append(data);
+    }
+    
+    if(data == '')
+    {
+     $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> Oops! No more Feeds available. </b></div>');
+     action = 'active';
+   }
+   else
+   {
+      $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
+     action = "inactive";
+   }
+ }
+});
+}
+
+    if(action == 'inactive')
+    {
+      action = 'active';
+      sortFeeds(limit, start);
+    }
+    $(window).scroll(function(){
+      if($(window).scrollTop() + $(window).height() > $("#load_feeds").height() && action == 'inactive')
+      {
+       action = 'active';
+       start = start + limit;
+       setTimeout(function(){
+        sortFeeds(limit, start);
+      }, 500);
+     }
+   });
+});
+
+// ----------------------function ends here -----------------------------------//
+
     $(document).ready(function(){ 
      var limit = 2;
      var start = 0;
      var action = 'inactive';
      function load_feeds_data(limit, start)
      {
+      var sortBy = $('#sortFeeds').val();
       $.ajax({
        url:"<?php echo base_url(); ?>admin/dashboard/getTimeline_mob",
        method:"POST",
-       data:{limit:limit, start:start},
+       data:{limit:limit, start:start, sortBy:sortBy},
        cache:false,
        success:function(data)
        {
