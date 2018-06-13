@@ -38,7 +38,7 @@ error_reporting(E_ERROR | E_PARSE);
                    
               <center>
               <div class="w3-col l12" style="overflow-x: scroll;width: 96px">
-                <span style=""><?php echo $result['category_name']; ?></span>
+                <center><span style=""><?php echo $result['category_name']; ?></span></center>
               </div>
             </center>
               
