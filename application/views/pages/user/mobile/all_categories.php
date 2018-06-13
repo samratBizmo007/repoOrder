@@ -37,8 +37,8 @@ error_reporting(E_ERROR | E_PARSE);
                 </div>
                    
               <center>
-              <div class="w3-col l12" style="overflow-x: scroll;width: 96px">
-                <span style=""><?php echo $result['category_name']; ?></span>
+              <div class="w3-col l12" style="word-wrap: break-word;white-space: normal;">
+                  <span class="w3-small"><?php echo $result['category_name']; ?></span>
               </div>
             </center>
               
