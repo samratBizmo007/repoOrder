@@ -94,6 +94,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 <div class="w3-col l4 s4">
                                     <select class="w3-input w3-light-grey w3-border w3-small" name="mobile_code" id="mobile_code">
                                         <option value="965" selected>+965 (Kuwait)</option>
+                                        <option value="965" selected>+971 (Dubai)</option>
                                         <option value="91">+91 (India)</option>
                                     </select>
                                 </div>

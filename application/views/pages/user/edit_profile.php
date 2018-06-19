@@ -100,6 +100,11 @@ $user_id = $this->session->userdata('user_id');
                                             echo 'selected';
                                         }
                                         ?>>+965 (Kuwait)</option>
+                                        <option value="971" <?php
+                                        if ($countryCode == '971') {
+                                            echo 'selected';
+                                        }
+                                        ?>>+971 (Dubai)</option>
                                         <option value="91" <?php
                                         if ($countryCode == '91') {
                                             echo 'selected';
