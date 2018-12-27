@@ -13,7 +13,7 @@ class User_profile extends CI_Controller {
         $id = base64_decode(base64_decode($profileuser_id));
         $id_Arr=explode('|', $id);
         $user_id=$id_Arr[1];
-
+//print_r($id);die();
         $data['link_user_id'] = $user_id;
         $this->load->library('user_agent');
 

@@ -22,24 +22,24 @@ error_reporting(E_ERROR | E_PARSE);
     }
 </style>
 
-<!-- Material Design Bootstrap -->
-<link href="<?php echo base_url() ?>css/home_page/css/style.css" rel="stylesheet">
-<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>css/js/login/login.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay_progress.min.js"></script>
+    <!-- Material Design Bootstrap -->
+    <link href="<?php echo base_url() ?>css/home_page/css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/login/login.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url(); ?>css/js/loadingoverlay_progress.min.js"></script>
 
-<div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
+   <div class="container" id="mainBody" style="margin-top: 71px;margin-bottom: 71px;">
     <div class="row">
         <div class="w3-col m4 col-md-offset-4 w3-center" id="messageDiv"></div>
     </div>
     <div class="row">
         <div class="col-lg-4 w3-hide-small"></div>
         <div class="col-lg-4 ">
-
+            
             <!-- LOGIN DIV -->
             <div class="col-lg-12 w3-card-2 w3-margin-bottom"> 
                 <div class="w3-padding " style="margin-top: 30px">
@@ -50,33 +50,34 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="w3-container " style="padding:0 36px 12px 36px">
                     <div id="Login_RegisterDiv">
 
-                        <form id="forget_password">
-                            <div class="w3-col l12 " id="fpasswd_err"></div>
-                            <div class="form-group">
-                                <input type="email" name="forget_email" id="forget_email" class="form-control" placeholder="Enter your registered Email ID" value="" required>
-                            </div>
-                            <div class="w3-col l12">                                
+                    <form id="forget_password">
+                                        <div class="w3-col l12 " id="fpasswd_err"></div>
+                                        <div class="form-group">
+                                            <input type="email" name="forget_email" id="forget_email" class="form-control" placeholder="Enter your registered Email ID" value="" required>
+                                        </div>
+                                        <div class="w3-col l12">                                
                                <center>
                                    <button type="submit" name="forget_submit" id="forget_submit" class=" w3-center btn w3-blue" >GET PASSWORD</button>
                                </center>
                            </div>
-                           <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-12 w3-margin-top">
-                                    <div class="text-center">
-                                        <a href="<?php echo base_url(); ?>login" class="btn w3-small w3-text-blue w3-hover-text-grey" class="forgot-password"><i class="fa fa-arrow-left"></i> Go to Login Page.</a>
-                                    </div>
-                                </div>
-                            </div>                            
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-lg-12 w3-margin-top">
+
+                                                    <div class="text-center">
+                                                        <a href="<?php echo base_url(); ?>login" class="btn w3-small w3-text-blue w3-hover-text-grey" class="forgot-password"><i class="fa fa-arrow-left"></i> Go to Login Page.</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </form>
+
                         </div>
+                    </div>
 
-                    </form>
-                </div>
             </div>
-
         </div>
     </div>
-</div>
 </div>
 <script>
     $(function () {
@@ -98,11 +99,11 @@ error_reporting(E_ERROR | E_PARSE);
                         $("html,body").animate({scrollTop:0},"slow");
                         document.scrollingElement.scrollTop;
                     } else {
-                     $("html,body").animate({scrollTop:0},"slow");
-                 }
-                 $("#fpasswd_err").html(data);
-             }
-         });
+                       $("html,body").animate({scrollTop:0},"slow");
+                   }
+                   $("#fpasswd_err").html(data);
+               }
+           });
             return false;  //stop the actual form post !important!
         });
     });

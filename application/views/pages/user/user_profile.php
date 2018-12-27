@@ -4,6 +4,7 @@ error_reporting(E_ERROR | E_PARSE);
 $user_id = $this->session->userdata('user_id');
 $id_Arr=explode('|', base64_decode($user_id));
 $id=$id_Arr[1];
+//print_r($link_user_id);die();
 ?>
 <!DOCTYPE html>
 <html>

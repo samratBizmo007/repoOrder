@@ -92,7 +92,7 @@ public function getTimeline_web() {
             <div class="w3-circle w3-border user_img" style="background-image: url(\''.$default_image.'\');"></div>
             </div>
             <div class="col-lg-9 w3-padding-left w3-padding-top">
-            <p style="padding-left:0;margin:0">
+            <p style="padding:0;margin:0">
             <label class="w3-small" style="margin-bottom:0;padding-top:8px">
             '; 
                 // show company name and address on post
@@ -248,7 +248,7 @@ public function getTimeline_web() {
                         echo '
                         <div class="w3-circle w3-border user_imgMob" style="background-image: url(\''.$default_image.'\');"></div>
                         </div>
-                        <div class="w3-col s8 w3-padding-top" style="padding-left:5px">
+                        <div class="w3-col s8 w3-padding-top" style="padding-left:5px;">
                         <a class="btn" style="padding: 0;margin:0">
                         <label class="w3-small" style="padding:0;margin:0">';
                         if($key['company_name']==''){

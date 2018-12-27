@@ -47,7 +47,7 @@ error_reporting(E_ERROR | E_PARSE);
               <a class="btn " href="<?php echo base_url(); ?>user/category/<?php echo base64_encode($result['cat_id']); ?>">
             <center><img src="<?php echo CATEGORYIMAGE_PATH.$result['category_img']; ?>" style="width: 60px;height: 60px;" class="img img-responsive w3-padding-small">   </center>        
 
-            <center><div class="w3-col l12" style="word-wrap: break-word;white-space: normal;">
+                <center><div class="w3-col l12" style="word-wrap: break-word;white-space: normal;">
                     <span class="w3-small"><?php echo $result['category_name']; ?></span>
                 </div>
               </center>
