@@ -149,9 +149,11 @@ class Feeds_api extends REST_Controller {
 
     //---------------------GET TIMELINE DATA SCROLL END------------------------------//
 
-    public function getTimelineByCategory_get() {
+    public function getTimelineByCategory_get($path='') {
         extract($_GET);
-
+        //print_r($path);
+        
+        //print_r($_GET);die();
         //------------checking the limit is empty or numeric------------//
 
         if (!(is_numeric($limit))) {
@@ -181,8 +183,8 @@ class Feeds_api extends REST_Controller {
         }
         //------------checking the cat_id is empty or numeric------------//
 
-        if (!(is_numeric($cat_id))) {
-            if (empty($cat_id)) {
+        if (!(is_numeric($path))) {
+            if (empty($path)) {
                 $this->response([
                     'status' => 500,
                     'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
@@ -193,7 +195,7 @@ class Feeds_api extends REST_Controller {
             }
         }
         //--------------------ends---------------------------------//
-        $result = $this->feeds_model->getTimelineByCategory($limit, $start, $cat_id);
+        $result = $this->feeds_model->getTimelineByCategory($limit, $start, $path);
         //return $this->response($result);
         switch ($result['status']) {
             case '200': //-----------------if response is 200 it returns login successful

@@ -389,7 +389,8 @@ class Feeds extends CI_Controller {
         //-----------------------api for get the feeds which are posetd by all users-----------//
         $apiKey = 'jumla@1234';
         $path = base_url();
-        $url = $path . 'api/Feeds_api/getTimelineByCategory?limit=' . $limit . '&start=' . $start . '&user_id=' . $user_id . '&cat_id=' . $cat_id;
+        $url = $path . 'api/Feeds_api/getTimelineByCategory/'.$cat_id.'?limit=' . $limit . '&start=' . $start . '&user_id=' . $user_id;
+        //print_r($url);die();
         //create a new cURL resource
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
