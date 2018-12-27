@@ -63,7 +63,6 @@ class Feeds_api extends REST_Controller {
         return $this->response($result);
     }
 
-
     // -----------------------ALL Statistics API----------------------//
     //-------------------------------------------------------------//
     public function getStatistics_get() {
@@ -71,85 +70,153 @@ class Feeds_api extends REST_Controller {
         $result = $this->feeds_model->getStatistics();
         return $this->response($result);
     }
-    //---------------------ALL Statistics END------------------------------//
 
+    //---------------------ALL Statistics END------------------------------//
     // -----------------------GET TIMELINE DATA API----------------------//
     //-------------------------------------------------------------//
     public function getTimeline_get() {
         extract($_GET);
-        $result = $this->feeds_model->getTimeline($per_page,$offset);
+        $result = $this->feeds_model->getTimeline($per_page, $offset);
         return $this->response($result);
     }
-    //---------------------GET TIMELINE DATA END------------------------------//
 
+    //---------------------GET TIMELINE DATA END------------------------------//
     // -----------------------GET TIMELINE DATA FOR ADMIN API----------------------//
     //-------------------------------------------------------------//
     public function getAdminTimelineScroll_get() {
         extract($_GET);
-        $result = $this->feeds_model->getTimelineAdmin($limit,$start,$sortBy);
+        $result = $this->feeds_model->getTimelineAdmin($limit, $start, $sortBy);
         return $this->response($result);
     }
-    //---------------------GET TIMELINE DATA FOR ADMIN END------------------------------//
 
+    //---------------------GET TIMELINE DATA FOR ADMIN END------------------------------//
     // -----------------------GET TIMELINE DATA SCROLL API----------------------//
     //-------------------------------------------------------------//
     public function getTimelineScroll_get() {
-        extract($_GET);       
- //------------checking the limit is empty or numeric------------//
+        extract($_GET);
+        //------------checking the limit is empty or numeric------------//
 
         if (!(is_numeric($limit))) {
-           if (empty($limit)) {
-               $this->response([
-                   'status' => 500,
-                   'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
-           } else {
-               $this->response([
-                   'status' => 500,
-                   'status_message' => 'Limit should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
-           }
-       }
- //--------------------ends---------------------------------//
-       //------------checking the limit is empty or numeric------------//
+            if (empty($limit)) {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            } else {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Limit should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            }
+        }
+        //--------------------ends---------------------------------//
+        //------------checking the limit is empty or numeric------------//
 
         if (!(is_numeric($start))) {
-           if (empty($start)) {
-               $this->response([
-                   'status' => 500,
-                   'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);                 
-           } else {
-               $this->response([
-                   'status' => 500,
-                   'status_message' => 'Start value should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
-           }
-       }
- //--------------------ends---------------------------------//
-        $result = $this->feeds_model->getTimelineScroll($limit,$start);
+            if (empty($start)) {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            } else {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Start value should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            }
+        }
+        //--------------------ends---------------------------------//
+        $result = $this->feeds_model->getTimelineScroll($limit, $start);
         //return $this->response($result);
         switch ($result['status']) {
-        case '200': //-----------------if response is 200 it returns login successful
-        $this->response([
-            'status' => 200,
-            'PRODUCTIMAGE_PATH' => PRODUCTIMAGE_PATH,
-            'PROFILEIMAGEPATH' => PROFILEIMAGE_PATH,
-            'status_message' => $result['status_message']], REST_Controller::HTTP_OK);
-        break;
+            case '200': //-----------------if response is 200 it returns login successful
+                $this->response([
+                    'status' => 200,
+                    'PRODUCTIMAGE_PATH' => PRODUCTIMAGE_PATH,
+                    'PROFILEIMAGEPATH' => PROFILEIMAGE_PATH,
+                    'status_message' => $result['status_message']], REST_Controller::HTTP_OK);
+                break;
 
-        case '500': //-----------------if response is 500 it returns error message
-        $this->response([
-            'status' => 500,     
-            'status_message' => 'Oops! No more Feeds available.'],REST_Controller::HTTP_PRECONDITION_FAILED);              
-        break;       
-        
-        default:
-        $this->response([
-            'status' => 500,
-            'status_message' => "Something went wrong. Request was not send...!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
-        break;
+            case '500': //-----------------if response is 500 it returns error message
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Oops! No more Feeds available.'], REST_Controller::HTTP_PRECONDITION_FAILED);
+                break;
+
+            default:
+                $this->response([
+                    'status' => 500,
+                    'status_message' => "Something went wrong. Request was not send...!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
+                break;
+        }
     }
 
-
-    }
     //---------------------GET TIMELINE DATA SCROLL END------------------------------//
+
+    public function getTimelineByCategory_get() {
+        extract($_GET);
+
+        //------------checking the limit is empty or numeric------------//
+
+        if (!(is_numeric($limit))) {
+            if (empty($limit)) {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            } else {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Limit should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            }
+        }
+        //--------------------ends---------------------------------//
+        //------------checking the limit is empty or numeric------------//
+
+        if (!(is_numeric($start))) {
+            if (empty($start)) {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            } else {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Start value should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            }
+        }
+        //------------checking the cat_id is empty or numeric------------//
+
+        if (!(is_numeric($cat_id))) {
+            if (empty($cat_id)) {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            } else {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Category value should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            }
+        }
+        //--------------------ends---------------------------------//
+        $result = $this->feeds_model->getTimelineByCategory($limit, $start, $cat_id);
+        //return $this->response($result);
+        switch ($result['status']) {
+            case '200': //-----------------if response is 200 it returns login successful
+                $this->response([
+                    'status' => 200,
+                    'PRODUCTIMAGE_PATH' => PRODUCTIMAGE_PATH,
+                    'PROFILEIMAGEPATH' => PROFILEIMAGE_PATH,
+                    'status_message' => $result['status_message']], REST_Controller::HTTP_OK);
+                break;
+
+            case '500': //-----------------if response is 500 it returns error message
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Oops! No more Feeds available.'], REST_Controller::HTTP_PRECONDITION_FAILED);
+                break;
+
+            default:
+                $this->response([
+                    'status' => 500,
+                    'status_message' => "Something went wrong. Request was not send...!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
+                break;
+        }
+    }
 
     // -----------------------GET TIMELINE ROW COUNT API----------------------//
     //-------------------------------------------------------------//
@@ -158,6 +225,7 @@ class Feeds_api extends REST_Controller {
         $result = $this->feeds_model->numRows();
         return $this->response($result);
     }
+
     //---------------------GET TIMELINE ROW COUNT END------------------------------//
 
     public function all_ActiveOrdersCount_get() {
@@ -184,7 +252,6 @@ class Feeds_api extends REST_Controller {
     }
 
 //--------fun for delete feeds from admin side-----------------------//
-
     //--------fun to  mark post as featured-----------------------//
 
     public function markFeatured_get() {
@@ -194,7 +261,6 @@ class Feeds_api extends REST_Controller {
     }
 
 //--------fun to  mark post as featured-----------------------//
-
     //--------fun to  mark post as unfeatured-----------------------//
 
     public function markUnfeatured_get() {
@@ -204,5 +270,4 @@ class Feeds_api extends REST_Controller {
     }
 
 //--------fun to  mark post as unfeatured-----------------------//
-
 }
