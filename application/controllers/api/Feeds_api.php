@@ -220,6 +220,64 @@ class Feeds_api extends REST_Controller {
         }
     }
 
+    // Get timeline feed by search bar query
+    //---------------------GET TIMELINE DATA SCROLL END------------------------------//
+
+    public function getTimelineBySearch_get() {
+        extract($_GET);
+        //------------checking the limit is empty or numeric------------//
+
+        if (!(is_numeric($limit))) {
+            if (empty($limit)) {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            } else {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Limit should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            }
+        }
+        //--------------------ends---------------------------------//
+        //------------checking the limit is empty or numeric------------//
+
+        if (!(is_numeric($start))) {
+            if (empty($start)) {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            } else {
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Start value should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+            }
+        }
+        
+        $result = $this->feeds_model->getTimelineBySearch($limit, $start, $search);
+        // print_r($result);die(); 
+        switch ($result['status']) {
+            case '200': //-----------------if response is 200 it returns login successful
+                $this->response([
+                    'status' => 200,
+                    'PRODUCTIMAGE_PATH' => PRODUCTIMAGE_PATH,
+                    'PROFILEIMAGEPATH' => PROFILEIMAGE_PATH,
+                    'status_message' => $result['status_message']], REST_Controller::HTTP_OK);
+                break;
+
+            case '500': //-----------------if response is 500 it returns error message
+                $this->response([
+                    'status' => 500,
+                    'status_message' => 'Oops! No more Feeds available.'], REST_Controller::HTTP_PRECONDITION_FAILED);
+                break;
+
+            default:
+                $this->response([
+                    'status' => 500,
+                    'status_message' => "Something went wrong. Request was not send...!!!"], REST_Controller::HTTP_PRECONDITION_FAILED);
+                break;
+        }
+    }
+
     // -----------------------GET TIMELINE ROW COUNT API----------------------//
     //-------------------------------------------------------------//
     public function getTimelineRows_get() {

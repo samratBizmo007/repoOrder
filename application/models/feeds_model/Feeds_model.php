@@ -65,10 +65,31 @@ class Feeds_model extends CI_Model {
 //----------fun for get timline by category---------------------------------//
     public function getTimelineByCategory($limit, $start, $cat_id) {
         if ($cat_id == '0') {
-            $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ORDER BY p.prod_id DESC LIMIT $start,$limit";
+            $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ORDER BY p.isFeatured DESC,p.prod_id DESC LIMIT $start,$limit";
         } else {            
-            $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) WHERE p.cat_id='$cat_id' ORDER BY p.prod_id DESC LIMIT $start,$limit";
+            $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) WHERE p.cat_id='$cat_id' ORDER BY p.isFeatured DESC,p.prod_id DESC LIMIT $start,$limit";
         }
+        $result = $this->db->query($query);
+        if ($result->num_rows() <= 0) {
+            $response = array(
+                'status' => 500,
+                'status_message' => 'No more Feeds available.');
+        } else {
+            $response = array(
+                'status' => 200,
+                'status_message' => $result->result_array());
+        }
+        return $response;
+    }
+
+//----------fun for get timline by search---------------------------------//
+    public function getTimelineBySearch($limit, $start, $search) {
+        if ($search == '' || strlen($search)<3) {
+            $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ORDER BY p.isFeatured DESC, p.prod_id DESC LIMIT $start,$limit";
+        } else {            
+            $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) WHERE p.product_name LIKE '%$search%' OR p.prod_description LIKE '%$search%' ORDER BY p.isFeatured DESC,p.prod_id DESC LIMIT $start,$limit";
+        }
+        // print_r($query);die();
         $result = $this->db->query($query);
         if ($result->num_rows() <= 0) {
             $response = array(

@@ -26,7 +26,10 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="">
                     <div class="w3-col l8 ">
                         <div class="w3-col l12" style="">
-
+                            <div class="w3-col l4 w3-padding-small w3-margin-bottom w3-small">
+                                <label class="w3-text-grey">Search:</label>
+                                <input class="w3-input w3-border" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 5px">
+                            </div>
                             <div class="w3-col l4 w3-padding-small w3-margin-bottom w3-small">
                                 <label class="w3-text-grey">Sort By Category:</label>
                                 <select class="w3-input w3-border" name="sortFeedsByCategory" id="sortFeedsByCategory">
@@ -46,7 +49,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 </select>
                             </div>
                             <div class="col-lg-4"></div>
-                            <div class="col-lg-4"></div>
+                            
                         </div>
                         <div class="w3-col l12" id="load_feeds"></div>
 
@@ -112,7 +115,57 @@ error_reporting(E_ERROR | E_PARSE);
             });
 
             // ----------------------function ends here -----------------------------------//
+            // fucntio to get feeds on search bar
+            $('#searchFeeds').on('keyup',function(){
+                var search = $('#searchFeeds').val();
+                var length = search.length;
+                var limit = 2;
+                var start = 0;
+                var action = 'inactive';
+                function searchFeeds(limit, start) {
 
+                    $.ajax({
+                        url: "<?php echo base_url(); ?>user/feeds/getTimelinebySearch_mob",
+                        method: "POST",
+                        data: {limit: limit, start: start, query: search},
+                        cache: false,
+                        success: function (data)
+                        {
+                            //alert(data);
+                            if (start == 0) {
+                                $('#load_feeds').html(data);
+                            } else {
+                                $('#load_feeds').append(data);
+                            }
+
+                            if (data == '') {
+                                $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> Oops! No more Feeds available. </b></div>');
+                                action = 'active';
+                            } else {
+                                $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
+                                action = "inactive";
+                            }
+                        }
+                    });
+
+                }
+
+                if (action == 'inactive') {
+                    action = 'active';
+                    searchFeeds(limit, start);
+                }
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() + $(window).height() > $("#load_feeds").height() && action == 'inactive')
+                    {
+                        action = 'active';
+                        start = start + limit;
+                        setTimeout(function () {
+                            searchFeeds(limit, start);
+                        }, 500);
+                    }
+                });
+            });
+            // fucntion ends here
 
             $(document).ready(function () {
                 var limit = 2;
