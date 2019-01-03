@@ -119,9 +119,7 @@ $admin_role=$this->session->userdata('admin_role');
            {
            	$.alert(data);                       
            }
-
-       });
-
+         });
          return false;  //stop the actual form post !important!
 
      });
