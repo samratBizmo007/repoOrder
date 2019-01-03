@@ -39,16 +39,15 @@ error_reporting(E_ERROR | E_PARSE);
         <div class="w3-row-padding w3-margin-bottom">
             <div class="w3-container">
                 <div class="col-lg-2">
-                    <input type="text" id="limit_inp" value="2">
-                    <input type="text" id="start_inp" value="0">
+                    
                 </div>
                 <div class="col-lg-8">
                     <div class="w3-col l12" style="padding-left: 30px">
 
                         <div class="w3-col l4 w3-padding-left w3-small">
                             <label class="w3-text-grey">Sort By Category:</label>
-                            <select class="w3-input w3-border" onchange="load_feeds_data();" name="sortFeedsByCategory" id="sortFeedsByCategory">
-                                <option value="0">All</option>
+                            <select class="w3-input w3-border" onchange="load_feeds_data(0,2);" name="sortFeedsByCategory" id="sortFeedsByCategory">
+                                <option value="All">All</option>
                                 <?php
                                     // print_r($all_categories['status_message']);die();
                                 if ($all_categories['status'] == 200) {
@@ -90,47 +89,14 @@ error_reporting(E_ERROR | E_PARSE);
             
 
             // fucntio to get feeds on search bar
-            $('#searchFeeds').on('keyup',function(){
-                var search = $('#searchFeeds').val(); 
-                var sortBy = $('#sortFeedsByCategory').val();
-                var limit = $('#limit_inp').val();
-                var start = $('#start_inp').val();
-                var action = 'inactive';
-                function searchFeeds(limit, start) {
-
-                    $.ajax({
-                        url: "<?php echo base_url(); ?>user/feeds/getTimelineBySearch",
-                        method: "POST",
-                        data: {limit: limit, start: start, query: search, cat_id: sortBy},
-                        cache: false,
-                        success: function (data)
-                        {
-                            //alert(data);
-                            // if (start == 0) {
-                            //     $('#load_feeds').html(data);
-                            // } else {
-                            //     $('#load_feeds').append(data);
-                            // }
-                            $('#load_feeds').html(data);
-                            if (data == '') {
-                                $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> Oops! No more Feeds available. </b></div>');
-                                action = 'active';
-                            } else {
-                                $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
-                                action = "inactive";
-                            }
-                        }
-                    });
-
-                }
-            });
+            
             // fucntion ends here
 
 
 
             $(document).ready(function () {
-                var limit = $('#limit_inp').val();
-                var start = $('#start_inp').val();
+                var limit = 2;
+                var start = 0;
                 var action = 'inactive';
                 var search = $('#searchFeeds').val(); 
                 var sortBy = $('#sortFeedsByCategory').val();
@@ -142,10 +108,8 @@ error_reporting(E_ERROR | E_PARSE);
             // });
 
             // ----------------------function ends here -----------------------------------//
-                function load_feeds_data()
+                function load_feeds_data(limit,start)
                 {
-                    var limit = $('#limit_inp').val();
-                var start = $('#start_inp').val();
                     $.ajax({
                         url: "<?php echo base_url(); ?>user/feeds/getTimeline_web",
                         method: "POST",
@@ -182,9 +146,8 @@ error_reporting(E_ERROR | E_PARSE);
                     {
                         action = 'active';
                         start = start + limit;
-                        $('#start_inp').val(start);
                         setTimeout(function () {
-                            load_feeds_data();
+                           load_feeds_data(limit, start);
                         }, 500);
                     }
                 });

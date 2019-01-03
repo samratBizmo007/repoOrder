@@ -155,11 +155,11 @@ error_reporting(E_ERROR | E_PARSE);
                     });
                 }
 
-                if (action == 'inactive')
+               if (action == 'inactive')
                 {
                     action = 'active';
                     sortFeeds(limit, start);
-                }
+               }
                 $(window).scroll(function () {
                     if ($(window).scrollTop() + $(window).height() > $("#load_feeds").height() && action == 'inactive')
                     {

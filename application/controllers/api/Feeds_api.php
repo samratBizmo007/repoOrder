@@ -183,17 +183,13 @@ class Feeds_api extends REST_Controller {
         }
         //------------checking the cat_id is empty or numeric------------//
 
-        if (!(is_numeric($cat_id))) {
+        
             if (empty($cat_id)) {
                 $this->response([
                     'status' => 500,
                     'status_message' => 'Category Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
-            } else {
-                $this->response([
-                    'status' => 500,
-                    'status_message' => 'Category value should be numeric!'], REST_Controller::HTTP_PRECONDITION_FAILED);
-            }
-        }
+            } 
+        
         //--------------------ends---------------------------------//
         $result = $this->feeds_model->getTimelineByFilter($limit, $start, $cat_id,$search);
         //return $this->response($result);

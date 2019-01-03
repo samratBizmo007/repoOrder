@@ -65,10 +65,10 @@ class Feeds_model extends CI_Model {
 //----------fun for get timline by filter---------------------------------//
     public function getTimelineByFilter($limit, $start, $cat_id, $search) {
         $condition='';
-        if ($cat_id != '0' && strlen($search)>=3) {
+        if ($cat_id != 'All' && strlen($search)>=3) {
             $condition="WHERE p.cat_id='$cat_id' AND p.product_name LIKE '%$search%' OR p.prod_description LIKE '%$search%'";
         } else {  
-            if($cat_id=='0'){
+            if($cat_id=='All'){
                 if(strlen($search)>=3) {
                 $condition="WHERE p.product_name LIKE '%$search%' OR p.prod_description LIKE '%$search%'";
             }else{
@@ -82,7 +82,7 @@ class Feeds_model extends CI_Model {
             }       
         }
         $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) ".$condition." ORDER BY p.isFeatured DESC,p.prod_id DESC LIMIT $start,$limit";
-
+  //echo $query;die();
         $result = $this->db->query($query);
         if ($result->num_rows() <= 0) {
             $response = array(
@@ -103,7 +103,7 @@ class Feeds_model extends CI_Model {
         } else {            
             $query = "SELECT c.category_name,u.user_id,u.role,u.cat_id,u.fb_id,u.full_name,u.unique_id,u.username,u.company_name,u.user_image,u.website,u.bio,u.email,u.phone,u.country_code,u.whatsapp_no,u.address,p.user_id,p.cat_id,p.product_name,p.posted_by,p.prod_id,p.prod_image,p.prod_description,p.isFeatured FROM user_tab as u JOIN product_tab as p JOIN category_tab as c ON (u.unique_id= p.user_id AND c.cat_id = p.cat_id) WHERE p.product_name LIKE '%$search%' OR p.prod_description LIKE '%$search%' ORDER BY p.isFeatured DESC,p.prod_id DESC LIMIT $start,$limit";
         }
-        // print_r($query);die();
+      
         $result = $this->db->query($query);
         if ($result->num_rows() <= 0) {
             $response = array(
