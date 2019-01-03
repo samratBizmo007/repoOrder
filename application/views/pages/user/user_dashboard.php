@@ -43,10 +43,11 @@ error_reporting(E_ERROR | E_PARSE);
                 </div>
                 <div class="col-lg-8">
                     <div class="w3-col l12" style="padding-left: 30px">
-
+<input id="limit_inp" type="text" value="2">
+<input id="start_inp" type="text" value="0">
                         <div class="w3-col l4 w3-padding-left w3-small">
                             <label class="w3-text-grey">Sort By Category:</label>
-                            <select class="w3-input w3-border" onchange="load_feeds_data(0,2);" name="sortFeedsByCategory" id="sortFeedsByCategory">
+                            <select class="w3-input w3-border" name="sortFeedsByCategory" id="sortFeedsByCategory">
                                 <option value="All">All</option>
                                 <?php
                                     // print_r($all_categories['status_message']);die();
@@ -65,7 +66,7 @@ error_reporting(E_ERROR | E_PARSE);
                         <div class="col-lg-3"></div>
                         <div class="col-lg-5 w3-padding-left w3-small" style="padding-right: 45px">
                             <label class="w3-text-grey">Search:</label>
-                            <input class="w3-input w3-border" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 5px">
+                            <input class="w3-input w3-border" onkeyup="load_feeds_data(0,2);" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 6px">
                         </div>
                     </div>
 
@@ -92,26 +93,88 @@ error_reporting(E_ERROR | E_PARSE);
             
             // fucntion ends here
 
+$('#sortFeedsByCategory').change(function () {
+	var limit=2;
+	var start=0;
+	var search = $('#searchFeeds').val(); 
+                var sortBy = $('#sortFeedsByCategory').val();
+                 $.ajax({
+                        url: "<?php echo base_url(); ?>feeds/getTimeline_web",
+                        method: "POST",
+                        data: {limit: limit, start: start, query: search, cat_id: sortBy},
+                        cache: false,
+                        success: function (data)
+                        {
+                            //alert(data);
+                            if (start == 0) {
+                                $('#load_feeds').html(data);
+                            } else {
+                                $('#load_feeds').append(data);
+                            }
+                            if (data == '')
+                            {
+                                $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
+                                action = 'active';
+                            } else
+                            {
+                                $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
+                                action = "inactive";
+                            }
+                        }
+                    });
+            });
 
+$('#searchFeeds').keyup(function () {
+	var limit=2;
+	var start=0;
+	var search = $('#searchFeeds').val(); 
+                var sortBy = $('#sortFeedsByCategory').val();
+                 $.ajax({
+                        url: "<?php echo base_url(); ?>feeds/getTimeline_web",
+                        method: "POST",
+                        data: {limit: limit, start: start, query: search, cat_id: sortBy},
+                        cache: false,
+                        success: function (data)
+                        {
+                            //alert(data);
+                            if (start == 0) {
+                                $('#load_feeds').html(data);
+                            } else {
+                                $('#load_feeds').append(data);
+                            }
+                            if (data == '')
+                            {
+                                $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
+                                action = 'active';
+                            } else
+                            {
+                                $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
+                                action = "inactive";
+                            }
+                        }
+                    });
+            });
 
             $(document).ready(function () {
-                var limit = 2;
-                var start = 0;
+                var limit = $('#limit_inp').val();
+                	var start = $('#start_inp').val();
                 var action = 'inactive';
                 var search = $('#searchFeeds').val(); 
                 var sortBy = $('#sortFeedsByCategory').val();
                 
                 // -------fucntion to load 2 feeds on dropdown sort by chnage-------------------//
 
-            // $('#sortFeedsByCategory').change(function () {
-            //     load_feeds_data(limit, start);
-            // });
+            
 
             // ----------------------function ends here -----------------------------------//
                 function load_feeds_data(limit,start)
                 {
+                	var limit = $('#limit_inp').val();
+                	var start = $('#start_inp').val();
+                	var search = $('#searchFeeds').val(); 
+                var sortBy = $('#sortFeedsByCategory').val();
                     $.ajax({
-                        url: "<?php echo base_url(); ?>user/feeds/getTimeline_web",
+                        url: "<?php echo base_url(); ?>feeds/getTimeline_web",
                         method: "POST",
                         data: {limit: limit, start: start, query: search, cat_id: sortBy},
                         cache: false,
@@ -144,12 +207,16 @@ error_reporting(E_ERROR | E_PARSE);
                 $(window).scroll(function () {
                     if ($(window).scrollTop() + $(window).height() > $("#load_feeds").height() && action == 'inactive')
                     {
+                    	$('#start_inp').val(0);
                         action = 'active';
                         start = start + limit;
+                        $('#start_inp').val(start);
                         setTimeout(function () {
                            load_feeds_data(limit, start);
                         }, 500);
+$('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
                     }
+                    
                 });
 
             });
