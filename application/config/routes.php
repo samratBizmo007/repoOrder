@@ -54,7 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['user/category/(:any)'] = "user/category/index/$1";
 $route['user/user_profile/(:any)'] = "user/user_profile/index/$1";
-$route['api/feeds_api/getTimelineByCategory/(:any)'] = "api/feeds_api/getTimelineByCategory/$1";
+$route['api/feeds_api/getTimelineByFilter/(:any)'] = "api/feeds_api/getTimelineByFilter/$1";
 
 //$route['login/(:any)'] = 'login/index/$1';
 //$route['auth/login/(:any)'] = "auth/login/login_auth/$1";

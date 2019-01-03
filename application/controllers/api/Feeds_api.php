@@ -149,7 +149,7 @@ class Feeds_api extends REST_Controller {
 
     //---------------------GET TIMELINE DATA SCROLL END------------------------------//
 
-    public function getTimelineByCategory_get($path='') {
+    public function getTimelineByFilter_get($cat_id='') {
         extract($_GET);
         //print_r($path);
         
@@ -174,7 +174,7 @@ class Feeds_api extends REST_Controller {
             if (empty($start)) {
                 $this->response([
                     'status' => 500,
-                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+                    'status_message' => 'Start Value Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
             } else {
                 $this->response([
                     'status' => 500,
@@ -183,11 +183,11 @@ class Feeds_api extends REST_Controller {
         }
         //------------checking the cat_id is empty or numeric------------//
 
-        if (!(is_numeric($path))) {
-            if (empty($path)) {
+        if (!(is_numeric($cat_id))) {
+            if (empty($cat_id)) {
                 $this->response([
                     'status' => 500,
-                    'status_message' => 'Data Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
+                    'status_message' => 'Category Not Found.!'], REST_Controller::HTTP_PRECONDITION_FAILED);
             } else {
                 $this->response([
                     'status' => 500,
@@ -195,7 +195,7 @@ class Feeds_api extends REST_Controller {
             }
         }
         //--------------------ends---------------------------------//
-        $result = $this->feeds_model->getTimelineByCategory($limit, $start, $path);
+        $result = $this->feeds_model->getTimelineByFilter($limit, $start, $cat_id,$search);
         //return $this->response($result);
         switch ($result['status']) {
             case '200': //-----------------if response is 200 it returns login successful
