@@ -15,11 +15,16 @@ error_reporting(E_ERROR | E_PARSE);
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/alert/jquery-confirm.js"></script>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/js/admin/admin_settings.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
 
     <style>
     body {
         font-family: 'Roboto', sans-serif;
+
+    }
+    input
+    {
+    	color: #9ca4ab;
     }
 </style>
 </head>
@@ -94,26 +99,26 @@ error_reporting(E_ERROR | E_PARSE);
             <form id="addProduct_form" name="addProduct_form">
                 <div class="w3-col l12 s12 m12 w3-margin-top">
                     <div class="col-lg-6 w3-padding-small" id="deletecat">
-                        <div class="w3-col l12 s12 m12 w3-small w3-padding-bottom">
+                        <div class="w3-col l12 s12 m12 w3-medium w3-padding-bottom">
                             <label> Product Name: <font color ="red"><span id ="pname_star">*</span></font></label><br>
                             <font color ="red"><span id ="product_name_span"></span></font>
-                            <input type="text" name="product_name" id="product_name" value="" placeholder="Add Product Name" class="w3-input w3-border w3-margin-bottom" required>
+                            <input type="text" name="product_name" id="product_name" value="" placeholder="Add Product Name Here" class="w3-input  w3-margin-bottom" required>
                         </div>                           
                         <!-- kk -->
-                        <div class="w3-col l12 s12 m12 w3-small w3-padding-bottom">
+                        <div class="w3-col l12 s12 m12 w3-medium w3-padding-bottom">
                             <label> Product Description: <font color ="red"><span id ="pdescription_star">*</span></font></label><br>
                             <font color ="red"><span id ="product_description_span"></span></font>
-                            <textarea class="w3-input w3-border w3-margin-bottom" name="product_description" id="product_description" rows="5" cols="50" style="resize: none;" required></textarea>
+                            <textarea class="w3-input  w3-margin-bottom" placeholder="Add Product Description Here" name="product_description" id="product_description" rows="5" cols="50" style="resize: none; color: #9ca4ab;" required></textarea>
                         </div>
                         <!-- kk -->                            
                         
                     </div>
                     <!-- ---div for images -->
                     <div class="col-lg-6 w3-padding-tiny" id="deletecat">
-                        <div class="w3-col l12 s12 m12 w3-small">
+                        <div class="w3-col l12 s12 m12 ">
                             <div class="w3-col l6 ">
-                                <label>Product Image:</label>
-                                <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-border" onchange="readURL(this);" required>
+                                <label class="w3-medium">Product Image:</label>
+                                <input type="file" name="prod_image[]" id="prod_image" class="w3-input " onchange="readURL(this);" required>
                             </div>
                             <div class="w3-col l6 w3-padding-small w3-margin-top">
                                 <img src="" width="auto" id="adminImagePreview" height="150px" alt="Product Image will be displayed here once chosen." class=" w3-centerimg img-thumbnail">
@@ -148,7 +153,7 @@ error_reporting(E_ERROR | E_PARSE);
                         <div class="w3-col l12 s12 m12 w3-small w3-margin-top">\n\
                         <div class="w3-col l6 w3-padding-small">\n\
                         <label>Product Image:</label>\n\
-                        <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-border" onchange="readURLNEW(this,'+x+');" required>\n\
+                        <input type="file" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURLNEW(this,'+x+');" required>\n\
                         </div>\n\
                         <div class="w3-col l6 w3-padding-small">\n\
                         <img src="" width="auto" id="adminImagePreview_'+x+'" height="150px" alt="Product Image will be displayed here once chosen." class=" w3-centerimg img-thumbnail">\n\

@@ -13,8 +13,17 @@ error_reporting(E_ERROR | E_PARSE);
         <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
 
         <script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
-        <script type="text/javascript" src="<?php echo base_url(); ?>css/js/orders/manage_order.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+
         <style>
+        body{
+        	font-family: 'Roboto', sans-serif;
+        }
+        input{
+        
+        	font-size:14px;
+        	color:#9ca4ab;
+        }
             /* width */
             ::-webkit-scrollbar {
                 width: 5px;
@@ -39,7 +48,9 @@ error_reporting(E_ERROR | E_PARSE);
     <body>
         <!-- !PAGE CONTENT! -->
         <div class="w3-main" style="margin-top:40px;margin-bottom: 40px">
-
+		<header class="w3-center w3-padding ">
+            <h5 class="w3-text-blue"><b>Add Product</b></h5>
+        </header>
             <div class="w3-margin-bottom">
                 <!-- Manage Profiles div -->
                 <form id="addProduct_form" enctype="multipart/form-data">  
@@ -52,19 +63,19 @@ error_reporting(E_ERROR | E_PARSE);
                               
                                 <div class="w3-col l12 w3-margin-top">                 
                                     <div class="w3-col l12 s12 m12" style="padding-right: 2px;">
-                                        <input type="text" name="product_name" id="product_name" value="" placeholder="Add Product Name" class="w3-input w3-border" required>
+                                        <input type="text" name="product_name" id="product_name" value="" placeholder="Add Product Name Here" class="w3-input " style="" required>
                                     </div>
                                 </div>
                                 <div class="w3-col l12 w3-margin-top">                 
                                     <div class="w3-col l12 s12 m12" style=" padding-right: 2px;">
-                                        <textarea class="w3-input w3-border" name="product_description" id="product_description" placeholder="Add Product Description" rows="5" cols="50" style="resize: none;" required></textarea>
+                                        <textarea class="w3-input" name="product_description" id="product_description" placeholder="Add Product Description Here" rows="5" cols="50" style="resize: none; color:#9ca4ab;font-size:14px;" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="w3-col l12 s12 m12 w3-margin-top w3-margin-bottom">
                                     <div class="w3-col s8">
                                         <label class="w3-label w3-text-black">Product Image:</label>
-                                        <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-border" onchange="readURL(this);" required>
+                                        <input type="file" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURL(this);" required>
                                     </div>
                                     <div class="w3-col s4 w3-padding-small w3-display-container">
                                         <img class="img img-circle" id="adminImagePreview" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">
@@ -104,7 +115,7 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="w3-col l12 s12 m12 w3-margin-top">\n\
         <div class="w3-col s8">\n\
         <label class="w3-label w3-text-black">Product Image:</label>\n\
-        <input type="file" name="prod_image[]" id="prod_image" class="w3-input w3-border" onchange="readURLNEW(this,'+x+');" required>\n\
+        <input type="file" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURLNEW(this,'+x+');" required>\n\
         </div>\n\
         <div class="w3-col s4 w3-padding-small w3-display-container">\n\
         <img class="img img-circle" id="adminImagePreview_'+x+'" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">\n\

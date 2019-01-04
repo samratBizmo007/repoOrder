@@ -22,6 +22,12 @@ $user_id = $this->session->userdata('user_id');
     body {
         font-family: 'Roboto', sans-serif;
     }
+
+    input{
+        
+       font-size:14px;
+       color:#9ca4ab;
+        }
 </style>
 </head>
 

@@ -7,6 +7,13 @@ error_reporting(E_ERROR | E_PARSE);
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>All Categories</title>
+   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+
+        <style>
+        body{
+        	font-family: 'Roboto', sans-serif;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,9 +21,10 @@ error_reporting(E_ERROR | E_PARSE);
   <div class="w3-main" style="margin-top:40px;margin-bottom: 40px">
 
     <!-- Header -->
-    <header class="w3-container" >
-      <h6><b><i class="fa fa-search"></i> All Categories</b></h6>
-    </header>
+   
+    <header class="w3-center w3-padding ">
+            <h5 class="w3-text-blue"><b>All Categories</b></h5>
+        </header>
 
     <!-- main content -->
     <div class="w3-row-padding w3-margin-bottom">

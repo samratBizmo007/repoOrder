@@ -12,7 +12,13 @@ $id=$id_Arr[1];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Profile</title>        
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">                
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+     <style>
+        body{
+        	font-family: 'Roboto', sans-serif;
+        }
+    </style>               
 </head>
 <style>
 /* saved images overlay opacity overlay */

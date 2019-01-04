@@ -8,10 +8,25 @@ error_reporting(E_ERROR | E_PARSE);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+
+        <style>
+        body{
+        	font-family: 'Roboto', sans-serif;
+        }
+        input{
+        
+        	font-size:14px;
+        	color:#9ca4ab;
+        }
+    </style>
 </head>
 <body>
     <!-- !PAGE CONTENT! -->
     <div class="w3-main" style="margin-top: 40px;">
+    	<header class="w3-center w3-padding ">
+            <h5 class="w3-text-blue"><b>Edit Profile</b></h5>
+        </header>
         <div class="w3-col l9" style="padding: 10px">
             <form id="uploadImageForm" name="uploadImageForm" enctype="multipart/form-data">
                 <div class="w3-col l12 w3-right w3-card-2 w3-round">
