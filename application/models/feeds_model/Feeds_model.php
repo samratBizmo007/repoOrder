@@ -65,10 +65,10 @@ class Feeds_model extends CI_Model {
 //----------fun for get timline by filter---------------------------------//
     public function getTimelineByFilter($limit, $start, $cat_id, $search) {
         $condition='';
-        if ($cat_id != 'All' && strlen($search)>=3) {
-            $condition="WHERE p.cat_id='$cat_id' AND p.product_name LIKE '%$search%' OR p.prod_description LIKE '%$search%'";
+        if ($cat_id != '0' && strlen($search)>=3) {
+            $condition="WHERE p.cat_id='$cat_id' AND (p.product_name LIKE '%$search%' OR p.prod_description LIKE '%$search%')";
         } else {  
-            if($cat_id=='All'){
+            if($cat_id=='0'){
                 if(strlen($search)>=3) {
                 $condition="WHERE p.product_name LIKE '%$search%' OR p.prod_description LIKE '%$search%'";
             }else{

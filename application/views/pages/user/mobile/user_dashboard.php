@@ -10,6 +10,23 @@ error_reporting(E_ERROR | E_PARSE);
         <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
         <!-- Link Swiper's CSS -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
+      <!--   <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css"> -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
+
+    <!-- <link rel="stylesheet" href="assets/css/alert/jquery-confirm.css"> -->
+<!--     <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+ -->    <!-- <script type="text/javascript" src="assets/css/alert/jquery-confirm.js"></script> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+
+    <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+</style>
     </head>
     <body>
 
@@ -26,9 +43,11 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="">
                     <div class="w3-col l8 ">
                         <div class="w3-col l12" style="">
+                                                <input id="limit_inp" type="hidden" value="2">
+                                                <input id="start_inp" type="hidden" value="0">
                             <div class="w3-col l4 w3-padding-small w3-margin-bottom w3-small">
                                 <label class="w3-text-grey">Search:</label>
-                                <input class="w3-input w3-border" onkeyup="javascript:load_feeds_data(0,2);" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 5px;">
+                                <input class="w3-input w3-border" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 5px;">
                             </div>
                             <div class="w3-col l4 w3-padding-small w3-margin-bottom w3-small">
                                 <label class="w3-text-grey">Sort By Category:</label>
@@ -65,31 +84,45 @@ error_reporting(E_ERROR | E_PARSE);
         <!-- End page content -->
         <!-- script to load more feeds data on page scroll -->
          <script>
-            
-
-   $(document).ready(function () {
-                var limit = 2;
-                var start = 0;
+               $(document).ready(function () {
+                var limit = $('#limit_inp').val();
+                    var start = $('#start_inp').val();
                 var action = 'inactive';
                 var search = $('#searchFeeds').val(); 
                 var sortBy = $('#sortFeedsByCategory').val();
                 
                 // -------fucntion to load 2 feeds on dropdown sort by chnage-------------------//
 
-            $('#sortFeedsByCategory').change(function () {
-                 load_feeds_data(limit, start);
+$('#searchFeeds').keyup(function () {
+    $('#load_feeds').html('');
+    $('#start_inp').val(0);
+    $('#limit_inp').val(2);
+     load_feeds_data();
+            });
+            //-------------------------------------------------------------------//
+$('#sortFeedsByCategory').change(function () {
+    $('#load_feeds').html('');
+    $('#start_inp').val(0);
+    $('#limit_inp').val(2);
+    load_feeds_data();
             });
 
             // ----------------------function ends here -----------------------------------//
-                function load_feeds_data(limit,start)
+                function load_feeds_data()
                 {
+                    
+                    var limit = $('#limit_inp').val();
+                    var start = $('#start_inp').val();
+                    var search = $('#searchFeeds').val(); 
+                    var sortBy = $('#sortFeedsByCategory').val();
                     $.ajax({
-                        url: "<?php echo base_url(); ?>user/feeds/getTimeline_web",
+                        url: "<?php echo base_url(); ?>feeds/getTimeline_mob",
                         method: "POST",
                         data: {limit: limit, start: start, query: search, cat_id: sortBy},
                         cache: false,
                         success: function (data)
                         {
+                            //console.log()
                             //alert(data);
                             if (start == 0) {
                                 $('#load_feeds').html(data);
@@ -109,23 +142,87 @@ error_reporting(E_ERROR | E_PARSE);
                     });
                 }
 
-                if (action == 'inactive')
-                {
+                if (action == 'inactive'){
                     action = 'active';
-                    load_feeds_data(limit, start);
+                    load_feeds_data();
                 }
                 $(window).scroll(function () {
                     if ($(window).scrollTop() + $(window).height() > $("#load_feeds").height() && action == 'inactive')
                     {
-                        action = 'active';
-                        start = start + limit;
+                    //var limit = $('#limit_inp').val();
+                    var start = $('#start_inp').val();
+                    action = 'active';
+                        start = parseInt(start) + parseInt(limit);
+                        $('#start_inp').val(parseInt(start));
                         setTimeout(function () {
-                           load_feeds_data(limit, start);
+                           load_feeds_data();
                         }, 500);
+                        $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
                     }
+                    
                 });
 
             });
+
+   //$(document).ready(function () {
+                // var limit = 2;
+                // var start = 0;
+                // var action = 'inactive';
+                // var search = $('#searchFeeds').val(); 
+                // var sortBy = $('#sortFeedsByCategory').val();
+                
+                // -------fucntion to load 2 feeds on dropdown sort by chnage-------------------//
+
+            // $('#sortFeedsByCategory').change(function () {
+            //      load_feeds_data(limit, start);
+            // });
+
+            // ----------------------function ends here -----------------------------------//
+                // function load_feeds_data(limit,start)
+                // {
+                //     $.ajax({
+                //         url: "<?php echo base_url(); ?>user/feeds/getTimeline_web",
+                //         method: "POST",
+                //         data: {limit: limit, start: start, query: search, cat_id: sortBy},
+                //         cache: false,
+                //         success: function (data)
+                //         {
+                            //alert(data);
+            //                 if (start == 0) {
+            //                     $('#load_feeds').html(data);
+            //                 } else {
+            //                     $('#load_feeds').append(data);
+            //                 }
+            //                 if (data == '')
+            //                 {
+            //                     $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
+            //                     action = 'active';
+            //                 } else
+            //                 {
+            //                     $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
+            //                     action = "inactive";
+            //                 }
+            //             }
+            //         });
+            //     }
+
+            //     if (action == 'inactive')
+            //     {
+            //         action = 'active';
+            //         load_feeds_data(limit, start);
+            //     }
+            //     $(window).scroll(function () {
+            //         if ($(window).scrollTop() + $(window).height() > $("#load_feeds").height() && action == 'inactive')
+            //         {
+            //             action = 'active';
+            //             start = start + limit;
+            //             setTimeout(function () {
+            //                load_feeds_data(limit, start);
+            //             }, 500);
+            //         }
+            //     });
+
+            // });
         </script>
         
         <!-- script to load feeds on page scroll ends -->

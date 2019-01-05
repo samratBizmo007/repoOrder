@@ -43,12 +43,12 @@ error_reporting(E_ERROR | E_PARSE);
                 </div>
                 <div class="col-lg-8">
                     <div class="w3-col l12" style="padding-left: 30px">
-<input id="limit_inp" type="text" value="2">
-<input id="start_inp" type="text" value="0">
+                    <input id="limit_inp" type="hidden" value="2">
+                    <input id="start_inp" type="hidden" value="0">
                         <div class="w3-col l4 w3-padding-left w3-small">
                             <label class="w3-text-grey">Sort By Category:</label>
                             <select class="w3-input w3-border" name="sortFeedsByCategory" id="sortFeedsByCategory">
-                                <option value="All">All</option>
+                                <option value="0">All</option>
                                 <?php
                                     // print_r($all_categories['status_message']);die();
                                 if ($all_categories['status'] == 200) {
@@ -87,73 +87,6 @@ error_reporting(E_ERROR | E_PARSE);
 
     <!-- script to load more feeds data on page scroll -->
     <script>
-            
-
-            // fucntio to get feeds on search bar
-            
-            // fucntion ends here
-
-$('#sortFeedsByCategory').change(function () {
-	var limit=2;
-	var start=0;
-	var search = $('#searchFeeds').val(); 
-                var sortBy = $('#sortFeedsByCategory').val();
-                 $.ajax({
-                        url: "<?php echo base_url(); ?>feeds/getTimeline_web",
-                        method: "POST",
-                        data: {limit: limit, start: start, query: search, cat_id: sortBy},
-                        cache: false,
-                        success: function (data)
-                        {
-                            //alert(data);
-                            if (start == 0) {
-                                $('#load_feeds').html(data);
-                            } else {
-                                $('#load_feeds').append(data);
-                            }
-                            if (data == '')
-                            {
-                                $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
-                                action = 'active';
-                            } else
-                            {
-                                $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
-                                action = "inactive";
-                            }
-                        }
-                    });
-            });
-
-$('#searchFeeds').keyup(function () {
-	var limit=2;
-	var start=0;
-	var search = $('#searchFeeds').val(); 
-                var sortBy = $('#sortFeedsByCategory').val();
-                 $.ajax({
-                        url: "<?php echo base_url(); ?>feeds/getTimeline_web",
-                        method: "POST",
-                        data: {limit: limit, start: start, query: search, cat_id: sortBy},
-                        cache: false,
-                        success: function (data)
-                        {
-                            //alert(data);
-                            if (start == 0) {
-                                $('#load_feeds').html(data);
-                            } else {
-                                $('#load_feeds').append(data);
-                            }
-                            if (data == '')
-                            {
-                                $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
-                                action = 'active';
-                            } else
-                            {
-                                $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
-                                action = "inactive";
-                            }
-                        }
-                    });
-            });
 
             $(document).ready(function () {
                 var limit = $('#limit_inp').val();
@@ -164,15 +97,28 @@ $('#searchFeeds').keyup(function () {
                 
                 // -------fucntion to load 2 feeds on dropdown sort by chnage-------------------//
 
-            
+$('#searchFeeds').keyup(function () {
+    $('#load_feeds').html('');
+    $('#start_inp').val(0);
+    $('#limit_inp').val(2);
+     load_feeds_data();
+            });
+            //-------------------------------------------------------------------//
+$('#sortFeedsByCategory').change(function () {
+    $('#load_feeds').html('');
+    $('#start_inp').val(0);
+    $('#limit_inp').val(2);
+    load_feeds_data();
+            });
 
             // ----------------------function ends here -----------------------------------//
-                function load_feeds_data(limit,start)
+                function load_feeds_data()
                 {
+                    
                 	var limit = $('#limit_inp').val();
                 	var start = $('#start_inp').val();
                 	var search = $('#searchFeeds').val(); 
-                var sortBy = $('#sortFeedsByCategory').val();
+                    var sortBy = $('#sortFeedsByCategory').val();
                     $.ajax({
                         url: "<?php echo base_url(); ?>feeds/getTimeline_web",
                         method: "POST",
@@ -199,22 +145,22 @@ $('#searchFeeds').keyup(function () {
                     });
                 }
 
-                if (action == 'inactive')
-                {
+                if (action == 'inactive'){
                     action = 'active';
-                    load_feeds_data(limit, start);
+                    load_feeds_data();
                 }
                 $(window).scroll(function () {
                     if ($(window).scrollTop() + $(window).height() > $("#load_feeds").height() && action == 'inactive')
                     {
-                    	$('#start_inp').val(0);
-                        action = 'active';
-                        start = start + limit;
-                        $('#start_inp').val(start);
+                    //var limit = $('#limit_inp').val();
+                    var start = $('#start_inp').val();
+                    action = 'active';
+                        start = parseInt(start) + parseInt(limit);
+                        $('#start_inp').val(parseInt(start));
                         setTimeout(function () {
-                           load_feeds_data(limit, start);
+                           load_feeds_data();
                         }, 500);
-$('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
+                        $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
                     }
                     
                 });

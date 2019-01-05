@@ -237,7 +237,9 @@ class Feeds extends CI_Controller {
         //print_r($_POST);die();
             $apiKey = 'jumla@1234';
             $path = base_url();
-            $url = $path . 'api/Feeds_api/getTimelineScroll?limit=' . $limit . '&start=' . $start . '&user_id=' . $user_id;
+            //$url = $path . 'api/Feeds_api/getTimelineScroll?limit=' . $limit . '&start=' . $start . '&user_id=' . $user_id;
+            $url = $path . 'api/Feeds_api/getTimelineByFilter/'.$cat_id.'?limit=' . $limit . '&start=' . $start . '&user_id=' . $user_id.'&search='.$query;
+            //echo $url;die();
             $ch = curl_init($url);
             curl_setopt($ch, CURLOPT_TIMEOUT, 30);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -248,7 +250,7 @@ class Feeds extends CI_Controller {
         //close cURL resource
             curl_close($ch);
             $response = json_decode($response_json, true);
-        //	print_r($response_json);die();
+        	//print_r($response_json);die();
         //	return $response;
             if ($response['status'] == 200) {
                 foreach ($response['status_message'] as $key) {
