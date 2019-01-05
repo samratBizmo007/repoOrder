@@ -125,7 +125,7 @@ class Feeds extends CI_Controller {
                 echo '<div class="w3-circle w3-border user_img" style="background-image: url(\'' . $default_image . '\');"></div>
                 </div>
                 <div class="col-lg-11 w3-padding-left w3-padding-top">
-                <p style="padding:0;margin:0">
+                <a href="'.base_url().'user/user_profile/'.base64_encode($key['unique_id']).'" class="btn" style="padding: 0;margin:0">
                 <label class="w3-small" style="margin-bottom:0;padding-top:8px">
                 ';
                 // show company name and address on post
@@ -134,7 +134,7 @@ class Feeds extends CI_Controller {
                 } else {
                     echo $key['company_name'];
                     } echo'</label>
-                    </p>
+                    </a>
                     <p style="padding:0;margin:0" class="w3-small">                
                     ';
                     if ($key['address'] == '') {
@@ -268,7 +268,7 @@ class Feeds extends CI_Controller {
                     <div class="w3-circle w3-border user_imgMob" style="background-image: url(\'' . $default_image . '\');"></div>
                     </div>
                     <div class="w3-col s10 w3-padding-top">
-                    <a class="btn" style="padding: 0;margin:0">
+                    <a href="'.base_url().'user/user_profile/'.base64_encode($key['unique_id']).'" class="btn" style="padding: 0;margin:0">
                     <label class="w3-small" style="padding:0;margin:0">';
                     if ($key['company_name'] == '') {
                         echo '<span class="w3-text-red">Not Disclosed</span>';

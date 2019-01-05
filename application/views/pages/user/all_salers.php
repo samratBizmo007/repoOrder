@@ -40,7 +40,7 @@ error_reporting(E_ERROR | E_PARSE);
 
         <!-- saler info div start -->
         <div class="w3-col l3  w3-margin-bottom">
-          <div class="w3-col l12 w3-card w3-round">
+          <div class="w3-col l12 w3-card-2 w3-round">
             <div class="w3-col s4 " style="padding:4px">
               <?php 
               if($key['user_image']!=''){

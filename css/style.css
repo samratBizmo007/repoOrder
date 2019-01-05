@@ -825,8 +825,11 @@ margin-top: 3px;
   background-color:#FAFAFA;
 }
 .icon_active{
-  color: #262626;
+  color: #00B8D4;
 }
+/*.icon_default{
+  color:  
+}*/
 .icon{
   color: #C5C5C5;
 }
