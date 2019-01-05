@@ -122,8 +122,10 @@ class Feeds extends CI_Controller {
                 if ($key['user_image'] != '') {
                     $default_image = PROFILEIMAGE_PATH . $key['user_image'];
                 }
-                echo '<div class="w3-circle w3-border user_img" style="background-image: url(\'' . $default_image . '\');"></div>
-                </div>
+                echo '
+                <a style="padding:0;margin:0" href="'.base_url().'user/user_profile/'.base64_encode($key['unique_id']).'">
+                <div class="w3-circle w3-black user_img" style="background-image: url(\'' . $default_image . '\');"></div>
+                </div></a>
                 <div class="col-lg-11 w3-padding-left w3-padding-top">
                 <a href="'.base_url().'user/user_profile/'.base64_encode($key['unique_id']).'" class="btn" style="padding: 0;margin:0">
                 <label class="w3-small" style="margin-bottom:0;padding-top:8px">
@@ -255,7 +257,7 @@ class Feeds extends CI_Controller {
             if ($response['status'] == 200) {
                 foreach ($response['status_message'] as $key) {
                     echo '
-                    <div class="w3-col l12 w3-margin-bottom">
+                    <div class="w3-col l12 w3-white" style="margin-bottom:30px">
 
                     <!-- Top section div start -->
                     <div class="w3-col s12 w3-border-bottom w3-padding-bottom">                  
@@ -265,8 +267,9 @@ class Feeds extends CI_Controller {
                         $default_image = PROFILEIMAGE_PATH . $key['user_image'];
                     }
                     echo '
-                    <div class="w3-circle w3-border user_imgMob" style="background-image: url(\'' . $default_image . '\');"></div>
-                    </div>
+                    <a style="padding:0;margin:0" href="'.base_url().'user/user_profile/'.base64_encode($key['unique_id']).'">
+                    <div class="w3-circle w3-black user_imgMob" style="background-image: url(\'' . $default_image . '\');"></div>
+                    </div></a>
                     <div class="w3-col s10 w3-padding-top">
                     <a href="'.base_url().'user/user_profile/'.base64_encode($key['unique_id']).'" class="btn" style="padding: 0;margin:0">
                     <label class="w3-small" style="padding:0;margin:0">';
@@ -301,7 +304,8 @@ class Feeds extends CI_Controller {
                         echo '
                         <!-- Image slider Swiper repo -->
                         <div class="swiper-container" style="height: auto;width: 100%">
-                        <div class="swiper-wrapper" style="vertical-align:middle!important;">';
+                        <div class="swiper-wrapper" style="vertical-align:middle!important;">
+                        ';
                         foreach ($imageArr as $image) {
                             echo '
                             <img src="' . PRODUCTIMAGE_PATH . $image['prod_image'] . '" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide w3-border-bottom" >';
@@ -327,29 +331,28 @@ class Feeds extends CI_Controller {
                 <!-- Bottom section div starts -->
                 <div class="w3-col l12">
                 <div class="w3-col l12 w3-padding-small w3-right">
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:+' . $key['country_code'] . $key['phone'] . '" title="+' . $key['country_code'] . $key['whatsapp_no'] . '" style="padding-right: 0px;padding-left: 8px">
+                <a class="w3-button w3-white w3-text-blue  w3-hover-text-orange w3-hover-white" href="tel:+' . $key['country_code'] . $key['phone'] . '" title="+' . $key['country_code'] . $key['whatsapp_no'] . '" style="padding-right: 0px;padding-left: 8px">
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="mailto:' . $key['email'] . '?subject=Referred contact from Jumla Business." title="' . $key['email'] . '" style="padding-right: 0px;padding-left: 15px">
+                <a class="w3-button w3-white w3-text-red w3-hover-text-orange w3-hover-white" href="mailto:' . $key['email'] . '?subject=Referred contact from Jumla Business." title="' . $key['email'] . '" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>';
                 if ($key['whatsapp_no'] != '0') {
-                    echo'<a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=' . $key['country_code'] . $key['whatsapp_no'] . '" title="' . $key['country_code'] . $key['whatsapp_no'] . '" style="padding-right: 0px;padding-left: 15px">
+                    echo'<a class="w3-button w3-text-green w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=' . $key['country_code'] . $key['whatsapp_no'] . '" title="' . $key['country_code'] . $key['whatsapp_no'] . '" style="padding-right: 0px;padding-left: 15px">
                     <span class="fa fa-whatsapp w3-xlarge"></span>
                     </a>';
                 } else {
                     echo '';
                 }
                 echo'<a class="btn w3-right" href="' . base_url() . 'user/category/' . base64_encode($key['cat_id']) . '" style="padding: 0">
-                <span class="w3-margin-top w3-small"><i>' . $key['category_name'] . '</i></span>
+                <span class="w3-margin-top badge w3-small"><i>' . $key['category_name'] . '</i></span>
                 </a>                      
                 </div>
 
                 <div class="w3-col l12 w3-padding ">
                 <label>' . $key['product_name'] . '</label>
                 <span class="w3-small w3-margin-left">' . $key['prod_description'] . '</span>
-                <hr>
                 </div>
 
                 </div>

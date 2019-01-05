@@ -160,7 +160,7 @@ $('#sortFeedsByCategory').change(function () {
                         setTimeout(function () {
                            load_feeds_data();
                         }, 500);
-                        $('#loading_msg').html('<div class="alert alert-warning w3-center w3-margin"><b> No more Feeds available. </b></div>');
+                        $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
                     }
                     
                 });

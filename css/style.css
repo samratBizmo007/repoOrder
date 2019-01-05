@@ -1,10 +1,10 @@
 :root {
-  base_url: 'http://localhost/jobmandi';
+    base_url: 'http://localhost/jobmandi';
 }
 @font-face {
     font-family: 'robotobold';
     src: url('fonts/roboto-bold-webfont.woff2') format('woff2'),
-         url('fonts/roboto-bold-webfont.woff') format('woff');
+        url('fonts/roboto-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -12,7 +12,7 @@
 @font-face {
     font-family: 'robotolight';
     src: url('fonts/roboto-light-webfont.woff2') format('woff2'),
-         url('fonts/roboto-light-webfont.woff') format('woff');
+        url('fonts/roboto-light-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -20,7 +20,7 @@
 @font-face {
     font-family: 'robotoregular';
     src: url('fonts/roboto-regular-webfont.woff2') format('woff2'),
-         url('fonts/roboto-regular-webfont.woff') format('woff');
+        url('fonts/roboto-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -28,9 +28,9 @@
 
 /* YOUR CUSTOM STYLES */
 body {  
-  color: #000000;
-  font-family: 'Roboto', sans-serif;
-  font-size:12px; 
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    font-size:12px; 
 }
 h1,
 h2,
@@ -38,9 +38,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
-  font-family: 'Roboto-regular', sans-serif;
-  color: #272727;
+    font-weight: 600;
+    font-family: 'Roboto-regular', sans-serif;
+    color: #272727;
 }
 img{
     max-width: 100%;
@@ -83,8 +83,8 @@ img{
     border-bottom: 1px solid gray;
     padding-top: 1.35cm;
     -webkit-box-shadow: 0 4px 6px -6px #222;
-  -moz-box-shadow: 0 4px 6px -6px #222;
-  box-shadow: 0 4px 6px -6px #222;
+    -moz-box-shadow: 0 4px 6px -6px #222;
+    box-shadow: 0 4px 6px -6px #222;
 }
 
 .nav_button{
@@ -94,15 +94,15 @@ img{
     border:none;
     color:white;
     display: block;
-text-align: center;
-font-size: 14px;
-margin-top: 3px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 3px;
 }
 
 
 @media only screen and (max-width: 500px) {
-       
-    }
+
+}
 
 /*------------------------------css for navbar-----------------------*/
 
@@ -152,7 +152,7 @@ margin-top: 3px;
     font-size: 10px;
 }
 #myFooter li{
-     font-size: 12px;
+    font-size: 12px;
 }
 #myFooter h5 {
     font-size: 15px;
@@ -230,14 +230,14 @@ margin-top: 3px;
 /* You can remove this. */
 
 .content{
-   flex: 1 0 auto;
-   -webkit-flex: 1 0 auto;
-   min-height: 200px;
+    flex: 1 0 auto;
+    -webkit-flex: 1 0 auto;
+    min-height: 200px;
 }
 
 #myFooter{
-   flex: 0 0 auto;
-   -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    -webkit-flex: 0 0 auto;
 }
 /*------------------------------css for footer-----------------------*/
 
@@ -247,12 +247,12 @@ margin-top: 3px;
     margin-top: 60px;
 }
 .uneditable-input:focus {   
-  border-color: rgba(126, 239, 104, 0.8);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
-  outline: 0 none;
+    border-color: rgba(126, 239, 104, 0.8);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
+    outline: 0 none;
 }
 .uneditable-input{
-      width: 200px;
+    width: 200px;
 }
 .profileA1 {
     background: url(../images/desktop/jobseeker_new.png) no-repeat center center;
@@ -400,49 +400,49 @@ margin-top: 3px;
     margin-top: 0%;
 }
 @media only screen and (max-width: 500px) {
-       .profileA5{
-         left:32%;
-       }
-       .profileB5{
-         left:28%;
-       }
-       .profileB{
+    .profileA5{
+        left:32%;
+    }
+    .profileB5{
+        left:28%;
+    }
+    .profileB{
         margin-top: 10px;
-       }
-       .profileD{
+    }
+    .profileD{
         margin-top: 15px;
-       }
-       .profileC5{
+    }
+    .profileC5{
         font-size: 32px;
-       }
-       .profileC6{
+    }
+    .profileC6{
         top: 55%;
         left: 1%;
-       }
-       .profileC7{
+    }
+    .profileC7{
         left: 13%;
-       }
-       .profileC8{
+    }
+    .profileC8{
         left: 29%;
-       }
-       .profileD5{
+    }
+    .profileD5{
         font-size: 30px;
-       }
-       .profileD7{
+    }
+    .profileD7{
         left:17%;
-       }
-       .profileD8{
+    }
+    .profileD8{
         left:26%;
-       }
-       #Get_start{
+    }
+    #Get_start{
         width:100%;
-       }
-       .profileF2{
+    }
+    .profileF2{
         top: 0%;
         left: 36%;
-       }
-            
     }
+
+}
 
 /*------------------------------css for layout-----------------------*/
 
@@ -532,10 +532,10 @@ margin-top: 3px;
 }
 
 @media only screen and (max-width: 500px) {
-       .squareA2, .squareA3, .squareA4{
+    .squareA2, .squareA3, .squareA4{
         margin-top: 15px;
-       }
     }
+}
 
 
 /*------------------------------css for section2-----------------------*/
@@ -550,7 +550,7 @@ margin-top: 3px;
     color:white;
 }
 #services{
-   margin-bottom: 50px;
+    margin-bottom: 50px;
 }
 .media-body{
     margin-bottom: 40px;
@@ -610,18 +610,18 @@ margin-top: 3px;
     margin-top: 20px;
 }
 @media only screen and (max-width: 500px) {
-       .bottom_letter{
+    .bottom_letter{
         margin-top: 10px;
         margin-bottom: 30px;
-       }
     }
+}
 
 
 /*------------------------------css for section3-----------------------*/
 
 /*------------------------------css for testomonial slider-----------------------*/
 #section4{
-  margin-bottom: 60px;  
+    margin-bottom: 60px;  
 }
 .section4_inner1{
     margin-top: 50px;
@@ -634,50 +634,50 @@ margin-top: 3px;
 /* carousel */
 #quote-carousel 
 {
-  padding: 0 10px 30px 10px;
-  margin-top: 30px;
+    padding: 0 10px 30px 10px;
+    margin-top: 30px;
 }
 
 /* Control buttons  */
 #quote-carousel .carousel-control
 {
-  background: none;
-  color: #222;
-  font-size: 2.3em;
-  text-shadow: none;
-  margin-top: 30px;
+    background: none;
+    color: #222;
+    font-size: 2.3em;
+    text-shadow: none;
+    margin-top: 30px;
 }
 /* Previous button  */
 #quote-carousel .carousel-control.left 
 {
-  left: -12px;
+    left: -12px;
 }
 /* Next button  */
 #quote-carousel .carousel-control.right 
 {
-  right: -12px !important;
+    right: -12px !important;
 }
 /* Changes the position of the indicators */
 #quote-carousel .carousel-indicators 
 {
-  right: 50%;
-  top: auto;
-  bottom: 0px;
-  margin-right: -19px;
+    right: 50%;
+    top: auto;
+    bottom: 0px;
+    margin-right: -19px;
 }
 /* Changes the color of the indicators */
 #quote-carousel .carousel-indicators li 
 {
-  background: #c0c0c0;
+    background: #c0c0c0;
 }
 #quote-carousel .carousel-indicators .active 
 {
-  background: #333333;
+    background: #333333;
 }
 #quote-carousel img
 {
-  width: 250px;
-  height: 100px
+    width: 250px;
+    height: 100px
 }
 /* End carousel */
 
@@ -707,17 +707,17 @@ margin-top: 3px;
 @media (min-width: 768px) { 
     #quote-carousel 
     {
-      margin-bottom: 0;
-      padding: 0 40px 30px 40px;
+        margin-bottom: 0;
+        padding: 0 40px 30px 40px;
     }
-    
+
 }
 
 /* Small devices (tablets, up to 768px) */
 @media (max-width: 768px) { 
-    
+
     /* Make the indicators larger for easier clicking with fingers/thumb on mobile */
-    
+
     #quote-carousel .carousel-indicators {
         bottom: -20px !important;  
     }
@@ -751,10 +751,10 @@ margin-top: 3px;
     padding-top: 16px;
 }
 @media only screen and (max-width: 500px) {
-       .animated_div{
+    .animated_div{
         margin-bottom: 80px;
-       }
     }
+}
 
 
 /*------------------------------css for counter-----------------------*/
@@ -769,7 +769,7 @@ margin-top: 3px;
     box-shadow: inset 0 0 5px grey; 
     border-radius: 3px;
 }
- 
+
 /* Handle */
 .scrollyClass::-webkit-scrollbar-thumb {
     background: #00BFA5; 
@@ -806,63 +806,80 @@ margin-top: 3px;
 }
 
 .bluishGreen_bg{
-  background-color:#00B59D;
+    background-color:#00B59D;
     color: #ffffff;
 }
 .bluishGreen_txt{
-  color:#00B59D;
+    color:#00B59D;
 }
 .button{
-  background-color:#00B59D;
+    background-color:#00B59D;
 }
 #basic-addon{
-  background-color:#00B59D;                
+    background-color:#00B59D;                
 }
 .circle_sym{
-  padding:8px;                
+    padding:8px;                
 }
 .header_bg{
-  background-color:#FAFAFA;
+    background-color:#FAFAFA;
 }
 .icon_active{
-  color: #00B8D4;
+    /*color: #00B8D4;*/
+    color: #00e68a;
 }
-/*.icon_default{
-  color:  
+.icon_default{
+    color: whitesmoke;
+}
+
+.head_shadow {
+
+    -webkit-box-shadow: 0 3px 5px -1px #1f7a7a;
+    -moz-box-shadow: 0 3px 5px -1px black;
+    box-shadow: 0 3px 5px -1px #1f7a7a;
+}
+/*.foot_shadow {
+
+    -webkit-box-shadow: inset 0 3px 5px -1px #1f7a7a;
+    -moz-box-shadow: 0 3px 5px -1px black;
+    box-shadow: inset 0 3px 5px -1px #1f7a7a;
 }*/
+.header_footer_gradient{
+    background: linear-gradient(to right, #33ccff 0%, #0033cc 110%);
+}
 .icon{
-  color: #C5C5C5;
+    color: #C5C5C5;
 }
 /*----------------remove blue focus on input------------- */
 .uneditable-input:focus {   
-  border-color: rgba(126, 239, 104, 0.8);
-  box-shadow: 0 1px 1px #00BFA5 inset, 0 0 8px rgba(126, 239, 104, 0.6);
-  outline: 0 none;
+    border-color: rgba(126, 239, 104, 0.8);
+    box-shadow: 0 1px 1px #00BFA5 inset, 0 0 8px rgba(126, 239, 104, 0.6);
+    outline: 0 none;
 }
 
 .title{
- 
+
 }
 .subtitle{
-    
+
 }
 .description{
-    
+
 }
 .datainfo{
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   line-height: 16px;     /* fallback */
-   max-height: 32px;      /* fallback */
-   -webkit-line-clamp: 3; /* number of lines to show */
-   -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 16px;     /* fallback */
+    max-height: 32px;      /* fallback */
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 .lineinfo{
     float:left;
     white-space:nowrap;
 }
- .box{
+.box{
     width:350px;
     height:350px;
     border:1px solid black;
@@ -880,12 +897,12 @@ margin-top: 3px;
     white-space:nowrap;
 }
 .smallview{
-   overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 3; /* number of lines to show */
-   -webkit-box-orient: vertical;
-   
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+
 }
 
 .user_img{
@@ -894,27 +911,27 @@ margin-top: 3px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-  }
+}
 
-  .timeline_img{
+.timeline_img{
     height:500px;
     background-size: contain;
     object-fit: fill;
     background-position: center;
     background-repeat: no-repeat;
-  }
+}
 
-  .user_imgMob{
+.user_imgMob{
     height: 40px;
     width: 40px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-  }
+}
 
-  .timeline_imgMob{
+.timeline_imgMob{
     height:250px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-  }
+}

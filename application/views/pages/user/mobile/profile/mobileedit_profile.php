@@ -11,14 +11,14 @@ error_reporting(E_ERROR | E_PARSE);
      <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
 
         <style>
-        body{
-        	font-family: 'Roboto', sans-serif;
-        }
-        input{
-        
-        	font-size:14px;
-        	color:#9ca4ab;
-        }
+            * {
+                font-family: 'Roboto', sans-serif;
+            }
+        input,textarea,select{
+                border-bottom:1px solid lightgrey;
+                font-size:14px;
+                color:#9ca4ab;
+            }
     </style>
 </head>
 <body>

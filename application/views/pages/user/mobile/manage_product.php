@@ -2,8 +2,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 error_reporting(E_ERROR | E_PARSE);
-        //$user_role = $this->session->userdata('user_role');
-
+//$user_role = $this->session->userdata('user_role');
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,19 +10,25 @@ error_reporting(E_ERROR | E_PARSE);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Manage Product</title>
         <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
+
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
 
         <script type="text/javascript" src="<?php echo base_url(); ?>css/js/const.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
 
         <style>
-        body{
-        	font-family: 'Roboto', sans-serif;
-        }
-        input{
-        
-        	font-size:14px;
-        	color:#9ca4ab;
-        }
+            body{
+                font-family: 'Roboto', sans-serif;
+            }
+            input,textarea{
+                border-bottom:1px solid lightgrey;
+                font-size:14px;
+                color:#9ca4ab;
+            }
             /* width */
             ::-webkit-scrollbar {
                 width: 5px;
@@ -48,9 +53,9 @@ error_reporting(E_ERROR | E_PARSE);
     <body>
         <!-- !PAGE CONTENT! -->
         <div class="w3-main" style="margin-top:40px;margin-bottom: 40px">
-		<header class="w3-center w3-padding ">
-            <h5 class="w3-text-blue"><b>Add Product</b></h5>
-        </header>
+            <header class="w3-center w3-padding ">
+                <h5 class="w3-text-blue"><b>Add Product</b></h5>
+            </header>
             <div class="w3-margin-bottom">
                 <!-- Manage Profiles div -->
                 <form id="addProduct_form" enctype="multipart/form-data">  
@@ -60,22 +65,22 @@ error_reporting(E_ERROR | E_PARSE);
                             <!-- Product div start -->
                             <div class="w3-col l12 w3-margin-bottom">
                                 <?php $default_image = 'images/default_male.png'; ?>
-                              
+
                                 <div class="w3-col l12 w3-margin-top">                 
                                     <div class="w3-col l12 s12 m12" style="padding-right: 2px;">
-                                        <input type="text" name="product_name" id="product_name" value="" placeholder="Add Product Name Here" class="w3-input " style="" required>
+                                        <input style="border-bottom:1px solid lightgrey" type="text" name="product_name" id="product_name" value="" placeholder="Add Product Name Here" class="w3-input " style="" required>
                                     </div>
                                 </div>
                                 <div class="w3-col l12 w3-margin-top">                 
                                     <div class="w3-col l12 s12 m12" style=" padding-right: 2px;">
-                                        <textarea class="w3-input" name="product_description" id="product_description" placeholder="Add Product Description Here" rows="5" cols="50" style="resize: none; color:#9ca4ab;font-size:14px;" required></textarea>
+                                        <textarea style="border-bottom:1px solid lightgrey" class="w3-input" name="product_description" id="product_description" placeholder="Add Product Description Here" rows="5" cols="50" style="resize: none; color:#9ca4ab;font-size:14px;" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="w3-col l12 s12 m12 w3-margin-top w3-margin-bottom">
                                     <div class="w3-col s8">
                                         <label class="w3-label w3-text-black">Product Image:</label>
-                                        <input type="file" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURL(this);" required>
+                                        <input style="border-bottom:1px solid lightgrey" type="file" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURL(this);" required>
                                     </div>
                                     <div class="w3-col s4 w3-padding-small w3-display-container">
                                         <img class="img img-circle" id="adminImagePreview" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">
@@ -88,7 +93,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 </div>                                
 
                                 <div class="w3-col l12 w3-margin-top w3-margin-bottom w3-center w3-padding-bottom" id="btnsubmit">
-                                    <button  type="submit" title="add Product" class="w3-margin-bottom w3-round w3-medium w3-text-white w3-button" style="background-color: #00B8D4;">Add Product</button>
+                                    <button  type="submit" title="add Product" class="w3-margin-bottom w3-round w3-medium w3-text-white w3-button w3-blue">Add Product</button>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +101,7 @@ error_reporting(E_ERROR | E_PARSE);
                 </form>
             </div>
         </div>
-        <!-- manage profile div end -->
+        <!-- manage profile div end style="background-color: #00B8D4;" -->
         <!-- ___________________________tab 2 div ends here__________________________________ -->
         <!-- ____________________________the tab 2 ends here____________________ -->
         <!-- End page content -->
@@ -107,7 +112,7 @@ error_reporting(E_ERROR | E_PARSE);
                 var add_button = $("#add_moreimage");
                 var x = 1;
                 $(add_button).click(function (e) {
-                    e.preventDefault(); 
+                    e.preventDefault();
 
                     if (x < max_fields) {
                         x++;
@@ -115,10 +120,10 @@ error_reporting(E_ERROR | E_PARSE);
                 <div class="w3-col l12 s12 m12 w3-margin-top">\n\
         <div class="w3-col s8">\n\
         <label class="w3-label w3-text-black">Product Image:</label>\n\
-        <input type="file" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURLNEW(this,'+x+');" required>\n\
+        <input type="file" style="border-bottom:1px solid lightgrey" name="prod_image[]" id="prod_image" class="w3-input" onchange="readURLNEW(this,' + x + ');" required>\n\
         </div>\n\
         <div class="w3-col s4 w3-padding-small w3-display-container">\n\
-        <img class="img img-circle" id="adminImagePreview_'+x+'" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">\n\
+        <img class="img img-circle" id="adminImagePreview_' + x + '" src="<?php echo base_url() . $default_image; ?>" style="height: 80px; width: 80px;">\n\
         </div>\n\
         <a href="#" class="delete btn w3-text-black w3-left w3-small" title="remove image">remove <i class="fa fa-remove"></i>\n\
         </div>\n\
@@ -147,19 +152,19 @@ error_reporting(E_ERROR | E_PARSE);
                 }
             }
             // ------------function preview image end------------------//
-            function readURLNEW(input,id){
+            function readURLNEW(input, id) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
 
                     reader.onload = function (e) {
-                        $('#adminImagePreview_'+id).attr('src', e.target.result);
+                        $('#adminImagePreview_' + id).attr('src', e.target.result);
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
             }
         </script>
-       
-<!-- add product  -->
+
+        <!-- add product  -->
         <script>
             $(function () {
                 $("#addProduct_form").submit(function () {
