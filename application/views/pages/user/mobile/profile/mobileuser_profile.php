@@ -124,21 +124,23 @@ $id = $id_Arr[1];
                             <?php } ?>
                         </div>
                     </div>
-                    <div class="w3-col s12 w3-small w3-margin-top">
-                        <b>
-                            <?php
-                            if ($userDetails['status_message'][0]['full_name'] != '') {
-                                echo $userDetails['status_message'][0]['full_name'];
-                            } else {
-                                //echo 'Enter Full Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
-                            }
-                            ?>
-                        </b>
+                    <div class="w3-col s12 w3-large w3-margin-top">
+                        <span title="company name"><b>
+<!--                            <i class="fa fa-briefcase" title="Company"></i>-->
+                                <?php
+                                if ($userDetails['status_message'][0]['company_name'] != '') {
+                                    echo $userDetails['status_message'][0]['company_name'];
+                                } else {
+                                    echo '<span class="w3-text-red">Not Disclosed.</span>';
+                                }
+                                ?></b>
+                        </span>
+
                     </div>
-                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                    <div class="w3-col s12 w3-medium" style=" padding-top: 0px;">
                         <span><b><?php echo $userDetails['status_message'][0]['username']; ?></b></span>
                     </div>
-                    <div class="w3-col s12 w3-tiny w3-margin-bottom" style=" padding-top: 0px;">
+                    <div class="w3-col s12 w3-small w3-margin-bottom" style=" padding-top: 0px;">
                         <span><?php
                             if ($userDetails['status_message'][0]['bio'] != '') {
                                 echo $userDetails['status_message'][0]['bio'];
@@ -147,42 +149,45 @@ $id = $id_Arr[1];
                             }
                             ?></span>
                     </div>
-                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                    <div class="w3-col s12 w3-medium" style=" padding-top: 0px;">
                         <span>
-                            <i class="fa fa-briefcase" title="Company"></i>
+                            <i class="fa fa-user w3-medium" title="fullname"></i>                            
                             <?php
-                            if ($userDetails['status_message'][0]['company_name'] != '') {
-                                echo $userDetails['status_message'][0]['company_name'];
+                            if ($userDetails['status_message'][0]['full_name'] != '') {
+                                echo $userDetails['status_message'][0]['full_name'];
                             } else {
-                                echo '<span class="w3-text-red">Not Disclosed.</span>';
+                                //echo 'Enter Full Name.  <a href="' . base_url() . 'user/edit_profile" class="btn  bluishGreen_txt w3-small fa fa-plus"> Add</a>';
                             }
-                            ?></span>
+                            ?>                            
+                        </span>
                     </div>
-                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                    <div class="w3-col s12 w3-medium" style=" padding-top: 0px;">
                         <span>
-                            <i class="fa fa-globe" title="Website"></i>
+                            <i class="fa fa-globe w3-medium" title="Website"></i>
                             <?php
                             if ($userDetails['status_message'][0]['website'] != '') {
                                 echo $userDetails['status_message'][0]['website'];
                             } else {
                                 echo '<span class="w3-text-red">Not Disclosed.</span>';
                             }
-                            ?></span>
+                            ?>
+                        </span>
                     </div>
-                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                    <div class="w3-col s12 w3-medium" style=" padding-top: 0px;">
                         <span>
-                            <i class="fa fa-address-book" title="Address"></i>
+                            <i class="fa fa-address-book w3-medium" title="Address"></i>
                             <?php
                             if ($userDetails['status_message'][0]['address'] != '') {
                                 echo $userDetails['status_message'][0]['address'];
                             } else {
                                 echo '<span class="w3-text-red">Not Disclosed.</span>';
                             }
-                            ?></span>
+                            ?>
+                        </span>
                     </div>
-                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                    <div class="w3-col s12 w3-medium" style=" padding-top: 0px;">
                         <span>
-                            <i class="fa fa-phone" title="Mobile"></i>
+                            <i class="fa fa-phone w3-medium" title="Mobile"></i>
                             +<?php
                             if ($userDetails['status_message'][0]['phone'] != '') {
                                 echo $userDetails['status_message'][0]['country_code'] . $userDetails['status_message'][0]['phone'];
@@ -191,16 +196,17 @@ $id = $id_Arr[1];
                             }
                             ?></span>
                     </div>
-                    <div class="w3-col s12 w3-tiny" style=" padding-top: 0px;">
+                    <div class="w3-col s12 w3-medium" style=" padding-top: 0px;">
                         <span>
-                            <i class="fa fa-whatsapp" title="Whatsapp"></i>
+                            <i class="fa fa-whatsapp w3-medium" title="Whatsapp"></i>
                             <?php
                             if ($userDetails['status_message'][0]['whatsapp_no'] != '' && $userDetails['status_message'][0]['whatsapp_no'] != '0') {
                                 echo '+' . $userDetails['status_message'][0]['country_code'] . $userDetails['status_message'][0]['whatsapp_no'];
                             } else {
                                 echo '<span class="w3-text-red">Not Disclosed.</span>';
                             }
-                            ?></span>
+                            ?>
+                        </span>
                     </div>
                 </div>
                 <div class="col-lg-2"></div>
@@ -211,7 +217,7 @@ $id = $id_Arr[1];
                 <div class="col-lg-2"></div>
                 <div class="w3-col l8">
                     <div class="w3-col s12 w3-center w3-margin-bottom">
-                        <span class="w3-center" style=" border-top-style: solid; border-color: black;">Posts</span>
+                        <span class="w3-center" style=" border-top-style: solid; border-color: #0F2951;">Posts</span>
                     </div>
 
                     <!-- MAIN CONTENT STARTS -->
@@ -338,11 +344,11 @@ $id = $id_Arr[1];
 
     <!-- Initialize Swiper -->
     <script>
-                                                        var swiper = new Swiper('.swiper-container', {
-                                                            pagination: {
-                                                                el: '.swiper-pagination',
-                                                            },
-                                                        });
+                                                var swiper = new Swiper('.swiper-container', {
+                                                    pagination: {
+                                                        el: '.swiper-pagination',
+                                                    },
+                                                });
     </script>
     <script>
         //--------------fun for remove product from product table-------------------------------//

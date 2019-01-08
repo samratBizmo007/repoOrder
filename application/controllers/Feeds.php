@@ -189,7 +189,7 @@ class Feeds extends CI_Controller {
                 <!-- Bottom section div starts -->
                 <div class="w3-col l12">
                 <div class="w3-col l12 w3-padding-small w3-right">
-                <a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="tel:+' . $key['country_code'] . $key['phone'] . '" title="+' . $key['country_code'] . $key['phone'] . '" style="padding-right: 0px;padding-left: 8px">
+                <a class="w3-button w3-white w3-text-blue w3-hover-text-orange w3-hover-white" href="tel:+' . $key['country_code'] . $key['phone'] . '" title="+' . $key['country_code'] . $key['phone'] . '" style="padding-right: 0px;padding-left: 8px">
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
@@ -197,7 +197,7 @@ class Feeds extends CI_Controller {
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>';
                 if ($key['whatsapp_no'] != '0') {
-                    echo'<a class="w3-button w3-white w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=' . $key['country_code'] . $key['whatsapp_no'] . '" title="WhatsApp No: ' . $key['country_code'] . $key['whatsapp_no'] . '" style="padding-right: 0px;padding-left: 15px">
+                    echo'<a class="w3-button w3-white w3-text-green w3-hover-text-orange w3-hover-white" href="whatsapp://send?text=Hello! I got your contact from Jumla Business.&phone=' . $key['country_code'] . $key['whatsapp_no'] . '" title="WhatsApp No: ' . $key['country_code'] . $key['whatsapp_no'] . '" style="padding-right: 0px;padding-left: 15px">
                     <span class="fa fa-whatsapp w3-xlarge"></span>
                     </a>';
                 } else {
@@ -205,7 +205,7 @@ class Feeds extends CI_Controller {
                 }
 
                 echo'<a class="btn w3-right" href="' . base_url() . 'user/category/' . base64_encode($key['cat_id']) . '" style="padding: 0">
-                <span class="w3-margin-top w3-small"><i>' . $key['category_name'] . '</i></span>
+                <span class="w3-margin-top badge w3-small"><i>' . $key['category_name'] . '</i></span>
                 </a>
                 </div>
 
@@ -270,19 +270,17 @@ class Feeds extends CI_Controller {
                     <a style="padding:0;margin:0" href="'.base_url().'user/user_profile/'.base64_encode($key['unique_id']).'">
                     <div class="w3-circle w3-black user_imgMob" style="background-image: url(\'' . $default_image . '\');"></div>
                     </div></a>
-                    <div class="w3-col s10 w3-padding-top">
+                    <div class="w3-col s10 w3-padding-left w3-padding-top">
                     <a href="'.base_url().'user/user_profile/'.base64_encode($key['unique_id']).'" class="btn" style="padding: 0;margin:0">
-                    <label class="w3-small" style="padding:0;margin:0">';
+                    <label style="padding-top:6px;margin:0">';
                     if ($key['company_name'] == '') {
                         echo '<span class="w3-text-red">Not Disclosed</span>';
                     } else {
                         echo $key['company_name'];
                     }
-                    echo '
-                    </label>
+                    echo '</label>
                     </a>
-                    <p style="padding:0;margin:0" class="w3-small">                
-                    ';
+                    <p class="w3-small desc_color" style="padding:0;margin:0; padding-left: 1px;">';
                     if ($key['address'] == '') {
                         echo '<span class="w3-text-red">Not Disclosed</span>';
                     } else {
@@ -291,7 +289,7 @@ class Feeds extends CI_Controller {
                     echo'
                     </p>';
                     if ($key['isFeatured'] == 1) {
-                        echo'<div class=""><i><span class="w3-round-large w3-white w3-border w3-small" style="padding-right:4px; padding-left:4px;">Sponsored</span></i></div>';
+                        echo'<div class=""><i><span class="badge w3-white w3-border w3-small" style="padding-right:4px; padding-left:4px;">Sponsored</span></i></div>';
                     }
                     echo'</div>
                     </div>
@@ -308,7 +306,7 @@ class Feeds extends CI_Controller {
                         ';
                         foreach ($imageArr as $image) {
                             echo '
-                            <img src="' . PRODUCTIMAGE_PATH . $image['prod_image'] . '" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide w3-border-bottom" >';
+                            <img src="' . PRODUCTIMAGE_PATH . $image['prod_image'] . '" style="width: 100%;height: 100%;" class="img img-responsive swiper-slide" >';
                         }
                         echo '
                         </div>
@@ -321,7 +319,7 @@ class Feeds extends CI_Controller {
                     echo '<!-- Single image div -->';
                     foreach ($imageArr as $image) {
                         echo '
-                        <img src="' . PRODUCTIMAGE_PATH . $image['prod_image'] . '" style="width: 100%;height: 100%;" class="img img-responsive w3-border-bottom" >';
+                        <img src="' . PRODUCTIMAGE_PATH . $image['prod_image'] . '" style="width: 100%;height: 100%;" class="img img-responsive" >';
                     }
                 } //----------------end of else count of images
 
@@ -331,11 +329,11 @@ class Feeds extends CI_Controller {
                 <!-- Bottom section div starts -->
                 <div class="w3-col l12">
                 <div class="w3-col l12 w3-padding-small w3-right">
-                <a class="w3-button w3-white w3-text-blue  w3-hover-text-orange w3-hover-white" href="tel:+' . $key['country_code'] . $key['phone'] . '" title="+' . $key['country_code'] . $key['whatsapp_no'] . '" style="padding-right: 0px;padding-left: 8px">
+                <a class="w3-button w3-white w3-text-blue w3-hover-text-orange w3-hover-white" href="tel:+' . $key['country_code'] . $key['phone'] . '" title="+' . $key['country_code'] . $key['whatsapp_no'] . '" style="padding-right: 0px;padding-left: 8px">
                 <span class="fa fa-phone w3-xlarge"></span>
                 </a>
 
-                <a class="w3-button w3-white w3-text-red w3-hover-text-orange w3-hover-white" href="mailto:' . $key['email'] . '?subject=Referred contact from Jumla Business." title="' . $key['email'] . '" style="padding-right: 0px;padding-left: 15px">
+                <a class="w3-button w3-white w3-text-blue w3-hover-text-orange w3-hover-white" href="mailto:' . $key['email'] . '?subject=Referred contact from Jumla Business." title="' . $key['email'] . '" style="padding-right: 0px;padding-left: 15px">
                 <span class="fa fa-envelope-o w3-xlarge"></span>
                 </a>';
                 if ($key['whatsapp_no'] != '0') {
@@ -345,14 +343,14 @@ class Feeds extends CI_Controller {
                 } else {
                     echo '';
                 }
-                echo'<a class="btn w3-right" href="' . base_url() . 'user/category/' . base64_encode($key['cat_id']) . '" style="padding: 0">
-                <span class="w3-margin-top badge w3-small"><i>' . $key['category_name'] . '</i></span>
+                echo'<a class="btn w3-right w3-padding-top " href="' . base_url() . 'user/category/' . base64_encode($key['cat_id']) . '" style="padding: 0">
+                <span class=" badge capsule_color w3-padding w3-small">' . $key['category_name'] . '</span>
                 </a>                      
                 </div>
 
-                <div class="w3-col l12 w3-padding ">
-                <label>' . $key['product_name'] . '</label>
-                <span class="w3-small w3-margin-left">' . $key['prod_description'] . '</span>
+                <div class="w3-col l12 w3-padding-left w3-padding-bottom">
+                <label style="margin: 0;">' . $key['product_name'] . '</label><br>
+                <span class="w3-small desc_color">' . $key['prod_description'] . '</span>
                 </div>
 
                 </div>

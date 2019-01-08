@@ -25,17 +25,17 @@ $user_role = $this->session->userdata('user_role');
     </head>
     <body>
         <div class="w3-row w3-left w3-text-white header_footer_gradient w3-padding w3-top head_shadow" style="position: fixed;z-index: 3">
-            <b class="w3-large">Jumla Business</b>
+            <span class="w3-large">Jumla Business</span>
 
             <!-- Before login div -->
             <?php if ($user_role == '' || $user_id == '' || $user_name == '') { ?>
-                <a href="<?php echo base_url(); ?>login" class="w3-large w3-right btn" style="padding:0; margin: 0;"><i class="fa fa-sign-in"></i></a>
+            <a href="<?php echo base_url(); ?>login" class="w3-right btn" style="padding: 5px; margin: 0; border: 2px solid #4CAF50;">Login</a>
             <?php } ?>
             <!-- Before login div ends -->
 
             <!-- After login div -->
             <?php if ($user_role != '' || $user_id != '' || $user_name != '') { ?>
-                <a href="<?php echo base_url(); ?>login/logout" class="w3-large w3-right btn" style="padding: 0;margin: 0;"><i class="fa fa-sign-out"></i></a>
+            <a href="<?php echo base_url(); ?>login/logout" class="w3-right btn" style="margin: 0; padding: 5px; border: 2px solid #4CAF50; /* Green */">Logout</a>
                 <?php } ?>
             <!-- After login div ends -->
 

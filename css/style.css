@@ -845,10 +845,25 @@ img{
     box-shadow: inset 0 3px 5px -1px #1f7a7a;
 }*/
 .header_footer_gradient{
-    background: linear-gradient(to right, #33ccff 0%, #0033cc 110%);
+    background: linear-gradient(to right, #00B4B1 0%, #226AD5 100%);
+
+    /*background: linear-gradient(to right, #33ccff 0%, #0033cc 110%);*/
 }
 .icon{
     color: #C5C5C5;
+}
+.capsule_color{
+    color: #EEF0F3;
+    background-color: #0F2951;
+}
+.footer_text{
+    color:#0F2951;
+}
+.body_back_color{
+    background-color: #f1f9ff;
+}
+.desc_color{
+    color: #78879D;
 }
 /*----------------remove blue focus on input------------- */
 .uneditable-input:focus {   
@@ -922,8 +937,8 @@ img{
 }
 
 .user_imgMob{
-    height: 40px;
-    width: 40px;
+    height: 60px;
+    width: 60px;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

@@ -22,7 +22,7 @@ error_reporting(E_ERROR | E_PARSE);
 
             <!-- Header -->
             <header class="w3-center w3-padding ">
-                <h5 class="w3-text-blue"><b>All Sellers</b></h5>
+                <h5 class="footer_text"><b>All Sellers</b></h5>
             </header>
             <div class="w3-row-padding w3-margin-bottom">
                 <?php

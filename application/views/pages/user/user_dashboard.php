@@ -4,120 +4,120 @@ error_reporting(E_ERROR | E_PARSE);
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feeds</title>
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Feeds</title>
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.min.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/font awesome/font-awesome.css">
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/w3.css">
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="<?php echo base_url(); ?>css/posts/dist/css/swiper.min.css">
 
-    <!-- <link rel="stylesheet" href="assets/css/alert/jquery-confirm.css"> -->
-    <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
-    <!-- <script type="text/javascript" src="assets/css/alert/jquery-confirm.js"></script> -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700,900" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="assets/css/alert/jquery-confirm.css"> -->
+        <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
+        <!-- <script type="text/javascript" src="assets/css/alert/jquery-confirm.js"></script> -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
 
-    <style>
-    body {
-        font-family: 'Roboto', sans-serif;
-    }
-</style>
-</head>
-<body class="w3-light-grey">
+        <style>
+            * {
+                font-family: 'Roboto', sans-serif;
+            }
+        </style>
+    </head>
+    <body class="w3-light-grey">
 
-    <!-- !PAGE CONTENT! -->
-    <div class="w3-main w3-padding-small" style="margin-left:120px;">
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-padding-small" style="margin-left:120px;">
 
-        <!-- Header -->
-        <header class="w3-container" >
-            <h5><b><i class="fa fa-rss-square"></i> Kuwait</b></h5>
-        </header>
+            <!-- Header -->
+            <header class="w3-container" >
+                <h5><b><i class="fa fa-rss-square"></i> Kuwait</b></h5>
+            </header>
 
-        <!-- Product timeline div starts -->
-        <div class="w3-row-padding w3-margin-bottom">
-            <div class="w3-container">
-                <div class="col-lg-2">
-                    
-                </div>
-                <div class="col-lg-8">
-                    <div class="w3-col l12" style="padding-left: 30px">
-                    <input id="limit_inp" type="hidden" value="2">
-                    <input id="start_inp" type="hidden" value="0">
-                        <div class="w3-col l4 w3-padding-left w3-small">
-                            <label class="w3-text-grey">Sort By Category:</label>
-                            <select class="w3-input w3-border" name="sortFeedsByCategory" id="sortFeedsByCategory">
-                                <option value="0">All</option>
-                                <?php
-                                    // print_r($all_categories['status_message']);die();
-                                if ($all_categories['status'] == 200) {
-                                    foreach ($all_categories['status_message'] as $result) {
-                                        ?>
-                                        <option value="<?php echo $result['cat_id']; ?>"><?php echo $result['category_name']; ?></option>
-                                        <?php
-                                    }
-                                } else {
-                                    ?>
-                                    <option value=""> No Categories Available.</option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-5 w3-padding-left w3-small" style="padding-right: 45px">
-                            <label class="w3-text-grey">Search:</label>
-                            <input class="w3-input w3-border" onkeyup="load_feeds_data(0,2);" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 6px">
-                        </div>
+            <!-- Product timeline div starts -->
+            <div class="w3-row-padding w3-margin-bottom">
+                <div class="w3-container">
+                    <div class="col-lg-2">
+
                     </div>
+                    <div class="col-lg-8">
+                        <div class="w3-col l12" style="padding-left: 30px">
+                            <input id="limit_inp" type="hidden" value="2">
+                            <input id="start_inp" type="hidden" value="0">
+                            <div class="w3-col l4 w3-padding-left w3-small">
+                                <label class="w3-text-grey">Sort By Category:</label>
+                                <select class="w3-input w3-border" name="sortFeedsByCategory" id="sortFeedsByCategory">
+                                    <option value="0">All</option>
+                                    <?php
+                                    // print_r($all_categories['status_message']);die();
+                                    if ($all_categories['status'] == 200) {
+                                        foreach ($all_categories['status_message'] as $result) {
+                                            ?>
+                                            <option value="<?php echo $result['cat_id']; ?>"><?php echo $result['category_name']; ?></option>
+                                            <?php
+                                        }
+                                    } else {
+                                        ?>
+                                        <option value=""> No Categories Available.</option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="col-lg-3"></div>
+                            <div class="col-lg-5 w3-padding-left w3-small" style="padding-right: 45px">
+                                <label class="w3-text-grey">Search:</label>
+                                <input class="w3-input w3-border" onkeyup="load_feeds_data(0, 2);" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 6px">
+                            </div>
+                        </div>
 
-                    <div class="w3-col l12 w3-padding-xxlarge" id="load_feeds"></div>
+                        <div class="w3-col l12 w3-padding-xxlarge" id="load_feeds"></div>
 
-                    <!-- loading spinner div -->
-                    <div class="w3-col l12 w3-padding" id="loading_msg"></div>
-                    <!-- loading spinner div ends -->
+                        <!-- loading spinner div -->
+                        <div class="w3-col l12 w3-padding" id="loading_msg"></div>
+                        <!-- loading spinner div ends -->
 
+                    </div>
+                    <div class="col-lg-2"></div>
                 </div>
-                <div class="col-lg-2"></div>
             </div>
+            <!-- Product timeline ends here -->
         </div>
-        <!-- Product timeline ends here -->
-    </div>
-    <!-- End page content -->
+        <!-- End page content -->
 
 
-    <!-- script to load more feeds data on page scroll -->
-    <script>
+        <!-- script to load more feeds data on page scroll -->
+        <script>
 
             $(document).ready(function () {
                 var limit = $('#limit_inp').val();
-                	var start = $('#start_inp').val();
+                var start = $('#start_inp').val();
                 var action = 'inactive';
-                var search = $('#searchFeeds').val(); 
+                var search = $('#searchFeeds').val();
                 var sortBy = $('#sortFeedsByCategory').val();
-                
+
                 // -------fucntion to load 2 feeds on dropdown sort by chnage-------------------//
 
-$('#searchFeeds').keyup(function () {
-    $('#load_feeds').html('');
-    $('#start_inp').val(0);
-    $('#limit_inp').val(2);
-     load_feeds_data();
-            });
-            //-------------------------------------------------------------------//
-$('#sortFeedsByCategory').change(function () {
-    $('#load_feeds').html('');
-    $('#start_inp').val(0);
-    $('#limit_inp').val(2);
-    load_feeds_data();
-            });
+                $('#searchFeeds').keyup(function () {
+                    $('#load_feeds').html('');
+                    $('#start_inp').val(0);
+                    $('#limit_inp').val(2);
+                    load_feeds_data();
+                });
+                //-------------------------------------------------------------------//
+                $('#sortFeedsByCategory').change(function () {
+                    $('#load_feeds').html('');
+                    $('#start_inp').val(0);
+                    $('#limit_inp').val(2);
+                    load_feeds_data();
+                });
 
-            // ----------------------function ends here -----------------------------------//
+                // ----------------------function ends here -----------------------------------//
                 function load_feeds_data()
                 {
-                    
-                	var limit = $('#limit_inp').val();
-                	var start = $('#start_inp').val();
-                	var search = $('#searchFeeds').val(); 
+
+                    var limit = $('#limit_inp').val();
+                    var start = $('#start_inp').val();
+                    var search = $('#searchFeeds').val();
                     var sortBy = $('#sortFeedsByCategory').val();
                     $.ajax({
                         url: "<?php echo base_url(); ?>feeds/getTimeline_web",
@@ -145,24 +145,24 @@ $('#sortFeedsByCategory').change(function () {
                     });
                 }
 
-                if (action == 'inactive'){
+                if (action == 'inactive') {
                     action = 'active';
                     load_feeds_data();
                 }
                 $(window).scroll(function () {
                     if ($(window).scrollTop() + $(window).height() > $("#load_feeds").height() && action == 'inactive')
                     {
-                    //var limit = $('#limit_inp').val();
-                    var start = $('#start_inp').val();
-                    action = 'active';
+                        //var limit = $('#limit_inp').val();
+                        var start = $('#start_inp').val();
+                        action = 'active';
                         start = parseInt(start) + parseInt(limit);
                         $('#start_inp').val(parseInt(start));
                         setTimeout(function () {
-                           load_feeds_data();
+                            load_feeds_data();
                         }, 500);
                         $('#loading_msg').html('<div class="w3-center w3-margin w3-text-grey"><b><i class="fa fa-refresh fa-spin"></i> Loading Feeds... </b></div>');
                     }
-                    
+
                 });
 
             });
@@ -174,12 +174,12 @@ $('#sortFeedsByCategory').change(function () {
 
         <!-- Initialize Swiper -->
         <script>
-            var swiper = new Swiper('.swiper-container', {
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-            });
+        var swiper = new Swiper('.swiper-container', {
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
         </script>
     </body>
-    </html>
+</html>

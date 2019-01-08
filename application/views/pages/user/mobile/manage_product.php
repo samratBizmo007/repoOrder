@@ -54,7 +54,7 @@ error_reporting(E_ERROR | E_PARSE);
         <!-- !PAGE CONTENT! -->
         <div class="w3-main" style="margin-top:40px;margin-bottom: 40px">
             <header class="w3-center w3-padding ">
-                <h5 class="w3-text-blue"><b>Add Product</b></h5>
+                <h5 class="footer_text"><b>Add Product</b></h5>
             </header>
             <div class="w3-margin-bottom">
                 <!-- Manage Profiles div -->
@@ -93,7 +93,7 @@ error_reporting(E_ERROR | E_PARSE);
                                 </div>                                
 
                                 <div class="w3-col l12 w3-margin-top w3-margin-bottom w3-center w3-padding-bottom" id="btnsubmit">
-                                    <button  type="submit" title="add Product" class="w3-margin-bottom w3-round w3-medium w3-text-white w3-button w3-blue">Add Product</button>
+                                    <button  type="submit" title="add Product" class="capsule_color w3-margin-bottom w3-round w3-medium w3-text-white w3-button" style=" background-color: #0F2951;">Add Product</button>
                                 </div>
                             </div>
                         </div>

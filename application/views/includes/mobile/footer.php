@@ -24,15 +24,15 @@ $user_role=$this->session->userdata('user_role');
   ?>
   <div class="w3-row w3-center header_footer_gradient w3-bottom w3-border-top w3-white" style="position: fixed;z-index: 3; height: 50px;">
     <div class="w3-col s4 w3-center" style="padding:0 ">
-        <a href="<?php echo base_url(); ?>user/feeds" class="btn icon"><label class="w3-tiny <?php if($this->uri->segment(2)=='feeds' || $this->uri->segment(2)==''){ echo 'icon_active';}else{ echo 'icon_default';}?>"><i class="fa fa-home <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'icon_active';}else{ echo 'icon_default';}?> w3-large "></i><br>Feeds</label>
+        <a href="<?php echo base_url(); ?>user/feeds" class="btn icon"><label class="w3-tiny <?php if($this->uri->segment(2)=='feeds' || $this->uri->segment(2)==''){ echo 'footer_text';}else{ echo 'icon_default';}?>"><i class="fa fa-home <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'footer_text';}else{ echo 'icon_default';}?> w3-large "></i><br>Feeds</label>
       </a>
     </div>
     <div class="w3-col s4 w3-center" style="padding:0">
-        <a href="<?php echo base_url(); ?>user/all_categories" class="btn icon"><label class="w3-tiny <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'icon_active';}else{ echo 'icon_default';}?>"><i class="fa fa-search <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'icon_active';}else{ echo 'icon_default';}?> w3-large"></i><br>Search</label>
+        <a href="<?php echo base_url(); ?>user/all_categories" class="btn icon"><label class="w3-tiny <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'footer_text';}else{ echo 'icon_default';}?>"><i class="fa fa-search <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'footer_text';}else{ echo 'icon_default';}?> w3-large"></i><br>Categories</label>
       </a>
     </div>
     <div class="w3-col s4 w3-center" style="padding:0 ">
-        <a href="<?php echo base_url(); ?>login" class="btn icon"><label class="w3-tiny icon_default"><i class="fa fa-user-circle icon_default w3-large"></i><br>Login</label>
+        <a href="<?php echo base_url(); ?>login" class="btn icon"><label class="w3-tiny icon_default"><i class="fa fa-user-circle icon_default w3-large"></i><br>Login</span>
       </a>
     </div>
   </div>
@@ -45,11 +45,11 @@ $user_role=$this->session->userdata('user_role');
   ?>
   <div class="w3-row w3-center w3-bottom header_footer_gradient w3-white w3-border-top" style="position: fixed;z-index: 3; height: 50px;">
     <div class="w3-col s6 w3-center" style="padding:0 ">
-        <a href="<?php echo base_url(); ?>user/feeds" class="btn icon"><label class="w3-tiny <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'icon_active';}else{ echo 'icon_default';}?>"><i class="fa fa-home <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'icon_active';}else{ echo 'icon_default';}?> w3-large "></i><br>Feeds</label>
+        <a href="<?php echo base_url(); ?>user/feeds" class="btn icon"><label class="w3-tiny <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'footer_text';}else{ echo 'icon_default';}?>"><i class="fa fa-home <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'footer_text';}else{ echo 'icon_default';}?> w3-large "></i><br>Feeds</label>
       </a>
     </div>
     <div class="w3-col s6 w3-center" style="padding:0">
-        <a href="<?php echo base_url(); ?>user/all_categories" class="btn icon"><label class="w3-tiny <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'icon_active';}else{ echo 'icon_default';}?>"><i class="fa fa-search <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'icon_active';}else{ echo 'icon_default';}?> w3-large"></i><br>Search</label>
+        <a href="<?php echo base_url(); ?>user/all_categories" class="btn icon"><label class="w3-tiny <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'footer_text';}else{ echo 'icon_default';}?>"><i class="fa fa-search <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'footer_text';}else{ echo 'icon_default';}?> w3-large"></i><br>Categories</label>
       </a>
     </div>
   </div>
@@ -63,19 +63,19 @@ $user_role=$this->session->userdata('user_role');
   ?>
   <div class="w3-row w3-center w3-bottom header_footer_gradient w3-white" style="position: fixed;z-index: 3; height: 50px;">
     <div class="w3-col s3 w3-center" style="padding:0 ">
-        <a href="<?php echo base_url(); ?>user/feeds" class="btn icon"><label class="w3-tiny <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'icon_active';}else{ echo 'icon_default';}?>"><i class="fa fa-home <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'icon_active';}else{ echo 'icon_default';}?> w3-large "></i><br>Feeds</label>
+        <a href="<?php echo base_url(); ?>user/feeds" class="btn icon"><label class="w3-tiny <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'footer_text';}else{ echo 'icon_default';}?>"><i class="fa fa-home <?php if($this->uri->segment(2)=='feeds'  || $this->uri->segment(2)==''){ echo 'footer_text';}else{ echo 'icon_default';}?> w3-large "></i><br>Feeds</label>
       </a>
     </div>
     <div class="w3-col s3 w3-center" style="padding:0">
-        <a href="<?php echo base_url(); ?>user/all_categories" class="btn icon"><label class="w3-tiny <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'icon_active';}else{ echo 'icon_default';}?>"><i class="fa fa-search <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'icon_active';}else{ echo 'icon_default';}?> w3-large"></i><br>Search</label>
+        <a href="<?php echo base_url(); ?>user/all_categories" class="btn icon"><label class="w3-tiny <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'footer_text';}else{ echo 'icon_default';}?>"><i class="fa fa-search <?php if($record_num=='all_categories' || $this->uri->segment(2)=='category'){ echo 'footer_text';}else{ echo 'icon_default';}?> w3-large"></i><br>Categories</label>
       </a>
     </div>
     <div class="w3-col s3 w3-center" style="padding:0 ">
-        <a href="<?php echo base_url(); ?>user/manage_products" class="btn icon"><label class="w3-tiny <?php if($record_num=='manage_products'){ echo 'icon_active';}else{ echo 'icon_default';}?>"><i class="fa fa-plus-square <?php if($record_num=='manage_products'){ echo 'icon_active';}else{ echo 'icon_default';}?> w3-large"></i><br>Add</label>
+        <a href="<?php echo base_url(); ?>user/manage_products" class="btn icon"><label class="w3-tiny <?php if($record_num=='manage_products'){ echo 'footer_text';}else{ echo 'icon_default';}?>"><i class="fa fa-plus-circle <?php if($record_num=='manage_products'){ echo 'footer_text';}else{ echo 'icon_default';}?> w3-large"></i><br>Add</label>
       </a>
     </div>
     <div class="w3-col s3 w3-center" style="padding:0 ">
-        <a href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($user_id);?>" class="btn icon"><label class="w3-tiny <?php if($this->uri->segment(2)=='user_profile' || $record_num=='edit_profile'){ echo 'icon_active';}else{ echo 'icon_default';}?>"><i class="fa fa-user <?php if($this->uri->segment(2)=='user_profile' || $record_num=='edit_profile'){ echo 'icon_active';}else{ echo 'icon_default';}?> w3-large"></i><br>Profile</label>
+        <a href="<?php echo base_url(); ?>user/user_profile/<?php echo base64_encode($user_id);?>" class="btn icon"><label class="w3-tiny <?php if($this->uri->segment(2)=='user_profile' || $record_num=='edit_profile'){ echo 'footer_text';}else{ echo 'icon_default';}?>"><i class="fa fa-user <?php if($this->uri->segment(2)=='user_profile' || $record_num=='edit_profile'){ echo 'footer_text';}else{ echo 'icon_default';}?> w3-large"></i><br>Profile</label>
       </a>
     </div>
   </div>

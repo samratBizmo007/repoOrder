@@ -5,7 +5,8 @@ error_reporting(E_ERROR | E_PARSE);
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+        <meta name="HandheldFriendly" content="true">
         <title>Feeds</title>
         <script type="text/javascript" src="<?php echo base_url(); ?>css/bootstrap/jquery-3.1.1.js"></script>
         <!-- Link Swiper's CSS -->
@@ -18,20 +19,27 @@ error_reporting(E_ERROR | E_PARSE);
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
 
         <style>
+            @media screen and (-webkit-min-device-pixel-ratio:0) { 
+                select,
+                textarea,
+                input {
+                    font-size: 16px;
+                }
+            }
             * {
                 font-family: 'Roboto', sans-serif;
             }
         </style>
     </head>
-    <body>
+    <body class="body_back_color">
 
         <!-- !PAGE CONTENT! -->
         <div class="w3-main" style="margin-top:40px;margin-bottom:40px">
 
             <!-- Header -->
-<!--            <header class="w3-col l12 w3-padding-small" >
-                <h5><b><i class="fa fa-rss-square"></i> Kuwait</b></h5>
-            </header>-->
+            <!--            <header class="w3-col l12 w3-padding-small" >
+                            <h5><b><i class="fa fa-rss-square"></i> Kuwait</b></h5>
+                        </header>-->
 
             <!-- Product timeline div starts -->
             <div class="w3-row w3-margin-bottom">
@@ -40,13 +48,13 @@ error_reporting(E_ERROR | E_PARSE);
                         <div class="w3-col l12 w3-margin-top" style="">
                             <input id="limit_inp" type="hidden" value="2">
                             <input id="start_inp" type="hidden" value="0">
-                            <div class="w3-col l4 w3-padding-small w3-margin-bottom w3-small">
+                            <div class="w3-col l4 w3-padding-small w3-margin-bottom">
                                 <label class="w3-text-grey">Search:</label>
-                                <input style="border-bottom:1px solid lightgrey" class="w3-input" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 5px;">
+                                <input style="border-bottom:1px solid lightgrey" class="w3-input w3-small" placeholder="Search by Product name or keywords" name="searchFeeds" id="searchFeeds" style="padding: 5px;">
                             </div>
-                            <div class="w3-col l4 w3-padding-small w3-margin-bottom w3-small">
+                            <div class="w3-col l4 w3-padding-small w3-margin-bottom">
                                 <label class="w3-text-grey">Sort By Category:</label>
-                                <select style="border-bottom:1px solid lightgrey" class="w3-input" name="sortFeedsByCategory" id="sortFeedsByCategory">
+                                <select style="border-bottom:1px solid lightgrey" class="w3-input w3-small" name="sortFeedsByCategory" id="sortFeedsByCategory">
                                     <option value="0">All</option>
                                     <?php
                                     // print_r($all_categories['status_message']);die();
@@ -227,11 +235,11 @@ error_reporting(E_ERROR | E_PARSE);
 
         <!-- Initialize Swiper -->
         <script>
-             var swiper = new Swiper('.swiper-container', {
-                 pagination: {
-                     el: ".swiper-pagination",
-                 },
-             });
+            var swiper = new Swiper('.swiper-container', {
+                pagination: {
+                    el: ".swiper-pagination",
+                },
+            });
         </script>
     </body>
 </html>
